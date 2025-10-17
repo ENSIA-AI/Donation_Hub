@@ -82,11 +82,28 @@ body {
 }
 
 /* LINKS */
-.nav-menu a {
+.nav-menu li:not(.btn) a{
+    position: relative;  /* needed for ::after */
     text-decoration: none;
     color: var(--color-bg);
     font-size: 16px;
     transition: 0.4s ease;
+}
+
+.nav-menu li:not(.btn) a::after{
+    content: ''; /*empty content*/
+    position: absolute;
+    background-color: var(--color-secondary);
+    height: 2px;
+    left: 0;
+    bottom: -4px; /* distance from text */
+    width: 0%;  /* start hidden */
+    transition: width 0.4s ease;
+}
+
+.nav-menu li:not(.btn) a:hover::after
+{
+    width: 100%;
 }
 
 .nav-menu a:hover {
@@ -155,6 +172,10 @@ body {
         opacity: 1;
         transform: translateY(0) scale(1);
         pointer-events: auto;
+    }
+
+    .nav-menu::after{
+        bottom: -2px;
     }
 
     .nav-menu li:hover {
