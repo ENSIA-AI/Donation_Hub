@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Organizations</title>
+    <link rel="stylesheet" href="assets/CSS/style.css">
+</head>
+<body>
+    <header>
+            <div class="header">
+        <div class="container">
+            <div class="row">
+
+                <!-- Logo -->
+                <div class="col-2">
+                    <div class="logo"></div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="col-10">
+                    <div class="nav">
+                        <div class="hamburger" id="hamburger">☰</div>
+                        <ul class="nav-menu" id="nav-menu">
+
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Organizations</a></li>
+                            <li><a href="#">Announcements</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li class="btn"><a href="#" >log in</a></li>
+                            <li class="btn"><a href="#">register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+    </script>
+    </header>
+    <main>
+        <h1 >Verified organizations</h1>
+        <p class="subtitle">discover trusted organizations making a real difference in our communities</p>
+        <form action="">
+        <div class="search-bar">
+            <div class="search-by-name">
+                <img src="assets/icons/search.svg" alt="search">
+           <input type="search" id="serchInput" placeholder="search">
+            </div>
+            <div class="search-filter">
+            
+           <select name="categoties" id="catego                                                                                                                                                           tiesInput" >
+                <option value="health">health</option>
+                <option value="education">education</option>
+                <option value="children">children</option>
+                <option value="food">food</option>
+                <option value="noFilter" selected>no filter</option>
+           </select>
+
+        <select name="region" id="regionInput" >
+                <option value="algeries">algeries</option>
+                <option value="bouira">bouira</option>
+                <option value="Oran">Oan</option>
+                <option value="jijel">jijel</option>
+                <option value="noFilter" selected>no filter</option>
+        </select>
+        </div>
+        </div>
+    </form>
+
+    </main>
+</body>
+</html>

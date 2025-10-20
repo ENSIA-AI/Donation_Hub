@@ -1,7 +1,11 @@
 :root {
-    --color-primary: #0E594C;
-    --color-secondary: #FEDA79;
-    --color-bg: #F2F2F2;
+    --primary-font: "Poppins";
+    --secondary-font: "Montserrat", sans-serif;
+    --third-font: "Lato";
+    --primary-color: #107361;
+    --secondary-color: #0F594C;
+    --third-color: #FEDA79;
+    --background-color:#F2F2F2 ;
 }
 
 * {
@@ -13,11 +17,11 @@
 /* HEADER */
 .header {
     width: 100%;
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
 }
 
 body {
-    background-color: var(--color-bg);
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
 }
@@ -52,7 +56,7 @@ body {
 
 /* LOGO */
 .logo {
-    background-color: var(--color-bg);
+    background-color: var(--background-color);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -85,7 +89,7 @@ body {
 .nav-menu li:not(.btn) a{
     position: relative;  /* needed for ::after */
     text-decoration: none;
-    color: var(--color-bg);
+    color: var(--background-color);
     font-size: 16px;
     transition: 0.4s ease;
 }
@@ -93,7 +97,7 @@ body {
 .nav-menu li:not(.btn) a::after{
     content: ''; /*empty content*/
     position: absolute;
-    background-color: var(--color-secondary);
+    background-color: var(--third-color);
     height: 2px;
     left: 0;
     bottom: -4px; /* distance from text */
@@ -113,14 +117,14 @@ body {
 /* BUTTONS */
 .btn {
     padding: 8px 20px;
-    background-color: var(--color-secondary);
+    background-color: var(--third-color);
     border-radius: 10px;
     transition: all 0.3s ease;
     transform-origin: center; /* scale from center */
 }
 
 .btn a {
-    color: var(--color-primary);
+    color: var(--primary-color);
     text-decoration: none;
     display: block;
 }
@@ -138,7 +142,7 @@ body {
 .hamburger {
     display: none;
     font-size: 34px;
-    color: var(--color-bg);
+    color: var(--background-color);
     cursor: pointer;
 }
 
@@ -155,7 +159,7 @@ body {
         position: absolute;
         top: 70px;
         right: 15px;
-        background-color: var(--color-primary);
+        background-color: var(--primary-color);
         width: 220px;
         padding: 20px;
         border-radius: 15px;
@@ -196,6 +200,38 @@ body {
     }
 
     .nav-menu .btn a {
-        color: var(--color-primary);
+        color: var(--primary-color);
     }
+}
+
+/*organization page styling*/
+h1{
+   text-align: center; 
+   font-weight: bold;
+   font-size: 35px;
+   font-family: var(--primary-font);
+   padding-top: 30px;
+}
+.subtitle{
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--secondary-font);
+}
+.search-bar{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.search-by-name{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    margin: 15px;
+}
+#serchInput{
+    min-width: 400px;
+    text-decoration: none;
+    border: none;
 }
