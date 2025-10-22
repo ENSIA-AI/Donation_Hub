@@ -390,10 +390,9 @@ footer{
     flex-direction: column;
     gap: 40px;
     margin-top: 100px;
-    height: 150px;
+    height: auto;
     width: 100%;
     padding: 30px;
-    height: 200px;
 }
 
 .links{
@@ -465,13 +464,14 @@ footer{
     font-size: 20px;
     color: var(--background-color);
     transition: all 0.5s ease;
+    padding: 10px; 
+    border-radius: 50%;
 }
 
 #facebook:hover{
     color: blue;
     border-radius: 50%;
     background-color: var(--background-color);
-    padding: 10px;
     box-shadow: 0 0 5px blue, 0 0 10px blue;
 }
 
@@ -479,7 +479,6 @@ footer{
     color: orangered;
     border-radius: 50%;
     background-color: var(--background-color);
-    padding: 10px;
     box-shadow: 0 0 5px orangered, 0 0 10px orangered;
 }
 
@@ -487,7 +486,6 @@ footer{
     color: blue;
     border-radius: 50%;
     background-color: var(--background-color);
-    padding: 10px;
     box-shadow: 0 0 5px blue, 0 0 10px blue;
 }
 
@@ -495,7 +493,6 @@ footer{
     color: orange;
     border-radius: 50%;
     background-color: var(--background-color);
-    padding: 10px;
     box-shadow: 0 0 5px orange, 0 0 10px orange;
 }
 
