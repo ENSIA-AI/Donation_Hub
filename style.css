@@ -1,7 +1,11 @@
 :root {
-    --color-primary: #0E594C;
-    --color-secondary: #FEDA79;
-    --color-bg: #F2F2F2;
+    --primary-font: "Poppins";
+    --secondary-font: "Montserrat", sans-serif;
+    --third-font: "Lato";
+    --primary-color: #107361;
+    --secondary-color: #0F594C;
+    --third-color: #FEDA79;
+    --background-color:#F2F2F2 ;
 }
 
 * {
@@ -13,13 +17,13 @@
 /* HEADER */
 .header {
     width: 100%;
-    background-color: var(--color-primary);
+    background-color: var(--secondary-color);
     position: relative;
     z-index: 10;
 }
 
 body {
-    background-color: var(--color-bg);
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
 }
@@ -54,7 +58,7 @@ body {
 
 /* LOGO */
 .logo {
-    background-color: var(--color-bg);
+    background-color: var(--background-color);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -88,7 +92,7 @@ body {
     position: relative;
     /* needed for ::after */
     text-decoration: none;
-    color: var(--color-bg);
+    color: var(--background-color);
     font-size: 16px;
     transition: 0.4s ease;
 }
@@ -97,7 +101,7 @@ body {
     content: '';
     /*empty content*/
     position: absolute;
-    background-color: var(--color-secondary);
+    background-color: var(--third-color);
     height: 2px;
     left: 0;
     bottom: -4px;
@@ -118,7 +122,7 @@ body {
 /* BUTTONS */
 .btn {
     padding: 8px 20px;
-    background-color: var(--color-secondary);
+    background-color: var(--third-color);
     border-radius: 10px;
     transition: all 0.3s ease;
     transform-origin: center;
@@ -126,7 +130,8 @@ body {
 }
 
 .btn a {
-    color: var(--color-primary);
+    color: var(--secondary-color);
+    font-family: var(--secondary-font);
     text-decoration: none;
     display: block;
 }
@@ -145,7 +150,7 @@ body {
 .hamburger {
     display: none;
     font-size: 34px;
-    color: var(--color-bg);
+    color: var(--background-color);
     cursor: pointer;
 }
 
@@ -159,7 +164,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-bg);
+    color: var(--background-color);
     position: relative;
     /* important for overlay */
     overflow: hidden;
@@ -182,6 +187,7 @@ body {
 }
 
 .hero-content h1 {
+    font-family: var(--primary-font);
     font-size: 52px;
     margin-bottom: 16px;
 }
@@ -190,6 +196,7 @@ body {
     max-width: 600px;
     font-size: 26px;
     margin: 0 auto 24px;
+    font-family: var(--third-font);
 }
 
 .hero-buttons {
@@ -202,7 +209,8 @@ body {
 .btn {
     text-decoration: none;
     padding: 12px 24px;
-    color: var(--color-primary);
+    color: var(--secondary-color);
+    font-family: var(--secondary-font);
     font-weight: bold;
     font-size: 14px;
 }
@@ -215,7 +223,8 @@ body {
 }
 
 .difference h1 {
-    color: var(--color-primary);
+    color: var(--secondary-color);
+    font-family: var(--primary-font);
     text-align: center;
     margin-bottom: 16px;
     font-size: 38px;
@@ -224,6 +233,7 @@ body {
 .difference .paragraph {
     text-align: center;
     color: #373737;
+    font-family: var(--third-font);
     margin-bottom: 30px;
     max-width: 600px;
     font-size: 26px;
@@ -239,7 +249,7 @@ body {
 }
 
 .card {
-    background-color: var(--color-bg);
+    background-color: var(--background-color);
     padding: 24px;
     min-height: 150px;
     border-radius: 10px;
@@ -248,16 +258,68 @@ body {
 }
 
 .card h3{
+    font-family: var(--primary-font);
     font-size: 20px;
   margin-bottom: 10px;
-  color:var(--color-primary);
+  color:var(--secondary-color);
+}
+
+
+
+/*------------Core Values-----------*/
+.values{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.core-values  h2 {
+    font-family: var(--primary-font);
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 40px;
+    margin-top: 90px;
+}
+
+.core-values p{
+    font-family: var(--third-font);
+    text-align: center;
+    color: #373737;
+    margin-bottom: 30px;
+    max-width: 800px;
+    font-size: 22px;
+    margin: 0 auto 32px;
+}
+
+.value{
+    box-shadow: 5px 5px 5px 5px rgba(80, 154, 141, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.value h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--secondary-color)
+}
+
+.value p {
+  font-size: 18px;
+  text-align: center;
+  max-width: 200px;
 }
 
 
 
 
 /* MEDIA QUERY - MOBILE */
-@media(max-width: 650px) {
+@media(max-width: 600px) {
     .hamburger {
         display: block;
         margin-right: 30px;
@@ -269,7 +331,7 @@ body {
         position: absolute;
         top: 70px;
         right: 15px;
-        background-color: var(--color-primary);
+        background-color: var(--primary-color);
         width: 220px;
         padding: 20px;
         border-radius: 15px;
@@ -310,7 +372,7 @@ body {
     }
 
     .nav-menu .btn a {
-        color: var(--color-primary);
+        color: var(--secondary-color);
     }
 
 
