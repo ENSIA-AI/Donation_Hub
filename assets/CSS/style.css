@@ -17,10 +17,10 @@ body {
 }
 
 .container {
-    margin-left: 3rem;
-    margin-right: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
 }
 
 ul {
@@ -46,8 +46,8 @@ a {
 }
 
 section {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 :root {
@@ -59,8 +59,6 @@ section {
     --third-color: #FEDA79;
     --background-color: #F2F2F2;
 }
-
-/* ====================================navbar===================================== */
 
 
 
@@ -74,8 +72,8 @@ section {
 }
 
 .organization_logo_img {
-    width: 20rem;
-    height: 20rem;
+    width: 22rem;
+    height: 22rem;
     border-radius: 50%;
 
 }
@@ -103,18 +101,20 @@ section {
     margin: 1rem 2rem;
 }
 
+.organization_profile_description.flex-row {
+    justify-content: flex-start;
+}
 
 .organization_identity h1 {
     font-size: 3.5rem;
     font-family: var(--primary-font);
-
+    margin: 0;
 }
 
-.organization_identity.flex-row {
+/* .organization_identity.flex-row {
     flex-direction: column;
-
     padding: 0;
-}
+} */
 
 .organization_identity p {
     font-size: 1.6rem;
@@ -125,14 +125,14 @@ section {
 .organization_details.flex-row {
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+
 }
 
 .bdg_name {
     font-size: 1.3rem;
     font-weight: 600;
     font-family: var(--secondary-font);
-    padding: 8px 16px;
+    padding: .8rem 1.6rem;
     border-radius: 20px;
 
 }
@@ -146,16 +146,14 @@ section {
 
 }
 
-.organization_profile_description.flex-row {
-    justify-content: left;
 
-}
 
 .organization_badges {
-
-    width: 76%;
+    max-width: 50%;
 }
 
+
+/* ================================navbar org====================================== */
 .org_nav_elements.flex-row {
     justify-content: space-around;
 }
@@ -171,7 +169,6 @@ section {
 
 }
 
-/* navbar org  */
 
 
 .nav_line {
@@ -187,6 +184,9 @@ section {
     color: var(--primary-color);
 
 }
+
+
+
 
 /* ============Post=============== */
 .post-card {
@@ -223,8 +223,39 @@ section {
     color: black;
 }
 
-/* animations */
+.posts {
+    margin-top: 20px;
+}
 
+.post_action_link {
+    color: black;
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    font-size: 1.3rem;
+
+}
+
+.post_actions.flex-row {
+    justify-content: space-between;
+}
+
+.post_actions {
+    margin-top: 10px;
+}
+
+.post_action {
+    background-color: var(--third-color);
+    border-radius: 20px;
+    padding: .8rem 1.6rem;
+    transition: all .7s ease-in-out;
+}
+
+
+/* animations */
+.post_action:hover {
+    transform: scale(1.05);
+    background-color: rgba(0, 0, 0, .5);
+}
 
 /* ============end Post=============== */
 
@@ -344,6 +375,6 @@ section {
     }
 
     html {
-        font-size: 5px;
+        font-size: 6px;
     }
 }
