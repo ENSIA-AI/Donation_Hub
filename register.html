@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register/login</title>
+</head>
+<body>
+   <div class="container">
+    <!--login form-->
+    <div class="form-box register">
+        <div class="title">
+            <h2>Register</h2>
+        </div>
+        <form action="">
+            <input type="text" id="name-of-organization" placeholder="Name of organization">
+            <input type="text" id="phone-number" placeholder="Phone number">
+            <input type="email" id="email" placeholder="Email">
+            <select name="type" id="type-of-organization">
+                <option value="health">health</option>
+                <option value="education">education</option>
+                <option value="children">children</option>
+                <option value="food">food</option>
+                <option value="water">water</option>
+            </select>
+            <select name="region" id="region">
+                <option value="algeries">algeries</option>
+                <option value="bouira">bouira</option>
+                <option value="jijel">jijel</option>
+                <option value="oran">oran</option>
+                <option value="bejia">bejia</option>
+                <option value="adrar">adrar</option>
+            </select>
+            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Confirm password">
+             <button type="submit"> register</button>
+        </form>
+    </div>
+    <!--register form-->
+    <div class="form-box login">
+         <div class="title">
+            <h2>login</h2>
+        </div>
+        <form action="">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Confirm password">
+             <button type="submit"> login</button>
+        </form>
+    </div>
+         
+    <!--toggle box-->
+    <div class="toggle-box">
+        <div class="toggle-pannel toggle-left">
+           <h3>welcome to donifyDz !</h3>
+           <p>Allready have an account?</p>
+           <button>log in</button>
+        </div>
+        <div class="toggle-pannel toggle-right">
+           <h3>welcome back to donifyDz !</h3>
+           <p>don't have an account?</p>
+           <button>register</button>
+        </div>
+
+    </div>
+   </div> 
+</body>
+</html>
