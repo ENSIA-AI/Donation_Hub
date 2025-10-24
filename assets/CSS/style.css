@@ -50,6 +50,7 @@ h1{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2em;
     margin-top: 2%;
     margin-bottom: 2%;
     min-width: 500px;
@@ -82,10 +83,58 @@ border: none;
   background: none;       
   box-shadow: none;       
   border-radius: 0; 
+  min-width: 300px;
+ }
+.search-filter{
+    display: flex;
+    justify-content: space-between;
+    
+}
+ .catego{
+    padding: 1.3em;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 8px;
+     border-style: solid;
+    border-color: rgba(0, 0, 0, 0.07);
+    
+
+ }
+ .catego select{
+    border: none;
+    appearance: none;
+
+ }
+
+ .region{
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.07);
+    padding: 1.3em;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+   
+    border-radius: 8px;
+    margin: 0 1em;
+
+ }
+ .region select{
+    border: none;
+    appearance: none;
+
  }
 
  .card-container{
     max-width: 450px;
+ }
+ .card{
+    background-color: white;
+    margin: 1em;
+    border-radius: 4px;
+    -webkit-box-shadow: 2px 1px 18px 0px rgba(0,0,0,0.5); 
+    box-shadow: 2px 1px 18px 0px rgba(0,0,0,0.5);
+
  }
  .image_card{
     width: 100%;
@@ -109,10 +158,24 @@ p{
     font-family: var(--third-font);
 }
 .learn-more{
+    margin-top: 2em;
     padding: 1em 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+.learn-more a{
+    font-size: 1.5rem;
+    text-decoration-line: none;
+    color: rgb(0, 0, 0);
+    font-weight: 400;
+}
+.learn-more a:hover{
+    font-size: 1.5rem;
+    text-decoration-line: none;
+    color: rgb(28, 221, 28);
+    text-shadow: 4px 3px 13px rgba(4,33,6,0.5);
+    font-weight: 400;
 }
  
  @media (min-width: 1000px) {
@@ -168,7 +231,7 @@ p{
 
 @media (max-width: 600px) {
     html{
-        font-size: 50%;
+        font-size: 40%;
     }
     .col-sm-1 {
         width: calc(100% / 12);
@@ -219,3 +282,4 @@ p{
     }
 
 }
+
