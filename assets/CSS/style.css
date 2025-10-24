@@ -254,7 +254,7 @@ section {
 /* animations */
 .post_action:hover {
     transform: scale(1.05);
-    background-color: rgba(0, 0, 0, .5);
+    box-shadow: #FEDA79;
 }
 
 /* ============end Post=============== */
