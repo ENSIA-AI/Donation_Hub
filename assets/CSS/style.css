@@ -45,7 +45,9 @@ h1{
     font-family: var(--third-font);
     font-weight: normal;
 }
-
+.title{
+    margin-bottom: 4em;
+}
 .search-bar{
     display: flex;
     justify-content: space-between;
@@ -72,13 +74,13 @@ h1{
     background-color: white;
     border-radius: 8px;
     min-width: 300px;
-    padding: 0.5em; 
+    padding: 0.1em; 
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.07);
  
 }
  #serchInput{
-border: none;           
+ border: none;           
   outline: none;          
   background: none;       
   box-shadow: none;       
@@ -91,12 +93,12 @@ border: none;
     
 }
  .catego{
-    padding: 1.3em;
+    padding: 0.8em;
     background-color: white;
     display: flex;
     justify-content: flex-start;
     border-radius: 8px;
-     border-style: solid;
+    border-style: solid;
     border-color: rgba(0, 0, 0, 0.07);
     
 
@@ -110,7 +112,7 @@ border: none;
  .region{
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.07);
-    padding: 1.3em;
+    padding: 0.8em;
     background-color: white;
     display: flex;
     justify-content: flex-start;
@@ -132,8 +134,8 @@ border: none;
     background-color: white;
     margin: 1em;
     border-radius: 4px;
-    -webkit-box-shadow: 2px 1px 18px 0px rgba(0,0,0,0.5); 
-    box-shadow: 2px 1px 18px 0px rgba(0,0,0,0.5);
+-webkit-box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16); 
+box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
 
  }
  .image_card{
@@ -159,10 +161,13 @@ p{
 }
 .learn-more{
     margin-top: 2em;
-    padding: 1em 0;
+    padding: 0.8em 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    background-color: var(--third-color);
+    max-width: 10em;
+    border-radius: 8px;
 }
 .learn-more a{
     font-size: 1.5rem;
@@ -170,13 +175,7 @@ p{
     color: rgb(0, 0, 0);
     font-weight: 400;
 }
-.learn-more a:hover{
-    font-size: 1.5rem;
-    text-decoration-line: none;
-    color: rgb(28, 221, 28);
-    text-shadow: 4px 3px 13px rgba(4,33,6,0.5);
-    font-weight: 400;
-}
+
  
  @media (min-width: 1000px) {
     .col-lg-1 {
