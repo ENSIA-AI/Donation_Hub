@@ -489,7 +489,7 @@ footer{
     box-shadow: 0 0 5px blue, 0 0 10px blue;
 }
 
-#email:hover{
+#email-icon:hover{
     color: orange;
     border-radius: 50%;
     background-color: var(--background-color);
