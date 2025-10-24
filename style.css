@@ -298,9 +298,10 @@ body {
 }
 
 .value {
-    box-shadow: 5px 5px 5px 5px rgba(80, 154, 141, 0.5);
     border-radius: 10px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(80, 154, 141, 0.3);
+
 }
 
 .value h3 {
@@ -498,6 +499,7 @@ footer{
 
 
 
+
 /* MEDIA QUERY - MOBILE */
 @media(max-width: 600px) {
     .hamburger {
@@ -553,6 +555,30 @@ footer{
 
     .nav-menu .btn a {
         color: var(--secondary-color);
+    }
+
+
+    .cards {
+        grid-template-columns: 1fr; /* one card per row */
+        gap: 16px;
+        max-width: 90%;
+    }
+
+    .card {
+        padding: 16px;
+        font-size: 14px;
+    }
+
+    /* Core values section */
+    .values {
+        grid-template-columns: 1fr; /* one per row */
+        gap: 16px;
+        max-width: 90%;
+    }
+
+    .value p {
+        max-width: 100%;
+        font-size: 16px;
     }
 
 
