@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+
+                <!-- Logo -->
+                <div class="col-2">
+                    <div class="logo"></div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="col-10">
+                    <div class="nav">
+                        <div class="hamburger" id="hamburger">☰</div>
+                        <ul class="nav-menu" id="nav-menu">
+
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Organizations</a></li>
+                            <li><a href="#">Announcements</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li class="btn"><a href="#">log in</a></li>
+                            <li class="btn"><a href="#">register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="Conatct">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you! Whether it's feedback, a partnership idea, or support — reach out
+                    anytime.</p>
+
+                <div class="info-item"><i class="fas fa-envelope"></i> contact@donifidz.org</div>
+                <div class="info-item"><i class="fas fa-phone"></i> +213 555 123 456</div>
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i> Algiers, Algeria</div>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+
+            </div>
+
+            <div class="contact-form">
+                <div class="name-field">
+                    <div class="input-group">
+                        <input type="text" id="fname" name="fname" required>
+                        <label for="fname">First Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="lname" name="lname" required>
+                        <label for="lname">Last Name</label>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email Address</label>
+                </div>
+
+                <div class="input-group">
+                    <select id="subject" name="subject" required>
+                        <option value="" disabled selected>Select Subject</option>
+                        <option>Feedback</option>
+                        <option>Technical Issue</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <textarea id="measssage" name="message" rows="5" required></textarea>
+                    <label for="message">Message</label>
+                </div>
+
+                <div class="btn-group">
+                    <button type="reset" class="reset-btn">Reset</button>
+                    <button type="submit" class="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="links">
+            <div class="donify">Donify_DZ</div>
+            <div class="link">
+                <a href="index.html">Home</a>
+                <a href="#">Organizations</a>
+                <a href="#">Announcements</a>
+                <a href="contact.html">Conatct</a>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="media">
+            <div class="rights">
+                <p>Donify_dz@2025. All rights reserved</p>
+            </div>
+
+            <div class="social_media">
+                <a id="facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a id="linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a id="email" href="#"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+    </script>
+</body>
+
+</html>
