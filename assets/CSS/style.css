@@ -107,7 +107,7 @@ section {
 }
 
 .organization_identity h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-family: var(--primary-font);
     margin: 0;
 }
@@ -147,12 +147,22 @@ section {
 
 }
 
-
-
-.organization_badges {
-    max-width: 50%;
+.verified_btn {
+    font-size: 2rem;
 }
 
+.type_btn {
+    font-size: 1.5rem;
+}
+
+.organization_badges {
+    max-width: 37.5rem;
+}
+
+.bdg_name.flex-row {
+    align-items: center;
+    gap: 1rem;
+}
 
 /* ================================navbar org====================================== */
 .org_nav_elements.flex-row {
@@ -324,7 +334,7 @@ section {
 }
 
 .mission_img {
-    object-fit: contain;
+    object-fit: cover;
 }
 
 
@@ -465,6 +475,74 @@ section {
     box-shadow: rgba(73, 131, 121, 0.951) 0px 2px 20px 4px;
 }
 
+
+/* ==========================Impact===================== */
+.impacts.flex-row {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 3rem;
+}
+
+.impact {
+    max-height: 20rem;
+}
+
+.impact-card {
+    padding: 4rem 2rem;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(233, 221, 149, 0.896) 0px 2px 20px 1px;
+    transition: all .7s ease-in-out;
+}
+
+.impact-action h1 {
+    margin-top: 0;
+    font-size: 4rem;
+    font-family: var(--secondary-font);
+    font-weight: 800;
+    color: var(--secondary-color);
+}
+
+
+
+.middle-impact-card {
+    transform: translateY(-60px);
+
+    margin-top: 80px;
+
+}
+
+.impact-action i {
+    margin-bottom: 1.15rem;
+    font-size: 4.65rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.impact-details p {
+    font-family: var(--third-font);
+    font-size: 1.7rem;
+
+}
+
+.Impact_title {
+    padding: 25px;
+}
+
+.impact-section {
+    margin-bottom: 60px;
+}
+
+.impact-card:hover {
+    transform: scale(1.05) translateY(-20px);
+    box-shadow: rgba(233, 221, 149, 0.896) 0px 30px 60px -12px inset, rgba(247, 226, 131, 0.671) 0px 18px 36px -18px inset;
+}
+
+.impact-card:hover .impact-action {
+    color: var(--third-color);
+}
+
 /* ================================About us ====================================== */
 
 
@@ -529,6 +607,9 @@ section {
         width: 100%;
     }
 
+    .col-xl-2-5 {
+        width: calc((5/2)*100% / 12);
+    }
 }
 
 /* Large (lg) screens (992px to 1199px) */
@@ -581,6 +662,9 @@ section {
         width: 100%;
     }
 
+    .col-lg-2-5 {
+        width: calc((5/2)*100% / 12);
+    }
 
     .value_card {
         font-size: 15px;
