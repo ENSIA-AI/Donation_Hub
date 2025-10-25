@@ -323,6 +323,11 @@ section {
     padding: 5rem;
 }
 
+.mission_img {
+    object-fit: contain;
+}
+
+
 .mission_vision {
     background-color: var(--primary-color);
     margin-left: 0;
@@ -363,10 +368,13 @@ section {
 
 .values_cards {
     margin-top: 5rem;
+    margin-bottom: 12rem;
 }
 
 .values_cards.flex-row {
     justify-content: space-around;
+    row-gap: 3rem;
+    column-gap: 1rem;
 }
 
 .value_card {
@@ -377,14 +385,84 @@ section {
     font-size: 2rem;
     font-family: var(--secondary-font);
     font-weight: 500;
+    max-width: 25rem;
     transition: all .5s ease-in-out;
-    box-shadow: rgba(253, 235, 129, 0.918) 0px 2px 20px 4px;
+    box-shadow: rgba(252, 240, 176, 0.918) 0px 2px 20px 4px;
+}
+
+
+.program-details.flex-row {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.programs.flex-row {
+    gap: 4rem;
+    justify-content: center;
+}
+
+.programs {
+    background-color: var(--primary-color);
+    padding: 2rem 2rem;
+}
+
+.programs-title {
+    color: white;
+    font-family: var(--primary-font);
+    font-size: 4rem;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+
+.program-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all .5s ease-in-out;
+    box-shadow: rgba(73, 131, 121, 0.951) 0px 2px 20px 4px;
+}
+
+
+
+.program {
+    background-color: white;
+    height: 20rem;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.program-title {
+    font-family: var(--primary-font);
+    color: black;
+    font-weight: 600;
+    font-size: 1.7rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.program-description {
+    font-family: var(--third-font);
+    color: black;
+
+    font-size: 1.5rem;
+    padding-top: .7rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 /* animations */
 .value_card:hover {
     transform: scale(1.1);
+    box-shadow: rgba(253, 235, 129, 0.918) 0px 2px 20px 4px;
+}
 
+.program:hover .program-image {
+    transform: scale(1.1);
+    box-shadow: rgba(73, 131, 121, 0.951) 0px 2px 20px 4px;
 }
 
 /* ================================About us ====================================== */
@@ -502,6 +580,12 @@ section {
     .col-lg-12 {
         width: 100%;
     }
+
+
+    .value_card {
+        font-size: 15px;
+        width: 200px;
+    }
 }
 
 /* Medium (md) screens (768px to 991px) */
@@ -552,6 +636,11 @@ section {
 
     .col-md-12 {
         width: 100%;
+    }
+
+    .value_card {
+        font-size: 14px;
+        width: 150px;
     }
 
     html {
@@ -608,6 +697,11 @@ section {
 
     .col-sm-12 {
         width: 100%;
+    }
+
+    .value_card {
+        font-size: 13px;
+        max-width: 238px;
     }
 
     html {
@@ -677,6 +771,10 @@ section {
         text-align: center;
     }
 
+    .value_card {
+        font-size: 13px;
+        max-width: 200px;
+    }
 
 }
 
