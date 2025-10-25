@@ -249,7 +249,7 @@ body {
     /*centers the grid container horizontally on the page (because left and right margins are set to auto*/
 }
 
-.card {
+.diff-card {
     background-color: var(--background-color);
     padding: 24px;
     min-height: 150px;
@@ -258,7 +258,7 @@ body {
     box-shadow: 10px 10px 10px 10px rgba(80, 154, 141, 0.5);
 }
 
-.card h3 {
+.diff-card h3 {
     font-family: var(--primary-font);
     font-size: 20px;
     margin-bottom: 10px;
