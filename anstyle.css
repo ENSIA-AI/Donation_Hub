@@ -342,10 +342,10 @@ body {
 
 /* Organization Info Card */
 .org-card {
-    background-color: white;
+    background-color: var(--secondary-color);
     padding: 3cqb;
     border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
     height: 100%;
 }
 
@@ -353,7 +353,7 @@ body {
     font-family: var(--primary-font);
     font-size: var(--section-title-font-size);
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--third-color);
     margin-bottom: 3rem;
 }
 
@@ -361,12 +361,11 @@ body {
     font-family: var(--third-font);
     font-size: var(--text-font-size);
     line-height: 2;
-    color: black;
+    color: white;
     margin-bottom: 2.5rem;
 }
 
 .impact-statement {
-    background-color: white;
     border-color: var(--third-color);
     padding: 1rem;
     margin-bottom: 1rem;
@@ -377,7 +376,7 @@ body {
     font-family: var(--primary-font);
     font-size: var(--text-font-size);
     font-weight: 600;
-    color: black;
+    color: white;
     margin: 0;
 }
 
@@ -394,25 +393,30 @@ body {
 }
 
 .recieving-details {
-    padding: 3rem 0rem;
+    padding: 4rem 1rem;
+    gap: 2rem;
 }
+
+
 
 .detail
 {
-    background-color: var(--third-color);
-    padding: 1rem;
+    background-color: var(--primary-color);
     border-radius: var(--card-border-radius);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem ;
 }
+
 
 .title {
     font-size: var(--text-font-size);
+    color: var(--third-color);
 }
 
 .detail-item {
     font-family: var(--third-font);
-    font-size: 1.4rem;
-    color: #555;
+    font-size: var(--text-font-size);
+    color: white;
     line-height: 1.5;
 }
 
