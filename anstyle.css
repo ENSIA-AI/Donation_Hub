@@ -92,59 +92,11 @@ body {
     margin: 0 auto;
 }
 
-/* Your existing search filters styles remain the same */
-.seach-filters {
-    padding: 1rem 0;
-}
-
-.container.flex-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center;
-    max-width: 120rem;
-    margin: 0 auto;
-}
-
-.search-input {
-    padding: 0.8rem 1rem 0.8rem 3rem;
-    border: 1px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    height: 3rem;
-    font-family: var(--third-font);
-}
-
-.filters {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    box-sizing: border-box;
-    height: 3rem;
-}
-
-.filter-select {
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    border: 1px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 1.2rem;
-    background-color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    height: 100%;
-    font-family: var(--third-font);
-    min-width: 10rem;
-    appearance: none;
-}
 
 /* hero section ends here */
 
 /* Search and Filters Section */
-.seach-filters {
+.search-filters {
     padding: 1rem 0;
     border-bottom: 1px solid #e9ecef;
 }
@@ -159,7 +111,7 @@ body {
     margin: 0 auto;
 }
 
-/* Search Input with icon */
+
 .search-input {
     padding: 0.8rem 1rem 0.8rem 3rem;
     border: 1px solid #e9ecef;
@@ -214,7 +166,9 @@ body {
     box-shadow: 0 0 0 2px rgba(189, 229, 137, 0.234);
 }
 
+/* search section ends here */
 
+/* announcements section starts */
 .announcements
 {
     justify-content: center;
@@ -371,6 +325,171 @@ body {
 
 .show-more-btn:active {
   transform: scale(0.95);
+}
+
+
+/* ============ Donation Form Section =============== */
+.donation-section {
+    padding: 4rem 0;
+    background-color: var(--background-color);
+}
+
+.donation-form-wrapper {
+     
+    padding: 3rem;
+    
+}
+
+/* Organization Info Card */
+.org-card {
+    background-color: white;
+    padding: 3cqb;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    height: 100%;
+}
+
+.org-name {
+    font-family: var(--primary-font);
+    font-size: var(--section-title-font-size);
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+}
+
+.org-description {
+    font-family: var(--third-font);
+    font-size: var(--text-font-size);
+    line-height: 2;
+    color: black;
+    margin-bottom: 2.5rem;
+}
+
+.impact-statement {
+    background-color: white;
+    border-color: var(--third-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--third-color);
+}
+
+.impact-title {
+    font-family: var(--primary-font);
+    font-size: var(--text-font-size);
+    font-weight: 600;
+    color: black;
+    margin: 0;
+}
+
+.bank-details {
+    margin-bottom: 3rem;
+}
+
+.bank-title {
+    font-family:var(--secondary-font);
+    font-size: var(--bottom-font-size);
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.recieving-details {
+    padding: 3rem 0rem;
+}
+
+.detail
+{
+    background-color: var(--third-color);
+    padding: 1rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: var(--text-font-size);
+}
+
+.detail-item {
+    font-family: var(--third-font);
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Donation Form Card */
+.form-card {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    height: 100%;
+}
+
+.donation-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-family: var(--secondary-font);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.8rem;
+}
+
+.form-input,
+.form-select {
+    padding: 1.2rem 1.5rem;
+    border: 1px solid #e9ecef;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    font-family: var(--third-font);
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(16, 115, 97, 0.1);
+    background-color: white;
+}
+
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 1.2rem;
+}
+
+.donate-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1.4rem 2rem;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.donate-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 115, 97, 0.3);
 }
 
 
