@@ -44,29 +44,40 @@ body {
 
 
 
-.hero
-{
-    color: black;
-    text-align: center;
-    padding: 70px 20px;
-
+/* Campaigns Section */
+.campaigns-section {
+    padding: 4rem 0 2rem 0;
+    background-color: var(--background-color);
 }
 
-.hero h1
-{
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-family: var(--secondary-font);
+.campaigns-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+}
+
+.campaigns-title {
+    font-family: var(--primary-font);
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.campaigns-description {
+    font-family: var(--third-font);
+    font-size: 1.8rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 60rem;
+    margin: 0 auto;
 }
 
 /* hero section ends here */
 
 /* Search and Filters Section */
-.seach-filters {
-    padding: 1rem 0;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-}
+
 
 .container.flex-row {
     display: flex;
@@ -108,7 +119,7 @@ body {
     gap: 0.5rem;
     align-items: center;
     box-sizing: border-box;
-    height: 3.5rem;
+    height: 3rem;
     flex: 1;
     min-width: 20rem;
     justify-content: center;
@@ -118,7 +129,7 @@ body {
     padding: 0.8rem 2.5rem 0.8rem 1rem;
     border: 1px solid #e9ecef;
     border-radius: 6px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     box-sizing: border-box;
@@ -136,130 +147,108 @@ body {
 
 /* announcements section strats here */
 
-.announcements
-{
-    justify-content: center;
-}
 
-.cards
-{
-    display: flex;
-    justify-content: center;
-    padding: 20px 20px;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
-.card
-{
-    width: 250px;
-    height: 350px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    margin-left: 10px;
-    margin-right: 10px;
+.post-card {
+    padding: 1.5rem;
     background-color: white;
-
-}
-.card img {
-  width: 100%;
-  height: 40%;
-  object-fit: cover;    
-
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.card-post
-{
-  font-family: var(--third-font);
-  font-size: 0.95rem;
-  color:black;
+.post {
+    padding: 10px;
+
 }
- .card-btns
- {
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
 
- }
+.Post_Date {
+    font-family: var(--third-font);
+    font-size: 1rem;
+    padding-bottom: 1rem;
+    color: rgb(66, 66, 66);
+}
 
- .donate-btn
-{
-    
+.post_title {
+    font-family: var(--primary-font);
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding-top: 1rem;
+    color: black;
+}
+
+.post_text_content {
+    font-family: var(--third-font);
+    font-size: 1.4rem;
+    padding-top: 1rem;
+    color: black;
+}
+
+.posts {
+    margin-top: 20px;
+}
+
+.post_action_link {
+    color: black;
     font-family: var(--secondary-font);
-    border-radius: 3rem;
-    width: 6rem;
-    height:1.5rem;
-    align-items: center;
-    border: none;
-    background-color: var(--primary-color);
-    color: white;
-    transition: all 0.5s;
-    
-
-}
-
-.read-btn
-{
-    background-color: var(--primary-color);
-    color: white;
-    font-family: var(--secondary-font);
-    border-radius: 3rem;
-    width: 6rem;
-    height:1.5rem;
-    border: none;
-    transition: all 0.5s;
-
-}
-
-.read-btn:hover
-{
-    transform: translateY(-0.2rem);
-    
-}
-.read-btn:active
-{
-    color: var(--third-color);
-}
-
-.donate-btn:hover
-{
-    transform: translateY(-0.2rem);
-}
-
-.donate-btn:active
-{
-    color: var(--third-color);
-}
-
-
-.title
-{
-  display: flex;
-  justify-content: space-between;
-}
-.region
-{
-    font-size: 0.7rem;
-    color:#8b8181
-}
-
-.category
-{
-    font-size: 0.7rem;
-    color:#8b8181
-}
-
-.card h1
-{
+    font-weight: 600;
     font-size: 1.3rem;
-    font-family: var(--secondary-font);
-    margin-left: 6px;
+
 }
 
-.card p
-{
-    padding: 10px 10px;
+.post_actions.flex-row {
+    justify-content: space-between;
 }
+
+.post_actions {
+    margin-top: 10px;
+}
+
+.post_action {
+    background-color: var(--third-color);
+    border-radius: 20px;
+    padding: .8rem 1.6rem;
+    transition: all .5s ease-in-out;
+}
+
+
+
+.see_more_btn {
+    background-color: var(--third-color);
+    border-radius: 20px;
+    padding: .8rem 1.6rem;
+    text-align: center;
+    max-width: 14rem;
+    margin: 2rem auto;
+    transition: all .5s ease-in-out;
+}
+
+.see_more_link {
+    color: black;
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    font-size: 1.5rem;
+
+}
+
+.fa-square-plus {
+    font-size: 2.2rem;
+}
+
+.see_more_btn.flex-row {
+    align-items: center;
+}
+
+/* animations */
+.post_action:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(255, 223, 94, 0.948) 0px 0px 10px;
+}
+
+.see_more_btn:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(255, 223, 94, 0.948) 0px 0px 10px;
+}
+
+
 
 /* announcment list ends here */
 
