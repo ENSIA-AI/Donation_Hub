@@ -25,72 +25,28 @@
 
 
     <body>
-        <div class="header">
-        <div class="container">
-            <div class="row">
-
-                <!-- Logo -->
-                <div class="col-2">
-                    <div class="logo"></div>
-                </div>
-
-                <!-- Navigation -->
-                <div class="col-10">
-                    <div class="nav">
-                        <div class="hamburger" id="hamburger">☰</div>
-                        <ul class="nav-menu" id="nav-menu">
-
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="ExploreOrganization.html">Organizations</a></li>
-                            <li><a href="#">Announcements</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li class="btn"><a href="#">log in</a></li>
-                            <li class="btn"><a href="#">register</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-        <!-- hero section -->
-         <section class="hero">
-            <div class="hero-content">
-            <h1>Active Compains & Announcements</h1>
-            <p>
-                Discover urgent needs and ongoing campaigns from verified organizations. Your
-                contribution can make a real difference.
-            </p>
-                </div>
-         </section>
-         <!-- hero section ends here -->
-
-
-
-
          <!-- search and filter bar -->
           <section class="seach-filters">
-            <div class="search-box">
-                <input type="text" placeholder="search" class="search-input" />
-                <div class="filters">
-                    <select class="filter-select">
-                        <option value="">Categories</option>
-                        <option value="food">Food</option>
-                        <option value="educaton">Educaton</option>
-                        <option value="medicine">Medicine</option>
-                    </select>
+            <div class="container flex-row">
+                    <input type="text" placeholder="search" class="search-input col-xl-8 col-lg-8 col-md-7 col-sm-12 col-xs-12 col-xxs-12" />
+                    <div class="filters col-xl-4 col-lg-4 col-md-5 col-sm-12 col-xs-12 col-xxs-12 flex-row">
+                        <select class="filter-select">
+                         <option value="">Categories</option>
+                         <option value="food">Food</option>
+                         <option value="educaton">Educaton</option>
+                         <option value="medicine">Medicine</option>
+                        </select>
 
-                    <select class="filter-select">
-                        <option value="">Regions</option>
-                        <option value="bouira">Bouira</option>
-                        <option value="alger">Alger</option>
-                        <option value="jijel">Jijel</option>
-                        <option value="moustghanem">Moustghanem</option>
-                    </select>
-                </div>
+                        <select class="filter-select">
+                         <option value="">Regions</option>
+                         <option value="bouira">Bouira</option>
+                         <option value="alger">Alger</option>
+                         <option value="jijel">Jijel</option>
+                         <option value="moustghanem">Moustghanem</option>
+                        </select>
+                    </div>
             </div>
-          </section>
+            </section>
 
 
 
@@ -243,11 +199,3 @@
 
     </body>
 </html>
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-</script
