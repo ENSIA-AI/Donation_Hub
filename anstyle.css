@@ -26,12 +26,11 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
-
-.full_image {
-    width: 100%;
-    height: 100%;
-    display: block;
+html {
+    font-size: 62.5%;
 }
+
+
 
 section {
     padding-top: 6rem;
@@ -40,16 +39,10 @@ section {
 
 
 body {
-  font-family: var(--primary-font);
-  background-color: var(--background-color);
-}
-html {
-    font-size: 62.5%;
-}
-body {
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
+    font-family: var(--primary-font);
 }
 .container {
     margin-left: 4rem;
@@ -62,40 +55,67 @@ body {
 
 
 
-/* Campaigns Section */
-.campaigns-section {
-    padding: 4rem 0 2rem 0;
-    background-color: var(--background-color);
+/* =====hero section====== */
+
+.hero
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
 }
 
-.campaigns-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 0 2rem;
-}
+.page-title
+{
 
-.campaigns-title {
+    font-size: var(--section-title-font-size);
     font-family: var(--primary-font);
-    font-size: 3.5rem;
+    color: var(--secondary-color);
+}
+
+.page-description
+{
+    font-size: var(--text-font-size);
     font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.campaigns-description {
     font-family: var(--third-font);
-    font-size: 1.8rem;
-    color: #666;
-    line-height: 1.6;
-    max-width: 60rem;
-    margin: 0 auto;
+
+    /* ====end hero section====== */
+}
+
+/* ========search section====== */
+
+.search-and-filter
+{
+    display: flex;
+    justify-content: center;
+    
 }
 
 
-/* hero section ends here */
 
-/* Search and Filters Section */
+
+
+.search-input
+{
+    width: 50rem;
+}
+
+.filter
+{
+
+}
+
+.container.flex-row {
+    
+     
+    gap: 0.5rem;
+    justify-content: center;   
+    
+}
+
+/* 
+/* Search and Filters Section 
 .search-filters {
     padding: 1rem 0;
     border-bottom: 1px solid #e9ecef;
@@ -135,7 +155,7 @@ body {
     color: #6c757d;
 }
 
-/* Filters Container */
+
 .filters {
     display: flex;
     gap: 0.5rem;
@@ -164,9 +184,9 @@ body {
     outline: none;
     border-color:var(--third-color);
     box-shadow: 0 0 0 2px rgba(189, 229, 137, 0.234);
-}
 
-/* search section ends here */
+
+ */
 
 /* announcements section starts */
 .announcements

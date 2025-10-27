@@ -25,38 +25,50 @@
 
         <!-- header section -->
 
-        <section class="campaigns-section">
+    <section class="header-section">
     <div class="container">
-        <div class="campaigns-header">
-            <h1 class="campaigns-title">Active Campaigns & Announcements</h1>
-            <p class="campaigns-description">
+        <div class="hero">
+            <h1 class="page-title">Active Campaigns & Announcements</h1>
+            <p class="page-description">
                 Discover urgent needs and ongoing campaigns from verified organizations. 
                 Your contribution can make a real difference.
             </p>
         </div>
-        
-         <!-- search and filter bar -->
-          <section class="seach-filters">
-            <div class="container flex-row">
-                    <input type="text" placeholder="search" class="search-input col-xl-8 col-lg-8 col-md-7 col-sm-12 col-xs-12 col-xxs-12" />
-                    <div class="filters col-xl-4 col-lg-4 col-md-5 col-sm-12 col-xs-12 col-xxs-12 flex-row">
-                        <select class="filter-select">
-                         <option value="">Categories</option>
-                         <option value="food">Food</option>
-                         <option value="educaton">Educaton</option>
-                         <option value="medicine">Medicine</option>
-                        </select>
+    </div>
+    </section>
+    
 
-                        <select class="filter-select">
-                         <option value="">Regions</option>
-                         <option value="bouira">Bouira</option>
-                         <option value="alger">Alger</option>
-                         <option value="jijel">Jijel</option>
-                         <option value="moustghanem">Moustghanem</option>
-                        </select>
+            <!-- =====search section====== -->
+
+            <section class="search-and-filter">
+                <div class="container flex-row col-lg-4  col-md-4  col-sm-4 col-xs-4 col-xxs-3">
+                    <div class="search flex-row">
+                        <input type="text" placeholder="search" class="search-input">
                     </div>
-            </div>
+
+                    <div class="filters flex-row">
+                        <div class="region-filter filter">
+                            <select name="region" class="select-input">
+                                <option value="">Region</option>
+                                <option value="algiers">Algiers</option>
+                                <option value="moustghanem">Moustghanem</option>
+                                <option value="jijel">Jijel</option>
+                                <option value="bouira">Bouira</option>
+                            </select>
+                        </div>
+                        <div class="category-filter filter">
+                            <select name="category">
+                                <option value="">Category</option>
+                                <option value="health">Health</option>
+                                <option value="education">Education</option>
+                                <option value="poverty">Povety</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </section>
+
+            
 
 
  
