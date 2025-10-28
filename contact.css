@@ -6,7 +6,6 @@
     --secondary-color: #0F594C;
     --third-color: #FEDA79;
     --background-color: #F2F2F2;
-    
 }
 
 html {
@@ -46,11 +45,11 @@ html {
 
 .contact-info h1 {
     color: var(--third-color);
-    font-size: 32px;
+    font-size: 3.3rem;
 }
 
 .contact-info p {
-    font-size: 20px;
+    font-size: 1.9rem;
     margin: 15px 0 30px;
     line-height: 1.6;
 }
@@ -60,11 +59,12 @@ html {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-size: 2rem;
 }
 
 .contact-info .info-item i {
     color: var(--third-color);
-    font-size: 20px;
+    font-size: 2rem;
 
 }
 
@@ -76,7 +76,7 @@ html {
     display: inline-block;
     /* important for smooth transform */
     color: var(--third-color);
-    font-size: 20px;
+    font-size: 2rem;
     margin-right: 15px;
     opacity: 0.9;
     transition: transform 280ms ease,
@@ -220,6 +220,36 @@ html {
 }
 
 @media(max-width:600px) {
+
+    .contact-info h1 {
+        font-size: 2.5rem;
+    }
+
+    .contact-info p {
+        font-size: 1.6rem;
+    }
+
+    .contact-info .info-item {
+        font-size: 1.7rem;
+    }
+
+    .contact-info {
+        padding: 25px;
+    }
+
+    .contact-form {
+        padding: 25px;
+    }
+
+    .socials a {
+        margin-right: 10px;
+        font-size: 1.9rem;
+    }
+
+    .input-group label {
+        font-size: 13px;
+    }
+
     .name-field {
         flex-direction: column;
     }
