@@ -99,12 +99,25 @@ body {
 .search-input
 {
     width: 50rem;
+    height: 3rem;
+    border: 1px solid rgb(213, 204, 204);
+    outline: none;
+    border-radius: 7px;
+    padding: 0 0.5rem 0 2.5rem;
+    font-size: var(--text-font-size);
 }
 
-.filter
+.select-input
 {
-
+    height: 3rem;
+    border: 1px solid rgb(213, 204, 204);
+    outline: none;
+    border-radius: 7px;
+    color: grey;
+    padding: 0 0.1rem 0 2rem;
+    font-size: var(--text-font-size);
 }
+
 
 .container.flex-row {
     
@@ -114,79 +127,45 @@ body {
     
 }
 
-/* 
-/* Search and Filters Section 
-.search-filters {
-    padding: 1rem 0;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.container.flex-row {
-    display: flex;
-    flex-wrap: wrap; 
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center; 
-    max-width: 120rem;
-    margin: 0 auto;
-}
-
-
-.search-input {
-    padding: 0.8rem 1rem 0.8rem 3rem;
-    border: 1px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 1.2rem;
+.search-input:hover,
+.select-input:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(16, 115, 97, 0.3);
     transition: all 0.3s ease;
-    box-sizing: border-box;
-    height: 3rem;
-    flex: 1;
-    min-width: 20rem;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--third-color);
-    box-shadow: 0 0 0 2px rgba(189, 229, 137, 0.234);
-}
-
-    
-.search-input::placeholder {
-    color: #6c757d;
 }
 
 
-.filters {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    box-sizing: border-box;
-    height: 3.5rem;
-    flex: 1;
-    min-width: 20rem;
-    justify-content: center;
+.search-input:focus,
+.select-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 8px rgba(15, 89, 76, 0.4);
 }
 
-.filter-select {
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    border: 1px solid #e9ecef;
-    border-radius: 6px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    height: 100%;
-    font-family: var(--third-font);
-    flex: 1;
+.search-box i {
+  position: absolute;
+  left: 0.8rem;
+  color: grey;
 }
 
-.filter-select:focus {
-    outline: none;
-    border-color:var(--third-color);
-    box-shadow: 0 0 0 2px rgba(189, 229, 137, 0.234);
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+.filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
- */
+.filter i {
+  position: absolute;
+  left: 0.8rem;
+  color: grey;
+}
+
+/* ===end search section====== */
 
 /* announcements section starts */
 .announcements
