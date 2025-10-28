@@ -615,6 +615,40 @@ footer{
     }
 
 
+    h1, h2, h3 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.6rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1.8rem;
+    }
+
+    .difference h1,
+    .core-values h2,
+    .join h1 {
+        font-size: 2.6rem;
+    }
+
+    .join p {
+        font-size: 1.6rem;
+    }
+
+    /* Make join buttons stay in one row */
+    .join .btns {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
     /*------hero---------*/
     .hero {
         height: auto;
