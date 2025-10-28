@@ -182,6 +182,7 @@ body {
     align-items: center;
     justify-content: center;
     display: flex;
+    padding: 4rem 0;
 }
 
 
@@ -192,16 +193,22 @@ body {
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    width: 100%;
     
 }
 
 .card
 {
     height: 50rem;
-    width: 30%;
+    flex-direction: column;
+    flex: 1 1 calc(25% - 2rem);
+    min-width: 280px;
+    max-width: 350px;
     border-radius: var(--card-border-radius);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     background-color: white;
+    overflow: hidden;
+
 }
 
 .card img {
