@@ -16,7 +16,6 @@ body{
 }
 html{
     font-size: 62.5%;
-    
 }
 
 * {
@@ -72,6 +71,7 @@ color: white;
     background-color: white;
     padding: 1em;
     border-radius: 8px;
+    margin-left: 4em;
 }
 .login-form{
     background-color: white;
@@ -83,14 +83,15 @@ color: white;
     position: relative;
     width: 90%;
     background-color: var(--secondary-color);
+     padding: 4em;
+     width: 70%;
+     
 }
+ .container{
+    display: flex;
+    justify-content: center;
+ }
 
-.toggle-box{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-}
 
 .placeholder{
     background-color: var(--background-color);
@@ -100,9 +101,53 @@ color: white;
     width: 100%;
 
 }
-.container-form{
-    padding: 2em;
-   }   
+.toggle-box{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+.toggle-pannel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    padding-top: 20em;
+}
+
+.button-border button{
+    color: white;
+    border: solid 1px;
+    border-color: rgba(131, 131, 131, 0.71);
+    background-color: var(--primary-color);
+    font-size: var(--bottom-font-size);
+
+}
+.text h3{
+    font-size: 2.3rem;
+    font-family: var(--primary-font);
+    text-align: center;
+    color: white;
+    padding-bottom: 0.5em;
+    font-weight: bolder;
+
+}
+.text p{
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: var(--text-font-size);
+    color: white;
+}
+.toggle-right{
+ display: none;
+}
+
+ 
    /* =====================================Classes ========================================= */
 
 @media (min-width: 1200px) {
