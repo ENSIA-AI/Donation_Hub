@@ -68,13 +68,117 @@ section {
 }
 
 
+/* ==========================================header===================================== */
+.admin_header_content {
+    background-color: var(--secondary-color);
+    height: 8rem;
+
+}
+
+.admin_dashboard {
+    position: fixed;
+}
+
+.admin_profile_img,
+.website_logo_img {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+}
+
+.admin_header_content.flex-row {
+    align-items: center;
+    justify-content: flex-end;
+    gap: .5rem;
+}
+
+.admin_username h2 {
+    color: white;
+    font-family: var(--primary-font);
+    font-size: 1.6rem;
+}
+
+.admin_username {
+    text-align: center;
+}
 
 
 
+/* ===================sidebar =============================== */
+.website_info.flex-row {
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
 
+.website_name h2 {
+    color: white;
+    font-family: var(--primary-font);
+    font-size: 2rem;
+}
 
+.website_info {
+    padding-top: 2rem;
+    height: 10vh;
 
+}
 
+.bash_sidebar {
+    background-color: var(--primary-color);
+    height: 100%;
+
+}
+
+.bash_sidebar.flex-row {
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.sidebar_elements.flex-row {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar_element.flex-row {
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 2rem;
+
+}
+
+.sidebar_element {
+    height: 20%;
+    padding: 2rem;
+    padding-left: 4rem;
+}
+
+.sidebar_elements {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    height: 90vh;
+
+}
+
+.sidebar_element p {
+    font-size: var(--text-font-size);
+    color: white;
+    font-family: var(--secondary-font);
+}
+
+.sidebar_element i {
+    color: white;
+    font-size: 2.3rem;
+}
+
+.sidebar_element.selected {
+    background-color: var(--secondary-color);
+}
+
+.sidebar_element.selected p,
+.sidebar_element.selected i {
+    color: var(--third-color);
+}
 
 
 /* =====================================Classes ========================================= */
