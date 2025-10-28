@@ -64,6 +64,9 @@ body {
     gap: 2rem;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+    margin: 0 auto;
 }
 
 .page-title
@@ -79,9 +82,9 @@ body {
     font-size: var(--text-font-size);
     font-weight: 600;
     font-family: var(--third-font);
-
-    /* ====end hero section====== */
 }
+
+ /* ====end hero section====== */
 
 /* ========search section====== */
 
@@ -116,6 +119,7 @@ body {
     color: grey;
     padding: 0 0.1rem 0 2rem;
     font-size: var(--text-font-size);
+    width: 12rem;
 }
 
 
@@ -132,6 +136,10 @@ body {
     border-color: var(--primary-color);
     box-shadow: 0 0 5px rgba(16, 115, 97, 0.3);
     transition: all 0.3s ease;
+}
+.filter
+{
+    padding: 0.1rem;
 }
 
 
@@ -167,8 +175,49 @@ body {
 
 /* ===end search section====== */
 
-/* announcements section starts */
+/* =======announsements section============ */
+
 .announcements
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+
+
+.cards
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    
+}
+
+.card
+{
+    height: 50rem;
+    width: 30%;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: white;
+}
+
+.card img {
+  width: 100%;
+  height: 40%;
+  object-fit: cover;    
+
+}
+
+.filter-results
+{
+    padding: 1rem;
+}
+
+
+/* .announcements
 {
     justify-content: center;
 }
@@ -214,7 +263,7 @@ body {
 
  }
 
- /* .donate-btn
+ .donate-btn
 {
     
     font-family: var(--secondary-font);
@@ -228,7 +277,7 @@ body {
     transition: all 0.5s;
     
 
-} */
+} 
 
 .read-btn
 {
@@ -291,7 +340,7 @@ body {
 .card p
 {
     padding: 10px 10px;
-}
+} */
 
 
 
