@@ -6,6 +6,11 @@
     --secondary-color: #0F594C;
     --third-color: #FEDA79;
     --background-color: #F2F2F2;
+    
+}
+
+html {
+    font-size: 62.5%;
 }
 
 .contact-container {
