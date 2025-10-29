@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="vieport" content="width=device-width , initial-scale=1.0">
         <link rel="stylesheet" href="anstyle.css">
+        <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="anstyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,6 +23,33 @@
 
     <body>
 
+        <div class="header">
+        <div class="container">
+            <div class="row">
+
+                <!-- Logo -->
+                <div class="col-2">
+                    <img src="pictures/logo_nav.png" alt="Donify Logo" class="logo">
+                </div>
+
+                <!-- Navigation -->
+                <div class="col-10">
+                    <div class="nav">
+                        <div class="hamburger" id="hamburger">☰</div>
+                        <ul class="nav-menu" id="nav-menu">
+
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="ExploreOrganization.html">Organizations</a></li>
+                            <li><a href="announcements.html">Announcements</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li class="btn"><a href="#">log in</a></li>
+                            <li class="btn"><a href="#">register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- ============================= Donation Form ============================ -->
 <section class="donation-section">
@@ -108,8 +136,8 @@
 
 
                         <div class="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                        <button type="submit" class="donate btn">Donate Now</button>
-                        <button type="reset" class="reset btn">Reset</button>
+                        <button type="submit" class="donate btns">Donate Now</button>
+                        <button type="reset" class="reset btns">Reset</button>
                         </div>
                     </form>
                 </div>
@@ -117,6 +145,44 @@
         </div>
     </div>
 </section>
+
+    <footer>
+        <div class="links">
+            <div class="donify">Donify_DZ</div>
+            <div class="link">
+                <a href="index.html">Home</a>
+                <a href="ExploreOrganization.html">Organizations</a>
+                <a href="announcements.html">Announcements</a>
+                <a href="contact.html">Conatct</a>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="media">
+            <div class="rights">
+                <p>Donify_dz@2025. All rights reserved</p>
+            </div>
+
+            <div class="social_media">
+                <a id="facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a id="linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a id="email-icon" href="#"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+    </script>
 
 </body>
 </html>
