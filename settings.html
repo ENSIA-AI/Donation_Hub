@@ -3,60 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard_Settings</title>
+  <title>Admin Dashboard - Settings</title>
   <link rel="stylesheet" href="settings.css">
-
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+  <header>
+    <div class="admin_dashboard fluid_container flex-row">
+      <!-- Sidebar -->
+      <div class="bash_sidebar flex-row col-xl-2 col-lg-2 col-md-2 d_none_sm d_none_xs d_none_xxs">
+        <div class="website_info flex-row">
+          <div class="website_logo_image col-xl-3 col-lg-3 col-md-12">
+            <img src="assets/Images/website_logo.jpg" class="website_logo_img full_image" alt="website logo image">
+          </div>
+          <div class="website_name col-xl-5 col-lg-5 col-md-5">
+            <h2>Donify_dz</h2>
+          </div>
+        </div>
 
-  <div class="settings-container">
-    <div class="settings-left">
-      <h2>Settings</h2>
-
-      <div class="settings-card" id="account-card">
-        <h3>Account</h3>
-        <p>Keep your admin profile updated to stay connected with the community.</p>
+        <div class="dash_sidebar">
+          <ul class="sidebar_elements flex-row">
+            <li class="sidebar_element flex-row">
+              <i class="fa-solid fa-house"></i>
+              <p>Dashboard</p>
+            </li>
+            <li class="sidebar_element flex-row">
+              <i class="fa-solid fa-building-ngo"></i>
+              <p>Organizations</p>
+            </li>
+            <li class="sidebar_element flex-row">
+              <i class="fa-solid fa-bullhorn"></i>
+              <p>Campaigns</p>
+            </li>
+            <li class="sidebar_element flex-row selected">
+              <i class="fa-solid fa-gear"></i>
+              <p>Settings</p>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="settings-card" id="notifications-card">
-        <h3>Notifications</h3>
-        <p>Stay informed about new donations, campaigns, and updates.</p>
-      </div>
+      <!-- Header top -->
+      <div class="fluid_container admin_header_content flex-row col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 col-xxs-12">
+        <div class="dash_humburger d_none_xl d_none_lg d_none_md col-sm-8 col-xs-6 col-xxs-5">
+          <i class="fa-solid fa-bars"></i>
+        </div>
 
-      <div class="settings-card" id="theme-card">
-        <h3>Theme</h3>
-        <p>Choose your preferred appearance.</p>
-        <div class="theme-options">
-          <div class="theme-option light active" id="light-mode"> Light</div>
-          <div class="theme-option dark" id="dark-mode"> Dark</div>
+        <div class="admin_username col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xxs-5">
+          <h2>Admin_username</h2>
+        </div>
+
+        <div class="admin_profile_image col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-2 col-xxs-2">
+          <img src="assets/Images/admine_image.jpg" class="admin_profile_img full_image" alt="admin profile image">
         </div>
       </div>
     </div>
+  </header>
 
-    <div class="account-card">
-      <h3>Account</h3>
-      <img class="profile-pic" src="" alt="Profile Picture">
-      <div class="btns">
-        <button>Modify</button>
-        <button>Remove</button>
+  <!-- Settings content -->
+  <main style="margin-left: 17%; padding: 2rem;">
+    <div class="settings-container">
+      <div class="settings-left">
+        <h2>Settings</h2>
+
+        <div class="settings-card" id="account-card">
+          <h3>Account</h3>
+          <p>Keep your admin profile updated to stay connected with the community.</p>
+        </div>
+
+        <div class="settings-card" id="notifications-card">
+          <h3>Notifications</h3>
+          <p>Stay informed about new donations, campaigns, and updates.</p>
+        </div>
+
+        <div class="settings-card" id="theme-card">
+          <h3>Theme</h3>
+          <p>Choose your preferred appearance.</p>
+          <div class="theme-options">
+            <div class="theme-option light active" id="light-mode">Light</div>
+            <div class="theme-option dark" id="dark-mode">Dark</div>
+          </div>
+        </div>
       </div>
 
-      <form>
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter full name">
-        
-        <label>Username</label>
-        <input type="text" placeholder="Enter username">
+      <div class="account-card">
+        <h3>Account</h3>
+        <img class="profile-pic" src="assets/Images/admine_image.jpg" alt="Profile Picture">
+        <div class="btns">
+          <button>Modify</button>
+          <button>Remove</button>
+        </div>
 
-        <label>Email</label>
-        <input type="email" placeholder="Enter email">
+        <form>
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter full name">
+          
+          <label>Username</label>
+          <input type="text" placeholder="Enter username">
 
-        <label>About</label>
-        <textarea rows="3" placeholder="About...."></textarea>
-      </form>
+          <label>Email</label>
+          <input type="email" placeholder="Enter email">
+
+          <label>About</label>
+          <textarea rows="3" placeholder="About...."></textarea>
+        </form>
+      </div>
     </div>
-  </div>
-
-
+  </main>
 </body>
 </html>
