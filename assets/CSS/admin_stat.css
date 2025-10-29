@@ -83,19 +83,22 @@ section {
     justify-content: center;
 }
 
-.admin_profile_img,
-.website_logo_img {
+.admin_profile_img {
     width: 6rem;
     height: 6rem;
+    border-radius: 50%;
+}
+
+.website_logo_img {
+    width: 8rem;
+    height: 8rem;
     border-radius: 50%;
 }
 
 .admin_header_content.flex-row {
     align-items: center;
     justify-content: flex-end;
-
 }
-
 
 
 .admin_username h2 {
@@ -140,16 +143,18 @@ section {
     justify-content: space-evenly;
 }
 
+
 .sidebar_elements.flex-row {
     flex-direction: column;
     justify-content: space-between;
 }
 
+
+
 .sidebar_element.flex-row {
     align-items: center;
     justify-content: flex-start;
-
-    gap: 2rem;
+    gap: 1rem;
 
 }
 
@@ -157,6 +162,7 @@ section {
     height: 20%;
     padding: 2rem;
     padding-left: 4rem;
+
 }
 
 .sidebar_elements {
@@ -167,14 +173,16 @@ section {
 }
 
 .sidebar_element p {
-    font-size: var(--text-font-size);
+    font-size: 1.4rem;
     color: white;
     font-family: var(--secondary-font);
+    transition: all .6s ease-in-out;
 }
 
 .sidebar_element i {
     color: white;
     font-size: 2.3rem;
+    transition: all .6s ease-in-out;
 }
 
 .sidebar_element.selected {
@@ -191,6 +199,18 @@ section {
     left: 10px;
     font-size: 2.5rem;
     padding-left: 2rem;
+}
+
+/* ============== Animation ================= */
+.sidebar_element:hover p {
+    transform: scale(1.05);
+    color: var(--third-color);
+    font-weight: 600;
+
+}
+
+.sidebar_element:hover i {
+    color: var(--third-color);
 }
 
 /* =====================================Classes ========================================= */
@@ -265,6 +285,10 @@ section {
         width: calc(100% / 6);
     }
 
+    .col-lg-2-5 {
+        width: calc(2.5*100% / 12);
+    }
+
     .col-lg-3 {
         width: calc(100% / 4);
     }
@@ -313,6 +337,9 @@ section {
         display: none;
     }
 
+    .col-lg-9-5 {
+        width: calc(9.5*100% / 12);
+    }
 }
 
 /* Medium (md) screens (768px to 991px) */
@@ -323,6 +350,10 @@ section {
 
     .col-md-2 {
         width: calc(100% / 6);
+    }
+
+    .col-md-2-5 {
+        width: calc(2.5*100% / 12);
     }
 
     .col-md-3 {
@@ -365,6 +396,9 @@ section {
         width: 100%;
     }
 
+    .col-md-9-5 {
+        width: calc(9.5*100% / 12);
+    }
 
 
     html {
@@ -375,16 +409,8 @@ section {
         display: none;
     }
 
-    .website_logo_img {
-        width: 5rem;
-        height: 5rem;
-        border-radius: 50%;
-    }
 
 
-    .website_info.flex-row {
-        justify-content: space-around;
-    }
 
 }
 
