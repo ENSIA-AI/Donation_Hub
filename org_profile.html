@@ -16,6 +16,38 @@
 </head>
 
 <body>
+    <!-- ==============================homepage header================================= -->
+    <div class="header">
+        <div class="container">
+            <div class="row">
+
+                <!-- Logo -->
+                <div class="col-2">
+                    <img src="pictures/logo_nav.png" alt="Donify Logo" class="logo">
+                </div>
+
+                <!-- Navigation -->
+                <div class="col-10">
+                    <div class="nav">
+                        <div class="hamburger" id="hamburger">☰</div>
+                        <ul class="nav-menu" id="nav-menu">
+
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="ExploreOrganization.html">Organizations</a></li>
+                            <li><a href="#">Announcements</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li class="btn"><a href="#">log in</a></li>
+                            <li class="btn"><a href="#">register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================== end homepage header================================= -->
+
+
 
 
     <!-- =============================Organization hero ================================ -->
@@ -95,7 +127,7 @@
     <!-- =============================end Organization navbar ============================ -->
 
     <!-- ============================= Organization Posts ============================ -->
-    <div class="container">
+    <div class="org_container">
         <div class="posts  flex-row">
             <div class="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12">
                 <div class="post-card ">
@@ -313,7 +345,7 @@
     <!-- ================================= About Us ================================= -->
     <section id="About_Us">
         <div class="about-container">
-            <div class="org_description container">
+            <div class="org_description org_container">
 
                 <h1>
                     HopeBridge
@@ -360,7 +392,7 @@
 
         </div>
         <!-- ============================================ -->
-        <div class="values container">
+        <div class="values org_container">
             <div class="about-section-title">
                 Our Values
             </div>
@@ -386,7 +418,7 @@
             <div class="programs-title">
                 Our Programs
             </div>
-            <div class="programs container">
+            <div class="programs org_container">
                 <div class="programs flex-row">
                     <div class="program  col-xl-3 col-lg-3 col-md-5 col-sm-5 col-xs-5 col-xxs-12 flex-row">
                         <div class="program-details flex-row col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xxs-8 ">
@@ -464,7 +496,7 @@
 
     <!-- ================================= End About Us ================================= -->
     <div class="impact-section">
-        <div class="container">
+        <div class="org_container">
             <div class="Impact_title about-section-title">
                 Our Impact
             </div>
@@ -511,7 +543,7 @@
     <!-- ======================================================= Contact us ================================================================= -->
 
     <section id="org-contact-us">
-        <div class="container org-contact-container">
+        <div class="org_container org-contact-container">
             <div class="org-contact-title ">
                 Let's Make Something Great Together
             </div>
@@ -657,9 +689,45 @@
 
     <!-- ==================================================  End  Contact us ================================================================= -->
 
+    <!-- ======================================================= Footer ================================================================= -->
+    <footer>
+        <div class="links">
+            <div class="donify">Donify_DZ</div>
+            <div class="link">
+                <a href="index.html">Home</a>
+                <a href="ExploreOrganization.html">Organizations</a>
+                <a href="#">Announcements</a>
+                <a href="contact.html">Conatct</a>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="media">
+            <div class="rights">
+                <p>Donify_dz@2025. All rights reserved</p>
+            </div>
+
+            <div class="social_media">
+                <a id="facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a id="linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a id="email-icon" href="#"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
 
 
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
 
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+    </script>
+    <!-- ======================================================== End footer =============================================================== -->
 </body>
 
 </html>
