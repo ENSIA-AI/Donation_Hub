@@ -79,6 +79,10 @@ section {
     position: fixed;
 }
 
+.admin_profile_image {
+    justify-content: center;
+}
+
 .admin_profile_img,
 .website_logo_img {
     width: 6rem;
@@ -89,8 +93,10 @@ section {
 .admin_header_content.flex-row {
     align-items: center;
     justify-content: flex-end;
-    gap: .5rem;
+
 }
+
+
 
 .admin_username h2 {
     color: white;
@@ -108,13 +114,13 @@ section {
 .website_info.flex-row {
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .website_name h2 {
     color: white;
     font-family: var(--primary-font);
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .website_info {
@@ -180,6 +186,12 @@ section {
     color: var(--third-color);
 }
 
+.dash_humburger i {
+    color: white;
+    left: 10px;
+    font-size: 2.5rem;
+    padding-left: 2rem;
+}
 
 /* =====================================Classes ========================================= */
 
@@ -236,6 +248,9 @@ section {
         width: calc((5/2)*100% / 12);
     }
 
+    .d_none_xl {
+        display: none;
+    }
 }
 
 
@@ -294,6 +309,9 @@ section {
         width: calc((5/2)*100% / 12);
     }
 
+    .d_none_lg {
+        display: none;
+    }
 
 }
 
@@ -353,6 +371,9 @@ section {
         font-size: 8px;
     }
 
+    .d_none_md {
+        display: none;
+    }
 
 }
 
@@ -412,6 +433,9 @@ section {
         font-size: 6px;
     }
 
+    .d_none_sm {
+        display: none;
+    }
 
 }
 
@@ -469,12 +493,9 @@ section {
         font-size: 6px;
     }
 
-
-
-    .d-none-xs {
+    .d_none_xs {
         display: none;
     }
-
 
 }
 
@@ -534,5 +555,8 @@ section {
         font-size: 6px;
     }
 
+    .d_none_xxs {
+        display: none;
+    }
 
 }
