@@ -202,12 +202,13 @@ body {
     height: 50rem;
     flex-direction: column;
     flex: 1 1 calc(25% - 2rem);
-    min-width: 280px;
-    max-width: 350px;
+    min-width: 450px;
     border-radius: var(--card-border-radius);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     background-color: white;
     overflow: hidden;
+    flex: 1 1 calc(25% - 2rem);
+  max-width: calc(25% - 2rem);
 
 }
 
