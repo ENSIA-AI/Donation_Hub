@@ -113,8 +113,8 @@ section {
 /* ===================sidebar =============================== */
 .website_info.flex-row {
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    justify-content: space-around;
+
 }
 
 .website_name h2 {
@@ -373,6 +373,17 @@ section {
 
     .d_none_md {
         display: none;
+    }
+
+    .website_logo_img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+    }
+
+
+    .website_info.flex-row {
+        justify-content: space-around;
     }
 
 }
