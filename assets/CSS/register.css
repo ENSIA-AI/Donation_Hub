@@ -34,6 +34,15 @@ html{
     justify-content: center;
     align-items: center;
 }
+.container{
+    display: flex;
+    justify-content: center;
+ }
+.container-con{
+    background-color: var(--secondary-color);
+    padding: 4em ;
+    margin: 4em 10em;
+}
 .title h2{
     font-size: var(--subtitle-font-size);
     color: #0F594C;
@@ -81,16 +90,13 @@ color: white;
 }
 .container-form{
     position: relative;
-    width: 90%;
+    width: 100%;
     background-color: var(--secondary-color);
      padding: 4em;
-     width: 70%;
+   
      
 }
- .container{
-    display: flex;
-    justify-content: center;
- }
+ 
 
 
 .placeholder{
@@ -110,6 +116,18 @@ color: white;
     top: 0;
     bottom: 0;
     left: 0;
+    border-radius: 8px;
+} 
+.toggle-box-active{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 8px;
 }
 .toggle-pannel{
     display: flex;
@@ -145,6 +163,10 @@ color: white;
 }
 .toggle-right{
  display: none;
+}
+
+.toggle-left-active{
+ display: none ;
 }
 
  
