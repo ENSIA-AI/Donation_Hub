@@ -1,9 +1,9 @@
-const btn = document.querySelector("#login") ;
+const btnl = document.querySelector("#login") ;
 const btnR = document.querySelector("#register")
 const toggle = document.querySelector(".toggle-box");
 const toggleRight =  document.querySelector(".toggle-right")
 const toggleLeft = document.querySelector(".toggle-left")
- btn.addEventListener('click' ,()=>{
+ btnl.addEventListener('click' ,()=>{
     toggle.classList.remove("toggle-box")
     toggle.classList.add("toggle-box-active")
     toggleRight.classList.remove("toggle-right");
