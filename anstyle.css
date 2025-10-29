@@ -187,6 +187,16 @@ body {
 
 
 
+.announcements
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 4rem 0;
+}
+
+
+
 .cards
 {
     display: flex;
@@ -202,13 +212,56 @@ body {
     height: 50rem;
     flex-direction: column;
     flex: 1 1 calc(25% - 2rem);
-    min-width: 450px;
+    min-width: 280px;
+    max-width: 350px;
     border-radius: var(--card-border-radius);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     background-color: white;
     overflow: hidden;
+
+}
+
+.card img {
+  width: 100%;
+  height: 40%;
+  object-fit: cover;    
+
+}
+
+.filter-results
+{
+    padding: 1rem;
+}.announcements
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 4rem 0;
+}
+
+
+
+.cards
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    
+}
+
+.card
+{
+    height: 50rem;
+    flex-direction: column;
     flex: 1 1 calc(25% - 2rem);
-  max-width: calc(25% - 2rem);
+    min-width: 280px;
+    max-width: 350px;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: white;
+    overflow: hidden;
 
 }
 
@@ -223,6 +276,43 @@ body {
 {
     padding: 1rem;
 }
+
+.filter-results
+{
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+.card-post
+{
+    padding: 1.5rem;
+}
+
+.card-post h1
+{
+    padding: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.card-post p
+{
+    font-size: 1.7rem;
+    font-family: var(--third-font);
+    text-align: left;
+    padding: 0.2rem 0rem;
+
+}
+
+.card-btns
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0rem 2rem
+
+}
+
+
 
 
 /* .announcements
