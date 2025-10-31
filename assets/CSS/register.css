@@ -107,28 +107,7 @@ color: white;
     width: 100%;
 
 }
-.toggle-box{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 8px;
-} 
-.toggle-box-active{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    border-radius: 8px;
-}
+
 .toggle-pannel{
     display: flex;
     flex-direction: column;
@@ -224,7 +203,28 @@ color: white;
     .col-xl-2-5 {
         width: calc((5/2)*100% / 12);
     }
-
+   .toggle-box{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 8px;
+} 
+.toggle-box-active{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 8px;
+}
 }
 
 
@@ -283,7 +283,28 @@ color: white;
     .col-lg-2-5 {
         width: calc((5/2)*100% / 12);
     }
-
+        .toggle-box{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 8px;
+} 
+.toggle-box-active{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 8px;
+}
     
     }
 
@@ -341,7 +362,28 @@ color: white;
         font-size: 8px;
     }
    
-
+  .toggle-box{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 8px;
+} 
+.toggle-box-active{
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 8px;
+}
 }
 
 /* Small (sm) screens (576px to 767px) */

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/CSS/ExploreOrg.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="pictures/logo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     
 
@@ -55,14 +56,14 @@
     </header>
     <main>
       <!-------------------------title------------------------------------------>
-        <div class="title">
+        <div class="title ">
           <h1 >Verified organizations</h1>
           <p class="subtitle">discover trusted organizations making a real difference in our communities</p>
         </div>
-      <!-------------------------title------------------------------------------>
-        <div class="search-bar-container">
-          <div class="search-bar col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xxs-10">
-              <div class="search-by-name col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10">
+      <!-------------------------search bar------------------------------------------>
+        <div class="search-bar-container  flex-row " >
+          <div class="search-bar  col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xxs-10">
+              <div class="search-by-name  col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xs-10">
                 <img src="assets/icons/search.svg" alt="search">
                 <form action="">
                  <input type="search" id="serchInput" placeholder="search">
@@ -71,27 +72,58 @@
     
             
                 <form action="">
-                <div class="search-filter col-lg-2 col-xl-2 col-md-2 col-sm-2 col-xs-2 col-xxs-2">
+                <div class="search-filter  col-lg-2 col-xl-2 col-md-2 col-sm-2 col-xs-2 col-xxs-2">
                   <div class="catego ">
-                   <img src="assets/icons/filter.svg" alt="">
-                    <select name="categoties" id="categoInput" >                                                                                                                                                          tiesInput" >
-                      <option value="health">health</option>
-                      <option value="education">education</option>
-                      <option value="children">children</option>
-                      <option value="food">food</option>
-                      <option value="region" selected>All</option>
-                    </select>
-                  </div>
-                   <div class="region">
-                    <img src="assets/icons/filter.svg" alt="">
-                    <select name="region" id="regionInput" >
-                        <option value="algeries">algeries</option>
-                        <option value="bouira">bouira</option>
-                        <option value="Oran">Oan</option>
-                        <option value="jijel">jijel</option>
-                        <option value="region" selected>All</option>
-                    </select>
+                   <button class="filter-btn">
+                   <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                   <span class="filter-title">filter</span>
+                   </button >
+                   
+                   <div class="filter-options">
+                    <div class="options options-not-active options-active">
+                      <p>categories</p>
+                      <div class="option">
+                        <input type="checkbox" id="health" value="health"> 
+                        <label for="health">health</label>
+                     
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" id="education" value="education"> 
+                        <label for="education">education</label>
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" id="children" value="children">
+                        <label for="children">children</label> 
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" id="food" value="food">
+                        <label for="food">food</label>
+                        </div>
+                  
+                         <p>regions</p>
+                      <div class="option">
+                        <input type="checkbox" id="algeries" value="algeries"> 
+                        <label for="algeries">algeries</label>
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" id="bouira" value="bouira"> 
+                        <label for="bouira">bouira</label>
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" id="Oran" value="Oran"> 
+                        <label for="Oran">Oran</label> 
+                      </div>
+                      <div class="option">
+                        <input type="checkbox" id="jijel" value="jijel"> 
+                        <label for="jijel">jijel</label>
+                        </div>
+                    </div>
+
+                    
                    </div>
+
+                   </div>
+                  </div>
                 </form>
                 </div>
         </div>
@@ -260,7 +292,7 @@
     <!------------see more button--------------->
     <div class="containerButton">
     <div class="button-container">
-      <div>
+      <div class="icon-container">
         <img src="assets/icons/seeMore.svg" alt="">
       </div>
       <div>
@@ -297,5 +329,6 @@
             </div>
         </div>
     </footer>
+    <script src="assets/scripts/scriptsOrg.js"></script>
 </body>
 </html>
