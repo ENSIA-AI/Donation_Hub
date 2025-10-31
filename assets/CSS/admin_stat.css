@@ -75,9 +75,31 @@ section {
 
 }
 
-.admin_dashboard {
-    position: fixed;
+.admin_header_content.flex-row {
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.flex-row.admin-info {
+    justify-content: flex-end;
+    align-items: center;
+
+
+}
+
+.admin-info {
+    padding-top: 1rem;
+
+    padding-bottom: 2rem;
+}
+
+.admin_username {
+    text-align: center;
+}
+
+/* .admin_dashboard {
+    position: fixed;
+} */
 
 .admin_profile_image {
     justify-content: center;
@@ -120,11 +142,6 @@ section {
 
 }
 
-.website_name h2 {
-    color: white;
-    font-family: var(--primary-font);
-    font-size: 1.5rem;
-}
 
 .website_info {
     padding-top: 2rem;
@@ -135,7 +152,6 @@ section {
 .bash_sidebar {
     background-color: var(--primary-color);
     height: 100%;
-
 }
 
 .bash_sidebar.flex-row {
@@ -143,13 +159,14 @@ section {
     justify-content: space-evenly;
 }
 
+.admin_header_content.flex-row {
+    flex-direction: column;
+}
 
 .sidebar_elements.flex-row {
     flex-direction: column;
     justify-content: space-between;
 }
-
-
 
 .sidebar_element.flex-row {
     align-items: center;
@@ -213,6 +230,140 @@ section {
     color: var(--third-color);
 }
 
+/* ================================================== statistics ======================================================== */
+/* .dash_container {
+    padding-top: 13rem;
+    padding-left: 33rem;
+    padding-right: 11rem;
+} */
+
+
+
+.statistic_card.flex-row {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.statistic {
+    padding: 2rem 2rem;
+}
+
+.statistic_details.flex-row {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flex-row.statistic_numbers {
+    flex-direction: column;
+}
+
+.statistic_value {
+    font-family: var(--third-font);
+    color: black;
+    font-size: 1.9rem;
+    font-weight: 1000;
+    padding: 0;
+    margin: 0;
+}
+
+.stat_duration {
+    font-family: var(--third-font);
+    color: rgb(89, 88, 88);
+    font-size: 1.6rem;
+    margin-top: 0;
+    padding: 0;
+
+}
+
+.statistic_details {
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    border-radius: var(--button-border-radius);
+}
+
+.statistic_name p {
+    font-family: var(--secondary-font);
+    color: black;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+.flex-row.statistic_numbers {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.statistic_numbers {
+    margin-right: 1rem;
+}
+
+.statistic_details i {
+    text-align: center;
+    color: var(--third-color);
+    font-size: 3.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+
+
+/* ===============================progress bar ========================= */
+.circular-progress {
+    width: 5rem;
+    height: 5rem;
+
+    border-radius: 50%;
+    background: conic-gradient(var(--primary-color) calc(80 * 3.6deg),
+            /* 80% progress */
+            #e0e0e0 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Inner empty (white) circle */
+.inner-circle {
+    width: 85%;
+    height: 85%;
+    background-color: #fff;
+    /* makes the center empty */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #535252;
+}
+
+.circular-progress .value {
+    position: absolute;
+    font-size: 1.5rem;
+}
+
+/* ========================end progress bar ================ */
+
+.statistic_details {
+    transition: all .8s ease-in-out;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+/* ============= Animations ============= */
+.statistic_details:hover {
+    transform: scale(1.04);
+}
+
+
+
 /* =====================================Classes ========================================= */
 
 @media (min-width: 1200px) {
@@ -270,6 +421,14 @@ section {
 
     .d_none_xl {
         display: none;
+    }
+
+
+
+    .statistic_details {
+
+        padding: .5rem 1rem;
+
     }
 }
 
@@ -340,6 +499,14 @@ section {
     .col-lg-9-5 {
         width: calc(9.5*100% / 12);
     }
+
+
+
+    .statistic_details {
+
+        padding: .5rem 1rem;
+
+    }
 }
 
 /* Medium (md) screens (768px to 991px) */
@@ -402,7 +569,7 @@ section {
 
 
     html {
-        font-size: 8px;
+        font-size: 10px;
     }
 
     .d_none_md {
@@ -410,6 +577,16 @@ section {
     }
 
 
+    .statistic_details {
+
+        padding: .5rem 1rem;
+
+    }
+
+    .circular-progress {
+        width: 7rem;
+        height: 7rem;
+    }
 
 
 }
@@ -464,16 +641,30 @@ section {
         width: 100%;
     }
 
+    .statistic {
+        padding: 2rem 4rem;
+    }
 
 
     html {
-        font-size: 6px;
+        font-size: 9px;
     }
 
     .d_none_sm {
         display: none;
     }
 
+
+    .statistic_details {
+
+        padding: .5rem 1rem;
+
+    }
+
+    .circular-progress {
+        width: 7rem;
+        height: 7rem;
+    }
 }
 
 /* Extra Small (xs) screens (464px to 575px) */
@@ -527,13 +718,25 @@ section {
     }
 
     html {
-        font-size: 6px;
+        font-size: 9px;
     }
 
     .d_none_xs {
         display: none;
     }
 
+
+
+    .statistic_details {
+
+        padding: .5rem 1rem;
+
+    }
+
+    .circular-progress {
+        width: 7rem;
+        height: 7rem;
+    }
 }
 
 /* Extra Extra Small (xxs) screens (0px to 463px) */
@@ -589,11 +792,30 @@ section {
     }
 
     html {
-        font-size: 6px;
+        font-size: 7px;
     }
 
     .d_none_xxs {
         display: none;
     }
 
+    .statistic_details {
+
+        padding: .5rem 1rem;
+
+    }
+
+    .admin_profile_img {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .statistic {
+        padding: 2rem 4rem;
+    }
+
+    .circular-progress {
+        width: 8rem;
+        height: 8rem;
+    }
 }

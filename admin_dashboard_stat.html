@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <!-- ========================================header =========================================== -->
+    <!-- ============================================ admin dashboard sidebar and header ====================================================== -->
 
     <header>
         <div class="admin_dashboard fluid_container flex-row">
@@ -23,15 +23,8 @@
                 <div class="website_info flex-row  ">
                     <img src="assets/Images/website_logo.jpg" class="website_logo_img full_image"
                         alt="website logo image">
-                    <!-- <div class="website_logo_image col-xl-3 col-lg-3 col-md-2 ">
-                        <img src="assets/Images/website_logo.jpg" class="website_logo_img full_image"
-                            alt="website logo image">
-                    </div>
-                    <div class="website_name col-xl-5 col-lg-5 col-md-6">
-                        <h2>Donify_dz</h2>
-                    </div> -->
                 </div>
-                <div class="dash_sidebar ">
+                <div class="dash_sidebar_elements ">
                     <ul class="sidebar_elements flex-row">
                         <li class="sidebar_element flex-row selected  ">
                             <i class="fa-solid fa-house"></i>
@@ -56,30 +49,131 @@
             </div>
 
 
-
             <div
-                class="fluid_container admin_header_content  flex-row col-xl-10 col-lg-9-5 col-md-9-5 col-sm-12 col-xs-12 col-xxs-12">
-
-                <div class="dash_humburger d_none_xl d_none_lg d_none_md col-sm-8 col-xs-6 col-xxs-5  ">
-                    <i class="fa-solid fa-bars"></i>
+                class="fluid_container  admin_header_content col-xl-10 col-lg-9-5 col-md-9-5 col-sm-12 col-xs-12 col-xxs-12">
+                <div class=" flex-row admin-info">
+                    <div class="dash_humburger d_none_xl d_none_lg d_none_md col-sm-8 col-xs-6 col-xxs-5  ">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                    <div class="admin_username col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xxs-5">
+                        <h2>Admin_name</h2>
+                    </div>
+                    <div class="admin_profile_image  col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-2 col-xxs-2 ">
+                        <img src="assets/Images/admine_image.jpg" class="admin_profile_img full_image"
+                            alt="admin profile image">
+                    </div>
                 </div>
+                <!-- ==========================================PUT HERE YOUR CONTENT =========================================== -->
 
-                <div class="admin_username  col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xxs-5">
-                    <h2>Admin_username</h2>
+                <div class="statistics flex-row">
+                    <div class="statistic_card flex-row col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xxs-12  ">
+                        <div class="statistic">
+                            <div class="statistic_details flex-row">
+                                <div class="flex-row statistic_numbers">
+                                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                                    <div class="statistic_name">
+                                        <p>Total Donations</p>
+                                    </div>
+                                    <div class="statistic_value">
+                                        <p>1,245,000 DZ</p>
+                                    </div>
+                                    <p class="stat_duration">Last 24 hours </p>
+                                </div>
+                                <div class="circular-progress">
+                                    <div class="inner-circle">
+                                        <span class="value">80%</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="statistic_card flex-row col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xxs-12 ">
+                        <div class="statistic">
+                            <div class="statistic_details flex-row">
+                                <div class="flex-row statistic_numbers">
+                                    <i class="fa-solid fa-bullhorn"></i>
+                                    <div class="statistic_name">
+                                        <p>Total compaigns</p>
+                                    </div>
+                                    <div class="statistic_value">
+                                        <p>120</p>
+                                    </div>
+                                    <p class="stat_duration">Last 24 hours </p>
+                                </div>
+                                <div class="circular-progress">
+                                    <div class="inner-circle">
+                                        <span class="value">70%</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="statistic_card flex-row col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xxs-12  ">
+                        <div class="statistic">
+                            <div class="statistic_details flex-row">
+                                <div class="flex-row statistic_numbers">
+                                    <i class="fa-solid fa-building-ngo"></i>
+                                    <div class="statistic_name">
+                                        <p>Organisations</p>
+                                    </div>
+                                    <div class="statistic_value">
+                                        <p>45</p>
+                                    </div>
+                                    <p class="stat_duration">Last 24 hours </p>
+                                </div>
+                                <div class="circular-progress">
+                                    <div class="inner-circle">
+                                        <span class="value">70%</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="statistic_card flex-row col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xxs-12  ">
+                        <div class="statistic">
+                            <div class="statistic_details flex-row">
+                                <div class="flex-row statistic_numbers">
+                                    <i class="fa-solid fa-person-circle-question"></i>
+                                    <div class="statistic_name">
+                                        <p>Requests</p>
+                                    </div>
+                                    <div class="statistic_value">
+                                        <p>11</p>
+                                    </div>
+                                    <p class="stat_duration">Last 24 hours </p>
+                                </div>
+                                <div class="circular-progress">
+                                    <div class="inner-circle">
+                                        <span class="value">70%</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="admin_profile_image  col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-2 col-xxs-2 ">
-                    <img src="assets/Images/admine_image.jpg" class="admin_profile_img full_image"
-                        alt="admin profile image">
-                </div>
-
-
+                <!-- =======================================STOP!! YOU WILL BE OUT OF YOUR SCOPE :> ======================================== -->
 
             </div>
-        </div>
+
 
     </header>
-    <!-- ============================================ admin dashboard sidebar====================================================== -->
+    <!-- ============================================ end admin dashboard sidebar and header ====================================================== -->
+    <!-- ====================================================== Statistics =============================================================== -->
 
+
+
+
+    <!-- ====================================================== end Statistics ============================================================= -->
 
 
 </body>
