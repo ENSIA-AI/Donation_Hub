@@ -534,59 +534,90 @@ footer{
 
 /* MEDIA QUERY - MOBILE */
 @media(max-width: 600px) {
-    .hamburger {
+     .hamburger {
         display: block;
-        margin-right: 30px;
+        font-size: 2.5rem;
+        cursor: pointer;
+        color: white;
+        position: relative;
+        z-index: 1001; /*keep it above everything*/
+        margin-right: 20px;
     }
 
     /* Mobile menu */
     .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -270px; /*hidden*/
+        width: 270px;
+        height: 100vh;
+        background: rgba(16, 115, 97, 0.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: -4px 0 10px rgba(0, 0, 0, 0.25);
+        display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 15px;
-        background-color: var(--primary-color);
-        width: 220px;
-        padding: 20px;
-        border-radius: 15px;
-        gap: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-        pointer-events: none;
-        transition: all 0.4s ease-in-out;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 70px 30px;
+        gap: 25px;
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+        transition: right 0.4s ease;
+        z-index: 1000;
     }
 
     .nav-menu.active {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
+        right: 0;
     }
 
-    .nav-menu::after {
-        bottom: -2px;
-    }
-
-    .nav-menu li:hover {
-        transform: translateX(5px);
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 10px;
     }
 
     .nav-menu a {
-        font-size: 18px;
-        padding: 8px 12px;
+        color: #fff;
+        font-size: 1.3rem;
+        text-decoration: none;
         display: block;
+        width: 100%;
+        transition: color 0.3s;
     }
 
-    .nav-menu .btn {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-        padding: 4px 8px;
+    .nav-menu a:hover {
+        color: var(--third-color);
     }
 
     .nav-menu .btn a {
-        color: var(--secondary-color);
+        background: none;
+        color: #fff;
+        font-weight: 500;
+        padding: 0;
+        text-align: left;
+        text-align: center;
+    }
+
+    .nav-menu .btn a:hover {
+        color: var(--third-color);
+    }
+
+    .overlay-blur {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        z-index: 999;
+    }
+
+    .overlay-blur.active {
+        opacity: 1;
+        pointer-events: auto;
     }
 
 
