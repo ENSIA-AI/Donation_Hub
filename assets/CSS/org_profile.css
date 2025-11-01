@@ -22,6 +22,7 @@ body {
     margin-right: 4rem;
     padding-left: 4rem;
     padding-right: 4rem;
+
 }
 
 ul {
@@ -202,7 +203,7 @@ section {
 /* HAMBURGER */
 .hamburger {
     display: none;
-    font-size: 34px;
+    font-size: 3.4rem;
     color: var(--background-color);
     cursor: pointer;
 }
@@ -802,7 +803,7 @@ footer {
 }
 
 .organization_identity h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: var(--primary-font);
     margin: 0;
 }
@@ -813,7 +814,7 @@ footer {
 } */
 
 .organization_identity p {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-family: var(--third-font);
     color: rgb(83, 82, 82);
 }
@@ -843,7 +844,7 @@ footer {
 }
 
 .verified_btn {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .type_btn {
@@ -875,6 +876,7 @@ footer {
 
 }
 
+.org_nav_elements {}
 
 
 .nav_line {
@@ -914,14 +916,14 @@ footer {
 
 .Post_Date {
     font-family: var(--third-font);
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding-bottom: 1rem;
     color: rgb(66, 66, 66);
 }
 
 .post_title {
     font-family: var(--primary-font);
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: 600;
     padding-top: 1rem;
     color: black;
@@ -929,7 +931,7 @@ footer {
 
 .post_text_content {
     font-family: var(--third-font);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding-top: 1rem;
     color: black;
 }
@@ -978,7 +980,7 @@ footer {
     color: black;
     font-family: var(--secondary-font);
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
 
 }
 
@@ -1026,13 +1028,13 @@ footer {
 
 .org_description p {
     font-family: var(--third-font);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     text-align: center;
 
 }
 
 .mission_vision_content {
-    padding: 5rem;
+    padding: 4rem;
 }
 
 .mission_img {
@@ -1049,7 +1051,7 @@ footer {
 
 .vision,
 .mission {
-    padding: 5rem;
+    padding: 4rem;
 }
 
 .mission h2,
@@ -1057,7 +1059,7 @@ footer {
     font-family: var(--primary-font);
     color: white;
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: var(--section-title-font-size);
     margin-bottom: 0;
 }
 
@@ -1065,13 +1067,13 @@ footer {
 .vision p {
     font-family: var(--third-font);
     color: white;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .about-section-title {
     color: var(--primary-color);
     font-family: var(--primary-font);
-    font-size: 4rem;
+    font-size: var(--section-title-font-size);
     font-weight: 600;
     text-align: center;
     margin-bottom: 0;
@@ -1121,7 +1123,7 @@ footer {
 .programs-title {
     color: white;
     font-family: var(--primary-font);
-    font-size: 4rem;
+    font-size: var(--section-title-font-size);
     font-weight: 600;
     text-align: center;
 
@@ -1160,7 +1162,7 @@ footer {
     font-family: var(--third-font);
     color: black;
 
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     padding-top: .7rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -1200,7 +1202,7 @@ footer {
 
 .impact-action h1 {
     margin-top: 0;
-    font-size: 4rem;
+    font-size: var(--section-title-font-size);
     font-family: var(--secondary-font);
     font-weight: 800;
     color: var(--secondary-color);
@@ -1315,7 +1317,9 @@ footer {
     height: 2rem;
 }
 
-
+a.org-contact-link {
+    margin-bottom: 1rem;
+}
 
 /* ===============form================ */
 .org-contact-form {
@@ -1333,6 +1337,10 @@ footer {
     padding-left: 3rem;
 }
 
+.org-contact-us {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 
 
 
@@ -1350,7 +1358,7 @@ footer {
 .org-form-details h1 {
     color: white;
     font-family: var(--primary-font);
-    font-size: 2.5rem;
+    font-size: var(--subtitle-font-size);
     font-weight: 600;
     margin-top: 0;
     margin-bottom: .5rem;
@@ -1359,7 +1367,7 @@ footer {
 .org-form-details p {
     font-family: var(--third-font);
     color: white;
-    font-size: 1.3rem;
+    font-size: var(--text-font-size);
     margin-right: 2rem;
     margin-left: auto;
 
@@ -1647,17 +1655,35 @@ input:focus {
     }
 
     .org_value_card {
-        font-size: 14px;
-        width: 150px;
+        font-size: 15px;
+        width: 160px;
+
+    }
+
+    .org_container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 
     html {
-        font-size: 8px;
+        font-size: 10px;
     }
 
     .org-contact-infos-card.flex-row {
         gap: 8rem;
 
+    }
+
+    .organization_logo_img {
+        width: 16rem;
+        height: 16rem;
+    }
+
+    .org-contact-details.flex-row {
+
+        gap: 4rem;
     }
 
 }
@@ -1713,21 +1739,39 @@ input:focus {
     }
 
     .org_value_card {
-        font-size: 13px;
+        font-size: 15px;
         max-width: 238px;
     }
 
     html {
-        font-size: 6px;
+        font-size: 9px;
     }
 
     .mission_vision_content {
         text-align: center;
+        padding: 2rem;
+    }
+
+    .organization_logo_img {
+        width: 15rem;
+        height: 15rem;
     }
 
     .org-contact-infos-card.flex-row {
         gap: 8rem;
 
+    }
+
+    .org_container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .org-contact-details.flex-row {
+
+        gap: 2rem;
     }
 }
 
@@ -1782,15 +1826,16 @@ input:focus {
     }
 
     html {
-        font-size: 6px;
+        font-size: 9px;
     }
 
     .mission_vision_content {
         text-align: center;
+        padding: 2rem;
     }
 
     .org_value_card {
-        font-size: 13px;
+        font-size: 15px;
         max-width: 200px;
     }
 
@@ -1798,14 +1843,28 @@ input:focus {
         display: none;
     }
 
+
     .org-contact-infos-card.flex-row {
         flex-direction: row;
         justify-content: space-around;
 
     }
 
+
+    .organization_logo_img {
+        width: 12rem;
+        height: 12rem;
+    }
+
     .social_link_icon {
         margin-left: .5rem;
+    }
+
+    .org_container {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 
@@ -1862,11 +1921,12 @@ input:focus {
     }
 
     html {
-        font-size: 6px;
+        font-size: 8px;
     }
 
     .mission_vision_content {
         text-align: center;
+        padding: 2rem;
     }
 
     .d-none-xxs {
@@ -1880,11 +1940,36 @@ input:focus {
     }
 
     .org-contact-info p {
-        max-width: 1rem;
+
         margin-top: 0;
+    }
+
+    .organization_logo_img {
+        width: 12rem;
+        height: 12rem;
     }
 
     .social_link_icon {
         margin-left: .5rem;
     }
+
+    .vision,
+    .mission {
+        padding: 1rem;
+    }
+
+
+
+    .programs {
+        padding: 1rem 1rem;
+    }
+
+    .org_container {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+
 }
