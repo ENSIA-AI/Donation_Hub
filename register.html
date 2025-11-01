@@ -52,8 +52,8 @@
     </script>
     </header>
 <main>
-    <div class="container-con">
-        <div class="container">
+    <div class="container-con desktop-version">
+        <div class="container desktop-version">
         <div class="container-form flex-row ">
         <!--login form-->
         <div class="form-box login col-xl-6 col-lg-6 col-md-6 flex-row-center">
@@ -149,7 +149,106 @@
     </div> 
     </div>
    </div>
+<!--------------------------------phone version----------------------------->
+ <div class="Pcontainer phone-version">
+    <!--toggle box-->
+    <div class="toggle-box ">
+        <div class="toggle-pannel toggle-left-p">
+            <div class="text">
+                <h3>welcome to donifyDz !</h3>
+                <p>Allready have an account?</p>
+            </div>
+            <div class="submit button-border">
+                <button id="loginP">login</button>
+            </div>
+        </div>
+        <div id="toggle" class="toggle-pannel toggle-right-P">
+            <div class="text">
+                <h3>welcome back to donifyDz !</h3>
+                <p>don't have an account?</p>
+        </div>
+        <div class="submit button-border">
+                <button id="registerP">register</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- forms -->
+     <div class="container ">
+        <div class="container-form flex-column ">
+        <!--login form-->
+        <div class="form-box login  ">
+            <div class="login-form  ">
+                <div class="title  ">
+                    <h2>login</h2>
+                </div>
+                <form action="">
+                    <div class="  placeholder">
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="  placeholder">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="  placeholder">
+                    <input type="password" placeholder="Confirm password" required>
+                    </div>
+                    <div class="  submit">
+                        <button type="submit"> login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--register form-->
+            <div class="form-box register     flex-column">
+                <div class="register-form   ">
+                    <div class="title  ">
+                    <h2>Register</h2>
+                    </div>
+                    <form action="" >
+                        <div class="  placeholder" >
+                            <input type="text" id="name-of-organization" placeholder="Name of organization" required>
+                        </div>
+                        <div class="  placeholder">
+                            <input type="text" id="phone-number" placeholder="Phone number">
+                        </div>
+                        <div class="  placeholder">
+                            <input type="email" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="  placeholder">
+                            <select name="type" id="type-of-organization">
+                                <option value="health">health</option>
+                                <option value="education">education</option>
+                                <option value="children">children</option>
+                                <option value="food">food</option>
+                                <option value="water">water</option>
+                            </select>
+                        </div >
+                        <div class="  placeholder">
+                            <select name="region" id="region">
+                                <option value="algeries">algeries</option>
+                                <option value="bouira">bouira</option>
+                                <option value="jijel">jijel</option>
+                                <option value="oran">oran</option>
+                                <option value="bejia">bejia</option>
+                                <option value="adrar">adrar</option>
+                            </select>
+                        </div >
+                        <div class="  placeholder" >
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div class="  placeholder">
+                            <input type="password" placeholder="Confirm password" required>
+                        </div>
+                        <div class="  submit">
+                            <button type="submit"> register</button>
+                        </div>
+                    </form>
+                </div>
+        </div> 
+
+</div>
 </main>
+
 <script src="assets/scripts/scripts.js"></script>
     <!------------foooter----------------------->
     <footer>
@@ -177,6 +276,11 @@
                 <a id="email" href="#"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
+
+
+
+
+
     </footer>
 </body>
 </html>

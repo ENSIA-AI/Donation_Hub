@@ -225,6 +225,9 @@ color: white;
     right: 0;
     border-radius: 8px;
 }
+.phone-version{
+    display: none;
+}
 }
 
 
@@ -305,6 +308,9 @@ color: white;
     right: 0;
     border-radius: 8px;
 }
+.phone-version{
+    display: none;
+}
     
     }
 
@@ -384,6 +390,9 @@ color: white;
     right: 0;
     border-radius: 8px;
 }
+.phone-version{
+    display: none;
+}
 }
 
 /* Small (sm) screens (576px to 767px) */
@@ -449,7 +458,62 @@ color: white;
         justify-content: center;
         gap: 2em;
     }
-    
+            .flex-column{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+        align-items: center;
+    }
+    .desktop-version{
+        display: none;
+    }
+        .toggle-box{
+        background-color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+          margin-top: 4em;
+          border-radius: 10px;
+    }
+    .toggle-pannel{
+        padding: 3.4em;
+    }
+       .container-form{
+         padding: 1em;
+    }
+     .register-form{
+      margin-top: 4em;  
+      min-width: 400px;
+      border-radius: 5px;
+      margin-bottom: 4em;
+      
+      margin-left: 0;
+         
+    }
+    .register-form-not-active{
+        display: none;
+    }
+    .login-form{
+      margin-right: 0;
+      margin-top: 7em;  
+      min-width: 400px;
+      border-radius: 5px;
+      margin-bottom: 7em;
+      
+    }
+    .login-form-not-active{
+       display: none;
+    }
+
+    .Pcontainer{
+        margin-top: 5em;
+         margin-bottom: 5em;
+        padding-top: 1em;
+        background-color: var(--secondary-color);
+        
+    }
  }
 
 /* Extra Small (xs) screens (464px to 575px) */
@@ -510,7 +574,64 @@ color: white;
         justify-content: center;
         gap: 2em;
     }
+    .desktop-version{
+        display: none;
+    }
+        .toggle-box{
+        background-color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        margin-top: 4em;
+        border-radius: 10px;
+        
+    }
+    .toggle-pannel{
+        padding: 3.4em;
+    }
+        .flex-column{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+        align-items: center;
+    }
+   
 
+    .login-form{
+        margin-right: 0;
+       margin-top: 8em;  
+       min-width: 400px;
+       border-radius: 5px;
+        margin-bottom: 8em; 
+        
+    }
+      .login-form-not-active{
+       display: none;
+    }
+      .container-form{
+         padding: 1em;
+    }
+
+      .register-form{
+        margin-left: 0;
+       margin-top: 3em;  
+       min-width: 400px;
+       border-radius: 5px;
+        margin-bottom: 3em; 
+        display: none;
+    }
+      .register-form-not-active{
+       display: none;
+    }
+    .Pcontainer{
+        margin-top: 5em;
+        padding-top: 1em;
+        background-color: var(--secondary-color);
+         margin-bottom: 5em;
+    }
+    
 }
     
 /* Extra Extra Small (xxs) screens (0px to 463px) */
@@ -575,5 +696,68 @@ color: white;
         justify-content: center;
         align-items: center;
         gap: 2em;
+    }
+    .desktop-version{
+        display: none;
+    }
+        .toggle-box{
+        background-color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        margin-top: 4em;
+        border-radius: 10px;
+        
+    }
+    .toggle-pannel{
+        padding: 3.4em;
+
+    }
+    .flex-column{
+        display: flex;
+       
+        justify-content: center;
+        align-items: center;
+    }
+ 
+    .container-form{
+         padding: 2em;
+    }
+
+    .login-form{
+       margin-top: 7em; 
+       margin-right:  0; 
+       min-width: 270px;
+       border-radius: 5px;
+       margin-bottom: 7em;
+        
+    }
+      .login-form-not-active{
+       display: none;
+    }
+      .register-form{
+        margin-top: 2em; 
+        margin-left: 0;
+       margin-top: 3em;  
+       min-width: 270px;
+       border-radius: 5px;
+       margin-bottom: 2em;
+       
+    }
+    .register-form-not-active{
+      display: none;
+    }
+      .Pcontainer{
+        margin-top: 5em;
+        padding-top: 1em;
+        background-color: var(--secondary-color);
+        margin-bottom: 5em;
+    }
+    .toggle-left-P{
+        display: none;
+    }
+    .toggle-right-p{
+        display: none ;
     }
     }

@@ -6,3 +6,6 @@ filterBtn.addEventListener("click", (e)=>{
      e.preventDefault();
  options.classList.toggle("options-not-active")
 })
+
+
+
