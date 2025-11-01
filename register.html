@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/CSS/register.css">
+    <link rel="icon" type="image/png" href="pictures/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+           <link rel="stylesheet" href="assets/CSS/style.css">
+    <title>Register/login</title>
+</head>
+<body>
+    <header>
+            <div class="header">
+        <div class="container">
+            <div class="row">
+
+                <!-- Logo -->
+                <div class="col-2">
+                    <img src="pictures/logo_nav.png" alt="Donify Logo" class="logo">
+                </div>
+
+                 <div class="overlay-blur" id="overlay"></div>
+                <!-- Navigation -->
+                <div class="col-10">
+                    <div class="nav">
+                        <div class="hamburger" id="hamburger">☰</div>
+                        <ul class="nav-menu" id="nav-menu">
+
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="ExploreOrganization.html">Organizations</a></li>
+                            <li><a href="announcements.html">Announcements</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li class="btn"><a href="register.html" >log in</a></li>
+                            <li class="btn"><a href="register.html">register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+    </script>
+    </header>
+<main>
+    <div class="container-con desktop-version">
+        <div class="container desktop-version">
+        <div class="container-form flex-row ">
+        <!--login form-->
+        <div class="form-box login col-xl-6 col-lg-6 col-md-6 flex-row-center">
+            <div class="login-form col-xl-12 col-lg-12 col-md-12">
+                <div class="title col-xl-12 col-lg-12 col-md-12">
+                    <h2>login</h2>
+                </div>
+                <form action="">
+                    <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                    <input type="password" placeholder="Confirm password" required>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 submit">
+                        <button type="submit"> login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--register form-->
+            <div class="form-box register col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-xxs-12 flex-row-center">
+                <div class="register-form col-xl-12 col-lg-12 col-md-12 ">
+                    <div class="title col-xl-12 col-lg-12 col-md-12">
+                    <h2>Register</h2>
+                    </div>
+                    <form action="" >
+                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder" >
+                            <input type="text" id="name-of-organization" placeholder="Name of organization" required>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                            <input type="text" id="phone-number" placeholder="Phone number">
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                            <input type="email" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                            <select name="type" id="type-of-organization">
+                                <option value="health">health</option>
+                                <option value="education">education</option>
+                                <option value="children">children</option>
+                                <option value="food">food</option>
+                                <option value="water">water</option>
+                            </select>
+                        </div >
+                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                            <select name="region" id="region">
+                                <option value="algeries">algeries</option>
+                                <option value="bouira">bouira</option>
+                                <option value="jijel">jijel</option>
+                                <option value="oran">oran</option>
+                                <option value="bejia">bejia</option>
+                                <option value="adrar">adrar</option>
+                            </select>
+                        </div >
+                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder" >
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                            <input type="password" placeholder="Confirm password" required>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 submit">
+                            <button type="submit"> register</button>
+                        </div>
+                    </form>
+                </div>
+        </div> 
+        <!--toggle box-->
+        <div class="toggle-box ">
+            <div class="toggle-pannel toggle-left">
+                <div class="text">
+                    <h3>welcome to donifyDz !</h3>
+                    <p>Allready have an account?</p>
+                </div>
+                <div class="submit button-border">
+                    <button id="login">login</button>
+                </div>
+            </div>
+            <div id="toggle" class="toggle-pannel toggle-right">
+                <div class="text">
+                    <h3>welcome back to donifyDz !</h3>
+                    <p>don't have an account?</p>
+            </div>
+            <div class="submit button-border">
+                    <button id="register">register</button>
+                </div>
+            </div>
+
+        </div>
+    </div> 
+    </div>
+   </div>
+<!--------------------------------phone version----------------------------->
+ <div class="Pcontainer phone-version">
+    <!--toggle box-->
+    <div class="toggle-box ">
+        <div class="toggle-pannel toggle-left-p">
+            <div class="text">
+                <h3>welcome to donifyDz !</h3>
+                <p>Allready have an account?</p>
+            </div>
+            <div class="submit button-border">
+                <button id="loginP">login</button>
+            </div>
+        </div>
+        <div id="toggle" class="toggle-pannel toggle-right-P">
+            <div class="text">
+                <h3>welcome back to donifyDz !</h3>
+                <p>don't have an account?</p>
+        </div>
+        <div class="submit button-border">
+                <button id="registerP">register</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- forms -->
+     <div class="container ">
+        <div class="container-form flex-column ">
+        <!--login form-->
+        <div class="form-box login  ">
+            <div class="login-form  ">
+                <div class="title  ">
+                    <h2>login</h2>
+                </div>
+                <form action="">
+                    <div class="  placeholder">
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="  placeholder">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="  placeholder">
+                    <input type="password" placeholder="Confirm password" required>
+                    </div>
+                    <div class="  submit">
+                        <button type="submit"> login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--register form-->
+            <div class="form-box register     flex-column">
+                <div class="register-form   ">
+                    <div class="title  ">
+                    <h2>Register</h2>
+                    </div>
+                    <form action="" >
+                        <div class="  placeholder" >
+                            <input type="text" id="name-of-organization" placeholder="Name of organization" required>
+                        </div>
+                        <div class="  placeholder">
+                            <input type="text" id="phone-number" placeholder="Phone number">
+                        </div>
+                        <div class="  placeholder">
+                            <input type="email" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="  placeholder">
+                            <select name="type" id="type-of-organization">
+                                <option value="health">health</option>
+                                <option value="education">education</option>
+                                <option value="children">children</option>
+                                <option value="food">food</option>
+                                <option value="water">water</option>
+                            </select>
+                        </div >
+                        <div class="  placeholder">
+                            <select name="region" id="region">
+                                <option value="algeries">algeries</option>
+                                <option value="bouira">bouira</option>
+                                <option value="jijel">jijel</option>
+                                <option value="oran">oran</option>
+                                <option value="bejia">bejia</option>
+                                <option value="adrar">adrar</option>
+                            </select>
+                        </div >
+                        <div class="  placeholder" >
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div class="  placeholder">
+                            <input type="password" placeholder="Confirm password" required>
+                        </div>
+                        <div class="  submit">
+                            <button type="submit"> register</button>
+                        </div>
+                    </form>
+                </div>
+        </div> 
+
+</div>
+</main>
+
+<script src="assets/scripts/registerScript.js"></script>
+    <!------------foooter----------------------->
+    <footer>
+        <div class="links">
+            <div class="donify">Donify_DZ</div>
+            <div class="link">
+                <a href="index.html">Home</a>
+                <a href="ExploreOrganization.html">Organizations</a>
+                <a href="announcements.html">Announcements</a>
+                <a href="contact.html">Conatct</a>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="media">
+            <div class="rights">
+                <p>Donify_dz@2025. All rights reserved</p>
+            </div>
+
+            <div class="social_media">
+                <a id="facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a id="linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a id="email" href="#"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+
+
+
+
+
+    </footer>
+</body>
+</html>
