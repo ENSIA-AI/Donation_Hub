@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donify.dz</title>
     <link rel="stylesheet" href="assets/CSS/org_profile.css">
+    <link rel="stylesheet" href="assets/CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -26,6 +27,7 @@
                     <img src="pictures/logo_nav.png" alt="Donify Logo" class="logo">
                 </div>
 
+                <div class="overlay-blur" id="overlay"></div>
                 <!-- Navigation -->
                 <div class="col-10">
                     <div class="nav">
@@ -715,15 +717,7 @@
     </footer>
 
 
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-    </script>
+    <script src="script.js"></script>
     <!-- ======================================================== End footer =============================================================== -->
 </body>
 
