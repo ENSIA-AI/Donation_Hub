@@ -798,12 +798,12 @@ footer {
     margin: 1rem 2rem;
 }
 
-.organization_profile_description.flex-row {
+.organization_profile_description.flex-row :not(.organization_profile_description.flex-row > .organization-xxs_badges) {
     justify-content: flex-start;
 }
 
 .organization_identity h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-family: var(--primary-font);
     margin: 0;
 }
@@ -824,7 +824,9 @@ footer {
     justify-content: center;
 
 }
+.org_nav_elements{
 
+}
 .bdg_name {
     font-size: 1.3rem;
     font-weight: 600;
@@ -845,6 +847,7 @@ footer {
 
 .verified_btn {
     font-size: 1.5rem;
+
 }
 
 .type_btn {
@@ -853,7 +856,9 @@ footer {
 
 .organization_badges {
     max-width: 37.5rem;
+
 }
+
 
 .bdg_name.flex-row {
     align-items: center;
@@ -876,7 +881,6 @@ footer {
 
 }
 
-.org_nav_elements {}
 
 
 .nav_line {
@@ -1213,7 +1217,6 @@ footer {
 .middle-impact-card {
     transform: translateY(-60px);
 
-    margin-top: 80px;
 
 }
 
@@ -1239,7 +1242,7 @@ footer {
 }
 
 .impact-card:hover {
-    transform: scale(1.05) translateY(-20px);
+    transform: scale(1.01) translateY(-20px);
     box-shadow: rgba(233, 221, 149, 0.896) 0px 30px 60px -12px inset, rgba(247, 226, 131, 0.671) 0px 18px 36px -18px inset;
 }
 
@@ -1686,6 +1689,11 @@ input:focus {
         gap: 4rem;
     }
 
+    .organization_identity h1 {
+        font-size: 3rem;
+
+    }
+
 }
 
 /* Small (sm) screens (576px to 767px) */
@@ -1773,6 +1781,11 @@ input:focus {
 
         gap: 2rem;
     }
+
+    .organization_identity h1 {
+        font-size: 2.5rem;
+
+    }
 }
 
 /* Extra Small (xs) screens (464px to 575px) */
@@ -1850,6 +1863,14 @@ input:focus {
 
     }
 
+    .organization_identity h1 {
+        font-size: 2.3rem;
+    }
+
+    .organization_identity p {
+        font-size: 1.4rem;
+
+    }
 
     .organization_logo_img {
         width: 12rem;
@@ -1958,7 +1979,14 @@ input:focus {
         padding: 1rem;
     }
 
+    .organization_identity h1 {
+        font-size: 2.1rem;
+    }
 
+    .organization_identity p {
+        font-size: 1.4rem;
+
+    }
 
     .programs {
         padding: 1rem 1rem;
@@ -1972,4 +2000,16 @@ input:focus {
     }
 
 
+}
+
+@media (min-width: 464px) {
+    .d-none-xl-xs {
+        display: none;
+    }
+
+    /* .middle-impact-card {
+        transform: translateY(-60px);
+
+
+    } */
 }
