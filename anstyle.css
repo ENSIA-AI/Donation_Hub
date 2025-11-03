@@ -37,19 +37,20 @@ section {
 }
 
 
+
+
 body {
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
     font-family: var(--primary-font);
+    overflow-x: hidden;
 }
 .container {
     margin-left: 4rem;
     margin-right: 4rem;
     padding-left: 4rem;
     padding-right: 4rem;
-    max-width: 1400px; /* Add this */
-    margin: 0 auto; /* Center the container */
 }
 
 
@@ -86,6 +87,8 @@ body {
     font-weight: 600;
     font-family: var(--third-font);
 }
+
+
 
  /* ====end hero section====== */
 
@@ -323,33 +326,27 @@ body {
 
 
 /* ============ Donation Form Section =============== */
-.donation-section  {
-    display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center;     /* center vertically if needed */
-    flex-direction: column;  /* stack cards vertically on small screens */
-    width: 100%;
+.container .donation-section  {
+    display: grid;
+    justify-content: center; /* centers grid as a whole horizontally */
+    align-content: center;
     
-    margin: 2rem auto;
-    padding: 4rem 3rem;
     
 }
 
-
-
-.donation-form-wrapper  {
-     
+.donation-form-wrapper {
     display: flex;
     justify-content: center; 
     border-radius: var(--card-border-radius);
     overflow: hidden; 
     flex-wrap: wrap;
     width: 100%;
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+    
+    
+  
 }
-
-
-
-
 
 
 
@@ -360,7 +357,10 @@ body {
     padding: 3rem;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
     height: 100%;
+    width: 100%;
 }
+
+
 
 
 .org-name {
@@ -798,6 +798,11 @@ body {
 
     .col-xs-8 {
         width: calc((8 * 100%) / 12);
+    }
+
+    .col-xs-12
+    {
+        width: 100%;
     }
 
 }
