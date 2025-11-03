@@ -23,7 +23,14 @@ html{
     margin: 0;
     padding: 0;
 }
-
+a{
+    text-decoration: none;  /* remove underline */
+  color: inherit;         /* inherit text color from parent */
+  background: none;       /* remove background */
+  border: none;           /* remove focus outlines or link borders */
+  outline: none;
+  cursor: pointer; 
+}
 .flex-row {
     display: flex;
     justify-content: space-between;
