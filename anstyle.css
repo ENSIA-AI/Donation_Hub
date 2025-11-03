@@ -48,12 +48,11 @@ body {
     margin-right: 4rem;
     padding-left: 4rem;
     padding-right: 4rem;
+    max-width: 1400px; /* Add this */
+    margin: 0 auto; /* Center the container */
 }
 
-.fluid_container
-{
-    width: 100%;
-}
+
 
 
 
@@ -324,17 +323,32 @@ body {
 
 
 /* ============ Donation Form Section =============== */
-.donation-section {
-    padding: 4rem 0;
-    background-color: var(--background-color);
+.donation-section  {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically if needed */
+    flex-direction: column;  /* stack cards vertically on small screens */
+    width: 100%;
+    
+    margin: 2rem auto;
+    padding: 4rem 3rem;
     
 }
 
+
+
 .donation-form-wrapper  {
      
-    padding: 3rem;
-    
+    display: flex;
+    justify-content: center; 
+    border-radius: var(--card-border-radius);
+    overflow: hidden; 
+    flex-wrap: wrap;
+    width: 100%;
 }
+
+
+
 
 
 
@@ -344,24 +358,22 @@ body {
 .org-card {
     background-color: var(--secondary-color);
     padding: 3rem;
-    border-radius: var(--card-border-radius);
-   
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
     height: 100%;
 }
+
 
 .org-name {
     font-family: var(--primary-font);
     font-size: var(--section-title-font-size);
     font-weight: 600;
     color: var(--third-color);
-    margin-bottom: 3rem;
 }
+
 
 .org-description {
     font-family: var(--third-font);
     font-size: var(--text-font-size);
-    line-height: 2;
     color: white;
     margin-bottom: 2.5rem;
 }
@@ -434,7 +446,6 @@ body {
 .form-card
 {
     height: 100%;
-     border-radius: var(--card-border-radius);
     background-color: white;
     padding: 3rem;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
@@ -484,7 +495,7 @@ body {
     color: black;
     background-color: var(--third-color);
     border: none;
-    width:20%;
+    width:30%;
     font-size: var(--text-font-size);
     transition: all 0.5s ease;
 }
@@ -789,6 +800,24 @@ body {
         width: calc((8 * 100%) / 12);
     }
 
+}
+
+/* Extra Extra Small (xxs) screens (0px to 463px) */
+@media (max-width: 463px) {
+    .col-xxs-1 { width: calc(100% / 12); }
+    .col-xxs-2 { width: calc(100% / 6); }
+    .col-xxs-3 { width: calc(100% / 4); }
+    .col-xxs-4 { width: calc(100% / 3); }
+    .col-xxs-5 { width: calc((5 * 100%) / 12); }
+    .col-xxs-6 { width: calc(100% / 2); }
+    .col-xxs-7 { width: calc((7 * 100%) / 12); }
+    .col-xxs-8 { width: calc((8 * 100%) / 12); }
+    .col-xxs-9 { width: calc((9 * 100%) / 12); }
+    .col-xxs-10 { width: calc((10 * 100%) / 12); }
+    .col-xxs-11 { width: calc((11 * 100%) / 12); }
+    .col-xxs-12 { width: 100%; }
+    
+   
 }
 
 
