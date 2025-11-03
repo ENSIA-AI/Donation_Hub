@@ -273,7 +273,7 @@ body {
 }
 
 .diff-card:hover{
-    transform:scale(1.05);
+    transform:scale(1.02);
     box-shadow: rgba(80, 154, 141, 0.5) 0px 10px 50px;
 }
 
@@ -329,7 +329,7 @@ body {
 }
 
 .value:hover{
-    transform:scale(1.05);
+    transform:scale(1.02);
    box-shadow: rgba(80, 154, 141, 0.5) 0px 10px 50px;
 }
 
