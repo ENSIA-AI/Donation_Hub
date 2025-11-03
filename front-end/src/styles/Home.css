@@ -67,22 +67,13 @@ body {
     padding: 0;
 }
 
-
-
-/*-------hero----------*/
-.hero {
-    background: url(pictures\background_img.png) center/cover no-repeat;
-    height: 500px;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--background-color);
-    position: relative;
-    /* important for overlay */
-    overflow: hidden;
+.logo{
+    width: 80px;      
+    height: auto;
+    display: block;
+    margin: 0 auto;  
 }
+
 
 .hero .overlay {
     position: absolute;
@@ -154,33 +145,35 @@ body {
     margin: 0 auto 32px;
 }
 
+
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 24px;
     max-width: 1000px;
     margin: 0 auto;
     /*centers the grid container horizontally on the page (because left and right margins are set to auto*/
+    text-align: center;
 }
 
 .diff-card {
     background-color: var(--background-color);
-    padding: 24px;
+    padding: 15px;
     min-height: 150px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 6px 8px 8px 8px rgba(80, 154, 141, 0.5);
+    box-shadow:rgba(80, 154, 141, 0.5)  0px 2px 8px 0px;
     transition: 0.5s ease;
 }
 
 .diff-card:hover{
     transform:scale(1.05);
-    box-shadow: 10px 10px 10px 10px rgba(80, 154, 141, 0.5);
+    box-shadow: rgba(80, 154, 141, 0.5) 0px 10px 50px;
 }
 
 .diff-card h3 {
     font-family: var(--primary-font);
-    font-size: var(--subtitle-font-size);
+    font-size: 2.3rem;
     margin-bottom: 10px;
     color: var(--secondary-color);
 }
@@ -220,21 +213,23 @@ body {
     margin: 0 auto 32px;
 }
 
+
 .value {
+    padding: 15px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 8px 8px 8px rgba(80, 154, 141, 0.3);
+    box-shadow:rgba(80, 154, 141, 0.5)  0px 2px 8px 0px;
     transition: 0.5s ease;
 }
 
 .value:hover{
     transform:scale(1.05);
-    box-shadow: 10px 10px 10px 10px rgba(80, 154, 141, 0.5);
+   box-shadow: rgba(80, 154, 141, 0.5) 0px 10px 50px;
 }
 
 .value h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 2.3rem;
+    margin: 15px;
     text-align: center;
     color: var(--secondary-color)
 }
@@ -274,7 +269,9 @@ body {
 .join .btns {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 150px;
+   
 }
 
 .register_btn {
@@ -315,8 +312,6 @@ body {
     background-color: var(--third-color);
     color: var(--secondary-color);
 }
-
-
 
 
 /* MEDIA QUERY - MOBILE */
