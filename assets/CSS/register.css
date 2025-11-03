@@ -110,7 +110,17 @@ button{
         height: 2em;
         margin: 0.5em;
         text-align: center;
+        width: 90%;
     }
+ .select-container select{
+    background-color: var(--background-color);
+    border: 1px solid rgba(159, 158, 158, 0.333);
+    height: 2em;
+    margin: 0.5em;
+    text-align: center;
+    width: 90%;
+    color: rgba(0, 0, 0, 0.693)
+ }
  .submit {
     text-align: center;
     margin-top: 1em ;
@@ -127,6 +137,21 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+ }
+ .placeholder textarea{
+     background-color: var(--background-color);
+        border: 1px solid rgba(159, 158, 158, 0.333);
+        height: 4em;
+        margin: 0.5em;
+        text-align: center;
+        width: 90%;
+    
+ }
+ form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
  }
    /* =====================================Classes ========================================= */
 
@@ -521,6 +546,7 @@ button{
 }
 .form-box{
     width: 90%;
+    padding: 1em;
     
 }
 .toggle-box{

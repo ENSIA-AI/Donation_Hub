@@ -45,71 +45,34 @@
     <script src="assets/scripts/script.js"> </script>
     </header>
 <main>
-    <div class="container-con desktop-version">
-    <div class=" regisContainer flex-row flex-column">
-                    <!--toggle box-->
-        <div class="toggle-box ">
-            <div class="toggle-pannel toggle-left">
-                <div class="text">
+    <div class="log-container ">
+           <div class="toggle-box col-lg-6 col-xl-6 col-md-6">
+              <div class="text">
                     <h3>welcome to donifyDz !</h3>
-                    <p>Allready have an account?</p>
+                    <p>already have an account? </p>
                 </div>
-                <div class="submit button-border">
+              <div class="register ">
                     <button id="login">login</button>
-                </div>
-            </div>
-            <div id="toggle" class="toggle-pannel toggle-right toggle-right-not-active">
-                <div class="text">
-                    <h3>welcome back to donifyDz !</h3>
-                    <p>don't have an account?</p>
-            </div>
-            <div class="submit button-border">
-                    <button id="register">register</button>
-                </div>
-            </div>
-
-        </div> 
-        <div class="container-form flex-row flex-column">
-        <!--login form-->
-        <div class="form-box login login-not-active col-xl-6 col-lg-6 col-md-6 ">
-            <div class="login-form col-xl-12 col-lg-12 col-md-12">
-                <div class="title col-xl-12 col-lg-12 col-md-12">
-                    <h2>login</h2>
+              </div>
+           </div>
+           <!-- register form -->
+            <div class="form-box login col-lg-6 col-xl-6 col-md-6">
+             <div class="login-form ">
+                <div class="title ">
+                    <h2>register</h2>
                 </div>
                 <form action="">
-                    <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
-                        <input type="email" id="email" placeholder="Email" required>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
-                        <input type="password" placeholder="Password" required>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
-                    <input type="password" placeholder="Confirm password" required>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 submit">
-                        <button type="submit"> login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!--register form-->
-            <div class="form-box register  register-not-active col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-xxs-12 ">
-                <div class="register-form col-xl-12 col-lg-12 col-md-12 ">
-                    <div class="title col-xl-12 col-lg-12 col-md-12">
-                    <h2>Register</h2>
-                    </div>
-                    <form action="" >
-                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder-container" >
+                    <div class=" placeholder" >
                             <input type="text" id="name-of-organization" placeholder="Name of organization" required>
                         </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                        <div class=" placeholder">
                             <input type="text" id="phone-number" placeholder="Phone number">
                         </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                        <div class=" placeholder">
                             <input type="email" id="email" placeholder="Email" required>
                         </div>
                         <div class="selects-container">
-                        <div class="col-xl-12 col-lg-12 col-md-12 select-container">
+                        <div class=" select-container">
                             <select name="type" id="type-of-organization">
                                 <option value="health">health</option>
                                 <option value="education">education</option>
@@ -118,7 +81,7 @@
                                 <option value="water">water</option>
                             </select>
                         </div >
-                        <div class="col-xl-12 col-lg-12 col-md-12 select-container">
+                        <div class=" select-container">
                             <select name="region" id="region">
                                 <option value="algeries">algeries</option>
                                 <option value="bouira">bouira</option>
@@ -129,22 +92,26 @@
                             </select>
                         </div >
                         </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder" >
+                        <div class="placeholder ">
+                           <input type="file" id="proof" placeholder="apload proof">
+                        </div>
+                        <div class="placeholder ">
+                            <textarea name="description" id="description">description</textarea>
+                        </div>
+                        <div class=" placeholder" >
                             <input type="password" placeholder="Password" required>
                         </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 placeholder">
+                        <div class=" placeholder">
                             <input type="password" placeholder="Confirm password" required>
                         </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12 submit">
+                        <div class=" submit">
                             <button type="submit"> register</button>
                         </div>
-                    </form>
-                </div>
-        </div> 
-        </div>
+                </form>
+             </div>
+         </div>
+       </div>
 
-    </div>
-   </div>
 
 </main>
 
