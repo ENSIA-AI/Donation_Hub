@@ -190,6 +190,8 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+
+
 .post {
     padding: 10px;
 
@@ -263,6 +265,7 @@ body {
     max-width: 14rem;
     margin: 2rem auto;
     transition: all .5s ease-in-out;
+    margin-bottom: 10rem;
 }
 
 .see_more_link {
