@@ -333,13 +333,7 @@ body {
 
 
 /* ============ Donation Form Section =============== */
-.container .donation-section  {
-    display: grid;
-    justify-content: center; /* centers grid as a whole horizontally */
-    align-content: center;
-    
-    
-}
+
 
 .donation-form-wrapper {
     display: flex;
@@ -350,10 +344,16 @@ body {
     width: 100%;
     margin-top: 7rem;
     margin-bottom: 7rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
     
+    
+
+    /* when i add padding i lose the radius */
     
   
 }
+
+
 
 
 
