@@ -9,6 +9,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
     background-color: var(--background-color);
 }
 
@@ -70,8 +71,9 @@ section {
 
 /* ==========================================header===================================== */
 .admin_header_content {
-    background-color: var(--secondary-color);
-    height: 8rem;
+    background-color: var(--background-color);
+
+    overflow: scroll;
 
 
 }
@@ -91,7 +93,8 @@ section {
 
 .admin-info {
     padding-top: 1rem;
-
+    height: 8rem;
+    background-color: var(--secondary-color);
     padding-bottom: 2rem;
 }
 
@@ -153,8 +156,8 @@ section {
 
 .bash_sidebar {
     background-color: var(--primary-color);
-    flex-shrink: 0;
-    height: auto;
+
+    height: 100%;
 }
 
 .bash_sidebar.flex-row {
