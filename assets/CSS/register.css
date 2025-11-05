@@ -23,7 +23,14 @@ html{
     margin: 0;
     padding: 0;
 }
-
+a{
+    text-decoration: none;  /* remove underline */
+  color: inherit;         /* inherit text color from parent */
+  background: none;       /* remove background */
+  border: none;           /* remove focus outlines or link borders */
+  outline: none;
+  cursor: pointer; 
+}
 .flex-row {
     display: flex;
     justify-content: space-between;
@@ -34,121 +41,153 @@ html{
     justify-content: center;
     align-items: center;
 }
-.container{
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ .log-container{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    max-width: 1000px;
+    padding:2em ;
+    width: 90%;
+    margin: 4em;
+    border-radius: 5px;
  }
-.container-con{
-    background-color: var(--secondary-color);
-    padding: 4em ;
-    margin: 4em 10em;
-}
-.title h2{
-    font-size: var(--subtitle-font-size);
-    color: #0F594C;
-   
-
-}
-.title {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 1em;
-}
-input{
-    width: 100%;
-    background: none;
-    border: none;
-}
-select{
-    border: none;
-    background: none;
-    
-}
-.submit{
-    display: flex;
-    justify-content: center;
-
-}
-.submit button{
-padding: 0.7em 4em;
-border-radius: 5px;
-border: none;
-background-color: var(--secondary-color);
-color: white;
-}
-.register-form{
-    background-color: white;
-    padding: 1em;
-    border-radius: 8px;
-    margin-left: 4em;
-}
-.login-form{
-    background-color: white;
-    padding: 1em;
-    margin-right: 3em;
-    border-radius: 8px;
-}
-.container-form{
-    position: relative;
-    width: 100%;
-    background-color: var(--secondary-color);
-     padding: 4em;
-   
-     
-}
- 
-
-
-.placeholder{
-    background-color: var(--background-color);
-    height: 3em;
-    margin-bottom: 2em;
-    padding: 1em;
-    width: 100%;
-
-}
-
-.toggle-pannel{
+  .toggle-box{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3em;
-    padding-top: 20em;
-}
-
-.button-border button{
-    color: white;
-    border: solid 1px;
-    border-color: rgba(131, 131, 131, 0.71);
+    margin-top: 2em;
     background-color: var(--primary-color);
-    font-size: var(--bottom-font-size);
-
-}
-.text h3{
-    font-size: 2.3rem;
-    font-family: var(--primary-font);
+    width: 70%;
+    padding: 3em 2em;
+    border-radius: 5px ;
+     
+ }
+.text{
     text-align: center;
+    padding-bottom: 1em;
     color: white;
-    padding-bottom: 0.5em;
-    font-weight: bolder;
-
+    margin-bottom: 0.5em
+}
+ .text h3{
+    font-family: var(--primary-font);
+    font-size: 1.6rem;
+    margin-bottom: 0.2em
 }
 .text p{
-    font-size: 1.5rem;
-    text-align: center;
-    font-family: var(--text-font-size);
+  font-family: var(--third-font);
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.779);
+}
+.register button{
+    padding: 0.5em 3em;
+    border: solid rgba(159, 158, 158, 0.333) 1px;
+    background-color: var(--primary-color);
     color: white;
+    border-radius: 5px;
+    font-family: var(--third-font);
 }
-.toggle-right{
- display: none;
+.form-box{
+    background-color: white;
+    width: 70%;
+    margin-bottom: 2em;
+    padding: 4em 0;
+    border-radius: 5px;
+}
+.title{
+    text-align: center;
+    color: var(--primary-color);
+}
+.title h2{
+ font-size: 2.5rem;
+ font-family: var(--primary-font);
+}
+button{
+    font-family: var(--text-font-size);
+    font-size: 1.3rem;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 15px;
+    font-family: var(--third-font);
+}
+button:hover{
+    transform: scale(1.05);
+}
+.placeholder input{
+        background-color: var(--background-color);
+        border: 1px solid rgba(159, 158, 158, 0.333);
+        height: 2em;
+        margin: 0.5em;
+        text-align: center;
+        width: 90%;
+    }
+ .select-container select{
+    background-color: var(--background-color);
+    border: 1px solid rgba(159, 158, 158, 0.333);
+    height: 2em;
+    margin: 0.5em;
+    text-align: center;
+    width: 90%;
+    color: rgba(0, 0, 0, 0.693)
+ }
+ .submit {
+    text-align: center;
+    margin-top: 1em ;
+ }
+ .submit button{
+    padding: 0.5em 2em;
+    border-radius: 5px;
+    border: 1px solid rgba(159, 158, 158, 0.333);
+    background-color: var(--secondary-color);
+    color: white;
+ }
+ .login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+ }
+ .placeholder textarea{
+     background-color: var(--background-color);
+     font-family: var(--third-font);
+     color:rgba(0, 0, 0, 0.693) ;
+        border: 1px solid rgba(159, 158, 158, 0.333);
+        height: 4em;
+        margin: 0.5em;
+        text-align: center;
+        width: 90%;
+        padding-top: 1em;
+    
+ }
+
+
+input[type="file"]::file-selector-button {
+  background-color: #0f594bd3;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 0.3em;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-right: 1em;
+}
+.file-add{
+    color:rgba(0, 0, 0, 0.693) ;
 }
 
-.toggle-left-active{
- display: none ;
-}
-
- 
+ form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+ }
    /* =====================================Classes ========================================= */
 
 @media (min-width: 1200px) {
@@ -203,31 +242,28 @@ color: white;
     .col-xl-2-5 {
         width: calc((5/2)*100% / 12);
     }
-   .toggle-box{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 8px;
-} 
-.toggle-box-active{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    border-radius: 8px;
-}
-.phone-version{
-    display: none;
-}
+.log-container{
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        padding: 10em;
+        width: 60%;
+    
+    }
+   .form-box{
+        width: 60%;
+        min-height:500px  ;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .toggle-box{
+        width: 60%;
+        margin-top: 0;
+        min-height: 500px;
+    }
+    
 }
 
 
@@ -286,31 +322,27 @@ color: white;
     .col-lg-2-5 {
         width: calc((5/2)*100% / 12);
     }
-        .toggle-box{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 8px;
-} 
-.toggle-box-active{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    border-radius: 8px;
-}
-.phone-version{
-    display: none;
-}
+.log-container{
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        padding: 8em;
+        width: 60%;
+    }
+   .form-box{
+        width: 60%;
+        min-height:500px  ;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .toggle-box{
+        width: 60%;
+        margin-top: 0;
+        min-height: 500px;
+    }
     
     }
 
@@ -367,32 +399,27 @@ color: white;
     html {
         font-size: 8px;
     }
-   
-  .toggle-box{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 8px;
-} 
-.toggle-box-active{
-    background-color: var(--primary-color);
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    border-radius: 8px;
-}
-.phone-version{
-    display: none;
-}
+    .log-container{
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        padding: 4em;
+        width: 60%;
+
+    }
+    .form-box{
+        width: 60%;
+        min-height:400px  ;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .toggle-box{
+        width: 60%;
+        margin-top: 0;
+        min-height: 400px;
+    }
 }
 
 /* Small (sm) screens (576px to 767px) */
@@ -445,75 +472,23 @@ color: white;
         width: 100%;
     }
 
-    .value_card {
-        font-size: 13px;
-        max-width: 238px;
-    }
-
-    html {
-        font-size: 6px;
-    }
-    .flex-row-center{
-        display: flex;
-        justify-content: center;
-        gap: 2em;
-    }
-            .flex-column{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 2em;
-        align-items: center;
-    }
-    .desktop-version{
-        display: none;
-    }
-        .toggle-box{
-        background-color: var(--primary-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0;
-          margin-top: 4em;
-          border-radius: 10px;
-    }
-    .toggle-pannel{
-        padding: 3.4em;
-    }
-       .container-form{
-         padding: 1em;
-    }
-     .register-form{
-      margin-top: 4em;  
-      min-width: 400px;
-      border-radius: 5px;
-      margin-bottom: 4em;
-      
-      margin-left: 0;
-         
-    }
-    .register-form-not-active{
-        display: none;
-    }
-    .login-form{
-      margin-right: 0;
-      margin-top: 7em;  
-      min-width: 400px;
-      border-radius: 5px;
-      margin-bottom: 7em;
-      
-    }
-    .login-form-not-active{
-       display: none;
-    }
-
-    .Pcontainer{
-        margin-top: 5em;
-         margin-bottom: 5em;
-        padding-top: 1em;
-        background-color: var(--secondary-color);
-        
-    }
+.log-container{
+   
+ width: 90%;
+ padding: 2em;
+ margin: 4em 0;
+ 
+}
+.form-box{
+    width: 90%;
+    padding: 1em;
+    
+}
+.toggle-box{
+    width: 90%;
+    
+}
+ 
  }
 
 /* Extra Small (xs) screens (464px to 575px) */
@@ -567,70 +542,25 @@ color: white;
     }
 
     html {
-        font-size: 6px;
+        font-size: 40%;
     }
-    .flex-row-center{
-        display: flex;
-        justify-content: center;
-        gap: 2em;
-    }
-    .desktop-version{
-        display: none;
-    }
-        .toggle-box{
-        background-color: var(--primary-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0;
-        margin-top: 4em;
-        border-radius: 10px;
-        
-    }
-    .toggle-pannel{
-        padding: 3.4em;
-    }
-        .flex-column{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 2em;
-        align-items: center;
-    }
-   
-
-    .login-form{
-        margin-right: 0;
-       margin-top: 8em;  
-       min-width: 400px;
-       border-radius: 5px;
-        margin-bottom: 8em; 
-        
-    }
-      .login-form-not-active{
-       display: none;
-    }
-      .container-form{
-         padding: 1em;
-    }
-
-      .register-form{
-        margin-left: 0;
-       margin-top: 3em;  
-       min-width: 400px;
-       border-radius: 5px;
-        margin-bottom: 3em; 
-        display: none;
-    }
-      .register-form-not-active{
-       display: none;
-    }
-    .Pcontainer{
-        margin-top: 5em;
-        padding-top: 1em;
-        background-color: var(--secondary-color);
-         margin-bottom: 5em;
-    }
+ .log-container{
+    margin-top: 2em;
+ width: 90%;
+ padding: 2em;
+ margin: 4em 0;
+ 
+}
+.form-box{
+    width: 90%;
+    padding: 1em;
+    
+}
+.toggle-box{
+    width: 90%;
+    
+}
+    
     
 }
     
@@ -691,73 +621,20 @@ color: white;
         font-size: 6px;
     }
 
-    .flex-row-center{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2em;
-    }
-    .desktop-version{
-        display: none;
-    }
-        .toggle-box{
-        background-color: var(--primary-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0;
-        margin-top: 4em;
-        border-radius: 10px;
-        
-    }
-    .toggle-pannel{
-        padding: 3.4em;
-
-    }
-    .flex-column{
-        display: flex;
-       
-        justify-content: center;
-        align-items: center;
-    }
+.log-container{
+    margin-top: 2em;
+ width: 90%;
+ padding: 2em;
+ margin: 4em 0;
  
-    .container-form{
-         padding: 2em;
-    }
-
-    .login-form{
-       margin-top: 7em; 
-       margin-right:  0; 
-       min-width: 270px;
-       border-radius: 5px;
-       margin-bottom: 7em;
-        
-    }
-      .login-form-not-active{
-       display: none;
-    }
-      .register-form{
-        margin-top: 2em; 
-        margin-left: 0;
-       margin-top: 3em;  
-       min-width: 270px;
-       border-radius: 5px;
-       margin-bottom: 2em;
-       
-    }
-    .register-form-not-active{
-      display: none;
-    }
-      .Pcontainer{
-        margin-top: 5em;
-        padding-top: 1em;
-        background-color: var(--secondary-color);
-        margin-bottom: 5em;
-    }
-    .toggle-left-P{
-        display: none;
-    }
-    .toggle-right-p{
-        display: none ;
-    }
+}
+.form-box{
+    width: 90%;
+    padding: 1em;
+    
+}
+.toggle-box{
+    width: 90%;
+    
+}
     }
