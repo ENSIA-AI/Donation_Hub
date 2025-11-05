@@ -183,9 +183,7 @@ html{
     justify-content: space-around;
     gap: 2em;
 }
-.image{
- 
-}
+
 
  @media (min-width: 1200px) {
     .col-xl-1 {
