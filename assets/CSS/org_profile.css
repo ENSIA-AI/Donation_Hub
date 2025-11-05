@@ -1462,7 +1462,7 @@ input:focus {
     border-color: rgb(225, 214, 214);
 }
 
-.org-contact-form-labels button {
+/* .org-contact-form-labels button {
     background-color: var(--third-color);
     border: none;
     font-size: 1.5rem;
@@ -1472,11 +1472,20 @@ input:focus {
     width: 9rem;
     transition: all .5s ease-in-out;
 
+} */
+.org-contact-form-labels button {
+    padding: .8rem 1.6rem;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    border: 1px none rgba(236, 231, 231, 0.333);
+    background-color: var(--secondary-color);
+    color: white;
+    transition: all .5s ease-in-out;
 }
 
 .org-contact-form-labels button:hover {
     transform: scale(1.05);
-    box-shadow: rgba(255, 223, 94, 0.948) 0px 0px 10px;
+    box-shadow: rgba(241, 240, 238, 0.948) 0px 0px 10px;
 }
 
 .org-contact-page-line {
