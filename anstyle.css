@@ -334,6 +334,14 @@ body {
 
 /* ============ Donation Form Section =============== */
 
+ .donation-section 
+{
+    justify-content: center;
+    display: flex;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
 
 .donation-form-wrapper {
     display: flex;
