@@ -36,8 +36,9 @@ img{
 }
 
 /*------------------------------------------My part------------------------------------------------------*/
-h1{
-    font-size: var(--section-title-font-size);
+
+.title h1{
+    font-size: 3rem;
     text-align: center;
     font-family: var(--primary-font);
     font-weight: 600;
@@ -98,14 +99,14 @@ h1{
 }
 
  .catego{
-    padding: 0.8em;
+    padding: 0.6em;
     background-color: white;
     display: flex;
     justify-content: flex-start;
     border-radius: 8px;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.07);
-      position: relative;
+    position: relative;
     
 
  }
@@ -117,7 +118,7 @@ h1{
     position: relative;
     padding: 0 0.6em ;
       }
-      .filter-title{
+    .filter-title{
         font-size: 1.5rem;
         font-family: var(--third-font);
       }
@@ -178,7 +179,9 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
  .card{
     padding: 2em;
  }
-
+ .card:hover{
+   transform: scale(1.05);
+ }
  .container{
     max-width: 1200px;
     margin: auto;
@@ -203,13 +206,16 @@ p{
     align-items: center;
     border-radius: 8px;
 }
+
 .learn-more a{
     font-size:1.6rem;
     text-decoration-line: none;
     color: rgb(0, 0, 0);
     font-weight: 500;
 }
- 
+ .learn-more a:hover{
+    color: var(--primary-color)
+ }
 .button-container{
     display: flex;
     justify-content: flex-start;
@@ -233,12 +239,15 @@ p{
 }
 
 .button-container img{
-    width: 60%;
+    width: 50%;
     padding: 0;
     margin: 0;
 }
-
-
+.button-container:hover{
+    transform: scale(1.05);
+    background-color: #e6c259;
+    color: #0A3F36;
+}
 /* =====================================Classes ========================================= */
 
 @media (min-width: 1200px) {
@@ -529,17 +538,19 @@ p{
     }
 
     html {
-        font-size: 6px;
+        font-size: 8px;
     }
+  
     .flex-row-center{
         display: flex;
         justify-content: center;
         gap: 2em;
     }
- 
+    .search-bar-containe{
+        padding-right: 15px 
    
 }
-    
+}   
 /* Extra Extra Small (xxs) screens (0px to 463px) */
 @media (min-width: 0px) and (max-width: 463px) {
 
@@ -605,4 +616,4 @@ p{
     }
    
 
-    }
+}
