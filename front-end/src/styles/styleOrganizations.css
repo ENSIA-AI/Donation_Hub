@@ -178,11 +178,9 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
  }
  .card{
     padding: 2em;
-    transition: all .7s ease-in-out;
  }
  .card:hover{
    transform: scale(1.05);
-   
  }
  .container{
     max-width: 1200px;
@@ -214,7 +212,6 @@ p{
     text-decoration-line: none;
     color: rgb(0, 0, 0);
     font-weight: 500;
-    transition: all .7s ease-in-out;
 }
  .learn-more a:hover{
     color: var(--primary-color)
@@ -227,7 +224,6 @@ p{
     padding: 1em;
     border-radius: 10px;
     margin: 4em;
-    transition: all .7s ease-in-out;
 }
 .containerButton{
     display: flex;
