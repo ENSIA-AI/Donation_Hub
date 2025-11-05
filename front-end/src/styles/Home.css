@@ -74,6 +74,19 @@ body {
     margin: 0 auto;  
 }
 
+.hero {
+    
+    height: 500px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--background-color);
+    position: relative;
+    /* important for overlay */
+    overflow: hidden;
+}
 
 .hero .overlay {
     position: absolute;
