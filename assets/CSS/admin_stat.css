@@ -194,7 +194,7 @@ section {
     height: 90rem;
 }
 
-.sidebar_element p {
+.sidebar_element a {
     font-size: 1.4rem;
     color: white;
     font-family: var(--secondary-font);
@@ -211,7 +211,7 @@ section {
     background-color: var(--secondary-color);
 }
 
-.sidebar_element.selected p,
+.sidebar_element.selected a,
 .sidebar_element.selected i {
     color: var(--third-color);
 }
@@ -224,7 +224,7 @@ section {
 }
 
 /* ============== Animation ================= */
-.sidebar_element:hover p {
+.sidebar_element:hover a {
     transform: scale(1.05);
     color: var(--third-color);
     font-weight: 600;
