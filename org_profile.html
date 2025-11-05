@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donify.dz</title>
     <link rel="stylesheet" href="assets/CSS/org_profile.css">
+    <link rel="stylesheet" href="assets/CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -26,6 +27,7 @@
                     <img src="pictures/logo_nav.png" alt="Donify Logo" class="logo">
                 </div>
 
+                <div class="overlay-blur" id="overlay"></div>
                 <!-- Navigation -->
                 <div class="col-10">
                     <div class="nav">
@@ -36,7 +38,7 @@
                             <li><a href="ExploreOrganization.html">Organizations</a></li>
                             <li><a href="announcements.html">Announcements</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li class="btn"><a href="register.html">log in</a></li>
+                            <li class="btn"><a href="login.html">log in</a></li>
                             <li class="btn"><a href="register.html">register</a></li>
                         </ul>
                     </div>
@@ -55,25 +57,25 @@
         <div class="fluid_container">
             <div class="organization-hero-elements ">
                 <div class="organization_hero_image">
-                    <img src="./assets/Images/organization-hero-image.jpg" alt="organization descriptive image"
+                    <img src="assets/Images/organization-hero-image.jpg" alt="organization descriptive image"
                         class="full_image organization_hero_img">
                 </div>
                 <div class="organization_profile_description flex-row">
-                    <div class="organization_logo_image col-xl-2 col-lg-3  col-md-3 col-sm-3 col-xs-3 col-xxs-5">
-                        <img src="./assets/Images/organization_logo.jpg" class=" full_image organization_logo_img">
+                    <div class="organization_logo_image col-xl-2-5 col-lg-3  col-md-3 col-sm-3 col-xs-3 col-xxs-5">
+                        <img src="assets/Images/organization_logo.jpg" class=" full_image organization_logo_img">
                     </div>
                     <div
                         class="organization_details col-xl-9 col-lg-9  col-md-9  col-sm-9 col-xs-9 col-xxs-7 flex-row ">
                         <div class="organization_identity ">
                             <h1>
-                                Hope Bridge
+                                Organization 1 name
                             </h1>
                             <p>
                                 organization slogan or catchy phrase
                             </p>
 
                         </div>
-                        <div class="organization_badges flex-row d-none-xxs">
+                        <div class="organization_badges flex-row d-none-xxs  ">
                             <div class="verified_bdg bdg_name flex-row">
                                 <div class="verified_btn bdg_btn">
                                     <i class="fa-solid fa-circle-check"></i>
@@ -94,28 +96,27 @@
 
                     </div>
 
-
-                    <div class="organization-xxs_badges flex-row d-none-xl-xs ">
-                        <div class="verified_bdg bdg_name flex-row ">
-                            <div class="verified_btn bdg_btn">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </div>
-                            <div>
-                                verified
-                            </div>
-
+                </div>
+                <!-- ============== -->
+                <div class="organization_xxs_badges flex-row d-none-xl-xs col-xxs-12">
+                    <div class="verified_xxs_bdg bdg_xxs_name col-xxs-5 flex-row">
+                        <div class="verified_xxs_btn bdg_btn">
+                            <i class="fa-solid fa-circle-check"></i>
                         </div>
-                        <div class="type_bdg bdg_name flex-row ">
-                            <div class="type-btn bdg_btn">
-                                <i class="fa-solid fa-list"></i>
-                            </div>
-                            <div>Type</div>
-
+                        <div>
+                            verified
                         </div>
+
+                    </div>
+                    <div class="type_xxs_bdg bdg_xxs_name col-xxs-5 flex-row">
+                        <div class="type_xxs-btn bdg_btn">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div>Type</div>
+
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- ==========================end Organization hero ================================ -->
     <!-- ================================Organization navbar ============================ -->
@@ -385,7 +386,7 @@
                     </div>
                     <div class="mission col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6 col-xxs-12">
                         <h2>
-                            Mission
+                            Our Mission
                         </h2>
                         <p>
                             To bridge the gap between generosity and need through transparent, community-driven
@@ -394,7 +395,7 @@
                     </div>
                     <div class="vision col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6 col-xxs-12">
                         <h2>
-                            Vision
+                            Our Vision
                         </h2>
                         <p>
                             To bridge the gap between generosity and need through transparent, community-driven
@@ -489,6 +490,23 @@
 
         </div>
         <!-- ================================================================================ -->
+        <diV>
+
+
+        </diV>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </section>
 
@@ -512,13 +530,13 @@
                     </div>
 
                 </div>
-                <div class="impact middle-impact-card col-xl-2 col-lg-2-5 col-md-3 col-sm-3 col-xs-3 col-xxs-7 ">
+                <div class="impact middle-impact-card  col-xl-2 col-lg-2-5 col-md-3 col-sm-3 col-xs-3 col-xxs-7 ">
                     <div class="impact-card ">
                         <div class="impact-action">
                             <h1>700+</h1>
                         </div>
                         <div class="impact-details">
-                            <p>children supported at school</p>
+                            <p> children supported at school</p>
                         </div>
                     </div>
 
@@ -716,15 +734,7 @@
     </footer>
 
 
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-    </script>
+    <script src="assets/scripts/script.js"></script>
     <!-- ======================================================== End footer =============================================================== -->
 </body>
 
