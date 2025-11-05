@@ -761,6 +761,7 @@ footer {
 /* =========================organization page ======================================= */
 
 
+
 .organization_hero_image {
     width: 100%;
     height: 40vh;
@@ -798,12 +799,12 @@ footer {
     margin: 1rem 2rem;
 }
 
-.organization_profile_description.flex-row {
+/* .organization_profile_description.flex-row :not(.organization_profile_description.flex-row > .organization-xxs_badges) {
     justify-content: flex-start;
-}
+} */
 
 .organization_identity h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-family: var(--primary-font);
     margin: 0;
 }
@@ -825,7 +826,12 @@ footer {
 
 }
 
-.bdg_name {
+.org_nav_elements {
+    margin-bottom: 5px;
+}
+
+.bdg_name,
+.bdg_xxs_name {
     font-size: 1.3rem;
     font-weight: 600;
     font-family: var(--secondary-font);
@@ -834,26 +840,37 @@ footer {
 
 }
 
-.verified_bdg {
+.bdg_xxs_name.flex-row {
+    justify-content: center;
+    gap: 1rem;
+}
+
+.verified_bdg,
+.verified_xxs_bdg {
     background-color: #bbffc2;
 }
 
-.type_bdg {
+.type_bdg,
+.type_xxs_bdg {
     background-color: var(--third-color);
 
 }
 
-.verified_btn {
+.verified_btn,
+.verified_xxs_btn {
     font-size: 1.5rem;
+
 }
 
-.type_btn {
+.type_btn,
+.type_xxs_btn {
     font-size: 1.5rem;
 }
 
 .organization_badges {
-    max-width: 37.5rem;
+    margin-top: .7rem;
 }
+
 
 .bdg_name.flex-row {
     align-items: center;
@@ -873,6 +890,25 @@ footer {
     transition: all .6s ease-in-out;
     position: relative;
     margin-bottom: .5rem;
+
+}
+
+
+.organization_xxs_badges {
+    padding: 1rem 2rem;
+}
+
+.organization_badges.flex-row {
+    justify-content: space-between;
+    max-width: 50%;
+}
+
+
+
+.organization_xxs_badges.flex-row {
+    display: flex;
+    justify-content: space-between;
+
 
 }
 
@@ -1092,7 +1128,7 @@ footer {
 .org_value_card {
     background-color: var(--third-color);
     border-radius: 30px;
-    padding: 2rem 4rem;
+    padding: 2rem 2rem;
     text-align: center;
     font-size: 2rem;
     font-family: var(--secondary-font);
@@ -1186,15 +1222,22 @@ footer {
     gap: 3rem;
 }
 
+
+
+.Impact_title {
+    padding: 25px;
+    margin-bottom: 7rem;
+}
+
 .impact {
     max-height: 20rem;
 }
 
 .impact-card {
-    padding: 4rem 2rem;
+    padding: 3rem 1.5rem;
     border-radius: 10px;
     background-color: white;
-    box-shadow: rgba(233, 221, 149, 0.896) 0px 2px 20px 1px;
+    box-shadow: rgba(166, 166, 165, 0.896) 0px 2px 20px 1px;
     transition: all .7s ease-in-out;
 }
 
@@ -1208,12 +1251,6 @@ footer {
 
 
 
-.middle-impact-card {
-    transform: translateY(-60px);
-
-    margin-top: 80px;
-
-}
 
 .impact-action i {
     margin-bottom: 1.15rem;
@@ -1228,17 +1265,14 @@ footer {
 
 }
 
-.Impact_title {
-    padding: 25px;
-}
 
 .impact-section {
     margin-bottom: 60px;
 }
 
 .impact-card:hover {
-    transform: scale(1.05) translateY(-20px);
-    box-shadow: rgba(233, 221, 149, 0.896) 0px 30px 60px -12px inset, rgba(247, 226, 131, 0.671) 0px 18px 36px -18px inset;
+    transform: scale(1.01) translateY(-20px);
+    /* box-shadow: rgba(243, 243, 164, 0.896) 0px 30px 60px -12px inset, rgba(247, 226, 131, 0.671) 0px 18px 36px -18px inset; */
 }
 
 .impact-card:hover .impact-action {
@@ -1268,8 +1302,8 @@ footer {
     font-size: var(--section-title-font-size);
     font-weight: 600;
     text-align: center;
-
     margin-bottom: 4rem;
+    margin-top: 12rem;
 }
 
 
@@ -1384,6 +1418,10 @@ a.org-contact-link {
     border: 1px solid rgb(225, 214, 214);
 }
 
+
+
+
+
 .org-contact-form-labels input {
     font-size: 1.3rem;
     padding: 0.7rem 1.2rem;
@@ -1426,7 +1464,7 @@ input:focus {
     border-color: rgb(225, 214, 214);
 }
 
-.org-contact-form-labels button {
+/* .org-contact-form-labels button {
     background-color: var(--third-color);
     border: none;
     font-size: 1.5rem;
@@ -1436,11 +1474,20 @@ input:focus {
     width: 9rem;
     transition: all .5s ease-in-out;
 
+} */
+.org-contact-form-labels button {
+    padding: .8rem 1.6rem;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    border: 1px none rgba(236, 231, 231, 0.333);
+    background-color: var(--secondary-color);
+    color: white;
+    transition: all .5s ease-in-out;
 }
 
 .org-contact-form-labels button:hover {
     transform: scale(1.05);
-    box-shadow: rgba(255, 223, 94, 0.948) 0px 0px 10px;
+    box-shadow: rgba(241, 240, 238, 0.948) 0px 0px 10px;
 }
 
 .org-contact-page-line {
@@ -1463,6 +1510,35 @@ input:focus {
 
 
 /* =====================================Classes ========================================= */
+@media(min-width :576px) {
+    .org-contact-infos::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background-color: var(--secondary-color);
+    }
+
+    .middle-impact-card {
+        transform: translateY(-60px);
+
+
+    }
+}
+
+@media (min-width: 464px) {
+    .d-none-xl-xs {
+        display: none;
+    }
+
+    @media (min-width: 464px) {
+        .organization_xxs_badges.flex-row {
+            display: none;
+        }
+    }
+}
 
 @media (min-width: 1200px) {
     .col-xl-1 {
@@ -1523,17 +1599,8 @@ input:focus {
     }
 }
 
-@media(min-width :576px) {
-    .org-contact-infos::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 2px;
-        background-color: var(--secondary-color);
-    }
-}
+
+
 
 
 
@@ -1684,6 +1751,11 @@ input:focus {
         gap: 4rem;
     }
 
+    .organization_identity h1 {
+        font-size: 3rem;
+
+    }
+
 }
 
 /* Small (sm) screens (576px to 767px) */
@@ -1771,6 +1843,11 @@ input:focus {
 
         gap: 2rem;
     }
+
+    .organization_identity h1 {
+        font-size: 2.5rem;
+
+    }
 }
 
 /* Extra Small (xs) screens (464px to 575px) */
@@ -1823,6 +1900,11 @@ input:focus {
         width: 100%;
     }
 
+    .organization_badges.flex-row {
+
+        max-width: 70%;
+    }
+
     html {
         font-size: 9px;
     }
@@ -1848,6 +1930,14 @@ input:focus {
 
     }
 
+    .organization_identity h1 {
+        font-size: 2.3rem;
+    }
+
+    .organization_identity p {
+        font-size: 1.4rem;
+
+    }
 
     .organization_logo_img {
         width: 12rem;
@@ -1956,7 +2046,14 @@ input:focus {
         padding: 1rem;
     }
 
+    .organization_identity h1 {
+        font-size: 2.1rem;
+    }
 
+    .organization_identity p {
+        font-size: 1.4rem;
+
+    }
 
     .programs {
         padding: 1rem 1rem;
@@ -1967,6 +2064,20 @@ input:focus {
         margin-right: 1rem;
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    .Impact_title {
+        padding: 25px;
+        margin-bottom: 1rem;
+    }
+
+    .org-form-card {
+        padding: 2rem 2rem;
+    }
+
+    .impact-card {
+        padding: 2.5rem 1rem;
+
     }
 
 
