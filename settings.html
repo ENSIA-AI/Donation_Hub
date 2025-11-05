@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/CSS/admin_stat.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- ============================================ admin dashboard sidebar and header ====================================================== -->
+
+    <header>
+        <div class="admin_dashboard flex-row fluid_container ">
+            <div class="bash_sidebar flex-row col-xl-2 col-lg-2-5 col-md-2-5 d_none_sm d_none_xs d_none_xxs ">
+                <div class="website_info flex-row  ">
+                    <img src="pictures\logo_nav.png" class="website_logo_img full_image" alt="website logo image">
+                </div>
+                <div class="dash_sidebar_elements ">
+                    <ul class="sidebar_elements flex-row">
+                        <li class="sidebar_element flex-row selected  ">
+                            <i class="fa-solid fa-house"></i>
+                            <a href="admin_dashboard_stat.html">Dashboard</a>
+                        </li>
+                        <li class="sidebar_element flex-row">
+                            <i class="fa-solid fa-building-ngo"></i>
+                            <a href="#">Organizations</a>
+
+                        </li>
+                        <li class="sidebar_element flex-row">
+                            <i class="fa-solid fa-bullhorn"></i>
+                            <a href="adminDashCompain.html">Compains</a>
+
+                        </li>
+                        <li class="sidebar_element flex-row">
+                            <i class="fa-solid fa-gear"></i>
+                            <a href="#">Settings</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="selected_sb_element"></div>
+
+            </div>
+
+
+            <div
+                class="fluid_container  admin_header_content col-xl-10 col-lg-9-5 col-md-9-5 col-sm-12 col-xs-12 col-xxs-12">
+                <div class=" flex-row admin-info">
+                    <div class="dash_humburger d_none_xl d_none_lg d_none_md col-sm-8 col-xs-6 col-xxs-5  ">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                    <div class="admin_username col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xxs-5">
+                        <h2>Admin_name</h2>
+                    </div>
+                    <div class="admin_profile_image  col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-2 col-xxs-2 ">
+                        <img src="assets/Images/admine_image.jpg" class="admin_profile_img full_image"
+                            alt="admin profile image">
+                    </div>
+                </div>
+
+                <main style="margin-left: 5%; padding: 2rem;">
+          <div class="settings-container">
+            <div class="settings-left">
+              <h2>Settings</h2>
+
+              <div class="settings-card" id="account-card">
+                <h3>Account</h3>
+                <p>Keep your admin profile updated to stay connected with the community.</p>
+              </div>
+
+              <div class="settings-card" id="notifications-card">
+                <h3>Notifications</h3>
+                <p>Stay informed about new donations, campaigns, and updates.</p>
+              </div>
+
+              <div class="settings-card" id="theme-card">
+                <h3>Theme</h3>
+                <p>Choose your preferred appearance.</p>
+                <div class="theme-options">
+                  <div class="theme-option light active" id="light-mode">Light</div>
+                  <div class="theme-option dark" id="dark-mode">Dark</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="account-card">
+              <h3>Account</h3>
+              <img class="profile-pic" src="assets/Images/admine_image.jpg" alt="Profile Picture">
+              <div class="btns">
+                <button>Modify</button>
+                <button>Remove</button>
+              </div>
+
+              <form>
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter full name">
+
+                <label>Username</label>
+                <input type="text" placeholder="Enter username">
+
+                <label>Email</label>
+                <input type="email" placeholder="Enter email">
+
+                <label>About</label>
+                <textarea rows="3" placeholder="About...."></textarea>
+              </form>
+            </div>
+          </div>
+        </main>
+
+
+    </header>
+    <!-- ============================================ end admin dashboard sidebar and header ====================================================== -->
+    <!-- ====================================================== Statistics =============================================================== -->
+
+
+
+
+    <!-- ====================================================== end Statistics ============================================================= -->
+
+
+</body>
+
+</html>
+
+
+

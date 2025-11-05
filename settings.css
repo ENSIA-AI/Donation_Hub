@@ -1,0 +1,184 @@
+    /* Light Theme (Default) */
+    :root {
+
+        --third-color: #FEDA79;
+        --primary-color: #107361;
+        --secondary-color: #0F594C;
+        --background-color: #F2F2F2;
+        --card-color: #ffffff;
+        --text-color: #1a1a1a;
+
+    }
+
+    html {
+    font-size: 62.5%;
+}
+
+    /* Dark Theme */
+    [data-theme="dark"] {
+        --primary-color: #0b4036;
+        --secondary-color: #0A3F36;
+        --background-color: #121212;
+        --card-color: #1e1e1e;
+        --text-color: #f2f2f2;
+        --accent-color: #d1a22b;
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 40px;
+    }
+
+    .settings-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .settings-left {
+        flex: 2;
+        background-color: var(--primary-color);
+        border-radius: 10px;
+        padding: 30px;
+        color: #fff;
+    }
+
+    .settings-left h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 3.2rem;
+    }
+
+    .settings-card {
+        background-color: var(--card-color);
+        color: var(--text-color);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+
+    .settings-card:hover {
+        transform: translateY(-2px);
+        box-shadow:inset 0 0 17px var(--third-color);
+    }
+
+    .settings-card h3 {
+        margin: 0 0 10px;
+        font-size: 2rem;
+    }
+
+    .settings-card p{
+        font-size: 1.6rem;
+    }
+
+    .theme-options{
+      font-size: 1.6rem;
+    }
+    .account-card {
+        flex: 1.2;
+        background-color: var(--card-color);
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .account-card h3 {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .profile-pic {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 1px solid var(--primary-color);
+        margin: 10px auto;
+        display: block;
+    }
+
+    .btns {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        
+    }
+
+    button {
+        background-color: var(--third-color);
+        color: var(--text-color);
+        border: none;
+        border-radius: 20px;
+        padding: 5px 15px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: opacity 0.3s;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    label {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        display: block;
+    
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .theme-options {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .theme-option {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        transition: all 0.3s;
+    }
+
+    .theme-option.light {
+        background-color: #f8f8f8;
+        color: #1a1a1a;
+    }
+
+    .theme-option.dark {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .theme-option.active {
+        border-color: var(--third-color);
+        transform: scale(1.03);
+    }
+
+    @media (max-width: 900px) {
+        .settings-container {
+            flex-direction: column;
+        }
+    }
