@@ -69,15 +69,18 @@ main{
     width: 70%;
     padding: 3em 2em;
     border-radius: 5px ;
+     
  }
 .text{
     text-align: center;
     padding-bottom: 1em;
     color: white;
+    margin-bottom: 0.5em
 }
-h3{
+ .text h3{
     font-family: var(--primary-font);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.2em
 }
 .text p{
   font-family: var(--third-font);
@@ -89,6 +92,8 @@ h3{
     border: solid rgba(159, 158, 158, 0.333) 1px;
     background-color: var(--primary-color);
     color: white;
+    border-radius: 5px;
+    font-family: var(--third-font);
 }
 .form-box{
     background-color: white;
@@ -109,8 +114,11 @@ button{
     font-family: var(--text-font-size);
     font-size: 1.3rem;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 15px;
+    font-family: var(--third-font);
 }
-
+button:hover{
+    transform: scale(1.05);
+}
 .placeholder input{
         background-color: var(--background-color);
         border: 1px solid rgba(159, 158, 158, 0.333);
@@ -144,16 +152,36 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
  }
  .placeholder textarea{
      background-color: var(--background-color);
+     font-family: var(--third-font);
+     color:rgba(0, 0, 0, 0.693) ;
         border: 1px solid rgba(159, 158, 158, 0.333);
         height: 4em;
         margin: 0.5em;
         text-align: center;
         width: 90%;
+        padding-top: 1em;
     
  }
+
+
+input[type="file"]::file-selector-button {
+  background-color: #0f594bd3;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 0.3em;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-right: 1em;
+}
+.file-add{
+    color:rgba(0, 0, 0, 0.693) ;
+}
+
  form{
     display: flex;
     flex-direction: column;
@@ -220,14 +248,20 @@ button{
         justify-content: center;
         padding: 10em;
         width: 60%;
+    
     }
-    .form-box{
+   .form-box{
         width: 60%;
+        min-height:500px  ;
         margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .toggle-box{
         width: 60%;
         margin-top: 0;
+        min-height: 500px;
     }
     
 }
@@ -295,13 +329,19 @@ button{
         padding: 8em;
         width: 60%;
     }
-    .form-box{
+   .form-box{
         width: 60%;
+        min-height:500px  ;
         margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
     }
     .toggle-box{
         width: 60%;
         margin-top: 0;
+        min-height: 500px;
     }
     
     }
@@ -365,14 +405,20 @@ button{
         justify-content: center;
         padding: 4em;
         width: 60%;
+
     }
     .form-box{
         width: 60%;
+        min-height:400px  ;
         margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .toggle-box{
         width: 60%;
         margin-top: 0;
+        min-height: 400px;
     }
 }
 
@@ -426,7 +472,22 @@ button{
         width: 100%;
     }
 
-
+.log-container{
+   
+ width: 90%;
+ padding: 2em;
+ margin: 4em 0;
+ 
+}
+.form-box{
+    width: 90%;
+    padding: 1em;
+    
+}
+.toggle-box{
+    width: 90%;
+    
+}
  
  }
 
@@ -483,7 +544,22 @@ button{
     html {
         font-size: 40%;
     }
-
+ .log-container{
+    margin-top: 2em;
+ width: 90%;
+ padding: 2em;
+ margin: 4em 0;
+ 
+}
+.form-box{
+    width: 90%;
+    padding: 1em;
+    
+}
+.toggle-box{
+    width: 90%;
+    
+}
     
     
 }
@@ -546,9 +622,10 @@ button{
     }
 
 .log-container{
+    margin-top: 2em;
  width: 90%;
  padding: 2em;
- margin: 2em 0;
+ margin: 4em 0;
  
 }
 .form-box{

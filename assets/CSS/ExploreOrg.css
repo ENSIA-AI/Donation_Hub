@@ -550,7 +550,7 @@ p{
         padding-right: 15px 
    
 }
-    
+}   
 /* Extra Extra Small (xxs) screens (0px to 463px) */
 @media (min-width: 0px) and (max-width: 463px) {
 
@@ -616,4 +616,4 @@ p{
     }
    
 
-    }
+}
