@@ -9,7 +9,8 @@ const Contact = () => {
         <div className="contact-info">
           <h1>Contact Us</h1>
           <p>
-            We'd love to hear from you! Whether it's feedback, a partnership idea, or support — reach out anytime.
+            We'd love to hear from you! Whether it's feedback, a partnership
+            idea, or support — reach out anytime.
           </p>
 
           <div className="info-item">
@@ -23,9 +24,15 @@ const Contact = () => {
           </div>
 
           <div className="socials">
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-linkedin-in"></i></a>
+            <a href="#">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
           </div>
         </div>
 
@@ -64,8 +71,12 @@ const Contact = () => {
           </div>
 
           <div className="btn-group">
-            <button type="reset" className="reset-btn">Reset</button>
-            <button type="submit" className="send-btn">Send</button>
+            <button type="reset" className="reset-btn">
+              Reset
+            </button>
+            <button type="submit" className="send-btn">
+              Send
+            </button>
           </div>
         </form>
       </div>
