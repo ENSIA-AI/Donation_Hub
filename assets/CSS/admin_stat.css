@@ -9,6 +9,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
     background-color: var(--background-color);
 }
 
@@ -70,14 +71,17 @@ section {
 
 /* ==========================================header===================================== */
 .admin_header_content {
-    background-color: var(--secondary-color);
-    height: 8rem;
+    background-color: var(--background-color);
+
+    overflow: scroll;
+
 
 }
 
 .admin_header_content.flex-row {
     flex-direction: column;
     justify-content: space-between;
+
 }
 
 .flex-row.admin-info {
@@ -89,7 +93,8 @@ section {
 
 .admin-info {
     padding-top: 1rem;
-
+    height: 8rem;
+    background-color: var(--secondary-color);
     padding-bottom: 2rem;
 }
 
@@ -97,9 +102,7 @@ section {
     text-align: center;
 }
 
-/* .admin_dashboard {
-    position: fixed;
-} */
+
 
 .admin_profile_image {
     justify-content: center;
@@ -143,6 +146,8 @@ section {
 }
 
 
+
+
 .website_info {
     padding-top: 2rem;
     height: 10vh;
@@ -151,6 +156,7 @@ section {
 
 .bash_sidebar {
     background-color: var(--primary-color);
+
     height: 100%;
 }
 
@@ -165,7 +171,8 @@ section {
 
 .sidebar_elements.flex-row {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 6rem;
 }
 
 .sidebar_element.flex-row {
@@ -176,17 +183,15 @@ section {
 }
 
 .sidebar_element {
-    height: 20%;
+    height: 14%;
     padding: 2rem;
     padding-left: 4rem;
-
 }
 
 .sidebar_elements {
     padding-top: 10rem;
     padding-bottom: 10rem;
-    height: 90vh;
-
+    height: 90rem;
 }
 
 .sidebar_element p {
@@ -231,11 +236,10 @@ section {
 }
 
 /* ================================================== statistics ======================================================== */
-/* .dash_container {
-    padding-top: 13rem;
-    padding-left: 33rem;
-    padding-right: 11rem;
-} */
+
+.statistics {
+    padding: 1.5rem;
+}
 
 
 
@@ -256,6 +260,7 @@ section {
 .flex-row.statistic_numbers {
     flex-direction: column;
 }
+
 
 .statistic_value {
     font-family: var(--third-font);
@@ -361,6 +366,19 @@ section {
 .statistic_details:hover {
     transform: scale(1.04);
 }
+
+/* =====================================stat charts ===================================== */
+.stat_charts {
+    padding: 2rem;
+}
+
+.stat_chart_image {
+    padding: 1rem;
+}
+
+/* =====================================end stat charts ===================================== */
+
+
 
 
 
@@ -581,6 +599,12 @@ section {
 
         padding: .5rem 1rem;
 
+    }
+
+    .sidebar_element {
+        height: 14%;
+        padding: 2rem;
+        padding-left: 2rem;
     }
 
     .circular-progress {
