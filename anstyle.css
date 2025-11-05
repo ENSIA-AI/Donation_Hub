@@ -523,6 +523,45 @@ body {
 
 }
 
+/* ================donation form ends=============== */
+
+
+/* ================dashoboard================ */
+
+.my-content
+{
+    padding: 3rem;
+}
+
+
+
+.organizations
+{
+    
+    justify-content: center;
+    display: flex;
+    padding: 3rem;
+    
+}
+
+.column
+{
+    padding: 0rem 10rem;
+    justify-content: space-between;
+}
+
+.organizations th
+{
+    border: 1px solid #ccc;
+    border-radius: var(--card-border-radius);
+    
+}
+.row
+{
+    gap: 3rem;
+    justify-content: space-between;
+}
+
 
 
 

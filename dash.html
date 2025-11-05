@@ -17,12 +17,11 @@
     </head>
 
     <body>
-        <header>
+       <header>
         <div class="admin_dashboard fluid_container flex-row">
             <div class="bash_sidebar flex-row col-xl-2 col-lg-2-5 col-md-2-5 d_none_sm d_none_xs d_none_xxs ">
                 <div class="website_info flex-row  ">
-                    <img src="assets/Images/website_logo.jpg" class="website_logo_img full_image"
-                        alt="website logo image">
+                    <img src="pictures\logo_nav.png" class="website_logo_img full_image" alt="website logo image">
                 </div>
                 <div class="dash_sidebar_elements ">
                     <ul class="sidebar_elements flex-row">
@@ -63,13 +62,74 @@
                             alt="admin profile image">
                     </div>
                 </div>
+                <!-- ==========================================PUT HERE YOUR CONTENT =========================================== -->
+                <div class="my-content">
+                    <!-- ====esarch bar===== -->
+                     <div class="search-and-filter">
+                <div class="container flex-row col-lg-5  col-md-4  col-sm-4 col-xs-4 col-xxs-3">
+                    <div class="search flex-row">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                             <input type="text" placeholder="Search" class="search-input">
+                        </div>     
+                    </div>
+
+                    <div class="filters flex-row">
+                        <div class="region-filter filter">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <select name="region" class="select-input">
+                                <option value="">Region</option>
+                                <option value="algiers">Algiers</option>
+                                <option value="moustghanem">Moustghanem</option>
+                                <option value="jijel">Jijel</option>
+                                <option value="bouira">Bouira</option>
+                            </select>
+                        </div>
+                        <div class="category-filter filter">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <select name="category" class="select-input">
+                                <option value="">Category</option>
+                                <option value="health">Health</option>
+                                <option value="education">Education</option>
+                                <option value="poverty">Povety</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>    
-        </header>   
+            <!-- ======table====== -->
+                    <!-- <div class="organizations-table"> -->
+                    <table class="organizations">
+                        <tr class="row">
+                            <th class="column">
+                                <div class="title">
+                                    <h5>Name</h5>
+                                </div>
+                            </th>
+                            <th class="column">
+                                <div class="title">
+                                    <h5>Status</h5>
+                                </div>
+                            </th>
+                            <th class="column">
+                                <div class="title">
+                                    <h5>Action</h5>
+                                </div>
+                            </th>
+                        </tr>
+                    </table>
+                 <!-- </div> -->
+                </div> 
+                
+                <!-- =======================================STOP!! YOU WILL BE OUT OF YOUR SCOPE :> ======================================== -->
+
+            </div>
 
 
-        <div class="container">
-            <div class="contant"></div>
-        </div>
+    </header>    
+         
+
+
+        
     </body>
 </html>
