@@ -543,7 +543,7 @@ body {
 
 
 
-.organizations
+.my-organizations
 {
     
     justify-content: center;
@@ -552,7 +552,7 @@ body {
     
 }
 
-.column
+.my-column
 {
     padding: 0rem 10rem;
     justify-content: space-between;
@@ -564,7 +564,7 @@ body {
     border-radius: var(--card-border-radius);
     
 }
-.row
+.my-row
 {
     gap: 3rem;
     justify-content: space-between;
