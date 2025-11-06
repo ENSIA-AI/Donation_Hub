@@ -1,43 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="vieport" content="width=device-width , initial-scale=1.0">
-        <link rel="stylesheet" href="assets/CSS/anstyle.css">
-        <link rel="stylesheet" href="assets/CSS/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="assets/CSS/anstyle.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/CSS/anstyle.css">
+    <link rel="stylesheet" href="assets/CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Donify_DZ</title>
-    </head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Donation Form</title>
+</head>
 
 
-    <body>
-
-        <div class="header">
+<body>
+    <div class="header">
         <div class="container">
             <div class="row">
-
-                <!-- Logo -->
                 <div class="col-2">
-                    <img src="pictures/logo_nav.png" alt="Donify Logo" class="logo">
+                    <img src="assets/pictures/logo_nav.png" alt="Donify Logo" class="logo">
                 </div>
 
-                <div class="overlay-blur" id="overlay"></div>
-
-                <!-- Navigation -->
                 <div class="col-10">
                     <div class="nav">
-                        <div class="hamburger" id="hamburger">☰</div>
+                        <div class="hamburger" id="hamburger" aria-label="Toggle menu">☰</div>
                         <ul class="nav-menu" id="nav-menu">
-
                             <li><a href="index.html">Home</a></li>
                             <li><a href="ExploreOrganization.html">Organizations</a></li>
                             <li><a href="announcements.html">Announcements</a></li>
@@ -51,13 +39,10 @@
         </div>
     </div>
 
-<!-- ============================= Donation Form ============================ -->
-<section class="donation-section">
-    <div class="container">
+    <div class="  donation-section">
         <div class="donation-form-wrapper flex-row">
-            <!-- Left Column - Organization Info -->
-            <div class="org-info col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 col-xxs-12 ">
-                <div class="org-card ">
+            <div class="org-info col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
+                <div class="org-card">
                     <h1 class="org-name">Organization Name</h1>
                     <p class="org-description">
                         Every contribution, big or small, helps us build a stronger, more resilient<br>
@@ -70,58 +55,54 @@
                     
                     <div class="recieving-details flex-row">
                         <div class="Transfer detail">
-                        <h3 class="title">Bank Transfer</h3>
-                        <div class="detail-item">
-                            <strong>Account Name:</strong> [Organization Name]
-                        </div>
-                        <div class="detail-item">
-                            <strong>CCP:</strong> 00/7 08/09 00:00-00:00:00:00:00:00
-                        </div>
+                            <h3 class="title">Bank Transfer</h3>
+                            <div class="detail-item">
+                                <strong>Account Name:</strong> [Organization Name]
+                            </div>
+                            <div class="detail-item">
+                                <strong>CCP:</strong> 00/7 08/09 00:00-00:00:00:00:00:00
+                            </div>
                         </div>
 
                         <div class="Direct detail">
-                        <h3 class="title">Direct Donation</h3>
-                        <div class="detail-item">
-                            <strong>Our Office:</strong> 1er Mai ,Algiers
-                        </div>
-                        <div class="detail-item">
-                            <strong>Office Hours:</strong>Sunday - Thursday, 9am - 3pm
-                        </div>
+                            <h3 class="title">Direct Donation</h3>
+                            <div class="detail-item">
+                                <strong>Our Office:</strong> 1er Mai ,Algiers
+                            </div>
+                            <div class="detail-item">
+                                <strong>Office Hours:</strong>Sunday - Thursday, 9am - 3pm
+                            </div>
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
             
-            <!-- Right Column - Donation Form -->
-            <div class="donation-form col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
+            <div class="donation-form col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
                 <div class="form-card">
-                    <form class="donation-form-content">
+                    <form class="donation-form-content" action="#" method="POST">
                         <div class="form-group">
-                            <label for="first-name" class="form-label" >First Name*</label>
-                            <input type="text" id="first-name" class="form-input" placeholder="Your First Name" required>
+                            <label for="first-name" class="form-label">First Name*</label>
+                            <input type="text" id="first-name" name="first_name" class="form-input" placeholder="Your First Name" required>
                         </div>
 
                         <div class="form-group">
                             <label for="last-name" class="form-label">Last Name*</label>
-                            <input id="last-name" class="form-input" type="text" placeholder="Your Last Name" required>  
+                            <input id="last-name" name="last_name" class="form-input" type="text" placeholder="Your Last Name" required>  
                         </div>
-
 
                         <div class="form-group">
                             <label for="phone" class="form-label">Phone Number *</label>
-                            <input type="tel" id="phone" class="form-input" placeholder="Your phone number" required>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="Your phone number" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address *</label>
-                            <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="donation-type" class="form-label" >Donation Type</label>
-                            <select class="form-input form-select" id="donation-type" required>
+                            <label for="donation-type" class="form-label">Donation Type</label>
+                            <select class="form-input form-select" id="donation-type" name="donation_type" required>
                                 <option value="">Select Donation Type</option>
                                 <option value="money">Money</option>
                                 <option value="food">Food</option>
@@ -131,20 +112,18 @@
                         
                         <div class="form-group">
                             <label for="amount" class="form-label">Donation Amount *</label>
-                            <input type="text" id="amount" class="form-input" placeholder="Enter amount" required>
+                            <input type="text" id="amount" name="amount" class="form-input" placeholder="Enter amount" required>
                         </div>
 
-
                         <div class="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                        <button type="submit" class="donate btns">Donate Now</button>
-                        <button type="reset" class="reset btns">Reset</button>
+                            <button type="submit" class="donate btns">Donate Now</button>
+                            <button type="reset" class="reset btns">Reset</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
     <footer>
         <div class="links">
@@ -165,16 +144,19 @@
             </div>
 
             <div class="social_media">
-                <a id="facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a id="instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a id="linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a id="email-icon" href="#"><i class="fa-solid fa-envelope"></i></a>
+                <a id="facebook" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="instagram" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a id="linkedin" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a id="email-icon" href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
 
+
     <script src="assets/scripts/script.js"></script>
+
+
 
 </body>
 </html>
