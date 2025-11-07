@@ -168,7 +168,7 @@ body {
 
 /*-------hero----------*/
 .hero {
-    background: url(pictures\background_img.png) center/cover no-repeat;
+    background: url(../pictures/background_img.png) center/cover no-repeat;
     height: 500px;
     width: 100%;
     text-align: center;
