@@ -10,7 +10,7 @@
     --section-title-font-size: 4rem;
     --subtitle-font-size: 2.5rem;
     --bottom-font-size: 1.3rem;
-    --card-border-radius:10px;
+    --card-border-radius: 10px;
     --button-border-radius: 20px;
 }
 
@@ -67,15 +67,18 @@ body {
     padding: 0;
 }
 
-.logo{
-    width: 80px;      
+.logo {
+    width: 80px;
     height: auto;
     display: block;
-    margin: 0 auto;  
+    margin: 0 auto;
 }
 
 .hero {
-    
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 500px;
     width: 100%;
     text-align: center;
@@ -175,12 +178,12 @@ body {
     min-height: 150px;
     border-radius: 10px;
     text-align: center;
-    box-shadow:rgba(80, 154, 141, 0.5)  0px 2px 8px 0px;
+    box-shadow: rgba(80, 154, 141, 0.5) 0px 2px 8px 0px;
     transition: 0.5s ease;
 }
 
-.diff-card:hover{
-    transform:scale(1.02);
+.diff-card:hover {
+    transform: scale(1.02);
     box-shadow: rgba(80, 154, 141, 0.5) 0px 10px 50px;
 }
 
@@ -191,7 +194,7 @@ body {
     color: var(--secondary-color);
 }
 
-.diff-card p{
+.diff-card p {
     font-size: var(--text-font-size);
 }
 
@@ -231,13 +234,13 @@ body {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
-    box-shadow:rgba(80, 154, 141, 0.5)  0px 2px 8px 0px;
+    box-shadow: rgba(80, 154, 141, 0.5) 0px 2px 8px 0px;
     transition: 0.5s ease;
 }
 
-.value:hover{
-    transform:scale(1.02);
-   box-shadow: rgba(80, 154, 141, 0.5) 0px 10px 50px;
+.value:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(80, 154, 141, 0.5) 0px 10px 50px;
 }
 
 .value h3 {
@@ -284,7 +287,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 150px;
-   
+
 }
 
 .register_btn {
@@ -350,7 +353,8 @@ body {
 
 
     .cards {
-        grid-template-columns: 1fr; /* one card per row */
+        grid-template-columns: 1fr;
+        /* one card per row */
         gap: 16px;
         max-width: 90%;
     }
@@ -362,7 +366,8 @@ body {
 
     /* Core values section */
     .values {
-        grid-template-columns: 1fr; /* one per row */
+        grid-template-columns: 1fr;
+        /* one per row */
         gap: 16px;
         max-width: 90%;
     }
@@ -385,7 +390,9 @@ body {
     }
 
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
         font-size: 2rem;
     }
 
@@ -434,7 +441,7 @@ body {
     }
 
     /*-------------join----*/
-    .join{
+    .join {
         height: auto;
         padding: 20px 20px;
     }
