@@ -149,19 +149,15 @@ html {
 
 }
 
-/* Floating label moves up when input has value OR input is focused */
-.input-group input:focus + label,
-.input-group textarea:focus + label,
-.input-group select:focus + label,
-.input-group input.has-value + label,
-.input-group textarea.has-value + label,
-.input-group select.has-value + label {
+.input-group input:focus+label,
+.input-group input:valid+label,
+.input-group textarea:focus+label,
+.input-group textarea:valid+label,
+.input-group select:focus+label {
     font-size: 13px;
     top: -8px;
     color: var(--secondary-color);
 }
-
-
 
 .input-group input:focus,
 .input-group textarea:focus,
@@ -210,50 +206,6 @@ html {
     background: #ffe27d;
     transform: translateY(-2px);
 }
-
-.error {
-    font-size: 14px;
-    margin-top: 5px;
-    display: block;
-}
-
-/* Error state */
-.input-group.error input,
-.input-group.error textarea,
-.input-group.error select {
-    border-color: #e74c3c;
-    box-shadow: 0 1px 1px rgba(231, 76, 60, 0.4);
-}
-
-.input-group.error label {
-    color: #e74c3c;
-}
-
-/* Success state */
-.input-group.success input,
-.input-group.success textarea,
-.input-group.success select {
-    border-color: var(--primary-color);
-    box-shadow: 0 1px 1px rgba(16, 115, 97, 0.3);
-}
-
-.input-group.success label {
-    color: var(--primary-color);
-}
-
-/* Error message text */
-.input-group .error-message {
-    color: #e74c3c;
-    margin-top: 4px;
-    font-size: 13px;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-3px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
 
 @keyframes fadeSlide {
     from {
