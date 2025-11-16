@@ -19,7 +19,7 @@ const Home = () => {
             A powerful platform where organizations and donors collaborate to create real impact.
           </p>
           <div className="hero-buttons">
-            <Link to="/organizations" className="btn">Explore Organizations</Link>
+            <Link to="/ExploreOrganizations" className="btn">Explore Organizations</Link>
             <Link to="/announcements" className="btn">View Campaigns</Link>
           </div>
         </div>
