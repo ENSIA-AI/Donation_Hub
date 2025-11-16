@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import ExploreOrganizations from "./pages/exploreOrganization"
+import ExploreOrganizations from "./pages/exploreOrganizations";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact/>} /> 
+        <Route path="/exploreOrganizations" element={<exploreOrganizations/>} />
       </Routes>
       <Footer />
     </Router>
