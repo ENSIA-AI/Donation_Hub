@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="donify">Donify_DZ</div>
         <div className="link">
           <Link to="/">Home</Link>
-          <Link to="/organizations">Organizations</Link>
+          <Link to="/ExploreOrganizations">Organizations</Link>
           <Link to="/announcements">Announcements</Link>
           <Link to="/contact">Contact</Link>
         </div>
