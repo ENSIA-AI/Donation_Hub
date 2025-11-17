@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../assets/CSS/org_profile.css";
+import "../styles/OrganizationProfile.css";
 const OrgPostCard = () => {
   return (
     <div className="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12">
