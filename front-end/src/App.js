@@ -8,9 +8,6 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import ExploreOrganizations from "./pages/ExploreOrganizations";
-import OrgProfile from "./pages/OrgProfile";
-
 function App() {
   return (
     <Router>
