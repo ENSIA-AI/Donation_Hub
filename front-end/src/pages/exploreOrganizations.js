@@ -13,7 +13,7 @@ const ExploreOrganizations = ()=>{
   <div className="search-bar-container  flex-row ">
     <div className="search-bar  col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xxs-10">
       <div className="search-by-name  col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xs-10">
-        <img src="assets/icons/search.svg" alt="search" />
+        <img src="/assets/icons/search.svg" alt="search" />
         <form action="">
           <input type="search" id="serchInput" placeholder="search" />
         </form>
