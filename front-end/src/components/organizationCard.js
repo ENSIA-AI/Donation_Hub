@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/styleOrganizations.css'
-
+import { Link } from "react-router-dom"; 
 
 const OrganizationCard = (props)=>{
     return(
@@ -17,7 +17,7 @@ const OrganizationCard = (props)=>{
             </div>
             <div className="learn-more">
                 <img src="assets/icons/arrow-forward.svg" alt="" />
-                <a href="org_profile.html">learn more</a>
+                <Link to = "/OrgProfile ">learn more</Link>
             </div>
         </div>
     </div>

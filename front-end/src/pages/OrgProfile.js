@@ -55,51 +55,7 @@ const OrgPosts = [
 const OrgProfile = () => {
   return (
     <>
-      {/* ==============================homepage header================================= */}
-      <div className="header">
-        <div className="container">
-          <div className="row">
-            {/* Logo */}
-            <div className="col-2">
-              <img
-                src="assets/pictures/logo_nav.png"
-                alt="Donify Logo"
-                className="logo"
-              />
-            </div>
-            <div className="overlay-blur" id="overlay" />
-            {/* Navigation */}
-            <div className="col-10">
-              <div className="nav">
-                <div className="hamburger" id="hamburger">
-                  ☰
-                </div>
-                <ul className="nav-menu" id="nav-menu">
-                  <li>
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li>
-                    <a href="ExploreOrganization.html">Organizations</a>
-                  </li>
-                  <li>
-                    <a href="announcements.html">Announcements</a>
-                  </li>
-                  <li>
-                    <a href="contact.html">Contact</a>
-                  </li>
-                  <li className="btn">
-                    <a href="login.html">log in</a>
-                  </li>
-                  <li className="btn">
-                    <a href="register.html">register</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* ============================== end homepage header================================= */}
+      
       {/* =============================Organization hero ================================ */}
       <section id="organization_hero">
         <div className="fluid_container">
@@ -558,39 +514,7 @@ const OrgProfile = () => {
         </div>
       </section>
       {/* ==================================================  End  Contact us ================================================================= */}
-      {/* ======================================================= Footer ================================================================= */}
-      <footer>
-        <div className="links">
-          <div className="donify">Donify_DZ</div>
-          <div className="link">
-            <a href="index.html">Home</a>
-            <a href="ExploreOrganization.html">Organizations</a>
-            <a href="#">Announcements</a>
-            <a href="contact.html">Conatct</a>
-          </div>
-        </div>
-        <div className="line" />
-        <div className="media">
-          <div className="rights">
-            <p>Donify_dz@2025. All rights reserved</p>
-          </div>
-          <div className="social_media">
-            <a id="facebook" href="#">
-              <i className="fa-brands fa-facebook-f" />
-            </a>
-            <a id="instagram" href="#">
-              <i className="fa-brands fa-instagram" />
-            </a>
-            <a id="linkedin" href="#">
-              <i className="fa-brands fa-linkedin-in" />
-            </a>
-            <a id="email-icon" href="#">
-              <i className="fa-solid fa-envelope" />
-            </a>
-          </div>
-        </div>
-      </footer>
-      {/* ======================================================== End footer =============================================================== */}
+      
     </>
   );
 };
