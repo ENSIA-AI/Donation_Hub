@@ -18,14 +18,14 @@ const ExploreOrganizations = ()=>{
   {/* cards */}
   <div className="container ">
     <div className="cards-container flex-row flex-row-center">
-      <OrganizationCard/>
-      <OrganizationCard/>
-      <OrganizationCard/>
-      <OrganizationCard/>
-      <OrganizationCard/>
-      <OrganizationCard/>
-      <OrganizationCard/>
-      <OrganizationCard/>
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png"  />
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png"  />
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
+      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
     </div>
   </div>
  </main> 
