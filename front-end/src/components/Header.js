@@ -26,7 +26,7 @@ const Header = () => {
               <div className="hamburger" onClick={toggleMenu}>☰</div>
               <ul className={`nav-menu ${menuActive ? "active" : ""}`}>
                 <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-                <li><Link to="/exploreOrganizations" onClick={closeMenu}>Organizations</Link></li>
+                <li><Link to="/ExploreOrganizations" onClick={closeMenu}>Organizations</Link></li>
                 <li><Link to="/announcements" onClick={closeMenu}>Announcements</Link></li>
                 <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
                 <li className="btn"><Link to="/login" onClick={closeMenu}>Log in</Link></li>

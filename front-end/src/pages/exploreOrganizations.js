@@ -1,35 +1,85 @@
 import React from "react";
-import '../styles/styleOrganizations.css'
-import OrganizationCard from '../components/organizationCard'
+import '../styles/styleOrganizations.css';
+import OrganizationCard from '../components/organizationCard';
 import SearchBar from "../components/SearchBar";
-const ExploreOrganizations = ()=>{
- return (
- <main>
+import SeeMoreButton from "../components/SeeMoreButton";
 
-  <div className="title ">
-    <h1>Verified organizations</h1>
-    <p className="subtitle">
-      discover trusted organizations making a real difference in our communities
-    </p>
-  </div>
-  {/* search bar */}
-   <SearchBar/>
+const ExploreOrganizations = () => {
+  // Step 1: Create the array inside the component
+  const organizations = [
+    {
+      title: "Bright Future",
+      description: "Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Green Earth Initiative",
+      description: "Promotes environmental awareness through tree planting, recycling campaigns, and clean-up drives",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+  
+    // Add more organizations as needed
+  ];
 
-  {/* cards */}
-  <div className="container ">
-    <div className="cards-container flex-row flex-row-center">
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png"  />
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png"  />
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
-      <OrganizationCard title="Bright Futer Organization" discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops" image="assets/images/card-image.png" />
-    </div>
-  </div>
- </main> 
-);
+  return (
+    <main>
+      <div className="title">
+        <h1>Verified organizations</h1>
+        <p className="subtitle">
+          Discover trusted organizations making a real difference in our communities
+        </p>
+      </div>
+
+      {/* Search bar */}
+      <SearchBar />
+
+      {/* Cards rendered dynamically */}
+      <div className="container">
+        <div className="cards-container flex-row flex-row-center">
+          {organizations.map((org, index) => (
+            <OrganizationCard
+              key={index}
+              title={org.title}
+              description={org.description}
+              image={org.image}
+            />
+          ))}
+        </div>
+      </div>
+
+      <SeeMoreButton />
+    </main>
+  );
 };
 
 export default ExploreOrganizations;

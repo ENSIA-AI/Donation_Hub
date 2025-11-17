@@ -84,7 +84,7 @@ img{
     
  
 }
- #serchInput{
+#searchInput{
   border: none;
   outline: none;
   background: none;
@@ -94,6 +94,7 @@ img{
 
  
  }
+
 .search-filter{
     display: flex;
     justify-content: space-between;
@@ -176,11 +177,20 @@ img{
 box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
 
  }
+ .card p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* limits to 3 lines */
+  -webkit-box-orient: vertical;
+}
+
  .image_card{
     width: 100%;
  }
  .card{
     padding: 2em;
+   
  }
  .card:hover{
    transform: scale(1.05);
@@ -237,6 +247,7 @@ p{
     border: none;
     background: none;
     font-size:2rem;
+    transform: scale(1.05);
     font-weight: 500;
     font-family: var(--third-font);
 }
