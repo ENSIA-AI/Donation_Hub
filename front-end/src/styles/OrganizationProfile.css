@@ -211,7 +211,7 @@ section {
 
 /*-------hero----------*/
 .hero {
-    background: url(pictures/background_img.png) center/cover no-repeat;
+    background: url(../../public/assets/background_img.png) center/cover no-repeat;
     height: 500px;
     width: 100%;
     text-align: center;
