@@ -49,7 +49,7 @@ a {
 
 section {
     padding-top: 0rem;
-    padding-bottom: 6rem;
+    padding-bottom: 0rem;
 }
 
 :root {
@@ -770,15 +770,13 @@ footer {
 }
 
 .organization_logo_img {
-    width: 22rem;
-    height: 22rem;
+    width: 20rem;
+    height: 20rem;
     border-radius: 50%;
 
 }
 
 .organization_logo_image {
-    width: 100%;
-    height: 100%;
     overflow: hidden;
 }
 
@@ -795,6 +793,12 @@ footer {
     margin: 0;
 }
 
+.organization_profile_description.flex-row{
+    justify-content: flex-start;
+    gap: 2rem;
+    
+}
+
 .organization_profile_description {
     margin: 1rem 2rem;
 }
@@ -808,7 +812,9 @@ footer {
     font-family: var(--primary-font);
     margin: 0;
 }
-
+.organization_identity{
+    margin-bottom: .8rem;
+}
 /* .organization_identity.flex-row {
     flex-direction: column;
     padding: 0;
@@ -827,9 +833,11 @@ footer {
 }
 
 .org_nav_elements {
-    margin-bottom: 5px;
+    margin-bottom: 4rem;
+    background-color: #ececec;
+    border-radius: 9px;
+    margin-top: 4rem;
 }
-
 .bdg_name,
 .bdg_xxs_name {
     font-size: 1.3rem;
@@ -847,7 +855,7 @@ footer {
 
 .verified_bdg,
 .verified_xxs_bdg {
-    background-color: #bbffc2;
+    background-color: #9dc2b6;
 }
 
 .type_bdg,
@@ -868,7 +876,7 @@ footer {
 }
 
 .organization_badges {
-    margin-top: .7rem;
+    margin-top: 1.5rem;
 }
 
 
@@ -881,7 +889,52 @@ footer {
 .org_nav_elements.flex-row {
     justify-content: space-around;
 }
+/* Navbar links */
+.org_navbar {
+    position: relative;
+}
 
+.org_nav_elements {
+    display: flex;
+    position: relative;
+}
+
+.org_nav_element {
+    margin-right: 2rem;
+}
+
+.org_nav_link {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    position: relative;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.org_nav_link:hover {
+    color: #007bff;
+}
+
+/* Moving underline */
+.nav-underline {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: var(--third-color);
+    transition: all 0.3s ease;
+    left: 0;
+    width: 0;
+}
+/* Active link highlight */
+.org_nav_link.active {
+    color: var(--secondary-color);
+    /* Highlight color */
+    font-weight: 1000;
+    /* Optional: make it bold */
+}
 .org_nav_link {
     color: black;
     font-size: 2rem;
@@ -894,13 +947,17 @@ footer {
 }
 
 
+
+
 .organization_xxs_badges {
     padding: 1rem 2rem;
 }
 
+
 .organization_badges.flex-row {
     justify-content: space-between;
-    max-width: 50%;
+    flex-direction: row;
+    gap: 2rem;
 }
 
 
@@ -980,6 +1037,9 @@ footer {
     font-weight: 600;
     font-size: 1.3rem;
 
+}
+.post_action_link.read_more{
+    margin-left: 1rem;
 }
 
 .post_actions.flex-row {
@@ -1223,12 +1283,11 @@ footer {
 }
 
 
-
 .Impact_title {
     padding: 25px;
     margin-bottom: 7rem;
+    margin-top: 6rem;
 }
-
 .impact {
     max-height: 20rem;
 }
@@ -1241,16 +1300,18 @@ footer {
     transition: all .7s ease-in-out;
 }
 
+
+
+
 .impact-action h1 {
     margin-top: 0;
     font-size: var(--section-title-font-size);
     font-family: var(--secondary-font);
-    font-weight: 800;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 1rem;
     color: var(--secondary-color);
 }
-
-
-
 
 .impact-action i {
     margin-bottom: 1.15rem;
@@ -1262,7 +1323,7 @@ footer {
 .impact-details p {
     font-family: var(--third-font);
     font-size: 1.7rem;
-
+    text-align: center;
 }
 
 
@@ -1303,7 +1364,7 @@ footer {
     font-weight: 600;
     text-align: center;
     margin-bottom: 4rem;
-    margin-top: 12rem;
+    margin-top: 6rem;
 }
 
 
@@ -1351,8 +1412,8 @@ footer {
 
 a.org-contact-link {
     margin-bottom: 1rem;
+    padding-top: 0.3rem;
 }
-
 /* ===============form================ */
 .org-contact-form {
     background-color: var(--secondary-color);
@@ -1374,8 +1435,15 @@ a.org-contact-link {
     margin-bottom: 0;
 }
 
-
-
+.flex-row.media{
+        display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 1rem;
+}
+.media{
+    margin: 2rem;
+}
 .org-contact-form-labels {
     padding: 2rem 2rem;
     background-color: var(--primary-color);
@@ -1755,7 +1823,7 @@ input:focus {
         font-size: 3rem;
 
     }
-
+    
 }
 
 /* Small (sm) screens (576px to 767px) */
@@ -2032,10 +2100,10 @@ input:focus {
         margin-top: 0;
     }
 
-    .organization_logo_img {
-        width: 12rem;
-        height: 12rem;
-    }
+         .organization_logo_img {
+             width: 10rem;
+             height: 10rem;
+         }
 
     .social_link_icon {
         margin-left: .5rem;
@@ -2079,6 +2147,13 @@ input:focus {
         padding: 2.5rem 1rem;
 
     }
-
+.bdg_name,
+.bdg_xxs_name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: var(--secondary-font);
+    padding: .5rem 1.1rem;
+    border-radius: 20px;
+}
 
 }

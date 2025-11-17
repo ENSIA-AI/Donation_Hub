@@ -20,14 +20,14 @@ const OrgHero = ({
             />
           </div>
           <div className="organization_profile_description flex-row">
-            <div className="organization_logo_image col-xl-2-5 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-xxs-5">
+            <div className="organization_logo_image ">
               <img
                 src={OrgLogoImage}
                 alt={`${OrgName} logo`}
                 className="full_image organization_logo_img"
               />
             </div>
-            <div className="organization_details col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9 col-xxs-7 flex-row">
+            <div className="organization_details  flex-row">
               <div className="organization_identity">
                 <h1>{OrgName}</h1>
                 <p>{OrgSlogan}</p>

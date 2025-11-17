@@ -27,7 +27,7 @@ const OrgPostCard = (props) => {
             </div>
             <div className="read_more_action ">
               <i className="fa-solid fa-arrow-right"></i>
-              <a href="#" className="post_action_link">
+              <a href="#" className="post_action_link read_more">
                 Read more
               </a>
             </div>

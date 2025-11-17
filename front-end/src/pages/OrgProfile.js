@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/OrganizationProfile.css";
 import OrgHero from "../components/OrgHero";
 import OrgPostCard from "../components/OrgPostCard";
@@ -8,6 +8,7 @@ import OrgPrograms from "../components/OrgPrograms";
 import OrgImpact from "../components/OrgImpact";
 import OrgContactInfos from "../components/OrgContactInfos";
 import OrgDescription from "../components/OrgDescription";
+
 const OrgPosts = [
   {
     id: 1,
@@ -58,6 +59,7 @@ const OrgPosts = [
       "Join our charity marathon to support children's education...",
   },
 ];
+
 const OrgProgramsData = [
   {
     title: "Education for All",
@@ -78,6 +80,7 @@ const OrgProgramsData = [
     image: "assets/Images/program4.png",
   },
 ];
+
 const OrgImpactData = [
   { value: "1,200+", description: "people reached by health programs" },
   {
@@ -123,17 +126,28 @@ const contactData = [
     ],
   },
 ];
-const descriptionText = `
-    HopeBridge Foundation is a non-profit organization established in 2015 to 
-    support underprivileged families and promote access to education and 
-    healthcare in Algeria, Lorem ipsum dolor sit, amet consectetur adipisicing 
-    elit. Quidem eaque quo blanditiis rerum commodendi aliquid eaque, in, 
-    dolor deserunt sit nam!
-  `;
+
+const descriptionText = `HopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to education and healthcare in Algeria, Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem eaque quo blanditiis rerum commodendi aliquid eaque, in, dolor deserunt sit nam!`;
+
 const OrgProfile = () => {
+  const [activeSection, setActiveSection] = useState("Posts");
+  const [underlineStyle, setUnderlineStyle] = useState({});
+  const navRefs = useRef({});
+
+  // Update underline position
+  useEffect(() => {
+    const current = navRefs.current[activeSection];
+    if (current) {
+      setUnderlineStyle({
+        width: current.offsetWidth + "px",
+        left: current.offsetLeft + "px",
+      });
+    }
+  }, [activeSection]);
+
   return (
     <>
-      {/* =============================Organization hero ================================ */}
+      {/* Hero */}
       <OrgHero
         OrgHeroImage="assets/Images/organization-hero-image.jpg"
         OrgLogoImage="assets/Images/organization_logo.jpg"
@@ -141,199 +155,196 @@ const OrgProfile = () => {
         OrgSlogan="Supporting Communities with Care"
         OrgType="Non-profit"
       />
-      {/* ==========================end Organization hero ================================ */}
-      {/* ================================Organization navbar ============================ */}
+
+      {/* Navbar */}
       <div className="fluid_container">
         <div className="org_navbar">
           <ul className="org_nav_elements flex-row">
-            <li className="org_nav_element">
-              <a href="#" className="org_nav_link">
-                Posts
-              </a>
-            </li>
-            <li className="org_nav_element">
-              <a href="#About_Us" className="org_nav_link">
-                About
-              </a>
-            </li>
-            <li className="org_nav_element">
-              <a href="#" className="org_nav_link">
-                Contact
-              </a>
-            </li>
+            {["Posts", "About", "Contact"].map((section) => (
+              <li className="org_nav_element" key={section}>
+                <button
+                  className={`org_nav_link ${
+                    activeSection === section ? "active" : ""
+                  }`}
+                  ref={(el) => (navRefs.current[section] = el)}
+                  onClick={() => setActiveSection(section)}
+                >
+                  {section}
+                </button>
+              </li>
+            ))}
           </ul>
-        </div>
-        <div className="nav_line"></div>
-      </div>
-      {/* =============================end Organization navbar ============================ */}
-      {/* ============================= Organization Posts ============================ */}
-      <div className="org_container">
-        <div className="posts  flex-row">
-          {OrgPosts.map((post) => (
-            <OrgPostCard
-              key={post.id}
-              OrgPostDate={post.OrgPostDate}
-              OrgPostImage={post.OrgPostImage}
-              OrgPostTitle={post.OrgPostTitle}
-              OrgPostDescription={post.OrgPostDescription}
-            />
-          ))}
-        </div>
-        <div className="see_more_btn flex-row ">
-          <div>
-            {" "}
-            <i className="fa-solid fa-square-plus" />
-          </div>
-          <div>
-            <a href="#" className="see_more_link">
-              See more
-            </a>
-          </div>
+          <div className="nav-underline" style={underlineStyle}></div>
         </div>
       </div>
-      {/* ============================= end Organization posts ============================ */}
-      {/* ================================= About Us ================================= */}
-      <section id="About_Us">
-        <div className="about-container">
-          <OrgDescription name="HopeBridge" description={descriptionText} />
-          {/* ======================= Mission =========================== */}
-          <OrgMission
-            OrgMissionImg="assets/Images/mission-vision.png"
-            OrganizationMission="To provide lasting support to families in need through ethical giving and community-first programs. Every act of kindness helps restore hope and strengthens those facing difficult circumstances."
-            OrganizationVision="To create a society where compassion guides every action and no one is left behind. We strive to inspire collective responsibility and empower people to build brighter, more equitable futures."
-          />
-        </div>
-        {/* ======================== values ==================== */}
-        <OrgValues
-          OrgValue1="Solidarity"
-          OrgValue2="Transparency"
-          OrgValue3="Empowerment"
-          OrgValue4="Compassion"
-        />
-        {/* ======================== Programs ====================== */}
-        <OrgPrograms programs={OrgProgramsData} />
-        {/* ========================== Impact ====================== */}
-        <OrgImpact impacts={OrgImpactData} />
-      </section>
 
-      {/* ==================== Contact us ========================= */}
-      <section id="org-contact-us">
-        <div className="org_container org-contact-container">
-          <div className="org-contact-title ">
-            <h1>Let's Make Something Great Together</h1>
+      {/* Sections */}
+      {activeSection === "Posts" && (
+        <div className="org_container">
+          <div className="posts flex-row">
+            {OrgPosts.map((post) => (
+              <OrgPostCard
+                key={post.id}
+                OrgPostDate={post.OrgPostDate}
+                OrgPostImage={post.OrgPostImage}
+                OrgPostTitle={post.OrgPostTitle}
+                OrgPostDescription={post.OrgPostDescription}
+              />
+            ))}
           </div>
-          <div className="org-contact-details flex-row">
-            {/* =======================form======================= */}
-            <div className="org-contact-form col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-11 col-xxs-11">
-              <div className="org-form-card">
-                <div className="org-form-details">
-                  <h1>Request Support or Ask a Question</h1>
-                  <p>
-                    If you need assistance or wish to reach out to our team,
-                    please fill in the form below. We'll get back to you as soon
-                    as possible.
-                  </p>
-                </div>
-                {/* ============================== */}
-                <div className="org-contact-form-labels">
-                  <form>
-                    <div className="first_line  flex-row">
-                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
-                        <label className="ogr-form-label ">
-                          First Name <span>*</span>
+          <div className="see_more_btn flex-row ">
+            <div>
+              <i className="fa-solid fa-square-plus" />
+            </div>
+            <div>
+              <a href="#" className="see_more_link">
+                See more
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeSection === "About" && (
+        <section id="About_Us">
+          <div className="about-container">
+            <OrgDescription name="HopeBridge" description={descriptionText} />
+            <OrgMission
+              OrgMissionImg="assets/Images/mission-vision.png"
+              OrganizationMission="To provide lasting support to families in need through ethical giving and community-first programs. Every act of kindness helps restore hope and strengthens those facing difficult circumstances."
+              OrganizationVision="To create a society where compassion guides every action and no one is left behind. We strive to inspire collective responsibility and empower people to build brighter, more equitable futures."
+            />
+          </div>
+          <OrgValues
+            OrgValue1="Solidarity"
+            OrgValue2="Transparency"
+            OrgValue3="Empowerment"
+            OrgValue4="Compassion"
+          />
+          <OrgPrograms programs={OrgProgramsData} />
+          <OrgImpact impacts={OrgImpactData} />
+        </section>
+      )}
+
+      {activeSection === "Contact" && (
+        <section id="org-contact-us">
+          <div className="org_container org-contact-container">
+            <div className="org-contact-title ">
+              <h1>Let's Make Something Great Together</h1>
+            </div>
+            <div className="org-contact-details flex-row">
+              {/* =======================form======================= */}
+              <div className="org-contact-form col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-11 col-xxs-11">
+                <div className="org-form-card">
+                  <div className="org-form-details">
+                    <h1>Request Support or Ask a Question</h1>
+                    <p>
+                      If you need assistance or wish to reach out to our team,
+                      please fill in the form below. We'll get back to you as
+                      soon as possible.
+                    </p>
+                  </div>
+                  {/* ============================== */}
+                  <div className="org-contact-form-labels">
+                    <form>
+                      <div className="first_line  flex-row">
+                        <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
+                          <label className="ogr-form-label ">
+                            First Name <span>*</span>
+                          </label>
+                          <br />
+                          <input
+                            type="text"
+                            placeholder="First Name "
+                            required=""
+                          />
+                        </div>
+                        <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
+                          <label className="ogr-form-label">
+                            Last Name <span>*</span>
+                          </label>
+                          <br />
+                          <input
+                            type="text"
+                            placeholder="Last Name "
+                            required=""
+                          />
+                        </div>
+                      </div>
+                      <div className="org-Email">
+                        <label className="ogr-form-label">
+                          Email <span>*</span>
+                        </label>
+                        <br />
+                        <input type="email" placeholder="Email " required="" />
+                      </div>
+                      <div className="org-Phone">
+                        <label className="ogr-form-label">
+                          Phone Number <span>*</span>
+                        </label>
+                        <br />
+                        <input
+                          type="tel"
+                          placeholder="Phone Number "
+                          required=""
+                        />
+                      </div>
+                      <div className="org-Message">
+                        <label className="ogr-form-label">
+                          Message <span>*</span>
                         </label>
                         <br />
                         <input
                           type="text"
-                          placeholder="First Name "
+                          maxLength={600}
+                          placeholder="leave Your Message"
                           required=""
                         />
                       </div>
-                      <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
-                        <label className="ogr-form-label">
-                          Last Name <span>*</span>
-                        </label>
-                        <br />
-                        <input
-                          type="text"
-                          placeholder="Last Name "
-                          required=""
-                        />
+                      <div className="flex-row">
+                        <div className="org-Request-type">
+                          <label className="ogr-form-label">
+                            Type of Request
+                          </label>
+                          <br />
+                          <select name="Request type">
+                            <option>cash</option>
+                            <option>food</option>
+                            <option>clothes</option>
+                            <option>medical</option>
+                            <option>education</option>
+                            <option>construction</option>
+                          </select>
+                        </div>
+                        <div className="org-document ">
+                          <label className="ogr-form-label">
+                            Upload a Document{" "}
+                          </label>
+                          <br />
+                          <input
+                            type="file"
+                            className="org-upload-file"
+                            placeholder="Upload a Document"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="org-Email">
-                      <label className="ogr-form-label">
-                        Email <span>*</span>
-                      </label>
-                      <br />
-                      <input type="email" placeholder="Email " required="" />
-                    </div>
-                    <div className="org-Phone">
-                      <label className="ogr-form-label">
-                        Phone Number <span>*</span>
-                      </label>
-                      <br />
-                      <input
-                        type="tel"
-                        placeholder="Phone Number "
-                        required=""
-                      />
-                    </div>
-                    <div className="org-Message">
-                      <label className="ogr-form-label">
-                        Message <span>*</span>
-                      </label>
-                      <br />
-                      <input
-                        type="text"
-                        maxLength={600}
-                        placeholder="leave Your Message"
-                        required=""
-                      />
-                    </div>
-                    <div className="flex-row">
-                      <div className="org-Request-type">
-                        <label className="ogr-form-label">
-                          Type of Request
-                        </label>
-                        <br />
-                        <select name="Request type">
-                          <option>cash</option>
-                          <option>food</option>
-                          <option>clothes</option>
-                          <option>medical</option>
-                          <option>education</option>
-                          <option>construction</option>
-                        </select>
+                      <div className="flex-row">
+                        <button type="reset">Reset</button>
+                        <button type="submit">Submit</button>
                       </div>
-                      <div className="org-document ">
-                        <label className="ogr-form-label">
-                          Upload a Document{" "}
-                        </label>
-                        <br />
-                        <input
-                          type="file"
-                          className="org-upload-file"
-                          placeholder="Upload a Document"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-row">
-                      <button type="reset">Reset</button>
-                      <button type="submit">Submit</button>
-                    </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
+              {/* =============== end form =============== */}
+              {/* Contact Info */}
+              <OrgContactInfos contactData={contactData} />
             </div>
-            {/* =============== end form =============== */}
-            {/* ====================== contact form ====================== */}
-            <OrgContactInfos contactData={contactData} />
           </div>
-        </div>
-      </section>
-      {/* ==================================================  End  Contact us ================================================================= */}
+        </section>
+      )}
     </>
   );
 };
+
 export default OrgProfile;

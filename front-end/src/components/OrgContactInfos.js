@@ -16,7 +16,7 @@ const OrgContactInfos = ({ contactData }) => {
               </a>
             ) : item.isMedia ? (
               item.links.map((link, i) => (
-                <div key={i}>
+                <div key={i} className="flex-row media">
                   <img
                     src={link.icon}
                     className="social_link_icon"
