@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/styleOrganizations.css'
+import OrganizationCard from '../components/organizationCard'
 const ExploreOrganizations = ()=>{
  return (
  <main>
@@ -80,6 +81,20 @@ const ExploreOrganizations = ()=>{
           </div>
         </div>
       </form>
+    </div>
+  </div>
+
+  {/* cards */}
+  <div className="container ">
+    <div className="cards-container flex-row flex-row-center">
+      <OrganizationCard/>
+      <OrganizationCard/>
+      <OrganizationCard/>
+      <OrganizationCard/>
+      <OrganizationCard/>
+      <OrganizationCard/>
+      <OrganizationCard/>
+      <OrganizationCard/>
     </div>
   </div>
  </main> 
