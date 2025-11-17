@@ -1,8 +1,10 @@
-import react from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const register = ()=>{
-    return(
-<main>
+const Register = ()=>{
+ return(
+   <main>
+    <div className="mainContainer">
   <div className="log-container ">
     <div className="toggle-box col-lg-6 col-xl-6 col-md-6">
       <div className="text">
@@ -11,7 +13,7 @@ const register = ()=>{
       </div>
       <div className="register ">
         <button id="login">
-          <a href="login.html">login</a>
+          <Link to="/Login">login</Link> 
         </button>
       </div>
     </div>
@@ -80,7 +82,9 @@ const register = ()=>{
       </div>
     </div>
   </div>
+  </div>
 </main>
 
-    );
-}
+ );
+};
+export default Register ;

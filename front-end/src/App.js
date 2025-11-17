@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import ExploreOrganizations from "./pages/ExploreOrganizations";
 import OrgProfile from "./pages/OrgProfile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 function App() {
   return (
     <Router>
@@ -22,7 +24,10 @@ function App() {
           element={<ExploreOrganizations />}
         />
         <Route path="/OrgProfile" element={<OrgProfile />} />
-      </Routes>
+         <Route path="/Login" element = {<Login />}/>
+         <Route path="/Register" element = {<Register />}/>
+        </Routes>
+       
       <Footer />
     </Router>
   );
