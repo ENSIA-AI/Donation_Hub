@@ -29,7 +29,7 @@ const Header = () => {
                 <li><Link to="/ExploreOrganizations" onClick={closeMenu}>Organizations</Link></li>
                 <li><Link to="/announcements" onClick={closeMenu}>Announcements</Link></li>
                 <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
-                <li className="btn"><Link to="/login" onClick={closeMenu}>Log in</Link></li>
+                <li className="btn"><Link to="/Login" onClick={closeMenu}>Log in</Link></li>
                 <li className="btn"><Link to="/register" onClick={closeMenu}>Register</Link></li>
               </ul>
             </nav>
