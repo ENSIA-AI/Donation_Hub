@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/styleOrganizations.css'
 
+
 const OrganizationCard = (props)=>{
     return(
     <div className="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
@@ -11,7 +12,7 @@ const OrganizationCard = (props)=>{
             <div>
                 <h4>{props.title} </h4>
                 <p>
-                    {props.discription}
+                    {props.description}
                 </p>
             </div>
             <div className="learn-more">
