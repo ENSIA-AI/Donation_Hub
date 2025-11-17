@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donify.dz</title>
     <link rel="stylesheet" href="assets/CSS/org_profile.css">
-    <link rel="stylesheet" href="assets/CSS/style.css">
+    <!-- <link rel="stylesheet" href="assets/CSS/style.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -581,33 +581,39 @@
                             <form>
                                 <div class="first_line  flex-row">
                                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
-                                        <label class="ogr-form-label ">
+                                        <label for="first_name" class="ogr-form-label ">
                                             First Name <span>*</span>
                                         </label><br>
-                                        <input type="text" placeholder="First Name " required>
+                                        <input type="text" id="first_name" name="first_name" placeholder="First Name "
+                                            required>
                                     </div>
                                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
-                                        <label class="ogr-form-label">Last Name <span>*</span></label><br>
-                                        <input type="text" placeholder="Last Name " required>
+                                        <label for="last_name" class="ogr-form-label">Last Name
+                                            <span>*</span></label><br>
+                                        <input type="text" id="last_name" name="last_name" placeholder="Last Name "
+                                            required>
 
                                     </div>
                                 </div>
                                 <div class="org-Email">
-                                    <label class="ogr-form-label">Email <span>*</span></label><br>
-                                    <input type="email" placeholder="Email " required>
+                                    <label for="email" class="ogr-form-label">Email <span>*</span></label><br>
+                                    <input type="email" id="email" name="email" placeholder="Email " required>
                                 </div>
                                 <div class="org-Phone">
-                                    <label class="ogr-form-label">Phone Number <span>*</span></label><br>
-                                    <input type="tel" placeholder="Phone Number " required>
+                                    <label for="phone_number" class="ogr-form-label">Phone Number
+                                        <span>*</span></label><br>
+                                    <input type="tel" id="phone_number" name="phone_number" placeholder="Phone Number "
+                                        required>
                                 </div>
                                 <div class="org-Message">
-                                    <label class="ogr-form-label">Message <span>*</span></label><br>
-                                    <input type="text" maxlength="600" placeholder="leave Your Message" required>
+                                    <label for="message" class="ogr-form-label">Message <span>*</span></label><br>
+                                    <input type="text" id="message" name="message" maxlength="600"
+                                        placeholder="leave Your Message" required>
                                 </div>
                                 <div class="flex-row">
                                     <div class="org-Request-type">
                                         <label class="ogr-form-label">Type of Request</label><br>
-                                        <select name="Request type">
+                                        <select id="request_type" name="Request type">
                                             <option>cash</option>
                                             <option>food</option>
                                             <option>clothes</option>
@@ -618,15 +624,17 @@
                                     </div>
 
                                     <div class="org-document ">
-                                        <label class="ogr-form-label">Upload a Document </label><br>
-                                        <input type="file" class="org-upload-file" placeholder="Upload a Document">
+                                        <label for="File" class="ogr-form-label">Upload a Document </label><br>
+                                        <input type="file" id="File" name="File" class="org-upload-file"
+                                            placeholder="Upload a Document">
                                     </div>
                                 </div>
                                 <div class="flex-row">
-                                    <button type="reset">Reset</button>
-                                    <button type="submit">Submit</button>
+                                    <button type="reset" id="reset_btn">Reset</button>
+                                    <button type="submit" id="submit_btn">Submit</button>
                                 </div>
-
+                                <!-- ===============errors ================ -->
+                                <small></small>
                             </form>
                         </div>
                     </div>
@@ -634,7 +642,7 @@
                 </div>
                 <!-- =============== end form =============== -->
 
-                <!-- ====================== contact form ====================== -->
+                <!-- ====================== contact  ====================== -->
                 <diV class="org-contact-infos col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-11 col-xxs-11">
                     <div class="org-contact-infos-card flex-row">
                         <div class="org-contact-info  col-xs-5 col-xxs-12 ">

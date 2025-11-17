@@ -67,7 +67,21 @@ section {
     --card-border-radius: 10px;
     --button-border-radius: 20px;
 }
+/* ================== js ======================= */
+.error {
+    color: red;
+    border: 1px solid red;
+}
 
+
+.success {
+box-shadow: rgba(100, 111, 105, 0.2) 0px 7px 29px 0px;
+}
+form > small{
+   font-size: 2rem;
+   color: white;
+   transform: scale(1.2);
+}
 /* ===============================homepage header =================================== */
 
 
