@@ -1,6 +1,57 @@
 import React from "react";
 import "../styles/OrganizationProfile.css";
 import OrgPostCard from "../components/OrgPostCard";
+const OrgPosts = [
+  {
+    id: 1,
+    OrgPostDate: "October 12, 2025",
+    OrgPostImage: "assets/Images/post1.png",
+    OrgPostTitle: "New School Supplies Drive",
+    OrgPostDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+  },
+  {
+    id: 2,
+    OrgPostDate: "October 12, 2025",
+    OrgPostImage: "assets/Images/post2.png",
+    OrgPostTitle: "Food Donation Event",
+    OrgPostDescription:
+      "Thanks to your donations, we delivered food packages to 120 families...",
+  },
+  {
+    id: 3,
+    OrgPostDate: "October 12, 2025",
+    OrgPostImage: "assets/Images/post3.png",
+    OrgPostTitle: "Medical Supplies Drive",
+    OrgPostDescription:
+      "Our volunteers distributed essential medical kits across rural clinics...",
+  },
+  {
+    id: 4,
+    OrgPostDate: "October 12, 2025",
+    OrgPostImage: "assets/Images/post4.png",
+    OrgPostTitle: "Winter Clothes Campaign",
+    OrgPostDescription:
+      "Warm clothes were delivered to families affected by the cold season...",
+  },
+  {
+    id: 5,
+    OrgPostDate: "October 12, 2025",
+    OrgPostImage: "assets/Images/post5.png",
+    OrgPostTitle: "School Renovation",
+    OrgPostDescription:
+      "With your help, we renovated classrooms in a rural school in Blida...",
+  },
+  {
+    id: 6,
+    OrgPostDate: "October 12, 2025",
+    OrgPostImage: "assets/Images/post6.png",
+    OrgPostTitle: "Charity Marathon",
+    OrgPostDescription:
+      "Join our charity marathon to support children's education...",
+  },
+];
+
 const OrgProfile = () => {
   return (
     <>
@@ -132,48 +183,18 @@ const OrgProfile = () => {
       </div>
       {/* =============================end Organization navbar ============================ */}
       {/* ============================= Organization Posts ============================ */}
+
       <div className="org_container">
         <div className="posts  flex-row">
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
-          <OrgPostCard
-            title="Bright Futer Organization"
-            discription="Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops"
-            image="assets/images/card-image.png"
-          />
+          {OrgPosts.map((post) => (
+            <OrgPostCard
+              key={post.id}
+              OrgPostDate={post.OrgPostDate}
+              OrgPostImage={post.OrgPostImage}
+              OrgPostTitle={post.OrgPostTitle}
+              OrgPostDescription={post.OrgPostDescription}
+            />
+          ))}
         </div>
         <div className="see_more_btn flex-row ">
           <div>

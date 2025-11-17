@@ -6,12 +6,12 @@ const OrgPostCard = (props) => {
   return (
     <div className="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12">
       <div className="post-card">
-        <div className="Post_Date">october 12 , 2025</div>
+        <div className="Post_Date">{props.OrgPostDate}</div>
         <div className="post-image">
           <img
-            src="assets/Images/post2.png"
+            src={props.OrgPostImage}
             className="full_image post-image"
-            alt="post image "
+            alt={props.OrgPostTitle}
           />
         </div>
         <div className="post_details">
