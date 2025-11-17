@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../assets/CSS/org_profile.css";
-const OrgPostCard = () => {
+import "../styles/OrganizationProfile.css";
+
+const OrgPostCard = (props) => {
   return (
     <div className="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12">
       <div className="post-card">
@@ -15,12 +16,8 @@ const OrgPostCard = () => {
         </div>
         <div className="post_details">
           <div className="post_description">
-            <div className="post_title">New School Supplies Drive</div>
-            <div className="post_text_content">
-              We distributed over 500 school kits to children in the rural areas
-              of Blida. Your donations made this possible .thank you for keeping
-              their dreams alive!
-            </div>
+            <div className="post_title">{props.OrgPostTitle}</div>
+            <div className="post_text_content">{props.OrgPostDescription}</div>
           </div>
           <div className="post_actions flex-row">
             <div className="Donnate_action post_action">
@@ -40,4 +37,5 @@ const OrgPostCard = () => {
     </div>
   );
 };
+
 export default OrgPostCard;

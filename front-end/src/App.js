@@ -16,8 +16,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact/>} /> 
-        <Route path="/ExploreOrganizations" element={<ExploreOrganizations/>} />
+        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/ExploreOrganizations"
+          element={<ExploreOrganizations />}
+        />
+        <Route path="/OrgProfile" element={<OrgProfile />} />
       </Routes>
       <Footer />
     </Router>
