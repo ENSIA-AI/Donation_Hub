@@ -9,7 +9,7 @@ const OrganizationCard = (props)=>{
             <div>
             <img src={props.image} alt="" className="image_card" />
             </div>
-            <div>
+            <div className="cardContent">
                 <h4>{props.title} </h4>
                 <p>
                     {props.description}

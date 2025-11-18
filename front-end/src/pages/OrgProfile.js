@@ -8,7 +8,7 @@ import OrgPrograms from "../components/OrgPrograms";
 import OrgImpact from "../components/OrgImpact";
 import OrgContactInfos from "../components/OrgContactInfos";
 import OrgDescription from "../components/OrgDescription";
-
+import OrgContactForm from "../components/OrgContactForm";
 // the see more button
 
 const OrgPosts = [
@@ -282,108 +282,7 @@ const OrgProfile = () => {
             </div>
             <div className="org-contact-details flex-row">
               {/* =======================form======================= */}
-              <div className="org-contact-form col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-11 col-xxs-11">
-                <div className="org-form-card">
-                  <div className="org-form-details">
-                    <h1>Request Support or Ask a Question</h1>
-                    <p>
-                      If you need assistance or wish to reach out to our team,
-                      please fill in the form below. We'll get back to you as
-                      soon as possible.
-                    </p>
-                  </div>
-                  {/* ============================== */}
-                  <div className="org-contact-form-labels">
-                    <form>
-                      <div className="first_line  flex-row">
-                        <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
-                          <label className="ogr-form-label ">
-                            First Name <span>*</span>
-                          </label>
-                          <br />
-                          <input
-                            type="text"
-                            placeholder="First Name "
-                            required=""
-                          />
-                        </div>
-                        <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 col-xxs-12">
-                          <label className="ogr-form-label">
-                            Last Name <span>*</span>
-                          </label>
-                          <br />
-                          <input
-                            type="text"
-                            placeholder="Last Name "
-                            required=""
-                          />
-                        </div>
-                      </div>
-                      <div className="org-Email">
-                        <label className="ogr-form-label">
-                          Email <span>*</span>
-                        </label>
-                        <br />
-                        <input type="email" placeholder="Email " required="" />
-                      </div>
-                      <div className="org-Phone">
-                        <label className="ogr-form-label">
-                          Phone Number <span>*</span>
-                        </label>
-                        <br />
-                        <input
-                          type="tel"
-                          placeholder="Phone Number "
-                          required=""
-                        />
-                      </div>
-                      <div className="org-Message">
-                        <label className="ogr-form-label">
-                          Message <span>*</span>
-                        </label>
-                        <br />
-                        <input
-                          type="text"
-                          maxLength={600}
-                          placeholder="leave Your Message"
-                          required=""
-                        />
-                      </div>
-                      <div className="flex-row">
-                        <div className="org-Request-type">
-                          <label className="ogr-form-label">
-                            Type of Request
-                          </label>
-                          <br />
-                          <select name="Request type">
-                            <option>cash</option>
-                            <option>food</option>
-                            <option>clothes</option>
-                            <option>medical</option>
-                            <option>education</option>
-                            <option>construction</option>
-                          </select>
-                        </div>
-                        <div className="org-document ">
-                          <label className="ogr-form-label">
-                            Upload a Document{" "}
-                          </label>
-                          <br />
-                          <input
-                            type="file"
-                            className="org-upload-file"
-                            placeholder="Upload a Document"
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-row">
-                        <button type="reset">Reset</button>
-                        <button type="submit">Submit</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+              <OrgContactForm />
               {/* =============== end form =============== */}
               {/* Contact Info */}
               <OrgContactInfos contactData={contactData} />

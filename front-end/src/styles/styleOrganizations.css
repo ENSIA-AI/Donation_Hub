@@ -54,6 +54,11 @@ img{
     margin-bottom: 2em;
     margin-top: 3em;
 }
+.flex-center{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 .search-bar-container{
     margin: auto;
     display: flex;
@@ -182,6 +187,7 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3; /* limits to 3 lines */
+     line-clamp: 3;  
   -webkit-box-orient: vertical;
 }
 
@@ -206,7 +212,7 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
     color: var(--primary-color);
  }
  
-p{
+.cardContent p{
     font-size: var(--text-font-size);
     text-align:left;
     font-family: var(--third-font);
@@ -261,6 +267,15 @@ p{
     transform: scale(1.05);
     background-color: #e6c259;
     color: #0A3F36;
+}
+.noMore p{
+    padding-top: 2em;
+    text-align: center;
+    margin: auto;
+    color: #4f4f4f;
+    font-family: var(--secondary-font);
+    font-size: 2.5rem;
+    font-style: italic;
 }
 /* =====================================Classes ========================================= */
 
