@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 
 const Register = ()=>{
+const {
+  register,
+  handleSubmit,
+  watch,
+  formState: { errors },
+} = useForm();
+   
+   const onSubmit = (data) => {
+  console.log("form Data:", data);
+}
  return(
    <main>
     <div className="mainContainer">
@@ -23,24 +35,35 @@ const Register = ()=>{
         <div className="title ">
           <h2>register</h2>
         </div>
-        <form action="">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className=" placeholder">
             <input
               type="text"
               id="name-of-organization"
               placeholder="Name of organization"
-              required=""
+              {...register("orgName", { required: true, maxLength: 20 })}
             />
+            {errors.orgName && <span>{errors.orgName.message}</span>}
           </div>
           <div className=" placeholder">
-            <input type="text" id="phone-number" placeholder="Phone number" />
+            <input type="text" id="phone-number" placeholder="Phone number" 
+            {...register("phoneNum", { required: true,   pattern: {
+           value: /^(05|06|07)[0-9]{8}$/,
+           message: "Invalid phone number format",},})}
+            />
+            {errors.phoneNum && <span>{errors.phoneNum.message}</span>}
           </div>
           <div className=" placeholder">
-            <input type="email" id="email" placeholder="Email" required="" />
+            <input type="email" id="email" placeholder="Email" 
+            {...register("email", { required: true,   pattern: {
+           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+           message: "Invalid email format",},})}
+           />
+           {errors.email && <span>{errors.email.message}</span>}
           </div>
           <div className="selects-container">
             <div className=" select-container">
-              <select name="type" id="type-of-organization">
+              <select name="type" id="type-of-organization" {...register("organizationType")}>
                 <option value="health">health</option>
                 <option value="education">education</option>
                 <option value="children">children</option>
@@ -49,7 +72,7 @@ const Register = ()=>{
               </select>
             </div>
             <div className=" select-container">
-              <select name="region" id="region">
+              <select name="region" id="region" {...register("region")}>
                 <option value="algeries">algeries</option>
                 <option value="bouira">bouira</option>
                 <option value="jijel">jijel</option>
@@ -64,16 +87,35 @@ const Register = ()=>{
               name="description"
               id="description"
               defaultValue={"description"}
+              {...register("description")}
+
             />
           </div>
           <div className=" placeholder">
-            <input type="password" placeholder="Password" required="" />
+            <input type="password" placeholder="Password" {...register("password",
+            { required : true ,
+              pattern :{
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                message:"Must contain 8+ chars, uppercase, lowercase and number",
+              },
+            })}
+              />
+              {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className=" placeholder">
-            <input type="password" placeholder="Confirm password" required="" />
+            <input type="password" placeholder="Confirm password" 
+               {...register("confirmPassword", {
+                  required: "Please confirm your password",
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                })}
+             />
+             {errors.confirmPassword && (
+              <span>{errors.confirmPassword.message}</span>
+            )}
           </div>
           <div className="placeholder file-add ">
-            <input type="file" id="proof" placeholder="apload proof" />
+            <input type="file" id="proof" placeholder="apload proof" {...register("proof")} />
           </div>
           <div className=" submit">
             <button type="submit"> register</button>

@@ -1,10 +1,10 @@
 import React from "react";
 import '../styles/styleOrganizations.css';
 
-const SeeMoreButton  =()=>{
+const SeeMoreButton  =({onClick})=>{
     return(
        <div className="containerButton">
-  <div className="button-container">
+  <div className="button-container" onClick={onClick}>
     <div className="icon-container">
       <img src="assets/icons/seeMore.svg" alt="" />
     </div>
