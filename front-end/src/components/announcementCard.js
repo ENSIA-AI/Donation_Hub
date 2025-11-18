@@ -24,7 +24,7 @@ const AnnouncemetCard = (props)=>
                         </div>
                         <div className="announcement_actions flex-row">
                             <div className="DonnateAnnouncement_action announcement_action">
-                                <link to="/donate" className="announcement_action_link">Donnate</link>
+                                <Link to="/donate" className="announcement_action_link">Donnate</Link>
                             </div>
                             <div className="read_moreAnnouncement_action announcement_action">
                                 <i className="fa-solid fa-arrow-right"></i>

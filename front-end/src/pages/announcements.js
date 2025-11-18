@@ -1,5 +1,6 @@
-import react from "react";
-import '../styles/announcementStyle'
+
+import React, { useState } from "react";
+import '../styles/announcementStyle.css'
 import AnnouncemetCard from "../components/announcementCard";
 import Search from "../components/search";
 import SeeMoreButton from "../components/SeeMoreButton";
@@ -100,7 +101,14 @@ const announcements =[
 
 ];
 
-const AnnouncementPage = () => {
+
+
+const Announcements= () => {
+
+  const loadMore = () => {
+  setVisibleCount((prev) => prev + 3); // show 3 more cards
+  };
+  const [visibleCount, setVisibleCount] = useState(6);
   return ( 
     <>
     {/* ===== HEADER ===== */}
@@ -119,16 +127,18 @@ const AnnouncementPage = () => {
       {/* ===== SEARCH BAR ===== */}
       <Search />
 
-       {/* ===== ANNOUNCEMENT CARDS ===== */}
-       <div className="container">
+      {/* ===== ANNOUNCEMENT CARDS ===== */}
+      <div className="container">
         <div className="announcements flex-row">
-          {announcements.map((announcement) => (
+          {announcements.slice(0, visibleCount).map((announcement) => (
             <AnnouncemetCard
               key={announcement.id}
               announcementDate={announcement.announcementDate}
               announcementImage={announcement.announcementImage}
               announcementTitle={announcement.announcementTitle}
-              announcementDescription={announcement.announcementDescription}/>))}
+              announcementDescription={announcement.announcementDescription}
+            />
+          ))}
         </div>
 
          {/* ===== SEE MORE BUTTON ===== */}
@@ -141,5 +151,5 @@ const AnnouncementPage = () => {
   );
 };
 
-export default AnnouncementPage;
+export default Announcements;
 
