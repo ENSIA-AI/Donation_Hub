@@ -27,6 +27,10 @@ html {
     font-size: 62.5%;
 }
 
+body, html {
+  overflow-x: hidden;
+}
+
 
 
 section {
