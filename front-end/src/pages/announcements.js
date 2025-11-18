@@ -1,5 +1,5 @@
-import react from "react";
-import '../styles/announcementStyle'
+import React from "react";
+import "../styles/announcementStyle.css";
 import AnnouncemetCard from "../components/announcementCard";
 import Search from "../components/search";
 import SeeMoreButton from "../components/SeeMoreButton";
