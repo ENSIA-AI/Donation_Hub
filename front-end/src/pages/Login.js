@@ -48,7 +48,7 @@ const Login = ()=>{
           <div className=" placeholder">
             <input type="password" placeholder="Password" 
             {...register("password",
-            { required : true ,
+            { required : "password is required",
               pattern :{
                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                 message:"Must contain 8+ chars, uppercase, lowercase and number",

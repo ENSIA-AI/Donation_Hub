@@ -1,11 +1,12 @@
-import React from "react";
+
+import React,{useState} from "react";
 import '../styles/styleOrganizations.css';
 import OrganizationCard from '../components/organizationCard';
 import SearchBar from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";
 
 const ExploreOrganizations = () => {
-  // Step 1: Create the array inside the component
+
   const organizations = [
     {
       title: "Bright Future",
@@ -47,10 +48,34 @@ const ExploreOrganizations = () => {
       description: "Provides free medical checkups and health education in underserved communities",
       image: "assets/images/card-image.png"
     },
+        {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
+    {
+      title: "Health for All",
+      description: "Provides free medical checkups and health education in underserved communities",
+      image: "assets/images/card-image.png"
+    },
   
     // Add more organizations as needed
   ];
-
+  
+  const [visibleCount,setVisibleCount] = useState(8);
+  const loadMore = () => {
+      setVisibleCount(prev =>prev + 4);
+  }
   return (
     <main>
       <div className="title">
@@ -61,12 +86,14 @@ const ExploreOrganizations = () => {
       </div>
 
       {/* Search bar */}
-      <SearchBar />
+        <SearchBar />
+    
+      
 
       {/* Cards rendered dynamically */}
       <div className="container">
         <div className="cards-container flex-row flex-row-center">
-          {organizations.map((org, index) => (
+          {organizations.slice(0,visibleCount).map((org, index) => (
             <OrganizationCard
               key={index}
               title={org.title}
@@ -76,8 +103,8 @@ const ExploreOrganizations = () => {
           ))}
         </div>
       </div>
-
-      <SeeMoreButton />
+      {visibleCount< organizations.length ?(<SeeMoreButton onClick={loadMore}/>) :<span className="noMore"> <p>no more cards</p></span>}
+      
     </main>
   );
 };
