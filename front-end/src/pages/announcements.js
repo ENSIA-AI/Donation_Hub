@@ -1,8 +1,5 @@
-
-
 import React, { useState } from "react";
 import '../styles/announcementStyle.css'
-
 import AnnouncemetCard from "../components/AnnouncementCard";
 import Search from "../components/search";
 import SeeMoreButton from "../components/SeeMoreButton";
