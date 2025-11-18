@@ -12,7 +12,7 @@ import ExploreOrganizations from "./pages/ExploreOrganizations";
 import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Announcements from "./pages/announcements";
+import Announcements from "./pages/Announcements";
 import Donate from "./pages/donate";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
           path="/ExploreOrganizations"
           element={<ExploreOrganizations />}
         />
-        <Route path="/announcements" element={< Announcements />} />
+        <Route path="/Announcements" element={< Announcements />} />
         <Route path="/OrgProfile" element={<OrgProfile />} />
          <Route path="/Login" element = {<Login />}/>
          <Route path="/Register" element = {<Register />}/>
