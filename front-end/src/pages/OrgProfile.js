@@ -22,11 +22,6 @@ const OrgProfile = () => {
   // Find the organization by ID
   const org = Organizations.find((o) => o.id === Number(id));
 
-  // Handle invalid ID
-  if (!org) {
-    return <h1>Organization not found</h1>;
-  }
-
   useEffect(() => {
     setLoaded(true);
   }, []);
@@ -47,6 +42,10 @@ const OrgProfile = () => {
     }
   }, [activeSection]);
 
+  // Handle invalid ID
+  if (!org) {
+    return <h1>Organization not found</h1>;
+  }
   return (
     <>
       {/* Hero */}

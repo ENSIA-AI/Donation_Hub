@@ -20,11 +20,20 @@ function App() {
     <Router>
       <Header />
 
-      <Route path="/" element={<Home />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/ExploreOrganizations" element={<ExploreOrganizations />} />
-      <Route path="/Announcements" element={<Announcements />} />
-      <Route path="/OrgProfile" element={<OrgProfile />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/ExploreOrganizations"
+          element={<ExploreOrganizations />}
+        />
+        <Route path="/Announcements" element={<Announcements />} />
+        <Route path="/OrgProfile/:id" element={<OrgProfile />} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/donate" element={<Donate />} />
+      </Routes>
 
       <Footer />
     </Router>
