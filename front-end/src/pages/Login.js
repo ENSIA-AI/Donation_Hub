@@ -1,8 +1,19 @@
 import React from "react";
 import '../styles/register.css'
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const Login = ()=>{
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+     
+     const onSubmit = (data) => {
+    console.log("form Data:", data);
+  }
   return(
     <main>
   <div className="mainContainer">
@@ -24,15 +35,36 @@ const Login = ()=>{
         <div className="title ">
           <h2>login</h2>
         </div>
-        <form action="">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className=" placeholder">
-            <input type="email" id="email" placeholder="Email" required="" />
+            <input type="email" id="email" placeholder="Email"  
+           {...register("email", { required: true,   pattern: {
+           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+           message: "Invalid email format",},})}
+             />
+           {errors.email && <span>{errors.email.message}</span>}
+         
           </div>
           <div className=" placeholder">
-            <input type="password" placeholder="Password" required="" />
+            <input type="password" placeholder="Password" 
+            {...register("password",
+            { required : true ,
+              pattern :{
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                message:"Must contain 8+ chars, uppercase, lowercase and number",
+              },
+            })} />
+            {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className=" placeholder">
-            <input type="password" placeholder="Confirm password" required="" />
+            <input type="password" placeholder="Confirm password" 
+            {...register("confirmPassword", {
+                  required: "Please confirm your password",
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                })} />
+                {errors.confirmPassword && (
+              <span>{errors.confirmPassword.message}</span>)}
           </div>
           <div className=" submit">
             <button type="submit" className="submitBnt"> login</button>
