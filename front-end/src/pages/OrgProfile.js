@@ -9,6 +9,8 @@ import OrgImpact from "../components/OrgImpact";
 import OrgContactInfos from "../components/OrgContactInfos";
 import OrgDescription from "../components/OrgDescription";
 
+// the see more button
+
 const OrgPosts = [
   {
     id: 1,
@@ -57,6 +59,30 @@ const OrgPosts = [
     OrgPostTitle: "Charity Marathon",
     OrgPostDescription:
       "Join our charity marathon to support children's education...",
+  },
+  {
+    id: 7,
+    OrgPostDate: "September 15, 2025",
+    OrgPostImage: "assets/Images/post7.jpg",
+    OrgPostTitle: "Health Awareness Workshop",
+    OrgPostDescription:
+      "We organized a workshop to raise awareness about early health checkups...",
+  },
+  {
+    id: 8,
+    OrgPostDate: "August 28, 2025",
+    OrgPostImage: "assets/Images/post8.jpg",
+    OrgPostTitle: "Orphans Support Day",
+    OrgPostDescription:
+      "A beautiful day spent with orphans, providing gifts and activities...",
+  },
+  {
+    id: 9,
+    OrgPostDate: "September 30, 2025",
+    OrgPostImage: "assets/Images/post9.jpg",
+    OrgPostTitle: "Blood Donation Campaign",
+    OrgPostDescription:
+      "Thank you to all the donors who participated in our blood donation event...",
   },
 ];
 
@@ -132,7 +158,16 @@ const descriptionText = `HopeBridge Foundation is a non-profit organization esta
 const OrgProfile = () => {
   const [activeSection, setActiveSection] = useState("Posts");
   const [underlineStyle, setUnderlineStyle] = useState({});
+  const [visiblePosts, setVisiblePosts] = useState(6);
+  const [loaded, setLoaded] = useState(false);
   const navRefs = useRef({});
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+  // handle see more button
+  const handleSeeMore = () => {
+    setVisiblePosts((prev) => prev + 3);
+  };
 
   // Update underline position
   useEffect(() => {
@@ -181,27 +216,40 @@ const OrgProfile = () => {
       {/* Sections */}
       {activeSection === "Posts" && (
         <div className="org_container">
-          <div className="posts flex-row">
-            {OrgPosts.map((post) => (
+          <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""} `}>
+            {OrgPosts.slice(0, visiblePosts).map((post) => (
               <OrgPostCard
                 key={post.id}
                 OrgPostDate={post.OrgPostDate}
                 OrgPostImage={post.OrgPostImage}
                 OrgPostTitle={post.OrgPostTitle}
                 OrgPostDescription={post.OrgPostDescription}
+                style={{ animationDelay: `${post.id * 0.1}s` }}
               />
             ))}
           </div>
-          <div className="see_more_btn flex-row ">
-            <div>
-              <i className="fa-solid fa-square-plus" />
+          {visiblePosts <= OrgPosts.length ? (
+            <div className="see_more_btn flex-row ">
+              <div>
+                <i className="fa-solid fa-square-plus" />
+              </div>
+
+              <div>
+                <a
+                  href="#"
+                  className="see_more_link"
+                  onClick={(e) => {
+                    e.preventDefault(); // this will the stop page from jumping , incase we did not use the button
+                    handleSeeMore();
+                  }}
+                >
+                  See more
+                </a>
+              </div>
             </div>
-            <div>
-              <a href="#" className="see_more_link">
-                See more
-              </a>
-            </div>
-          </div>
+          ) : (
+            <span className="no-more-posts">No more posts</span>
+          )}
         </div>
       )}
 
