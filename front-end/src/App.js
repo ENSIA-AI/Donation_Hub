@@ -12,22 +12,19 @@ import ExploreOrganizations from "./pages/ExploreOrganizations";
 import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Announcements from "./pages/Announcements";
+import Donate from "./pages/donate";
+
 function App() {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route
-          path="/ExploreOrganizations"
-          element={<ExploreOrganizations />}
-        />
-        <Route path="/OrgProfile" element={<OrgProfile />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/org/:id" element={<OrgProfile />} />
-      </Routes>
+
+      <Route path="/" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/ExploreOrganizations" element={<ExploreOrganizations />} />
+      <Route path="/Announcements" element={<Announcements />} />
+      <Route path="/OrgProfile" element={<OrgProfile />} />
 
       <Footer />
     </Router>

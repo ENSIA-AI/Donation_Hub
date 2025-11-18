@@ -1,0 +1,574 @@
+:root {
+    --primary-font: "Poppins";
+    --secondary-font: "Montserrat", sans-serif;
+    --third-font: "Lato";
+    --primary-color: #107361;
+    --secondary-color: #0F594C;
+    --third-color: #FEDA79;
+    --background-color: #F2F2F2;
+    --text-font-size: 1.6rem;
+    --section-title-font-size: 4rem;
+    --subtitle-font-size: 2.5rem;
+    --bottom-font-size: 1.3rem;
+    --card-border-radius:10px;
+    --button-border-radius: 20px;
+}
+* {
+ 
+  box-sizing: border-box;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+html {
+    font-size: 62.5%;
+}
+
+
+
+section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    font-family: var(--primary-font);
+    overflow-x: hidden;
+}
+.container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+
+
+
+
+/* ============ Donation Form Section =============== */
+
+ .donation-section 
+{
+    justify-content: center;
+    display: flex;
+    padding: 0rem 5rem;
+    margin: 0;
+   
+}
+
+
+.donation-form-wrapper {
+    display: flex;
+    justify-content: center; 
+    border-radius: var(--card-border-radius);
+    overflow: hidden; 
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
+    
+    
+    
+
+    /* when i add padding i lose the radius */
+    
+  
+}
+
+
+
+
+
+
+/* Organization Info Card */
+.org-card {
+    background-color: var(--secondary-color);
+    padding: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+.org-name {
+    font-family: var(--primary-font);
+    font-size: var(--section-title-font-size);
+    font-weight: 600;
+    color: var(--third-color);
+}
+
+
+.org-description {
+    font-family: var(--third-font);
+    font-size: var(--text-font-size);
+    color: white;
+    margin-bottom: 2.5rem;
+}
+
+.impact-statement {
+    border-color: var(--third-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--third-color);
+}
+
+.impact-title {
+    font-family: var(--primary-font);
+    font-size: var(--text-font-size);
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.bank-details {
+    margin-bottom: 3rem;
+}
+
+.bank-title {
+    font-family:var(--secondary-font);
+    font-size: var(--bottom-font-size);
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.recieving-details {
+    padding: 4rem 1rem;
+    gap: 5rem;
+}
+
+.detail:hover
+{
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    
+}
+
+
+
+.detail
+{
+    background-color: var(--primary-color);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem  ;
+    transition: all 0.5s;
+}
+
+
+.title {
+    font-size: var(--text-font-size);
+    color: var(--third-color);
+}
+
+.detail-item {
+    font-family: var(--third-font);
+    font-size: var(--text-font-size);
+    color: white;
+    line-height: 1.5;
+}
+
+/* Donation Form Card */
+
+.form-card
+{
+    height: 100%;
+    background-color: white;
+    padding: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
+}
+
+.form-group
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.donation-form-content
+{
+    gap: 1rem;
+    flex-direction: column;
+    display: flex;
+}
+
+.form-label
+{
+    font-size: var(--text-font-size);
+    font-family: var(--primary-font);
+    font-weight: 600;
+    color: var(--secondary-color);
+    padding: 0.5rem;
+}
+
+.form-input 
+{
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid  #e9ecef;
+    transition: all 0.3s ease;
+}
+
+
+.form-btns
+{
+    
+    padding: 2rem 0rem;
+}
+
+.btns
+{
+    border-radius: var(--button-border-radius);
+    padding: 0.5rem;
+    color: black;
+    background-color: var(--third-color);
+    border: none;
+    width:30%;
+    font-size: var(--text-font-size);
+    transition: all 0.5s ease;
+}
+
+.btns:hover
+{
+    transform: translateY(-3px);
+    box-shadow: 0 2px 7px rgba(16, 115, 97, 0.3);
+    cursor: pointer;
+    
+}
+
+.form-input:focus
+{
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(16, 115, 97, 0.1);
+
+}
+
+/* ================donation form ends=============== */
+
+
+
+
+
+
+
+
+
+/* =====================================Classes ========================================= */
+
+@media (min-width: 1200px) {
+    .col-xl-1 {
+        width: calc(100% / 12);
+    }
+
+    .col-xl-2 {
+        width: calc(100% / 6);
+    }
+
+    .col-xl-3 {
+        width: calc(100% / 4);
+    }
+
+    .col-xl-4 {
+        width: calc(100% / 3);
+    }
+
+    .col-xl-5 {
+        width: calc((5 * 100%) / 12);
+    }
+
+    .col-xl-6 {
+        width: calc(100% / 2);
+    }
+
+    .col-xl-7 {
+        width: calc((7 * 100%) / 12);
+    }
+
+    .col-xl-8 {
+        width: calc((8 * 100%) / 12);
+    }
+
+    .col-xl-9 {
+        width: calc((9 * 100%) / 12);
+    }
+
+    .col-xl-10 {
+        width: calc((10 * 100%) / 12);
+    }
+
+    .col-xl-11 {
+        width: calc((11 * 100%) / 12);
+    }
+
+    .col-xl-12 {
+        width: 100%;
+    }
+
+    .col-xl-2-5 {
+        width: calc((5/2)*100% / 12);
+    }
+
+    
+
+    }
+
+
+
+
+
+/* Large (lg) screens (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .col-lg-1 {
+        width: calc(100% / 12);
+    }
+
+    .col-lg-2 {
+        width: calc(100% / 6);
+    }
+
+    .col-lg-3 {
+        width: calc(100% / 4);
+    }
+
+    .col-lg-4 {
+        width: calc(100% / 3);
+    }
+
+    .col-lg-5 {
+        width: calc((5 * 100%) / 12);
+    }
+
+    .col-lg-6 {
+        width: calc(100% / 2);
+    }
+
+    .col-lg-7 {
+        width: calc((7 * 100%) / 12);
+    }
+
+    .col-lg-8 {
+        width: calc((8 * 100%) / 12);
+    }
+
+    .col-lg-9 {
+        width: calc((9 * 100%) / 12);
+    }
+
+    .col-lg-10 {
+        width: calc((10 * 100%) / 12);
+    }
+
+    .col-lg-11 {
+        width: calc((11 * 100%) / 12);
+    }
+
+    .col-lg-12 {
+        width: 100%;
+    }
+
+    .col-lg-2-5 {
+        width: calc((5/2)*100% / 12);
+    }
+    
+
+    
+    }
+
+/* Medium (md) screens (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .col-md-1 {
+        width: calc(100% / 12);
+    }
+
+    .col-md-2 {
+        width: calc(100% / 6);
+    }
+
+    .col-md-3 {
+        width: calc(100% / 4);
+    }
+
+    .col-md-4 {
+        width: calc(100% / 3);
+    }
+
+    .col-md-5 {
+        width: calc((5 * 100%) / 12);
+    }
+
+    .col-md-6 {
+        width: calc(100% / 2);
+    }
+
+    .col-md-7 {
+        width: calc((7 * 100%) / 12);
+    }
+
+    .col-md-8 {
+        width: calc((8 * 100%) / 12);
+    }
+
+    .col-md-9 {
+        width: calc((9 * 100%) / 12);
+    }
+
+    .col-md-10 {
+        width: calc((10 * 100%) / 12);
+    }
+
+    .col-md-11 {
+        width: calc((11 * 100%) / 12);
+    }
+
+    .col-md-12 {
+        width: 100%;
+    }
+
+    .value_card {
+        font-size: 14px;
+        width: 150px;
+    }
+
+    html {
+        font-size: 8px;
+    }
+
+
+}
+
+/* Small (sm) screens (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .col-sm-1 {
+        width: calc(100% / 12);
+    }
+
+    .col-sm-2 {
+        width: calc(100% / 6);
+    }
+
+    .col-sm-3 {
+        width: calc(100% / 4);
+    }
+
+    .col-sm-4 {
+        width: calc(100% / 3);
+    }
+
+    .col-sm-5 {
+        width: calc((5 * 100%) / 12);
+    }
+
+    .col-sm-6 {
+        width: calc(100% / 2);
+    }
+
+    .col-sm-7 {
+        width: calc((7 * 100%) / 12);
+    }
+
+    .col-sm-8 {
+        width: calc((8 * 100%) / 12);
+    }
+
+    .col-sm-9 {
+        width: calc((9 * 100%) / 12);
+    }
+
+    .col-sm-10 {
+        width: calc((10 * 100%) / 12);
+    }
+
+    .col-sm-11 {
+        width: calc((11 * 100%) / 12);
+    }
+
+    .col-sm-12 {
+        width: 100%;
+    }
+
+    .value_card {
+        font-size: 13px;
+        max-width: 238px;
+    }
+
+    html {
+        font-size: 6px;
+    }
+
+    
+ }
+
+/* Extra Small (xs) screens (464px to 575px) */
+@media (min-width: 464px) and (max-width: 575px) {
+    .col-xs-1 {
+        width: calc(100% / 12);
+    }
+
+    .col-xs-2 {
+        width: calc(100% / 6);
+    }
+
+    .col-xs-3 {
+        width: calc(100% / 4);
+    }
+
+    .col-xs-4 {
+        width: calc(100% / 3);
+    }
+
+    .col-xs-5 {
+        width: calc((5 * 100%) / 12);
+    }
+
+    .col-xs-6 {
+        width: calc(100% / 2);
+    }
+
+    .col-xs-7 {
+        width: calc((7 * 100%) / 12);
+    }
+
+    .col-xs-8 {
+        width: calc((8 * 100%) / 12);
+    }
+
+    .col-xs-12
+    {
+        width: 100%;
+    }
+
+}
+
+/* Extra Extra Small (xxs) screens (0px to 463px) */
+@media (max-width: 463px) {
+    .col-xxs-1 { width: calc(100% / 12); }
+    .col-xxs-2 { width: calc(100% / 6); }
+    .col-xxs-3 { width: calc(100% / 4); }
+    .col-xxs-4 { width: calc(100% / 3); }
+    .col-xxs-5 { width: calc((5 * 100%) / 12); }
+    .col-xxs-6 { width: calc(100% / 2); }
+    .col-xxs-7 { width: calc((7 * 100%) / 12); }
+    .col-xxs-8 { width: calc((8 * 100%) / 12); }
+    .col-xxs-9 { width: calc((9 * 100%) / 12); }
+    .col-xxs-10 { width: calc((10 * 100%) / 12); }
+    .col-xxs-11 { width: calc((11 * 100%) / 12); }
+    .col-xxs-12 { width: 100%; }
+    
+   
+}
+
+
+
