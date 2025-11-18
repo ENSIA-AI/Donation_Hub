@@ -232,7 +232,7 @@ section {
 .nav-underline {
     position: absolute;
     bottom: 0;
-    height: 2px;
+    height: 3px;
     background-color: var(--third-color);
     transition: all 0.3s ease;
     left: 0;
@@ -512,6 +512,7 @@ section {
     font-family: var(--third-font);
     color: white;
     font-size: 1.8rem;
+    
 }
 
 .about-section-title {

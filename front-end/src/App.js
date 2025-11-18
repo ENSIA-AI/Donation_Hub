@@ -12,6 +12,8 @@ import ExploreOrganizations from "./pages/ExploreOrganizations";
 import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Announcements from "./pages/announcements";
+import AnnouncementPage from "./pages/announcements";
 function App() {
   return (
     <Router>
@@ -23,6 +25,7 @@ function App() {
           path="/ExploreOrganizations"
           element={<ExploreOrganizations />}
         />
+        <Route path="/announcements" element={< AnnouncementPage />} />
         <Route path="/OrgProfile" element={<OrgProfile />} />
          <Route path="/Login" element = {<Login />}/>
          <Route path="/Register" element = {<Register />}/>
