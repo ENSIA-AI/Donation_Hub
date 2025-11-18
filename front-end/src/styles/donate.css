@@ -1,3 +1,59 @@
+:root {
+    --primary-font: "Poppins";
+    --secondary-font: "Montserrat", sans-serif;
+    --third-font: "Lato";
+    --primary-color: #107361;
+    --secondary-color: #0F594C;
+    --third-color: #FEDA79;
+    --background-color: #F2F2F2;
+    --text-font-size: 1.6rem;
+    --section-title-font-size: 4rem;
+    --subtitle-font-size: 2.5rem;
+    --bottom-font-size: 1.3rem;
+    --card-border-radius:10px;
+    --button-border-radius: 20px;
+}
+* {
+ 
+  box-sizing: border-box;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+html {
+    font-size: 62.5%;
+}
+
+
+
+section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    font-family: var(--primary-font);
+    overflow-x: hidden;
+}
+.container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+
+
+
 
 /* ============ Donation Form Section =============== */
 
@@ -5,8 +61,9 @@
 {
     justify-content: center;
     display: flex;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0;
+    margin: 0;
+   
 }
 
 
@@ -199,43 +256,6 @@
 }
 
 /* ================donation form ends=============== */
-
-
-/* ================dashoboard================ */
-
-.my-content
-{
-    padding: 3rem;
-}
-
-
-
-.my-organizations
-{
-    
-    justify-content: center;
-    display: flex;
-    padding: 3rem;
-    
-}
-
-.my-column
-{
-    padding: 0rem 10rem;
-    justify-content: space-between;
-}
-
-.my-organizations th
-{
-    border: 1px solid #ccc;
-    border-radius: var(--card-border-radius);
-    
-}
-.my-row
-{
-    gap: 3rem;
-    justify-content: space-between;
-}
 
 
 

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../styles/donate.css";
 
 const Donate = () => {
-  // Form state
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -12,15 +11,12 @@ const Donate = () => {
     amount: "",
   });
 
-  // Error state
   const [errors, setErrors] = useState({});
 
-  // Handle input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Validation
   const validate = () => {
     let newErrors = {};
 
@@ -37,7 +33,6 @@ const Donate = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -46,7 +41,6 @@ const Donate = () => {
     }
   };
 
-  // Handle reset
   const handleReset = () => {
     setForm({
       first_name: "",
@@ -60,14 +54,15 @@ const Donate = () => {
   };
 
   return (
-    <section className="donation-section">
+    <div className="donation-section">
       <div className="donation-form-wrapper flex-row">
         {/* Organization Info */}
-        <div className="org-info col-xl-6 col-lg-12">
+        <div className="org-info col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
           <div className="org-card">
             <h1 className="org-name">Organization Name</h1>
             <p className="org-description">
               Every contribution, big or small, helps us build a stronger, more resilient
+              <br />
               community. See how your generosity makes a direct impact.
             </p>
 
@@ -89,7 +84,7 @@ const Donate = () => {
               <div className="Direct detail">
                 <h3 className="title">Direct Donation</h3>
                 <div className="detail-item">
-                  <strong>Our Office:</strong> 1er Mai ,Algiers
+                  <strong>Our Office:</strong> 1er Mai, Algiers
                 </div>
                 <div className="detail-item">
                   <strong>Office Hours:</strong> Sunday - Thursday, 9am - 3pm
@@ -100,10 +95,9 @@ const Donate = () => {
         </div>
 
         {/* Donation Form */}
-        <div className="donation-form col-xl-6 col-lg-12">
+        <div className="donation-form col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
           <div className="form-card">
             <form className="donation-form-content" onSubmit={handleSubmit} onReset={handleReset}>
-              {/* First Name */}
               <div className={`form-group ${errors.first_name ? "error" : ""}`}>
                 <label htmlFor="first-name" className="form-label">First Name*</label>
                 <input
@@ -118,7 +112,6 @@ const Donate = () => {
                 {errors.first_name && <div className="error-message">{errors.first_name}</div>}
               </div>
 
-              {/* Last Name */}
               <div className={`form-group ${errors.last_name ? "error" : ""}`}>
                 <label htmlFor="last-name" className="form-label">Last Name*</label>
                 <input
@@ -133,7 +126,6 @@ const Donate = () => {
                 {errors.last_name && <div className="error-message">{errors.last_name}</div>}
               </div>
 
-              {/* Phone */}
               <div className={`form-group ${errors.phone ? "error" : ""}`}>
                 <label htmlFor="phone" className="form-label">Phone Number*</label>
                 <input
@@ -148,7 +140,6 @@ const Donate = () => {
                 {errors.phone && <div className="error-message">{errors.phone}</div>}
               </div>
 
-              {/* Email */}
               <div className={`form-group ${errors.email ? "error" : ""}`}>
                 <label htmlFor="email" className="form-label">Email Address*</label>
                 <input
@@ -163,7 +154,6 @@ const Donate = () => {
                 {errors.email && <div className="error-message">{errors.email}</div>}
               </div>
 
-              {/* Donation Type */}
               <div className={`form-group ${errors.donation_type ? "error" : ""}`}>
                 <label htmlFor="donation-type" className="form-label">Donation Type</label>
                 <select
@@ -181,7 +171,6 @@ const Donate = () => {
                 {errors.donation_type && <div className="error-message">{errors.donation_type}</div>}
               </div>
 
-              {/* Amount */}
               <div className={`form-group ${errors.amount ? "error" : ""}`}>
                 <label htmlFor="amount" className="form-label">Donation Amount*</label>
                 <input
@@ -196,16 +185,15 @@ const Donate = () => {
                 {errors.amount && <div className="error-message">{errors.amount}</div>}
               </div>
 
-              {/* Buttons */}
-              <div className="form-btns flex-row">
-                <button type="reset" className="reset btns">Reset</button>
+              <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
                 <button type="submit" className="donate btns">Donate Now</button>
+                <button type="reset" className="reset btns">Reset</button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
