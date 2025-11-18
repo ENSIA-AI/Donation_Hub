@@ -1459,7 +1459,12 @@ a.org-contact-link {
     border-radius: 10px;
 
 }
-
+.error {
+    font-size: 1.4rem;
+    margin-top: -18px;
+    margin-bottom: 12px;
+    display: block;
+}
 .org-form-card {
     padding: 2rem 4rem;
 }
@@ -1591,7 +1596,11 @@ input:focus {
     color: white;
     transition: all .5s ease-in-out;
 }
-
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
 .org-contact-form-labels button:hover {
     transform: scale(1.05);
     box-shadow: rgba(241, 240, 238, 0.948) 0px 0px 10px;
