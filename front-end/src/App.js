@@ -24,10 +24,11 @@ function App() {
           element={<ExploreOrganizations />}
         />
         <Route path="/OrgProfile" element={<OrgProfile />} />
-         <Route path="/Login" element = {<Login />}/>
-         <Route path="/Register" element = {<Register />}/>
-        </Routes>
-       
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/org/:id" element={<OrgProfile />} />
+      </Routes>
+
       <Footer />
     </Router>
   );
