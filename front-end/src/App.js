@@ -8,12 +8,12 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import ExploreOrganizations from "./pages/ExploreOrganizations";
-import Donate from "./pages/Donate";
+import ExploreOrganizations from "./pages/exploreOrganizations";
+import Donate from "./pages/donate";
  import OrgProfile from "./pages/OrgProfile";
  import Login from "./pages/Login";
- import Register from "./pages/Register";
- import Announcements from "./pages/Announcements";
+ import Register from "./pages/register";
+ import Announcements from "./pages/announcements";
 
 function App() {
   return (
@@ -24,13 +24,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Contact" element={<Contact />} />
 
-        <Route path="/ExploreOrganizations" element={<ExploreOrganizations />}/>
+        <Route path="/exploreOrganizations" element={<ExploreOrganizations />}/>
           <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
          <Route path="/OrgProfile/:id" element={<OrgProfile />} />
 
-         <Route path="/Announcements" element={<Announcements />} />
-         <Route path="/Donate" element={<Donate />} /> 
+         <Route path="/announcements" element={<Announcements />} />
+         <Route path="/donate" element={<Donate />} /> 
        
       </Routes>
 

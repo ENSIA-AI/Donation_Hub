@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../styles/AnnouncementStyle.css'
+import '../styles/announcementStyle.css'
 const AnnouncemetCard = (props) => {
   return (
     <div className="announcement col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12">
