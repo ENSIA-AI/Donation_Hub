@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import '../styles/AnnouncementStyle.css'
 const AnnouncemetCard = (props) => {
   return (
-    <div className="announcement col-xl-4 col-lg-6 col-md-7  col-sm-10 col-xs-10 co-xxs-10">
+    <div className="announcement col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12">
       <div className="announcement-card ">
         <div className="announcement_Date">{props.announcementDate}</div>
         <div className="announcement-image">

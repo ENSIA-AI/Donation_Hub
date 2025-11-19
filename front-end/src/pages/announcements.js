@@ -4,7 +4,7 @@ import "../styles/AnnouncementStyle.css";
 
 import SeeMoreButton from "../components/SeeMoreButton";
 import AnnouncemetCard from "../components/AnnouncementCard";
-import Search from "../components/search";
+import Search from "../components/Search";
 
 
 const announcements = [
