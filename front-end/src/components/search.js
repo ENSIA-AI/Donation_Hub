@@ -12,7 +12,7 @@ const Search = () => {
           </div>
         </div>
 
-        <div className="filters ">
+        <div className="filters">
           <div className="region-filter filter">
             <i className="fa-solid fa-location-dot"></i>
             <select name="region" className="select-input">

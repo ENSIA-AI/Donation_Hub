@@ -187,15 +187,13 @@ body {
 
 .announcement {
     padding: 10px;
-    display: flex;
-    justify-content: center;
 }
 
 
 
 .announcement_Date {
     font-family: var(--third-font);
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding-bottom: 1rem;
     color: rgb(66, 66, 66);
 }
@@ -208,6 +206,8 @@ body {
     color: black;
 }
 
+
+
 .announcement_text_content {
     font-family: var(--third-font);
     font-size: 1.4rem;
@@ -219,6 +219,7 @@ body {
     margin-top: 4rem;
     justify-content: center;
     display: flex;
+    max-height: none;
     
 }
 
@@ -303,6 +304,70 @@ body {
 
 .read_moreAnnouncement_action:hover {
     transform: scale(1.05);
+}
+
+
+/* Overlay blur for background */
+.announcement-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Modal card */
+.announcement-modal-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  text-align: center;
+  position: relative;
+}
+
+.announcement-modal-card img.modal-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.announcement-modal-card h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+.announcement-modal-card p {
+  font-size: 1.6rem;
+  color: black;
+  white-space: pre-wrap;
+}
+
+.close-modal-btn {
+  background-color: var(--third-color);
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.close-modal-btn:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(255, 223, 94, 0.9) 0px 0px 10px;
 }
 
 @media (min-width: 1200px) {

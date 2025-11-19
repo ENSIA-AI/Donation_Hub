@@ -101,7 +101,7 @@ const announcements = [
     announcementImage: "assets/pic/education.jpeg",
     announcementTitle: "New School Supplies Drive",
     announcementDescription:
-      "We distributed over 500 school kits to children in the rural areas of Blida , We distributed over 500 school kits to children in the rural areas of Blida,...",
+      "We distributed over 500 school kits to children in the rural areas of Blida , We distributed over 500 school kits to children in the rural areas of Blida,... We distributed over 500 school kits to children in the rural areas of Blid",
     region: "algiers",
     category: "education",
 },
