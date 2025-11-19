@@ -1,110 +1,50 @@
-
-import React,{useState} from "react";
-import '../styles/styleOrganizations.css';
-import OrganizationCard from '../components/organizationCard';
+import React, { useState } from "react";
+import "../styles/styleOrganizations.css";
+import OrganizationCard from "../components/organizationCard";
 import SearchBar from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";
+import { Organizations } from "../data/Organizations";
 
 const ExploreOrganizations = () => {
-
-  const organizations = [
-    {
-      title: "Bright Future",
-      description: "Supports underprivileged students with school supplies, tutoring programs, and digital learning workshops",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Green Earth Initiative",
-      description: "Promotes environmental awareness through tree planting, recycling campaigns, and clean-up drives",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-        {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-    {
-      title: "Health for All",
-      description: "Provides free medical checkups and health education in underserved communities",
-      image: "assets/images/card-image.png"
-    },
-  
-    // Add more organizations as needed
-  ];
-  
-  const [visibleCount,setVisibleCount] = useState(8);
+  const [visibleCount, setVisibleCount] = useState(8);
   const loadMore = () => {
-      setVisibleCount(prev =>prev + 4);
-  }
+    setVisibleCount((prev) => prev + 4);
+  };
   return (
     <main>
       <div className="title">
         <h1>Verified organizations</h1>
         <p className="subtitle">
-          Discover trusted organizations making a real difference in our communities
+          Discover trusted organizations making a real difference in our
+          communities
         </p>
       </div>
 
       {/* Search bar */}
-        <SearchBar />
-    
-      
+      <SearchBar />
 
       {/* Cards rendered dynamically */}
       <div className="container">
         <div className="cards-container flex-row flex-row-center">
-          {organizations.slice(0,visibleCount).map((org, index) => (
+          {Organizations.slice(0, visibleCount).map((org, index) => (
             <OrganizationCard
-              key={index}
-              title={org.title}
+              key={org.id}
+              id={org.id}
+              title={org.name}
               description={org.description}
-              image={org.image}
+              image={org.heroImage}
             />
           ))}
         </div>
       </div>
-      {visibleCount< organizations.length ?(<SeeMoreButton onClick={loadMore}/>) :<span className="noMore"> <p>no more cards</p></span>}
-      
+      {visibleCount < Organizations.length ? (
+        <SeeMoreButton onClick={loadMore} />
+      ) : (
+        <span className="noMore">
+          {" "}
+          <p>no more cards</p>
+        </span>
+      )}
     </main>
   );
 };

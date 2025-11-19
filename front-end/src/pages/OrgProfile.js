@@ -9,151 +9,8 @@ import OrgImpact from "../components/OrgImpact";
 import OrgContactInfos from "../components/OrgContactInfos";
 import OrgDescription from "../components/OrgDescription";
 import OrgContactForm from "../components/OrgContactForm";
-// the see more button
-
-const OrgPosts = [
-  {
-    id: 1,
-    OrgPostDate: "November 5, 2025",
-    OrgPostImage: "assets/Images/post1.png",
-    OrgPostTitle: "New School Supplies Drive",
-    OrgPostDescription:
-      "We distributed over 500 school kits to children in the rural areas of Blida...",
-  },
-  {
-    id: 2,
-    OrgPostDate: "October 12, 2025",
-    OrgPostImage: "assets/Images/post2.png",
-    OrgPostTitle: "Food Donation Event",
-    OrgPostDescription:
-      "Thanks to your donations, we delivered food packages to 120 families...",
-  },
-  {
-    id: 3,
-    OrgPostDate: "November 7, 2025",
-    OrgPostImage: "assets/Images/post3.png",
-    OrgPostTitle: "Medical Supplies Drive",
-    OrgPostDescription:
-      "Our volunteers distributed essential medical kits across rural clinics...",
-  },
-  {
-    id: 4,
-    OrgPostDate: "October 22, 2025",
-    OrgPostImage: "assets/Images/post4.png",
-    OrgPostTitle: "Winter Clothes Campaign",
-    OrgPostDescription:
-      "Warm clothes were delivered to families affected by the cold season...",
-  },
-  {
-    id: 5,
-    OrgPostDate: "October 1, 2025",
-    OrgPostImage: "assets/Images/post5.png",
-    OrgPostTitle: "School Renovation",
-    OrgPostDescription:
-      "With your help, we renovated classrooms in a rural school in Blida...",
-  },
-  {
-    id: 6,
-    OrgPostDate: "October 10, 2025",
-    OrgPostImage: "assets/Images/post6.png",
-    OrgPostTitle: "Charity Marathon",
-    OrgPostDescription:
-      "Join our charity marathon to support children's education...",
-  },
-  {
-    id: 7,
-    OrgPostDate: "September 15, 2025",
-    OrgPostImage: "assets/Images/post7.jpg",
-    OrgPostTitle: "Health Awareness Workshop",
-    OrgPostDescription:
-      "We organized a workshop to raise awareness about early health checkups...",
-  },
-  {
-    id: 8,
-    OrgPostDate: "August 28, 2025",
-    OrgPostImage: "assets/Images/post8.jpg",
-    OrgPostTitle: "Orphans Support Day",
-    OrgPostDescription:
-      "A beautiful day spent with orphans, providing gifts and activities...",
-  },
-  {
-    id: 9,
-    OrgPostDate: "September 30, 2025",
-    OrgPostImage: "assets/Images/post9.jpg",
-    OrgPostTitle: "Blood Donation Campaign",
-    OrgPostDescription:
-      "Thank you to all the donors who participated in our blood donation event...",
-  },
-];
-
-const OrgProgramsData = [
-  {
-    title: "Education for All",
-    description:
-      "We provide school kits, uniforms, and scholarships to children in rural and low-income areas.",
-    image: "assets/Images/program1.png",
-  },
-  {
-    title: "Clean Water Initiative",
-    description:
-      "We build and maintain solar-powered wells in remote communities.",
-    image: "assets/Images/program2.png",
-  },
-  {
-    title: "Food Security",
-    description:
-      "Our Ramadan and winter drives deliver essential food baskets and clothing to families in need.",
-    image: "assets/Images/program4.png",
-  },
-];
-
-const OrgImpactData = [
-  { value: "1,200+", description: "people reached by health programs" },
-  {
-    value: "700+",
-    description: "children supported at school",
-    extraClass: "middle-impact-card",
-  },
-  { value: "400+", description: "families receive monthly assistance" },
-];
-
-const contactData = [
-  {
-    type: "Address",
-    icon: "fa-solid fa-location-dot",
-    content: "12 Rue Emir Abdelkader, Oran, Algeria",
-  },
-  { type: "Phone", icon: "fa-solid fa-phone", content: "+213 550 123 456" },
-  {
-    type: "Email",
-    icon: "fa-solid fa-envelope",
-    content: "hope@bridgedz.org",
-    isLink: true,
-    href: "mailto:hope@bridgedz.org",
-  },
-  {
-    type: "Media",
-    icon: "fa-solid fa-globe",
-    styleIcon: { marginTop: "1.2rem" },
-    styleTitle: { marginTop: "1rem" },
-    isMedia: true,
-    links: [
-      {
-        name: "Facebook",
-        icon: "assets/Images/facebook.png",
-        href: "https://web.facebook.com/",
-      },
-      {
-        name: "Instagram",
-        icon: "assets/Images/instagram.png",
-        href: "https://www.instagram.com/",
-      },
-      { name: "Website", icon: "assets/Images/web.png", href: "#" },
-    ],
-  },
-];
-
-const descriptionText = `HopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to education and healthcare in Algeria, Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem eaque quo blanditiis rerum commodendi aliquid eaque, in, dolor deserunt sit nam!`;
+import { useParams } from "react-router-dom";
+import { Organizations } from "../data/Organizations";
 
 const OrgProfile = () => {
   const [activeSection, setActiveSection] = useState("Posts");
@@ -161,9 +18,14 @@ const OrgProfile = () => {
   const [visiblePosts, setVisiblePosts] = useState(6);
   const [loaded, setLoaded] = useState(false);
   const navRefs = useRef({});
+  const { id } = useParams();
+  // Find the organization by ID
+  const org = Organizations.find((o) => o.id === Number(id));
+
   useEffect(() => {
     setLoaded(true);
   }, []);
+
   // handle see more button
   const handleSeeMore = () => {
     setVisiblePosts((prev) => prev + 3);
@@ -180,15 +42,19 @@ const OrgProfile = () => {
     }
   }, [activeSection]);
 
+  // Handle invalid ID
+  if (!org) {
+    return <h1>Organization not found</h1>;
+  }
   return (
     <>
       {/* Hero */}
       <OrgHero
-        OrgHeroImage="assets/Images/organization-hero-image.jpg"
-        OrgLogoImage="assets/Images/organization_logo.jpg"
-        OrgName="HopeBridge"
-        OrgSlogan="Supporting Communities with Care"
-        OrgType="Non-profit"
+        OrgHeroImage={org.heroImage}
+        OrgLogoImage={org.logoImage}
+        OrgName={org.name}
+        OrgSlogan={org.slogan}
+        OrgType={org.type}
       />
 
       {/* Navbar */}
@@ -216,30 +82,29 @@ const OrgProfile = () => {
       {/* Sections */}
       {activeSection === "Posts" && (
         <div className="org_container">
-          <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""} `}>
-            {OrgPosts.slice(0, visiblePosts).map((post) => (
+          <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
+            {org.posts.slice(0, visiblePosts).map((post) => (
               <OrgPostCard
                 key={post.id}
-                OrgPostDate={post.OrgPostDate}
-                OrgPostImage={post.OrgPostImage}
-                OrgPostTitle={post.OrgPostTitle}
-                OrgPostDescription={post.OrgPostDescription}
+                OrgPostDate={post.date}
+                OrgPostImage={post.image}
+                OrgPostTitle={post.title}
+                OrgPostDescription={post.description}
                 style={{ animationDelay: `${post.id * 0.1}s` }}
               />
             ))}
           </div>
-          {visiblePosts <= OrgPosts.length ? (
-            <div className="see_more_btn flex-row ">
+          {visiblePosts < org.posts.length ? (
+            <div className="see_more_btn flex-row">
               <div>
                 <i className="fa-solid fa-square-plus" />
               </div>
-
               <div>
                 <a
                   href="#"
                   className="see_more_link"
                   onClick={(e) => {
-                    e.preventDefault(); // this will the stop page from jumping , incase we did not use the button
+                    e.preventDefault();
                     handleSeeMore();
                   }}
                 >
@@ -256,36 +121,35 @@ const OrgProfile = () => {
       {activeSection === "About" && (
         <section id="About_Us">
           <div className="about-container">
-            <OrgDescription name="HopeBridge" description={descriptionText} />
+            <OrgDescription name={org.name} description={org.description} />
             <OrgMission
-              OrgMissionImg="assets/Images/mission-vision.png"
-              OrganizationMission="To provide lasting support to families in need through ethical giving and community-first programs. Every act of kindness helps restore hope and strengthens those facing difficult circumstances."
-              OrganizationVision="To create a society where compassion guides every action and no one is left behind. We strive to inspire collective responsibility and empower people to build brighter, more equitable futures."
+              OrgMissionImg={org.mission.image}
+              OrganizationMission={org.mission.mission}
+              OrganizationVision={org.mission.vision}
             />
           </div>
           <OrgValues
-            OrgValue1="Solidarity"
-            OrgValue2="Transparency"
-            OrgValue3="Empowerment"
-            OrgValue4="Compassion"
+            OrgValue1={org.values[0]}
+            OrgValue2={org.values[1]}
+            OrgValue3={org.values[2]}
+            OrgValue4={org.values[3]}
           />
-          <OrgPrograms programs={OrgProgramsData} />
-          <OrgImpact impacts={OrgImpactData} />
+          <OrgPrograms programs={org.programs} />
+          <OrgImpact impacts={org.impact} />
         </section>
       )}
 
       {activeSection === "Contact" && (
         <section id="org-contact-us">
           <div className="org_container org-contact-container">
-            <div className="org-contact-title ">
+            <div className="org-contact-title">
               <h1>Let's Make Something Great Together</h1>
             </div>
             <div className="org-contact-details flex-row">
-              {/* =======================form======================= */}
+              {/* Form */}
               <OrgContactForm />
-              {/* =============== end form =============== */}
               {/* Contact Info */}
-              <OrgContactInfos contactData={contactData} />
+              <OrgContactInfos contactData={org.contact} />
             </div>
           </div>
         </section>

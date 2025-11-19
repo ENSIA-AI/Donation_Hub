@@ -1,20 +1,30 @@
-import React from "react";
-import "../styles/OrganizationProfile.css";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import "../styles/OrganizationProfile.css";
 
 const OrgContactForm = () => {
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      message: "",
       requestType: "cash",
     },
+    mode: "onChange",
   });
-
   const onSubmit = (data) => {
     console.log("Form Data:", data);
+    setSubmitSuccess(true); // show success message
+    reset(); // reset form fields and errors
+    setTimeout(() => setSubmitSuccess(false), 5000); // hide message after 5s
   };
 
   return (
@@ -24,6 +34,11 @@ const OrgContactForm = () => {
           <h1>Request Support or Ask a Question</h1>
           <p>If you need assistance, please fill the form below.</p>
         </div>
+        {submitSuccess && (
+          <p className="success-message">
+            Your request has been submitted successfully!
+          </p>
+        )}
 
         <div className="org-contact-form-labels">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -174,7 +189,9 @@ const OrgContactForm = () => {
 
             {/* BUTTONS */}
             <div className="flex-row">
-              <button type="reset">Reset</button>
+              <button type="button" onClick={() => reset()}>
+                Reset
+              </button>
               <button type="submit">Submit</button>
             </div>
           </form>
