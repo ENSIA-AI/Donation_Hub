@@ -42,7 +42,7 @@ const ExploreOrganizations = () => {
       ) : (
         <span className="noMore">
           {" "}
-          <p>no more cards</p>
+          <p>no more organizations</p>
         </span>
       )}
     </main>
