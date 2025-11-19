@@ -13,7 +13,7 @@ import ExploreOrganizations from "./pages/ExploreOrganizations";
  import Login from "./pages/Login";
  import Register from "./pages/Register";
  import Announcements from "./pages/Announcements";
-// import Donate from "./pages/donate";
+import Donate from "./pages/donate";
 
 function App() {
   return (
@@ -27,11 +27,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
          <Route path="/OrgProfile/:id" element={<OrgProfile />} />
-         <Route path="/Announcements" element={<Announcements />} />
-       { 
-        
-        //<Route path="/donate" element={<Donate />} /> 
-       } 
+         <Route path="/Announcements" element={<Announcements />} /> 
+       <Route path="/donate" element={<Donate />} /> 
+       
       </Routes>
 
       <Footer />

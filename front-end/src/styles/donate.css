@@ -44,12 +44,12 @@ body {
     font-family: var(--primary-font);
     overflow-x: hidden;
 }
-.container {
+/* .containerDon {
     margin-left: 4rem;
     margin-right: 4rem;
     padding-left: 4rem;
     padding-right: 4rem;
-}
+} */
 
 
 
@@ -443,7 +443,7 @@ body {
     }
 
     html {
-        font-size: 8px;
+        font-size: 50%;
     }
 
 
@@ -505,7 +505,7 @@ body {
     }
 
     html {
-        font-size: 6px;
+        font-size: 45%;
     }
 
     
