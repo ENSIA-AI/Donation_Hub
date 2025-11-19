@@ -70,19 +70,19 @@ const Contact = () => {
           </p>
 
           <div className="info-item">
-            <i className="fas fa-envelope"></i> contact@donifidz.org
+            <i className="fas fa-envelope"></i> contact@donifydz.com
           </div>
           <div className="info-item">
-            <i className="fas fa-phone"></i> +213 555 123 456
+            <i className="fas fa-phone"></i> 0 799 999 999
           </div>
           <div className="info-item">
             <i className="fas fa-map-marker-alt"></i> Algiers, Algeria
           </div>
 
           <div className="socials">
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/Donify_DZ" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a>
           </div>
         </div>
 
