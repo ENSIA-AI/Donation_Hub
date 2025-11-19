@@ -14,7 +14,7 @@ import Donate from "./pages/donate";
  import OrgProfile from "./pages/OrgProfile";
  import Login from "./pages/Login";
  import Register from "./pages/Register";
- import Announcements from "./pages/Announcements";
+ import Announcements from "./pages/announcements";
 // import Donate from "./pages/donate";
 
 function App() {

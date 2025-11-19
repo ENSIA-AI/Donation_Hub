@@ -44,7 +44,7 @@ body {
 .containerAnn {
     max-width: 1200px;
     margin: auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 
@@ -96,7 +96,7 @@ body {
 
 .search-input
 {
-    width: 34rem;
+    width: 30rem;
     height: 3rem;
     border: 1px solid rgb(213, 204, 204);
     outline: none;
@@ -174,8 +174,10 @@ body {
 
 /* =======announsements section============ */
 
+
 .announcement-card {
     padding: 1.5rem;
+    max-width: 50rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -185,6 +187,8 @@ body {
 
 .announcement {
     padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -214,6 +218,7 @@ body {
 .announcements {
     margin-top: 4rem;
     justify-content: center;
+    display: flex;
     
 }
 
