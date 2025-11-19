@@ -228,11 +228,7 @@ body {
     padding: 2rem 0rem;
 }
 
-<<<<<<< HEAD
 .donate_btns
-=======
-/* .btns
->>>>>>> 61fa24e1cbe80eef600812c5736519b204b34982
 {
     border-radius: var(--button-border-radius);
     padding: 0.5rem;
@@ -242,13 +238,9 @@ body {
     width:30%;
     font-size: var(--text-font-size);
     transition: all 0.5s ease;
-} */
 
-<<<<<<< HEAD
+}
 .donate_btns:hover
-=======
-/* .btns:hover
->>>>>>> 61fa24e1cbe80eef600812c5736519b204b34982
 {
     transform: translateY(-3px);
     box-shadow: 0 2px 7px rgba(16, 115, 97, 0.3);
