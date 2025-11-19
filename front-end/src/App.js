@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 
 import ExploreOrganizations from "./pages/exploreOrganizations";
-import donate from "./pages/donate";
+import Donate from "./pages/donate";
 
 import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
@@ -35,7 +35,7 @@ function App() {
         <Route path="/OrgProfile/:id" element={<OrgProfile />} />
 
         <Route path="/announcements" element={<Announcements />} />
-        <Route path="/donate" element={<donate />} />
+        <Route path="/donate" element={<Donate />} />
       </Routes>
 
       <Footer />
