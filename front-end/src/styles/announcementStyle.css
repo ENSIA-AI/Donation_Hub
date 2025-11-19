@@ -41,10 +41,10 @@ body {
     overflow-x: hidden;
 }
 
-.container {
+.containerAnn {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    margin: auto;
+    padding: 0 1rem;
 }
 
 
@@ -53,17 +53,18 @@ body {
 {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0 2rem;
     margin: 0 auto;
+    padding-bottom:2em ;
 }
 
 .page-title
 {
-
+    padding-top: 1em;
     font-size: var(--section-title-font-size);
     font-family: var(--primary-font);
     color: var(--secondary-color);
@@ -72,8 +73,8 @@ body {
 .page-description
 {
     font-size: var(--text-font-size);
-    font-weight: 600;
     font-family: var(--third-font);
+
 }
 
 
@@ -95,7 +96,7 @@ body {
 
 .search-input
 {
-    width: 34rem;
+    width: 30rem;
     height: 3rem;
     border: 1px solid rgb(213, 204, 204);
     outline: none;
@@ -173,8 +174,10 @@ body {
 
 /* =======announsements section============ */
 
+
 .announcement-card {
     padding: 1.5rem;
+    max-width: 50rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -184,7 +187,8 @@ body {
 
 .announcement {
     padding: 10px;
-
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -214,6 +218,7 @@ body {
 .announcements {
     margin-top: 4rem;
     justify-content: center;
+    display: flex;
     
 }
 
@@ -231,6 +236,7 @@ body {
 
 .announcement_actions {
     margin-top: 10px;
+
 }
 
 .DonnateAnnouncement_action {
@@ -243,6 +249,10 @@ body {
 .read_moreAnnouncement_action {
     
     padding: .8rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.3em;
     transition: all .5s ease-in-out;
 }
 
@@ -464,13 +474,10 @@ body {
         width: 100%;
     }
 
-    .value_card {
-        font-size: 14px;
-        width: 150px;
-    }
+   
 
     html {
-        font-size: 8px;
+        font-size: 50%;
     }
 
 
@@ -526,13 +533,10 @@ body {
         width: 100%;
     }
 
-    .value_card {
-        font-size: 13px;
-        max-width: 238px;
-    }
+
 
     html {
-        font-size: 6px;
+        font-size: 45%;
     }
 
     
@@ -777,7 +781,7 @@ body {
     }
 
     html {
-        font-size: 8px;
+        font-size: 50%;
     }
 
 
@@ -839,7 +843,7 @@ body {
     }
 
     html {
-        font-size: 6px;
+        font-size: 45%;
     }
 
     
@@ -907,14 +911,14 @@ body {
 
 @media (max-width: 575px) {
     html { font-size: 10px; }
-    .page-title { font-size: 2.2rem; }
-    .page-description { font-size: 1.4rem; }
+    .page-title { font-size: 2.3rem; }
+    .page-description { font-size: 1.5rem; }
     .announcements {
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
     }
-    .container {
+    .containerAnn {
         margin-left: 2rem;
         margin-right: 2rem;
         padding-left: 2rem;
@@ -923,7 +927,7 @@ body {
 }
 
 @media (max-width: 463px) {
-    html { font-size: 9px; }
+    html { font-size: 55%; }
 }
 
 

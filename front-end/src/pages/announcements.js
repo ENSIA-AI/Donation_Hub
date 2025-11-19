@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "../styles/AnnouncementStyle.css";
+
+import "../styles/announcementStyle.css";
+
 
 import AnnouncemetCard from "../components/AnnouncementCard";
 import Search from "../components/search";
@@ -93,6 +95,16 @@ const announcements = [
     region: "algiers",
     category: "education",
   },
+  {
+  id: 9,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+},
 ];
 
 const Announcements = () => {
@@ -104,7 +116,7 @@ const Announcements = () => {
     <>
       {/* ===== HEADER ===== */}
       <section className="header-section">
-        <div className="container">
+        <div className="containerAnn">
           <div className="heroo col-xl-12 col-lg-9 col-md-9 col-sm-9 col-xs-10 col-xxs-12">
             <h1 className="page-title">Active Campaigns & Announcements</h1>
             <p className="page-description">
@@ -119,7 +131,7 @@ const Announcements = () => {
       <Search />
 
       {/* ===== ANNOUNCEMENT CARDS ===== */}
-      <div className="container">
+      <div className="containerAnn">
         <div className="announcements flex-row">
           {announcements.slice(0, visibleCount).map((announcement) => (
             <AnnouncemetCard
@@ -133,7 +145,7 @@ const Announcements = () => {
         </div>
 
         {/* ===== SEE MORE BUTTON ===== */}
-        <SeeMoreButton />
+        <SeeMoreButton  onClick={loadMore}/>
       </div>
     </>
   );

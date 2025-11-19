@@ -1,18 +1,18 @@
 import React from "react";
-import "../styles/AnnouncementStyle.css";
+import "../styles/announcementStyle.css";
 
 const Search = () => {
   return (
     <section className="search-and-filter">
       <div className="container flex-row col-lg-5  col-md-4  col-sm-4 col-xs-4 col-xxs-3">
-        <div className="search flex-row">
+        <div className="search ">
           <div className="search-box">
             <i className="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search" className="search-input" />
           </div>
         </div>
 
-        <div className="filters flex-row">
+        <div className="filters ">
           <div className="region-filter filter">
             <i className="fa-solid fa-location-dot"></i>
             <select name="region" className="select-input">
