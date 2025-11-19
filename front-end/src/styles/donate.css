@@ -228,7 +228,7 @@ body {
     padding: 2rem 0rem;
 }
 
-.btns
+.donate_btns
 {
     border-radius: var(--button-border-radius);
     padding: 0.5rem;
@@ -240,7 +240,7 @@ body {
     transition: all 0.5s ease;
 }
 
-.btns:hover
+.donate_btns:hover
 {
     transform: translateY(-3px);
     box-shadow: 0 2px 7px rgba(16, 115, 97, 0.3);

@@ -23,16 +23,16 @@ const Footer = () => {
         </div>
 
         <div className="social_media">
-          <a id="facebook" href="#">
+          <a id="facebook" href="https://www.facebook.com/Donify_DZ" target="_blank" rel="noopener noreferrer">
             <i className="fa-brands fa-facebook-f"></i>
           </a>
-          <a id="instagram" href="#">
+          <a id="instagram" href="https://www.instagram.com/Donify_DZ" target="_blank" rel="noopener noreferrer">
             <i className="fa-brands fa-instagram"></i>
           </a>
-          <a id="linkedin" href="#">
+          <a id="linkedin" href="https://www.linkedin.com/company/Donify_DZ" target="_blank" rel="noopener noreferrer">
             <i className="fa-brands fa-linkedin-in"></i>
           </a>
-          <a id="email-icon" href="#">
+          <a id="email-icon" href="mailto:contact@donifydz.com" targt="_blank" rel="noopener noreferrer">
             <i className="fa-solid fa-envelope"></i>
           </a>
         </div>

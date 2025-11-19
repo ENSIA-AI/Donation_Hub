@@ -186,8 +186,8 @@ const Donate = () => {
               </div>
 
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                <button type="submit" className="donate btns">Donate Now</button>
-                <button type="reset" className="reset btns">Reset</button>
+                <button type="submit" className="donate_btns">Donate Now</button>
+                <button type="reset" className="reset_btns">Reset</button>
               </div>
             </form>
           </div>
