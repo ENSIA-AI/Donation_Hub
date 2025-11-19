@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import "../styles/AnnouncementStyle.css";
+import "../styles/announcementStyle.css";
 
 const AnnouncemetCard = ({
   announcementDate,
