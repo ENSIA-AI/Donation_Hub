@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/announcementStyle.css";
+import "../styles/AnnouncementStyle.css";
 
 const Search = () => {
   return (

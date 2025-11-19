@@ -10,12 +10,11 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import ExploreOrganizations from "./pages/ExploreOrganizations";
 import Donate from "./pages/Donate";
-
  import OrgProfile from "./pages/OrgProfile";
  import Login from "./pages/Login";
  import Register from "./pages/Register";
  import Announcements from "./pages/Announcements";
-import Donate from "./pages/Donate";
+
 
 function App() {
   return (
