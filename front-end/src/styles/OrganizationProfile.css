@@ -119,9 +119,7 @@ section {
     margin: 1rem 2rem;
 }
 
-/* .organization_profile_description.flex-row :not(.organization_profile_description.flex-row > .organization-xxs_badges) {
-    justify-content: flex-start;
-} */
+
 
 .organization_identity h1 {
     font-size: 4rem;
@@ -634,10 +632,9 @@ section {
     gap: 3rem;
 }
 
-
 .Impact_title {
     padding: 25px;
-    margin-bottom: 7rem;
+    margin-bottom: 4rem;
     margin-top: 6rem;
 }
 .impact {
