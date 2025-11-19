@@ -189,10 +189,12 @@ body {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
 }
 
-.form-group
-{
-    display: flex;
-    flex-direction: column;
+
+.form-group,
+.form-group.error {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
 }
 
 .donation-form-content
@@ -265,6 +267,16 @@ body {
     box-shadow: 0 0 0 3px rgba(16, 115, 97, 0.1);
 
 }
+
+.error-message {
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 0.3rem;
+  display: block; 
+}
+
+
+
 
 /* ================donation form ends=============== */
 

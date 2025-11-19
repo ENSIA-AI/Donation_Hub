@@ -162,8 +162,9 @@ const Donate = () => {
                   className="form-input form-select"
                   value={form.donation_type}
                   onChange={handleChange}
+                  placeholder="Select Donation Type"
                 >
-                  <option value="">Select Donation Type</option>
+                  
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
