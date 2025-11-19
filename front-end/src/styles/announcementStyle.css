@@ -914,8 +914,8 @@ body {
 
 @media (max-width: 575px) {
     html { font-size: 10px; }
-    .page-title { font-size: 2.2rem; }
-    .page-description { font-size: 1.4rem; }
+    .page-title { font-size: 2.3rem; }
+    .page-description { font-size: 1.5rem; }
     .announcements {
         flex-direction: column;
         align-items: center;
