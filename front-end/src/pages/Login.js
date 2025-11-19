@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/register.css'
+import '../styles/Register.css'
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 

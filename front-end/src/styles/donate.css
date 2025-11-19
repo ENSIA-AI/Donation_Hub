@@ -229,7 +229,7 @@ body {
 .donate_btns
 {
     border-radius: var(--button-border-radius);
-    padding: 0.5rem;
+    padding: 1rem;
     color: black;
     background-color: var(--third-color);
     border: none;
@@ -241,7 +241,7 @@ body {
 .reset_btns
 {
     border-radius: var(--button-border-radius);
-    padding: 0.5rem;
+    padding: 1rem;
     color: black;
     background-color: var(--third-color);
     border: none;

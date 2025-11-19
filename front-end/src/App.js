@@ -15,7 +15,6 @@ import Donate from "./pages/Donate";
  import Register from "./pages/Register";
  import Announcements from "./pages/Announcements";
 
-
 function App() {
   return (
     <Router>
