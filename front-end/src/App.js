@@ -9,11 +9,12 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import ExploreOrganizations from "./pages/ExploreOrganizations";
+import Donate from "./pages/Donate";
  import OrgProfile from "./pages/OrgProfile";
  import Login from "./pages/Login";
  import Register from "./pages/Register";
  import Announcements from "./pages/Announcements";
-// import Donate from "./pages/donate";
+
 
 function App() {
   return (
@@ -23,15 +24,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/exploreOrganizations" element={<ExploreOrganizations />}/>
+
+        <Route path="/ExploreOrganizations" element={<ExploreOrganizations />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
          <Route path="/OrgProfile/:id" element={<OrgProfile />} />
+
          <Route path="/Announcements" element={<Announcements />} />
-       { 
-        
-        //<Route path="/donate" element={<Donate />} /> 
-       } 
+         <Route path="/Donate" element={<Donate />} /> 
+       
       </Routes>
 
       <Footer />
@@ -40,3 +41,4 @@ function App() {
 }
 
 export default App;
+

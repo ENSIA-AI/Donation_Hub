@@ -95,6 +95,16 @@ const announcements = [
     region: "algiers",
     category: "education",
   },
+  {
+  id: 9,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+},
 ];
 
 const Announcements = () => {
@@ -135,7 +145,7 @@ const Announcements = () => {
         </div>
 
         {/* ===== SEE MORE BUTTON ===== */}
-        <SeeMoreButton />
+        <SeeMoreButton  onClick={loadMore}/>
       </div>
     </>
   );
