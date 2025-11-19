@@ -41,7 +41,7 @@ body {
     overflow-x: hidden;
 }
 
-.container {
+.containerAnn {
     max-width: 1200px;
     margin: auto;
     padding: 0 2rem;
@@ -472,7 +472,7 @@ body {
    
 
     html {
-        font-size: 8px;
+        font-size: 50%;
     }
 
 
@@ -531,7 +531,7 @@ body {
 
 
     html {
-        font-size: 6px;
+        font-size: 45%;
     }
 
     
@@ -776,7 +776,7 @@ body {
     }
 
     html {
-        font-size: 8px;
+        font-size: 50%;
     }
 
 
@@ -838,7 +838,7 @@ body {
     }
 
     html {
-        font-size: 6px;
+        font-size: 45%;
     }
 
     
@@ -913,7 +913,7 @@ body {
         align-items: center;
         gap: 1.5rem;
     }
-    .container {
+    .containerAnn {
         margin-left: 2rem;
         margin-right: 2rem;
         padding-left: 2rem;
@@ -922,7 +922,7 @@ body {
 }
 
 @media (max-width: 463px) {
-    html { font-size: 9px; }
+    html { font-size: 55%; }
 }
 
 

@@ -106,7 +106,7 @@ const Announcements = () => {
     <>
       {/* ===== HEADER ===== */}
       <section className="header-section">
-        <div className="container">
+        <div className="containerAnn">
           <div className="heroo col-xl-12 col-lg-9 col-md-9 col-sm-9 col-xs-10 col-xxs-12">
             <h1 className="page-title">Active Campaigns & Announcements</h1>
             <p className="page-description">
@@ -121,7 +121,7 @@ const Announcements = () => {
       <Search />
 
       {/* ===== ANNOUNCEMENT CARDS ===== */}
-      <div className="container">
+      <div className="containerAnn">
         <div className="announcements flex-row">
           {announcements.slice(0, visibleCount).map((announcement) => (
             <AnnouncemetCard
