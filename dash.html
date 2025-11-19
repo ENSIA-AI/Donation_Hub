@@ -1,80 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="assets/CSS/anstyle.css">
-         <link rel="stylesheet" href="assets/CSS/admin_stat.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <title>
-            Admin Dashboard
-    </title>
-    </head>
 
-    <body>
-       <header>
-        <div class="admin_dashboard fluid_container flex-row">
-            <div class="bash_sidebar flex-row col-xl-2 col-lg-2-5 col-md-2-5 d_none_sm d_none_xs d_none_xxs ">
-                <div class="website_info flex-row  ">
-                    <img src="assets/pictures/logo_nav.png" class="website_logo_img full_image" alt="website logo image">
-                </div>
-                <div class="dash_sidebar_elements ">
-                    <ul class="sidebar_elements flex-row">
-                        <li class="sidebar_element flex-row selected  ">
-                            <i class="fa-solid fa-house"></i>
-                            <p>Dashboard</p>
-                        </li>
-                        <li class="sidebar_element flex-row">
-                            <i class="fa-solid fa-building-ngo"></i>
-                            <p>Organizations</p>
-                        </li>
-                        <li class="sidebar_element flex-row">
-                            <i class="fa-solid fa-bullhorn"></i>
-                            <p>Compains</p>
-                        </li>
-                        <li class="sidebar_element flex-row">
-                            <i class="fa-solid fa-gear"></i>
-                            <p>Settings</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="selected_sb_element"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/CSS/admin_stat.css">
+  <link rel="stylesheet" href="assets/CSS/orgdash.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_double_arrow_right" />
+</head>
 
-            </div>
+<body>
+  <div class="admin_dashboard flex-row">
 
+    <!-- ==================== Sidebar ==================== -->
+    <aside class="bash_sidebar flex-column">
+      <div class="website_info flex-row">
+        <img src="assets/pictures/logo_nav.png" class="website_logo_img full_image" alt="website logo image">
+      </div>
+      <ul class="sidebar_elements flex-column">
+        <li class="sidebar_element flex-row selected">
+          <i class="fa-solid fa-house"></i>
+          <a href="admin_dashboard_stat.html">Dashboard</a>
+        </li>
+        <li class="sidebar_element flex-row">
+          <i class="fa-solid fa-building-ngo"></i>
+          <a href="#">Organizations</a>
+        </li>
+        <li class="sidebar_element flex-row">
+          <i class="fa-solid fa-bullhorn"></i>
+          <a href="adminDashCompain.html">Compains</a>
+        </li>
+        <li class="sidebar_element flex-row">
+          <i class="fa-solid fa-gear"></i>
+          <a href="#">Settings</a>
+        </li>
+      </ul>
+      <div class="selected_sb_element"></div>
+    </aside>
 
-            <div
-                class="fluid_container  admin_header_content col-xl-10 col-lg-9-5 col-md-9-5 col-sm-12 col-xs-12 col-xxs-12">
-                <div class=" flex-row admin-info">
-                    <div class="dash_humburger d_none_xl d_none_lg d_none_md col-sm-8 col-xs-6 col-xxs-5  ">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
-                    <div class="admin_username col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xxs-5">
-                        <h2>Admin_name</h2>
-                    </div>
-                    <div class="admin_profile_image  col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-2 col-xxs-2 ">
-                        <img src="assets/Images/admine_image.jpg" class="admin_profile_img full_image"
-                            alt="admin profile image">
-                    </div>
-                </div>
-                <!-- ==========================================PUT HERE YOUR CONTENT =========================================== -->
-                <div class="my-content">
-                    <!-- ====esarch bar===== -->
-                 <div class="search-and-filter ">
-                  <div class="container  flex-row col-xl-7  col-md-12 col-sm-4 col-xs-4 col-xxs-3">
-                    <div class="search ">
+    <!-- ==================== Main Content ==================== -->
+    <div class="dashboard_content flex-column">
+
+      <!-- ===== Top Navbar (sticky) ===== -->
+      <div class="dashboard_topbar flex-row">
+        <div class="dash_humburger d_none_xl d_none_lg d_none_md col-sm-8 col-xs-6 col-xxs-5">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="admin_username col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xxs-5">
+          <h2>Admin_name</h2>
+        </div>
+        <div class="admin_profile_image col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-2 col-xxs-2">
+          <img src="assets/Images/admine_image.jpg" class="admin_profile_img full_image" alt="admin profile image">
+        </div>
+      </div>
+
+      <!-- ===== Page Content ===== -->
+      <div class="dashboard_main">
+
+        <div class="content-container">
+          <!-------------------------search bar------------------------------------------>
+           <section class="search-and-filter">
+                <div class="container flex-row col-lg-5  col-md-4  col-sm-4 col-xs-4 col-xxs-3">
+                    <div class="search flex-row">
                         <div class="search-box">
                             <i class="fa-solid fa-magnifying-glass"></i>
                              <input type="text" placeholder="Search" class="search-input">
                         </div>     
                     </div>
 
-                    <div class="filters">
+                    <div class="filters flex-row">
                         <div class="region-filter filter">
                             <i class="fa-solid fa-location-dot"></i>
                             <select name="region" class="select-input">
@@ -96,40 +96,106 @@
                         </div>
                     </div>
                 </div>
+            </section>
+
+
+
+
+          <!------------table----------->
+          <div class="container">
+            <div class="table">
+              <table class="org-table">
+                <tr>
+                  <td>
+                    <div class="title">
+                      <h5>Organization</h5>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="title">
+                      <h5>Status</h5>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="title">
+                      <h5>Action</h5>
+                    </div>
+                  </td>
+                  
+                  
+                </tr>
+                <tbody>
+                  <tr class="row">
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    
+
+                  </tr>
+                  <tr class="row">
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    
+                  </tr>
+                  <tr class="row">
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    
+                  </tr>
+                  <tr class="row">
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    
+                  </tr>
+                  <tr class="row">
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    
+                  </tr>
+                  <tr class="row">
+                    <td class="column"></td>
+                    <td class="column"></td>
+                    <td class="column"></td>
+                   
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <!-- ======table====== -->
-                    <!-- <div class="organizations-table"> -->
-                    <!-- <table class="my-organizations"> -->
-                        <tr class="my-row">
-                            <th class="my-column">
-                                <div class="title">
-                                    <h5>Name</h5>
-                                </div>
-                            </th>
-                            <th class="my-column">
-                                <div class="title">
-                                    <h5>Status</h5>
-                                </div>
-                            </th>
-                            <th class="my-column">
-                                <div class="title">
-                                    <h5>Action</h5>
-                                </div>
-                            </th>
-                        </tr>
-                    </table>
-                 <!-- </div> -->
-                </div> 
-                
-                <!-- =======================================STOP!! YOU WILL BE OUT OF YOUR SCOPE :> ======================================== -->
-
+            <div class="btncontainer">
+              <div class="button ">
+                <button class="see-all-button">
+                  <img src="assets/icons/double_arrow_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                  <p>see all organization</p>
+                </button>
+              </div>
             </div>
+          </div>
+
+          
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <script>
+    document.querySelectorAll('.sidebar_element').forEach(item => {
+      item.addEventListener('click', () => {
+        // Remove 'selected' class from all sidebar items
+        document.querySelectorAll('.sidebar_element').forEach(i => i.classList.remove('selected'));
+        // Add 'selected' class to the clicked item
+        item.classList.add('selected');
+      });
+    });
+  </script>
 
 
-    </header>    
-         
 
+  <script src="assets/scripts/scriptsOrg.js"></script>
+</body>
 
-        
-    </body>
 </html>
