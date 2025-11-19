@@ -100,7 +100,8 @@ const announcements = [
     announcementImage: "assets/pic/education.jpeg",
     announcementTitle: "New School Supplies Drive",
     announcementDescription:
-      "We distributed over 500 school kits to children in the rural areas of Blida , We distributed over 500 school kits to children in the rural areas of Blida,...",
+      "We distributed over 500 school kits to children in the rural areas of Blida ..",
+
     region: "algiers",
     category: "education",
   },
@@ -108,7 +109,7 @@ const announcements = [
 
 const Announcements = () => {
   const loadMore = () => {
-    setVisibleCount((prev) => prev + 3); // show 3 more cards
+    setVisibleCount((prev) => prev + 3); // show 3 more cards when we need more
   };
   const [visibleCount, setVisibleCount] = useState(6);
   return (
@@ -142,7 +143,7 @@ const Announcements = () => {
           ))}
         </div>
 
-        {/* ===== SEE MORE BUTTON / NO MORE POSTS ===== */}
+        {/* ===== SEE MORE BUTTON ===== */}
         {visibleCount < announcements.length ? (
           <SeeMoreButton onClick={loadMore} />
         ) : (
