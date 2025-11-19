@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/ExploreOrganizations" element={<ExploreOrganizations />}/>
+        <Route path="/exploreOrganizations" element={<ExploreOrganizations />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
          <Route path="/OrgProfile/:id" element={<OrgProfile />} />
