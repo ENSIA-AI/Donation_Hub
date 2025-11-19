@@ -53,17 +53,18 @@ body {
 {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0 2rem;
     margin: 0 auto;
+    padding-bottom:2em ;
 }
 
 .page-title
 {
-
+    padding-top: 1em;
     font-size: var(--section-title-font-size);
     font-family: var(--primary-font);
     color: var(--secondary-color);
@@ -72,8 +73,8 @@ body {
 .page-description
 {
     font-size: var(--text-font-size);
-    font-weight: 600;
     font-family: var(--third-font);
+
 }
 
 
@@ -230,6 +231,7 @@ body {
 
 .announcement_actions {
     margin-top: 10px;
+
 }
 
 .DonnateAnnouncement_action {
@@ -242,6 +244,10 @@ body {
 .read_moreAnnouncement_action {
     
     padding: .8rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.3em;
     transition: all .5s ease-in-out;
 }
 
