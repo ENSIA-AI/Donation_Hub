@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/styleOrganizations.css";
-import OrganizationCard from "../components/OrganizationCard";
+import OrganizationCard from "../components/organizationCard";
 import SearchBar from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";
 import { Organizations } from "../data/Organizations";
@@ -42,7 +42,7 @@ const ExploreOrganizations = () => {
       ) : (
         <span className="noMore">
           {" "}
-          <p>no more cards</p>
+          <p>no more organizations</p>
         </span>
       )}
     </main>

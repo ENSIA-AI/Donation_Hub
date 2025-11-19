@@ -10,11 +10,11 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 
 import ExploreOrganizations from "./pages/exploreOrganizations";
-import donate from "./pages/donate";
+import Donate from "./pages/donate";
 
 import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
-import register from "./pages/register";
+import Register from "./pages/register";
 import Announcements from "./pages/announcements";
 
 function App() {
@@ -30,12 +30,12 @@ function App() {
           path="/exploreOrganizations"
           element={<ExploreOrganizations />}
         />
-        <Route path="/login" element={<login />} />
-        <Route path="/register" element={<register />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/OrgProfile/:id" element={<OrgProfile />} />
 
         <Route path="/announcements" element={<Announcements />} />
-        <Route path="/donate" element={<donate />} />
+        <Route path="/donate" element={<Donate />} />
       </Routes>
 
       <Footer />
