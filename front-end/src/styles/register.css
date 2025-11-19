@@ -398,7 +398,7 @@ input[type="file"]::file-selector-button {
     }
 
     html {
-        font-size: 8px;
+        font-size: 50%;
     }
     .log-container{
         flex-direction: row;
@@ -543,7 +543,7 @@ input[type="file"]::file-selector-button {
     }
 
     html {
-        font-size: 40%;
+        font-size: 45%;
     }
  .log-container{
     margin-top: 2em;
@@ -619,7 +619,7 @@ input[type="file"]::file-selector-button {
 
   
     html {
-        font-size: 6px;
+        font-size: 45%;
     }
 
 .log-container{
