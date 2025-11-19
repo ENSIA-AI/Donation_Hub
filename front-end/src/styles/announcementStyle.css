@@ -469,10 +469,7 @@ body {
         width: 100%;
     }
 
-    .value_card {
-        font-size: 14px;
-        width: 150px;
-    }
+   
 
     html {
         font-size: 8px;
@@ -531,10 +528,7 @@ body {
         width: 100%;
     }
 
-    .value_card {
-        font-size: 13px;
-        max-width: 238px;
-    }
+
 
     html {
         font-size: 6px;
