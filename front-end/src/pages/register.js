@@ -64,13 +64,13 @@ const {
               type="text"
               id="name-of-organization"
               placeholder="Name of organization"
-              {...register("orgName", { required: true, maxLength: 20 })}
+              {...register("orgName", { required:"Organization name is required", maxLength: 20 })}
             />
             {errors.orgName && <span>{errors.orgName.message}</span>}
           </div>
           <div className=" placeholder">
             <input type="text" id="phone-number" placeholder="Phone number" 
-            {...register("phoneNum", { required: true,   pattern: {
+            {...register("phoneNum", { required: "Phone number is required",   pattern: {
            value: /^(05|06|07)[0-9]{8}$/,
            message: "Invalid phone number format",},})}
             />
@@ -78,7 +78,7 @@ const {
           </div>
           <div className=" placeholder">
             <input type="email" id="email" placeholder="Email" 
-            {...register("email", { required: true,   pattern: {
+            {...register("email", { required: "Email is required",   pattern: {
            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
            message: "Invalid email format",},})}
            />
@@ -116,7 +116,7 @@ const {
           </div>
           <div className=" placeholder">
             <input type="password" placeholder="Password" {...register("password",
-            { required : true ,
+            { required :"Password is required",
               pattern :{
                 value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                 message:"Must contain 8+ chars, uppercase, lowercase and number",
