@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/styleOrganizations.css'
+import '../styles/StyleOrganizations.css'
 const SearchBar = () => {
   const [showFilters, setShowFilters] = useState(false);
 
