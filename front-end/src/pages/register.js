@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 
 const Register = ()=>{
+  const [submiteSuccess, setSubmitSuccess] = useState(false);
 const {
   register,
   handleSubmit,
   watch,
+  reset,
   formState: { errors },
-} = useForm();
+} = useForm(
+  {
+    defaultValues:{
+      orgName: "",
+      phoneNum: "",
+      email: "",
+      organizationType: "health",
+      region: "algeries",
+      description: "",
+      password: "",
+      confirmPassword: "",
+      proof: null,
+    },
+    mode: "onChange",
+  }
+);
    
    const onSubmit = (data) => {
   console.log("form Data:", data);
+  setSubmitSuccess(true);
+  reset();
+  setTimeout(() => setSubmitSuccess(false), 4000);
 }
  return(
    <main>
@@ -35,6 +55,9 @@ const {
         <div className="title ">
           <h2>register</h2>
         </div>
+        {
+          submiteSuccess && (<p className="success-message">  Registration submitted successfully!</p>)
+        }
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className=" placeholder">
             <input

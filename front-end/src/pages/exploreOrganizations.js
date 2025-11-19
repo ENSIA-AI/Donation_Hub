@@ -25,7 +25,7 @@ const ExploreOrganizations = () => {
 
       {/* Cards rendered dynamically */}
       <div className="container">
-        <div className="cards-container flex-row flex-row-center">
+        <div className="cards-container flex-row-org ">
           {Organizations.slice(0, visibleCount).map((org, index) => (
             <OrganizationCard
               key={org.id}
