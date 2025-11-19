@@ -17,7 +17,7 @@ const OrganizationCard = (props)=>{
             </div>
             <div className="learn-more">
                 <img src="assets/icons/arrow-forward.svg" alt="" />
-                <Link to = "/OrgProfile ">learn more</Link>
+                <Link to={`/Org/${props.id}`}>learn more</Link>
             </div>
         </div>
     </div>

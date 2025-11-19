@@ -180,7 +180,7 @@ img{
     border-radius: 4px;
 -webkit-box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16); 
 box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
-
+    transition: all .7s ease-in-out;
  }
  .card p {
   overflow: hidden;
@@ -200,7 +200,7 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
  }
  .card:hover{
    transform: scale(1.05);
-   
+
  }
  .container{
     max-width: 1200px;
@@ -232,6 +232,7 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
     text-decoration-line: none;
     color: rgb(0, 0, 0);
     font-weight: 500;
+    
 }
  .learn-more a:hover{
     color: var(--primary-color)
