@@ -9,7 +9,7 @@ const AnnouncemetCard = (props) => {
         <div className="announcement-image">
           <img
             src={props.announcementImage}
-            className="full-image announcement-image"
+            className="full-image announcement-image" alt=""
           />
         </div>
         <div className="announcement_details">
