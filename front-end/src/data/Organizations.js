@@ -150,7 +150,7 @@ export const Organizations = [
     name: "GreenFuture",
     slogan: "Planting Trees, Growing Hope",
     type: "Environmental NGO",
-    heroImage: "../assets/Images/greenfuture-hero.jpg",
+    heroImage: "../assets/Images/org1.jpg",
     logoImage: "../assets/Images/logo2.jpg",
     description:
       "GreenFuture is dedicated to restoring Algeria's green spaces through tree planting campaigns and community awareness.",
@@ -295,7 +295,7 @@ export const Organizations = [
     name: "TechForAll",
     slogan: "Empowering Through Technology",
     type: "Educational NGO",
-    heroImage: "../assets/Images/techforall-hero.jpg",
+    heroImage: "../assets/Images/org2.jpg",
     logoImage: "../assets/Images/logo3.jpg",
     description:
       "TechForAll bridges the digital divide by providing coding classes, workshops, and devices to underserved youth.",
@@ -440,7 +440,7 @@ export const Organizations = [
     name: "Health4All",
     slogan: "Healthcare for Every Community",
     type: "Medical NGO",
-    heroImage: "../assets/Images/health4all-hero.jpg",
+    heroImage: "../assets/Images/org3.jpg",
     logoImage: "../assets/Images/logo4.jpg",
     description:
       "Health4All provides free medical care, health workshops, and emergency aid to underserved communities.",
@@ -565,7 +565,7 @@ export const Organizations = [
     name: "YouthEmpower",
     slogan: "Building Leaders of Tomorrow",
     type: "Youth NGO",
-    heroImage: "../assets/Images/youthempower-hero.jpg",
+    heroImage: "../assets/Images/org5.jpg",
     logoImage: "../assets/Images/logo5.jpg",
     description:
       "YouthEmpower trains and mentors young people to become community leaders and entrepreneurs.",
@@ -691,7 +691,7 @@ export const Organizations = [
     name: "EduAccess",
     slogan: "Education Without Barriers",
     type: "Educational NGO",
-    heroImage: "../assets/Images/eduaccess-hero.jpg",
+    heroImage: "../assets/Images/org7.jpg",
     logoImage: "../assets/Images/logo6.jpg",
     description:
       "EduAccess ensures that children in rural and low-income areas have access to quality education.",
@@ -815,7 +815,7 @@ export const Organizations = [
     name: "CleanOceans",
     slogan: "Protecting Marine Life",
     type: "Environmental NGO",
-    heroImage: "../assets/Images/cleanoceans-hero.jpg",
+    heroImage: "../assets/Images/org6.jpg",
     logoImage: "../assets/Images/logo2.jpg",
     description:
       "CleanOceans works to reduce marine pollution and protect coastal ecosystems in Algeria.",
@@ -939,7 +939,7 @@ export const Organizations = [
     name: "SafeHaven",
     slogan: "Shelter and Support for Everyone",
     type: "Social NGO",
-    heroImage: "../assets/Images/safehaven-hero.jpg",
+    heroImage: "../assets/Images/org8.jpg",
     logoImage: "../assets/Images/logo3.jpg",
     description:
       "SafeHaven provides shelters, food, and psychological support for homeless people and vulnerable communities.",
@@ -1063,7 +1063,7 @@ export const Organizations = [
     name: "GreenTech",
     slogan: "Sustainable Technology Solutions",
     type: "Environmental / Tech NGO",
-    heroImage: "../assets/Images/greentech-hero.jpg",
+    heroImage: "../assets/Images/org10.jpg",
     logoImage: "../assets/Images/logo4.jpg",
     description:
       "GreenTech develops renewable energy solutions and promotes eco-friendly technology initiatives.",
@@ -1187,7 +1187,7 @@ export const Organizations = [
     name: "FoodForLife",
     slogan: "Ending Hunger One Meal at a Time",
     type: "Charity",
-    heroImage: "../assets/Images/foodforlife-hero.jpg",
+    heroImage: "../assets/Images/org11.jpg",
     logoImage: "../assets/Images/logo5.jpg",
     description:
       "FoodForLife distributes nutritious meals to impoverished families and organizes food drives.",
@@ -1311,7 +1311,7 @@ export const Organizations = [
     name: "ArtConnect",
     slogan: "Empowering Through Arts",
     type: "Cultural NGO",
-    heroImage: "../assets/Images/artconnect-hero.jpg",
+    heroImage: "../assets/Images/org13.jpg",
     logoImage: "../assets/Images/logo6.jpg",
     description:
       "ArtConnect promotes arts education, workshops, and cultural events for youth and communities.",
@@ -1436,7 +1436,7 @@ export const Organizations = [
     name: "SafeWater",
     slogan: "Clean Water for Every Home",
     type: "Environmental NGO",
-    heroImage: "../assets/Images/safewater-hero.jpg",
+    heroImage: "../assets/Images/org18.jpg",
     logoImage: "../assets/Images/logo2.jpg",
     description:
       "SafeWater provides potable water solutions, wells, and sanitation education to rural communities.",
