@@ -44,12 +44,13 @@ body {
     font-family: var(--primary-font);
     overflow-x: hidden;
 }
-/* .containerDon {
+
+ .containerDon {
     margin-left: 4rem;
     margin-right: 4rem;
     padding-left: 4rem;
     padding-right: 4rem;
-} */
+}
 
 
 
@@ -61,7 +62,7 @@ body {
 {
     justify-content: center;
     display: flex;
-    padding: 0rem 5rem;
+    padding: 0rem 2rem;
     margin: 0;
    
 }
@@ -94,7 +95,7 @@ body {
 /* Organization Info Card */
 .org-card {
     background-color: var(--secondary-color);
-    padding: 3rem;
+    padding: 2rem;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
     height: 100%;
     width: 100%;
@@ -106,8 +107,9 @@ body {
 .org-name {
     font-family: var(--primary-font);
     font-size: var(--section-title-font-size);
-    font-weight: 600;
     color: var(--third-color);
+    margin-bottom: 5rem;
+    
 }
 
 
@@ -130,7 +132,6 @@ body {
     font-size: var(--text-font-size);
     font-weight: 600;
     color: white;
-    margin: 0;
 }
 
 .bank-details {
@@ -146,8 +147,8 @@ body {
 }
 
 .recieving-details {
-    padding: 4rem 1rem;
-    gap: 5rem;
+    padding: 7rem 1rem;
+    gap: 4rem;
 }
 
 .detail:hover
@@ -169,9 +170,11 @@ body {
 }
 
 
-.title {
+.info-title {
     font-size: var(--text-font-size);
     color: var(--third-color);
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .detail-item {
@@ -225,7 +228,7 @@ body {
 .form-btns
 {
     
-    padding: 2rem 0rem;
+    padding: 2rem 1rem;
 }
 
 .donate_btns
@@ -235,7 +238,19 @@ body {
     color: black;
     background-color: var(--third-color);
     border: none;
-    width:30%;
+    
+    font-size: var(--text-font-size);
+    transition: all 0.5s ease;
+
+}
+.reset_btns
+{
+    border-radius: var(--button-border-radius);
+    padding: 0.5rem;
+    color: black;
+    background-color: var(--third-color);
+    border: none;
+    
     font-size: var(--text-font-size);
     transition: all 0.5s ease;
 
@@ -246,7 +261,7 @@ body {
     box-shadow: 0 2px 7px rgba(16, 115, 97, 0.3);
     cursor: pointer;
     
-} */
+} 
 
 .form-input:focus
 {
@@ -548,6 +563,10 @@ body {
     .col-xs-12
     {
         width: 100%;
+    }
+    html
+    {
+        font-size: 4px;
     }
 
 }

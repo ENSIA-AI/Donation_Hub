@@ -72,7 +72,7 @@ const Donate = () => {
 
             <div className="recieving-details flex-row">
               <div className="Transfer detail">
-                <h3 className="title">Bank Transfer</h3>
+                <h3 className="info-title">Bank Transfer</h3>
                 <div className="detail-item">
                   <strong>Account Name:</strong> [Organization Name]
                 </div>
@@ -82,7 +82,7 @@ const Donate = () => {
               </div>
 
               <div className="Direct detail">
-                <h3 className="title">Direct Donation</h3>
+                <h3 className="info-title">Direct Donation</h3>
                 <div className="detail-item">
                   <strong>Our Office:</strong> 1er Mai, Algiers
                 </div>
@@ -186,7 +186,7 @@ const Donate = () => {
               </div>
 
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                <button type="submit" className="donate_btns">Donate Now</button>
+                <button type="submit" className="donate_btns">Donate</button>
                 <button type="reset" className="reset_btns">Reset</button>
               </div>
             </form>
