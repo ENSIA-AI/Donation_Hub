@@ -105,6 +105,7 @@ body {
     color: var(--background-color);
     font-size: var(--text-font-size);
     transition: 0.4s ease;
+    font-size: 1.6rem;
 }
 
 .nav-menu li:not(.btn) a::after {
@@ -142,9 +143,10 @@ body {
 .btn a {
     color: var(--secondary-color);
     font-family: var(--secondary-font);
-    font-size: var(--bottom-font-size);
+    font-size: 1.6rem;
     text-decoration: none;
     display: block;
+    font-weight: 200px;
 }
 
 .btn:hover {
@@ -160,7 +162,7 @@ body {
 /* HAMBURGER */
 .hamburger {
     display: none;
-    font-size: 34px;
+    font-size: 3.4rem;
     color: var(--background-color);
     cursor: pointer;
 }
@@ -170,7 +172,7 @@ body {
 @media(max-width: 600px) {
      .hamburger {
         display: block;
-        font-size: 2.5rem;
+        font-size: 3.4rem;
         cursor: pointer;
         color: white;
         position: relative;
@@ -212,7 +214,8 @@ body {
 
     .nav-menu a {
         color: #fff;
-        font-size: 1.3rem;
+        font-weight: 600;
+        font-size: 2rem;
         text-decoration: none;
         display: block;
         width: 100%;
@@ -230,6 +233,7 @@ body {
         padding: 0;
         text-align: left;
         text-align: center;
+        font-size: 1.8rem;
     }
 
     .nav-menu .btn a:hover {
