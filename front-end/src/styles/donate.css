@@ -44,12 +44,12 @@ body {
     font-family: var(--primary-font);
     overflow-x: hidden;
 }
-.container {
+/* .container {
     margin-left: 4rem;
     margin-right: 4rem;
     padding-left: 4rem;
     padding-right: 4rem;
-}
+} */
 
 
 
@@ -61,7 +61,7 @@ body {
 {
     justify-content: center;
     display: flex;
-    padding: 0rem 5rem;
+    padding: 0rem 2rem;
     margin: 0;
    
 }
@@ -94,7 +94,7 @@ body {
 /* Organization Info Card */
 .org-card {
     background-color: var(--secondary-color);
-    padding: 3rem;
+    padding: 2rem;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 12px;
     height: 100%;
     width: 100%;
@@ -105,9 +105,9 @@ body {
 
 .org-name {
     font-family: var(--primary-font);
-    font-size: var(--section-title-font-size);
-    font-weight: 600;
+    font-size: var(--subtitle-font-size);
     color: var(--third-color);
+    
 }
 
 
@@ -548,6 +548,10 @@ body {
     .col-xs-12
     {
         width: 100%;
+    }
+    html
+    {
+        font-size: 4px;
     }
 
 }

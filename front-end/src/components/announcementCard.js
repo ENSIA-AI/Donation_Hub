@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/AnnouncementStyle.css";
+import "../styles/announcementStyle.css";
 import { Link } from "react-router-dom";
 
 const AnnouncemetCard = (props) => {
