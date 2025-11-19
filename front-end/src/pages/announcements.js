@@ -1,68 +1,158 @@
-
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 import "../styles/AnnouncementStyle.css";
 
-const AnnouncemetCard = (props) => {
-  const [isExpanded, setIsExpanded] = useState(false);
 
-  const shortText = props.announcementDescription
-    ? props.announcementDescription.slice(0, 120)
-    : "";
-  const isLong = (props.announcementDescription || "").length > 120;
+import AnnouncemetCard from "../components/AnnouncementCard";
+import Search from "../components/Search";
+import SeeMoreButton from "../components/SeeMoreButton";
 
+const announcements = [
+  {
+    id: 1,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+
+  {
+    id: 2,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+
+  {
+    id: 3,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+
+  {
+    id: 4,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+
+  {
+    id: 5,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+
+  {
+    id: 6,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+
+  {
+    id: 7,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+
+  {
+    id: 8,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida...",
+    region: "algiers",
+    category: "education",
+  },
+  {
+  id: 9,
+    announcementDate: "November 5, 2025",
+    announcementImage: "assets/pic/education.jpeg",
+    announcementTitle: "New School Supplies Drive",
+    announcementDescription:
+      "We distributed over 500 school kits to children in the rural areas of Blida , We distributed over 500 school kits to children in the rural areas of Blida,...",
+    region: "algiers",
+    category: "education",
+},
+];
+
+const Announcements = () => {
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + 3); // show 3 more cards
+  };
+  const [visibleCount, setVisibleCount] = useState(6);
   return (
-    <div className="announcement col-xl-4 col-lg-6 col-md-7 col-sm-10 col-xs-10 co-xxs-10">
-      <div className="announcement-card">
-        <div className="announcement_Date">{props.announcementDate}</div>
-
-        <div className="announcement-image">
-          <img
-            src={props.announcementImage}
-            className="full-image announcement-image"
-            alt={props.announcementTitle || "announcement"}
-          />
-        </div>
-
-        <div className="announcement_details">
-          <div className="announcement_description">
-            <div className="announcement_title">{props.announcementTitle}</div>
-
-            <div className="announcement_text_content">
-              {isExpanded ? props.announcementDescription : shortText}
-              {!isExpanded && isLong && " ..."}
-            </div>
-          </div>
-
-          <div className="announcement_actions flex-row">
-            <div className="DonnateAnnouncement_action announcement_action">
-              <Link to="/donate" className="announcement_action_link">
-                Donate
-              </Link>
-            </div>
-
-            {isLong && (
-              <div
-                className="read_moreAnnouncement_action announcement_action"
-                onClick={() => setIsExpanded(!isExpanded)}
-                style={{ cursor: "pointer" }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === "Enter") setIsExpanded(!isExpanded); }}
-              >
-                <i className="fa-solid fa-arrow-right" />
-                <span className="announcement_action_link">
-                  {isExpanded ? "Read less" : "Read more"}
-                </span>
-              </div>
-            )}
+    <>
+      {/* ===== HEADER ===== */}
+      <section className="header-section">
+        <div className="containerAnn">
+          <div className="heroo col-xl-12 col-lg-9 col-md-9 col-sm-9 col-xs-10 col-xxs-12">
+            <h1 className="page-title">Active Campaigns & Announcements</h1>
+            <p className="page-description">
+              Discover urgent needs and ongoing campaigns from verified
+              organizations. Your contribution can make a real difference.
+            </p>
           </div>
         </div>
+      </section>
+
+      {/* ===== SEARCH BAR ===== */}
+      <Search />
+
+      {/* ===== ANNOUNCEMENT CARDS ===== */}
+      <div className="containerAnn">
+        <div className="announcements flex-row">
+          {announcements.slice(0, visibleCount).map((announcement) => (
+            <AnnouncemetCard
+              key={announcement.id}
+              announcementDate={announcement.announcementDate}
+              announcementImage={announcement.announcementImage}
+              announcementTitle={announcement.announcementTitle}
+              announcementDescription={announcement.announcementDescription}
+            />
+          ))}
+        </div>
+
+        {/* ===== SEE MORE BUTTON / NO MORE POSTS ===== */}
+{visibleCount < announcements.length ? (
+  <SeeMoreButton onClick={loadMore} />
+) : (
+  <p className="no-more-posts">No more posts</p>
+)}
       </div>
-    </div>
+    </>
   );
 };
 
-export default AnnouncemetCard;
-
-
+export default Announcements;
