@@ -61,7 +61,8 @@ section {
     --third-font: "Lato";
     --primary-color: #107361;
     --secondary-color: #0F594C;
-    --third-color: #FEDA79;
+   --third-color: #FEDA79; 
+   
     --background-color: #F2F2F2;
     --text-font-size: 1.6rem;
     --section-title-font-size: 4rem;
@@ -772,9 +773,11 @@ a.org-contact-link {
 
 }
 .error {
-    font-size: 1.4rem;
-    margin-top: -18px;
-    margin-bottom: 12px;
+    font-size: 1.2rem;
+    margin-top: -1rem;
+    margin-bottom: 1.2rem;
+    color: hsl(30, 84%, 81%);
+   font-family: var(--second-font);
     display: block;
 }
 .org-form-card {
