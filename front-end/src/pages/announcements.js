@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import "../styles/AnnouncementStyle.css";
+import "../styles/announcementStyle.css";
 
 import SeeMoreButton from "../components/SeeMoreButton";
-import AnnouncemetCard from "../components/AnnouncementCard";
-import Search from "../components/Search";
+import AnnouncemetCard from "../components/announcementCard";
+import Search from "../components/search";
 
 
 const announcements = [

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import "../styles/AnnouncementStyle.css";
 
 const AnnouncemetCard = ({
@@ -9,6 +10,7 @@ const AnnouncemetCard = ({
   announcementDescription,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   return (
     <>
