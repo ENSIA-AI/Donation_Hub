@@ -21,7 +21,7 @@ const OrgPostCard = (props) => {
           </div>
           <div className="post_actions flex-row">
             <div className="Donnate_action post_action">
-              <a href="donate.html" className="post_action_link">
+              <a href="/donate" className="post_action_link">
                 Donate
               </a>
             </div>
