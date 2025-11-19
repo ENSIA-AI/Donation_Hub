@@ -166,18 +166,19 @@ html{
 }
 .button{
     background-color: var(--third-color);
-    width: 11em;
+    width: 20rem;
     padding: 0.5em;
     border-radius: 8px;
     border: solid 1px rgb(132, 132, 132);
     margin: 2em;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .btncontainer{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    width: 20rem;
     
 }
 .container{
