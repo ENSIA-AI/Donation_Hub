@@ -1,11 +1,10 @@
 import React from "react";
-import "../styles/styleOrganizations.css";
+import "../styles/StyleOrganizations.css";
 import { Link } from "react-router-dom";
 
 const OrganizationCard = (props) => {
   return (
     <div className="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-
       <div className="card">
         <div>
           <img src={props.image} alt="" className="image_card" />

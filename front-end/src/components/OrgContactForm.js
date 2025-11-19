@@ -22,7 +22,7 @@ const OrgContactForm = () => {
   });
   const onSubmit = (data) => {
     console.log("Form Data:", data);
-    setSubmitSuccess(true); // show success message
+
     reset(); // reset form fields and errors
     setTimeout(() => setSubmitSuccess(false), 5000); // hide message after 5s
   };

@@ -9,6 +9,7 @@ import OrgImpact from "../components/OrgImpact";
 import OrgContactInfos from "../components/OrgContactInfos";
 import OrgDescription from "../components/OrgDescription";
 import OrgContactForm from "../components/OrgContactForm";
+import PostModal from "../components/PostModal";
 import { useParams } from "react-router-dom";
 import { Organizations } from "../data/Organizations";
 
@@ -17,8 +18,12 @@ const OrgProfile = () => {
   const [underlineStyle, setUnderlineStyle] = useState({});
   const [visiblePosts, setVisiblePosts] = useState(6);
   const [loaded, setLoaded] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
   const navRefs = useRef({});
   const { id } = useParams();
+  const handleDonate = (post) => {
+    alert(`Donate for post: ${post.title}`);
+  };
   // Find the organization by ID
   const org = Organizations.find((o) => o.id === Number(id));
 
@@ -90,6 +95,7 @@ const OrgProfile = () => {
                 OrgPostImage={post.image}
                 OrgPostTitle={post.title}
                 OrgPostDescription={post.description}
+                onReadMore={() => setSelectedPost(post)}
                 style={{ animationDelay: `${post.id * 0.1}s` }}
               />
             ))}
@@ -115,6 +121,11 @@ const OrgProfile = () => {
           ) : (
             <span className="no-more-posts">No more posts</span>
           )}
+          <PostModal
+            post={selectedPost}
+            onClose={() => setSelectedPost(null)}
+            onDonate={handleDonate}
+          />
         </div>
       )}
 

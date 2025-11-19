@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/styleOrganizations.css'
+import "../styles/StyleOrganizations.css";
 const SearchBar = () => {
   const [showFilters, setShowFilters] = useState(false);
 
@@ -22,12 +22,18 @@ const SearchBar = () => {
           <div className="search-filter col-lg-2 col-xl-2 col-md-2 col-sm-2 col-xs-2 col-xxs-2">
             <div className="catego">
               <button className="filter-btn" onClick={toggleFilters}>
-                <span className="material-symbols-outlined">keyboard_arrow_down</span>
+                <span className="material-symbols-outlined">
+                  keyboard_arrow_down
+                </span>
                 <span className="filter-title">filter</span>
               </button>
 
               <div className="filter-options">
-                <div className={`options ${showFilters ? "options-active" : "options-not-active"}`}>
+                <div
+                  className={`options ${
+                    showFilters ? "options-active" : "options-not-active"
+                  }`}
+                >
                   <p>categories</p>
                   {["health", "education", "children", "food"].map((cat) => (
                     <div className="option" key={cat}>
@@ -39,7 +45,11 @@ const SearchBar = () => {
                   <p>regions</p>
                   {["algeries", "bouira", "Oran", "jijel"].map((region) => (
                     <div className="option" key={region}>
-                      <input type="checkbox" id={region} defaultValue={region} />
+                      <input
+                        type="checkbox"
+                        id={region}
+                        defaultValue={region}
+                      />
                       <label htmlFor={region}>{region}</label>
                     </div>
                   ))}

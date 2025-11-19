@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-import "../styles/announcementStyle.css";
-
+import "../styles/AnnouncementStyle.css";
 
 import AnnouncemetCard from "../components/AnnouncementCard";
-import Search from "../components/search";
+import Search from "../components/Search";
 import SeeMoreButton from "../components/SeeMoreButton";
 
 const announcements = [
@@ -96,7 +95,7 @@ const announcements = [
     category: "education",
   },
   {
-  id: 9,
+    id: 9,
     announcementDate: "November 5, 2025",
     announcementImage: "assets/pic/education.jpeg",
     announcementTitle: "New School Supplies Drive",
@@ -104,7 +103,7 @@ const announcements = [
       "We distributed over 500 school kits to children in the rural areas of Blida...",
     region: "algiers",
     category: "education",
-},
+  },
 ];
 
 const Announcements = () => {
@@ -145,7 +144,7 @@ const Announcements = () => {
         </div>
 
         {/* ===== SEE MORE BUTTON ===== */}
-        <SeeMoreButton  onClick={loadMore}/>
+        <SeeMoreButton onClick={loadMore} />
       </div>
     </>
   );
