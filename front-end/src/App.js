@@ -9,13 +9,13 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 
-import ExploreOrganizations from "./pages/ExploreOrganizations";
-import Donate from "./pages/Donate";
+import ExploreOrganizations from "./pages/exploreOrganizations";
+import donate from "./pages/donate";
 
 import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Announcements from "./pages/Announcements";
+import register from "./pages/register";
+import Announcements from "./pages/announcements";
 
 function App() {
   return (
@@ -27,15 +27,15 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
 
         <Route
-          path="/ExploreOrganizations"
+          path="/exploreOrganizations"
           element={<ExploreOrganizations />}
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<login />} />
+        <Route path="/register" element={<register />} />
         <Route path="/OrgProfile/:id" element={<OrgProfile />} />
 
-        <Route path="/Announcements" element={<Announcements />} />
-        <Route path="/Donate" element={<Donate />} />
+        <Route path="/announcements" element={<Announcements />} />
+        <Route path="/donate" element={<donate />} />
       </Routes>
 
       <Footer />

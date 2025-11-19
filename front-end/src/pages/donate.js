@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Donate.css";
+import "../styles/donate.css";
 
 const Donate = () => {
   const [form, setForm] = useState({
@@ -37,27 +37,26 @@ const Donate = () => {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (validate()) {
-    setSuccessMessage("Thank you for your donation!");
+    if (validate()) {
+      setSuccessMessage("Thank you for your donation!");
 
-    // Reset form
-    setForm({
-      first_name: "",
-      last_name: "",
-      phone: "",
-      email: "",
-      donation_type: "",
-      amount: "",
-    });
+      // Reset form
+      setForm({
+        first_name: "",
+        last_name: "",
+        phone: "",
+        email: "",
+        donation_type: "",
+        amount: "",
+      });
 
-    setErrors({});
+      setErrors({});
 
-    
-    setTimeout(() => setSuccessMessage(""), 3000);
-  }
-};
+      setTimeout(() => setSuccessMessage(""), 3000);
+    }
+  };
 
   const handleReset = () => {
     setForm({
@@ -209,7 +208,9 @@ const Donate = () => {
                   onChange={handleChange}
                   placeholder="Select Donation Type"
                 >
-                  <option value="" disabled selected hidden>Select a type</option>
+                  <option value="" disabled selected hidden>
+                    Select a type
+                  </option>
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
@@ -237,8 +238,8 @@ const Donate = () => {
                 )}
               </div>
               {successMessage && (
-  <div className="success-message">{successMessage}</div>
-)}
+                <div className="success-message">{successMessage}</div>
+              )}
 
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
                 <button type="submit" className="donate_btns">

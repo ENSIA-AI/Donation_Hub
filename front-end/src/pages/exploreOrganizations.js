@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/StyleOrganizations.css";
+import "../styles/styleOrganizations.css";
 import OrganizationCard from "../components/OrganizationCard";
 import SearchBar from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 
-import "../styles/AnnouncementStyle.css";
-
-import AnnouncemetCard from "../components/AnnouncementCard";
-import Search from "../components/Search";
+import "../styles/announcementStyle.css";
 
 import SeeMoreButton from "../components/SeeMoreButton";
-import AnnouncemetCard from "../components/AnnouncementCard";
+import AnnouncemetCard from "../components/announcementCard";
+import Search from "../components/search";
 
 const announcements = [
   {
@@ -102,7 +100,7 @@ const announcements = [
     announcementImage: "assets/pic/education.jpeg",
     announcementTitle: "New School Supplies Drive",
     announcementDescription:
-      "We distributed over 500 school kits to children in the rural areas of Blida , We distributed over 500 school kits to children in the rural areas of Blida,... We distributed over 500 school kits to children in the rural areas of Blid",
+      "We distributed over 500 school kits to children in the rural areas of Blida , We distributed over 500 school kits to children in the rural areas of Blida,...",
     region: "algiers",
     category: "education",
   },
@@ -127,7 +125,6 @@ const Announcements = () => {
           </div>
         </div>
       </section>
-
       {/* ===== SEARCH BAR ===== */}
       <Search />
 
