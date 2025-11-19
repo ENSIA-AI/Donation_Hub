@@ -180,7 +180,7 @@ const Donate = () => {
                   onChange={handleChange}
                   placeholder="Select Donation Type"
                 >
-                  
+                  <option value="" disabled selected hidden>Select a type</option>
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
