@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Donate.css";
+import "../styles/donate.css";
 
 const Donate = () => {
   const [form, setForm] = useState({
@@ -12,6 +12,7 @@ const Donate = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,12 +35,27 @@ const Donate = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      console.log("Donation submitted:", form);
-      alert("Thank you for your donation!");
-    }
-  };
+  e.preventDefault();
+
+  if (validate()) {
+    setSuccessMessage("Thank you for your donation!");
+
+    // Reset form
+    setForm({
+      first_name: "",
+      last_name: "",
+      phone: "",
+      email: "",
+      donation_type: "",
+      amount: "",
+    });
+
+    setErrors({});
+
+    
+    setTimeout(() => setSuccessMessage(""), 3000);
+  }
+};
 
   const handleReset = () => {
     setForm({
@@ -162,8 +178,9 @@ const Donate = () => {
                   className="form-input form-select"
                   value={form.donation_type}
                   onChange={handleChange}
+                  placeholder="Select Donation Type"
                 >
-                  <option value="">Select Donation Type</option>
+                  
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
@@ -184,6 +201,9 @@ const Donate = () => {
                 />
                 {errors.amount && <div className="error-message">{errors.amount}</div>}
               </div>
+              {successMessage && (
+  <div className="success-message">{successMessage}</div>
+)}
 
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
                 <button type="submit" className="donate_btns">Donate</button>

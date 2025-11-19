@@ -1,41 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../styles/AnnouncementStyle.css'
-const AnnouncemetCard = (props) => {
+
+import "../styles/announcementStyle.css";
+
+const AnnouncemetCard = ({
+  announcementDate,
+  announcementImage,
+  announcementTitle,
+  announcementDescription,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
   return (
-    <div className="announcement col-xl-4 col-lg-6 col-md-7  col-sm-10 col-xs-10 co-xxs-10">
-      <div className="announcement-card ">
-        <div className="announcement_Date">{props.announcementDate}</div>
-        <div className="announcement-image">
-          <img
-            src={props.announcementImage}
-            className="full-image announcement-image" alt=""
-          />
-        </div>
-        <div className="announcement_details">
-          <div className="announcement_description">
-            <div className="announcement_title">{props.announcementTitle}</div>
-            <div className="announcement_text_content">
-              {props.announcementDescription}
-            </div>
+    <>
+      {/* CARD */}
+      <div className="announcement col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 co-xxs-12">
+        <div className="announcement-card">
+          <div className="announcement_Date">{announcementDate}</div>
+          <div className="announcement-image">
+            <img
+              src={announcementImage}
+              className="full-image announcement-image"
+              alt=""
+            />
           </div>
-          <div className="announcement_actions flex-row">
-            <div className="DonnateAnnouncement_action announcement_action">
-              <Link to="/donate" className="announcement_action_link">
-                Donnate
-              </Link>
+          <div className="announcement_details">
+            <div className="announcement_description">
+              <div className="announcement_title">{announcementTitle}</div>
+              <div className="announcement_text_content">
+                {announcementDescription.slice(0, 120)}
+                {announcementDescription.length > 120 && "..."}
+              </div>
             </div>
-            <div className="read_moreAnnouncement_action announcement_action">
-              <i className="fa-solid fa-arrow-right"></i>
-              <a href="#" className="announcement_action_link">
-                Read more
-              </a>
+
+            <div className="announcement_actions flex-row">
+              <div className="DonnateAnnouncement_action announcement_action">
+                <Link to="/donate" className="announcement_action_link">
+                  Donate
+                </Link>
+              </div>
+
+              <div
+                className="read_moreAnnouncement_action announcement_action"
+                onClick={() => setIsModalOpen(true)}
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fa-solid fa-arrow-right"></i>
+                <span className="announcement_action_link">Read more</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* MODAL */}
+      {isModalOpen && (
+        <div className="announcement-modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="announcement-modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="announcement_modal_date">{announcementDate}</div>
+            <img src={announcementImage} className="modal-image" alt="" />
+            <h2>{announcementTitle}</h2>
+            <p>{announcementDescription}</p>
+            <button
+              className="close-modal-btn"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
 export default AnnouncemetCard;
+

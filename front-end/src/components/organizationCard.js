@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/StyleOrganizations.css";
+import "../styles/styleOrganizations.css";
 import { Link } from "react-router-dom";
 
 const OrganizationCard = (props) => {
