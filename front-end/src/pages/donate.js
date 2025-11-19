@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/donate.css";
+import "../styles/Donate.css";
 
 const Donate = () => {
   const [form, setForm] = useState({

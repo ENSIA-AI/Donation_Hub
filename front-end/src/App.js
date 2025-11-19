@@ -23,11 +23,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/Contact" element={<Contact />} />
 
         <Route path="/ExploreOrganizations" element={<ExploreOrganizations />}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
          <Route path="/OrgProfile/:id" element={<OrgProfile />} />
 
          <Route path="/Announcements" element={<Announcements />} />

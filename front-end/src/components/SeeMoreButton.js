@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/styleOrganizations.css';
+import '../styles/StyleOrganizations.css';
 
 const SeeMoreButton  =({onClick})=>{
     return(
