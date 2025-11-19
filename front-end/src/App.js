@@ -9,11 +9,11 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import ExploreOrganizations from "./pages/ExploreOrganizations";
-import OrgProfile from "./pages/OrgProfile";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Announcements from "./pages/Announcements";
-import Donate from "./pages/donate";
+// import OrgProfile from "./pages/OrgProfile";
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
+// import Announcements from "./pages/Announcements";
+// import Donate from "./pages/donate";
 
 function App() {
   return (
@@ -23,16 +23,17 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
-        <Route
+        { <Route
           path="/ExploreOrganizations"
           element={<ExploreOrganizations />}
         />
-        <Route path="/Announcements" element={<Announcements />} />
-        <Route path="/OrgProfile/:id" element={<OrgProfile />} />
+        // <Route path="/Announcements" element={<Announcements />} />
+        //<Route path="/OrgProfile/:id" element={<OrgProfile />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/donate" element={<Donate />} />
+        //<Route path="/login" element={<Login />} />
+       // <Route path="/register" element={<Register />} />
+        //<Route path="/donate" element={<Donate />} /> 
+        }
       </Routes>
 
       <Footer />
