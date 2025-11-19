@@ -4,15 +4,23 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Login = ()=>{
+
+
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
      
      const onSubmit = (data) => {
     console.log("form Data:", data);
+        reset({
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
   }
   return(
     <main>

@@ -400,7 +400,7 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
     }
 
 /* Medium (md) screens (768px to 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 767px) and (max-width: 991px) {
     .col-md-1 {
         width: calc(100% / 12);
     }
