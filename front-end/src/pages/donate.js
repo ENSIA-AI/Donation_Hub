@@ -21,13 +21,15 @@ const Donate = () => {
   const validate = () => {
     let newErrors = {};
 
-    if (!form.first_name.trim()) newErrors.first_name = "First name is required";
+    if (!form.first_name.trim())
+      newErrors.first_name = "First name is required";
     if (!form.last_name.trim()) newErrors.last_name = "Last name is required";
     if (!form.phone.trim()) newErrors.phone = "Phone number is required";
     if (!form.email.trim()) newErrors.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       newErrors.email = "Invalid email format";
-    if (!form.donation_type) newErrors.donation_type = "Please select a donation type";
+    if (!form.donation_type)
+      newErrors.donation_type = "Please select a donation type";
     if (!form.amount.trim()) newErrors.amount = "Amount is required";
 
     setErrors(newErrors);
@@ -35,27 +37,26 @@ const Donate = () => {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (validate()) {
-    setSuccessMessage("Thank you for your donation!");
+    if (validate()) {
+      setSuccessMessage("Thank you for your donation!");
 
-    // Reset form
-    setForm({
-      first_name: "",
-      last_name: "",
-      phone: "",
-      email: "",
-      donation_type: "",
-      amount: "",
-    });
+      // Reset form
+      setForm({
+        first_name: "",
+        last_name: "",
+        phone: "",
+        email: "",
+        donation_type: "",
+        amount: "",
+      });
 
-    setErrors({});
+      setErrors({});
 
-    
-    setTimeout(() => setSuccessMessage(""), 3000);
-  }
-};
+      setTimeout(() => setSuccessMessage(""), 3000);
+    }
+  };
 
   const handleReset = () => {
     setForm({
@@ -77,13 +78,16 @@ const Donate = () => {
           <div className="org-card">
             <h1 className="org-name">Organization Name</h1>
             <p className="org-description">
-              Every contribution, big or small, helps us build a stronger, more resilient
+              Every contribution, big or small, helps us build a stronger, more
+              resilient
               <br />
               community. See how your generosity makes a direct impact.
             </p>
 
             <div className="impact-statement">
-              <h2 className="impact-title">Your support strengthens our community</h2>
+              <h2 className="impact-title">
+                Your support strengthens our community
+              </h2>
             </div>
 
             <div className="recieving-details flex-row">
@@ -113,9 +117,15 @@ const Donate = () => {
         {/* Donation Form */}
         <div className="donation-form col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
           <div className="form-card">
-            <form className="donation-form-content" onSubmit={handleSubmit} onReset={handleReset}>
+            <form
+              className="donation-form-content"
+              onSubmit={handleSubmit}
+              onReset={handleReset}
+            >
               <div className={`form-group ${errors.first_name ? "error" : ""}`}>
-                <label htmlFor="first-name" className="form-label">First Name*</label>
+                <label htmlFor="first-name" className="form-label">
+                  First Name*
+                </label>
                 <input
                   type="text"
                   id="first-name"
@@ -125,11 +135,15 @@ const Donate = () => {
                   value={form.first_name}
                   onChange={handleChange}
                 />
-                {errors.first_name && <div className="error-message">{errors.first_name}</div>}
+                {errors.first_name && (
+                  <div className="error-message">{errors.first_name}</div>
+                )}
               </div>
 
               <div className={`form-group ${errors.last_name ? "error" : ""}`}>
-                <label htmlFor="last-name" className="form-label">Last Name*</label>
+                <label htmlFor="last-name" className="form-label">
+                  Last Name*
+                </label>
                 <input
                   id="last-name"
                   name="last_name"
@@ -139,11 +153,15 @@ const Donate = () => {
                   value={form.last_name}
                   onChange={handleChange}
                 />
-                {errors.last_name && <div className="error-message">{errors.last_name}</div>}
+                {errors.last_name && (
+                  <div className="error-message">{errors.last_name}</div>
+                )}
               </div>
 
               <div className={`form-group ${errors.phone ? "error" : ""}`}>
-                <label htmlFor="phone" className="form-label">Phone Number*</label>
+                <label htmlFor="phone" className="form-label">
+                  Phone Number*
+                </label>
                 <input
                   type="tel"
                   id="phone"
@@ -153,11 +171,15 @@ const Donate = () => {
                   value={form.phone}
                   onChange={handleChange}
                 />
-                {errors.phone && <div className="error-message">{errors.phone}</div>}
+                {errors.phone && (
+                  <div className="error-message">{errors.phone}</div>
+                )}
               </div>
 
               <div className={`form-group ${errors.email ? "error" : ""}`}>
-                <label htmlFor="email" className="form-label">Email Address*</label>
+                <label htmlFor="email" className="form-label">
+                  Email Address*
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -167,11 +189,17 @@ const Donate = () => {
                   value={form.email}
                   onChange={handleChange}
                 />
-                {errors.email && <div className="error-message">{errors.email}</div>}
+                {errors.email && (
+                  <div className="error-message">{errors.email}</div>
+                )}
               </div>
 
-              <div className={`form-group ${errors.donation_type ? "error" : ""}`}>
-                <label htmlFor="donation-type" className="form-label">Donation Type</label>
+              <div
+                className={`form-group ${errors.donation_type ? "error" : ""}`}
+              >
+                <label htmlFor="donation-type" className="form-label">
+                  Donation Type
+                </label>
                 <select
                   id="donation-type"
                   name="donation_type"
@@ -180,16 +208,22 @@ const Donate = () => {
                   onChange={handleChange}
                   placeholder="Select Donation Type"
                 >
-                  <option value="" disabled selected hidden>Select a type</option>
+                  <option value="" disabled selected hidden>
+                    Select a type
+                  </option>
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
                 </select>
-                {errors.donation_type && <div className="error-message">{errors.donation_type}</div>}
+                {errors.donation_type && (
+                  <div className="error-message">{errors.donation_type}</div>
+                )}
               </div>
 
               <div className={`form-group ${errors.amount ? "error" : ""}`}>
-                <label htmlFor="amount" className="form-label">Donation Amount*</label>
+                <label htmlFor="amount" className="form-label">
+                  Donation Amount*
+                </label>
                 <input
                   type="text"
                   id="amount"
@@ -199,15 +233,21 @@ const Donate = () => {
                   value={form.amount}
                   onChange={handleChange}
                 />
-                {errors.amount && <div className="error-message">{errors.amount}</div>}
+                {errors.amount && (
+                  <div className="error-message">{errors.amount}</div>
+                )}
               </div>
               {successMessage && (
-  <div className="success-message">{successMessage}</div>
-)}
+                <div className="success-message">{successMessage}</div>
+              )}
 
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                <button type="submit" className="donate_btns">Donate</button>
-                <button type="reset" className="reset_btns">Reset</button>
+                <button type="submit" className="donate_btns">
+                  Donate
+                </button>
+                <button type="reset" className="reset_btns">
+                  Reset
+                </button>
               </div>
             </form>
           </div>

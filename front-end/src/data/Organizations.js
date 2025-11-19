@@ -15,7 +15,7 @@ export const Organizations = [
         image: "../assets/Images/post1.png",
         title: "New School Supplies Drive",
         description:
-          "We distributed over 500 school kits to children in the rural areas of Blida...",
+          "We distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 2,
@@ -23,7 +23,7 @@ export const Organizations = [
         image: "../assets/Images/post2.png",
         title: "Food Donation Event",
         description:
-          "Thanks to your donations, we delivered food packages to 120 families...",
+          "Thanks to your donations, we delivered food packages to 120 familiesWe distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 3,
@@ -31,7 +31,7 @@ export const Organizations = [
         image: "../assets/Images/post3.png",
         title: "Medical Supplies Drive",
         description:
-          "Our volunteers distributed essential medical kits across rural clinics...",
+          "Our volunteers distributed essential medical kits across rural clinics,We distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 4,
@@ -39,7 +39,7 @@ export const Organizations = [
         image: "../assets/Images/post4.png",
         title: "Winter Clothes Campaign",
         description:
-          "Warm clothes were delivered to families affected by the cold season...",
+          "Warm clothes were delivered to families affected by the cold seasonWe distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 5,
@@ -47,7 +47,7 @@ export const Organizations = [
         image: "../assets/Images/post5.png",
         title: "School Renovation",
         description:
-          "With your help, we renovated classrooms in a rural school in Blida...",
+          "With your help, we renovated classrooms in a rural school in BlidaWe distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 6,
@@ -55,7 +55,7 @@ export const Organizations = [
         image: "../assets/Images/post6.png",
         title: "Charity Marathon",
         description:
-          "Join our charity marathon to support children's education...",
+          "Join our charity marathon to support children's educationWe distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 7,
@@ -63,7 +63,7 @@ export const Organizations = [
         image: "../assets/Images/post7.jpg",
         title: "Health Awareness Workshop",
         description:
-          "We organized a workshop to raise awareness about early health checkups...",
+          "We organized a workshop to raise awareness about early health checkupsWe distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 8,
@@ -71,7 +71,7 @@ export const Organizations = [
         image: "../assets/Images/post8.jpg",
         title: "Orphans Support Day",
         description:
-          "A beautiful day spent with orphans, providing gifts and activities...",
+          "A beautiful day spent with orphans, providing gifts and activitiesWe distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
       {
         id: 9,
@@ -79,7 +79,7 @@ export const Organizations = [
         image: "../assets/Images/post9.jpg",
         title: "Blood Donation Campaign",
         description:
-          "Thank you to all the donors who participated in our blood donation event...",
+          "Thank you to all the donors who participated in our blood donation eventWe distributed over 500 school kits to children in the rural areas of Blida. The distribution event was organized by our volunteers, who visited multiple villages to ensure that students received all essential materials for the upcoming school year...",
       },
     ],
 
@@ -161,7 +161,7 @@ export const Organizations = [
         image: "../assets/Images/post1.png",
         title: "New School Supplies Drive",
         description:
-          "We distributed over 500 school kits to children in the rural areas of Blida...",
+          "We distributed over 500 school kits to children in the rural areas of BlidaHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 2,
@@ -169,7 +169,7 @@ export const Organizations = [
         image: "../assets/Images/post2.png",
         title: "Food Donation Event",
         description:
-          "Thanks to your donations, we delivered food packages to 120 families...",
+          "Thanks to your donations, we delivered food packages to 120 familiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 3,
@@ -177,7 +177,7 @@ export const Organizations = [
         image: "../assets/Images/post3.png",
         title: "Medical Supplies Drive",
         description:
-          "Our volunteers distributed essential medical kits across rural clinics...",
+          "Our volunteers distributed essential medical kits across rural clinicsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 4,
@@ -193,7 +193,7 @@ export const Organizations = [
         image: "../assets/Images/post5.png",
         title: "School Renovation",
         description:
-          "With your help, we renovated classrooms in a rural school in Blida...",
+          "With your help, we renovated classrooms in a rural school in BlidaHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 6,
@@ -201,7 +201,7 @@ export const Organizations = [
         image: "../assets/Images/post6.png",
         title: "Charity Marathon",
         description:
-          "Join our charity marathon to support children's education...",
+          "Join our charity marathon to support children's educationHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 7,
@@ -209,7 +209,7 @@ export const Organizations = [
         image: "../assets/Images/post7.jpg",
         title: "Health Awareness Workshop",
         description:
-          "We organized a workshop to raise awareness about early health checkups...",
+          "We organized a workshop to raise awareness about early health checkupsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 8,
@@ -217,7 +217,7 @@ export const Organizations = [
         image: "../assets/Images/post8.jpg",
         title: "Orphans Support Day",
         description:
-          "A beautiful day spent with orphans, providing gifts and activities...",
+          "A beautiful day spent with orphans, providing gifts and activitiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 9,
@@ -225,7 +225,7 @@ export const Organizations = [
         image: "../assets/Images/post9.jpg",
         title: "Blood Donation Campaign",
         description:
-          "Thank you to all the donors who participated in our blood donation event...",
+          "Thank you to all the donors who participated in our blood donation eventHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
     ],
 
@@ -306,7 +306,7 @@ export const Organizations = [
         image: "../assets/Images/post1.png",
         title: "New School Supplies Drive",
         description:
-          "We distributed over 500 school kits to children in the rural areas of Blida...",
+          "We distributed over 500 school kits to children in the rural areas of BlidaHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 2,
@@ -314,7 +314,7 @@ export const Organizations = [
         image: "../assets/Images/post2.png",
         title: "Food Donation Event",
         description:
-          "Thanks to your donations, we delivered food packages to 120 families...",
+          "Thanks to your donations, we delivered food packages to 120 familiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access ",
       },
       {
         id: 3,
@@ -322,7 +322,7 @@ export const Organizations = [
         image: "../assets/Images/post3.png",
         title: "Medical Supplies Drive",
         description:
-          "Our volunteers distributed essential medical kits across rural clinics...",
+          "Our volunteers distributed essential medical kits across rural clinicsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 4,
@@ -330,7 +330,7 @@ export const Organizations = [
         image: "../assets/Images/post4.png",
         title: "Winter Clothes Campaign",
         description:
-          "Warm clothes were delivered to families affected by the cold season...",
+          "Warm clothes were delivered to families affected by the cold seasonHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 5,
@@ -338,7 +338,7 @@ export const Organizations = [
         image: "../assets/Images/post5.png",
         title: "School Renovation",
         description:
-          "With your help, we renovated classrooms in a rural school in Blida...",
+          "With your help, we renovated classrooms in a rural school in BlidaHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 6,
@@ -346,7 +346,7 @@ export const Organizations = [
         image: "../assets/Images/post6.png",
         title: "Charity Marathon",
         description:
-          "Join our charity marathon to support children's education...",
+          "Join our charity marathon to support children's educationHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 7,
@@ -354,7 +354,7 @@ export const Organizations = [
         image: "../assets/Images/post7.jpg",
         title: "Health Awareness Workshop",
         description:
-          "We organized a workshop to raise awareness about early health checkups...",
+          "We organized a workshop to raise awareness about early health checkupsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 8,
@@ -362,7 +362,7 @@ export const Organizations = [
         image: "../assets/Images/post8.jpg",
         title: "Orphans Support Day",
         description:
-          "A beautiful day spent with orphans, providing gifts and activities...",
+          "A beautiful day spent with orphans, providing gifts and activitiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 9,
@@ -370,7 +370,7 @@ export const Organizations = [
         image: "../assets/Images/post9.jpg",
         title: "Blood Donation Campaign",
         description:
-          "Thank you to all the donors who participated in our blood donation event...",
+          "Thank you to all the donors who participated in our blood donation eventHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
     ],
 
@@ -451,7 +451,7 @@ export const Organizations = [
         image: "../assets/Images/post1.png",
         title: "New School Supplies Drive",
         description:
-          "We distributed over 500 school kits to children in the rural areas of Blida...",
+          "We distributed over 500 school kits to children in the rural areas of BlidaHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 2,
@@ -459,7 +459,7 @@ export const Organizations = [
         image: "../assets/Images/post2.png",
         title: "Food Donation Event",
         description:
-          "Thanks to your donations, we delivered food packages to 120 families...",
+          "Thanks to your donations, we delivered food packages to 120 familiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 3,
@@ -467,7 +467,7 @@ export const Organizations = [
         image: "../assets/Images/post3.png",
         title: "Medical Supplies Drive",
         description:
-          "Our volunteers distributed essential medical kits across rural clinics...",
+          "Our volunteers distributed essential medical kits across rural clinicsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 4,
@@ -475,7 +475,7 @@ export const Organizations = [
         image: "../assets/Images/post4.png",
         title: "Winter Clothes Campaign",
         description:
-          "Warm clothes were delivered to families affected by the cold season...",
+          "Warm clothes were delivered to families affected by the cold seasonHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 5,
@@ -483,7 +483,7 @@ export const Organizations = [
         image: "../assets/Images/post5.png",
         title: "School Renovation",
         description:
-          "With your help, we renovated classrooms in a rural school in Blida...",
+          "With your help, we renovated classrooms in a rural school in Blida HopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 6,
@@ -491,7 +491,7 @@ export const Organizations = [
         image: "../assets/Images/post6.png",
         title: "Charity Marathon",
         description:
-          "Join our charity marathon to support children's education...",
+          "Join our charity marathon to support children's educationHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 7,
@@ -499,7 +499,7 @@ export const Organizations = [
         image: "../assets/Images/post7.jpg",
         title: "Health Awareness Workshop",
         description:
-          "We organized a workshop to raise awareness about early health checkups...",
+          "We organized a workshop to raise awareness about early health checkupsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 8,
@@ -507,7 +507,7 @@ export const Organizations = [
         image: "../assets/Images/post8.jpg",
         title: "Orphans Support Day",
         description:
-          "A beautiful day spent with orphans, providing gifts and activities...",
+          "A beautiful day spent with orphans, providing gifts and activitiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 9,
@@ -515,7 +515,7 @@ export const Organizations = [
         image: "../assets/Images/post9.jpg",
         title: "Blood Donation Campaign",
         description:
-          "Thank you to all the donors who participated in our blood donation event...",
+          "Thank you to all the donors who participated in our blood donation eventHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
     ],
 
@@ -576,7 +576,7 @@ export const Organizations = [
         image: "../assets/Images/post1.png",
         title: "New School Supplies Drive",
         description:
-          "We distributed over 500 school kits to children in the rural areas of Blida...",
+          "We distributed over 500 school kits to children in the rural areas of Blida.HopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 2,
@@ -584,7 +584,7 @@ export const Organizations = [
         image: "../assets/Images/post2.png",
         title: "Food Donation Event",
         description:
-          "Thanks to your donations, we delivered food packages to 120 families...",
+          "Thanks to your donations, we delivered food packages to 120 families.HopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 3,
@@ -592,7 +592,7 @@ export const Organizations = [
         image: "../assets/Images/post3.png",
         title: "Medical Supplies Drive",
         description:
-          "Our volunteers distributed essential medical kits across rural clinics...",
+          "Our volunteers distributed essential medical kits across rural clinicsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 4,
@@ -600,7 +600,7 @@ export const Organizations = [
         image: "../assets/Images/post4.png",
         title: "Winter Clothes Campaign",
         description:
-          "Warm clothes were delivered to families affected by the cold season...",
+          "Warm clothes were delivered to families affected by the cold seasonHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 5,
@@ -608,7 +608,7 @@ export const Organizations = [
         image: "../assets/Images/post5.png",
         title: "School Renovation",
         description:
-          "With your help, we renovated classrooms in a rural school in Blida...",
+          "With your help, we renovated classrooms in a rural school in Blida.HopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 6,
@@ -616,7 +616,7 @@ export const Organizations = [
         image: "../assets/Images/post6.png",
         title: "Charity Marathon",
         description:
-          "Join our charity marathon to support children's education...",
+          "Join our charity marathon to support children's educationHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 7,
@@ -624,7 +624,7 @@ export const Organizations = [
         image: "../assets/Images/post7.jpg",
         title: "Health Awareness Workshop",
         description:
-          "We organized a workshop to raise awareness about early health checkups...",
+          "We organized a workshop to raise awareness about early health checkupsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 8,
@@ -632,7 +632,7 @@ export const Organizations = [
         image: "../assets/Images/post8.jpg",
         title: "Orphans Support Day",
         description:
-          "A beautiful day spent with orphans, providing gifts and activities...",
+          "A beautiful day spent with orphans, providing gifts and activities.HopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 9,
@@ -640,7 +640,7 @@ export const Organizations = [
         image: "../assets/Images/post9.jpg",
         title: "Blood Donation Campaign",
         description:
-          "Thank you to all the donors who participated in our blood donation event...",
+          "Thank you to all the donors who participated in our blood donation eventHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
     ],
 
@@ -702,7 +702,7 @@ export const Organizations = [
         image: "../assets/Images/post1.png",
         title: "New School Supplies Drive",
         description:
-          "We distributed over 500 school kits to children in the rural areas of Blida...",
+          "We distributed over 500 school kits to children in the rural areas of BlidaHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to",
       },
       {
         id: 2,
@@ -710,7 +710,7 @@ export const Organizations = [
         image: "../assets/Images/post2.png",
         title: "Food Donation Event",
         description:
-          "Thanks to your donations, we delivered food packages to 120 families...",
+          "Thanks to your donations, we delivered food packages to 120 familiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 3,
@@ -718,7 +718,7 @@ export const Organizations = [
         image: "../assets/Images/post3.png",
         title: "Medical Supplies Drive",
         description:
-          "Our volunteers distributed essential medical kits across rural clinics...",
+          "Our volunteers distributed essential medical kits across rural clinicsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 4,
@@ -726,7 +726,7 @@ export const Organizations = [
         image: "../assets/Images/post4.png",
         title: "Winter Clothes Campaign",
         description:
-          "Warm clothes were delivered to families affected by the cold season...",
+          "Warm clothes were delivered to families affected by the cold seasonHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 5,
@@ -734,7 +734,7 @@ export const Organizations = [
         image: "../assets/Images/post5.png",
         title: "School Renovation",
         description:
-          "With your help, we renovated classrooms in a rural school in Blida...",
+          "With your help, we renovated classrooms in a rural school in BlidaHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 6,
@@ -742,7 +742,7 @@ export const Organizations = [
         image: "../assets/Images/post6.png",
         title: "Charity Marathon",
         description:
-          "Join our charity marathon to support children's education...",
+          "Join our charity marathon to support children's educationHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 7,
@@ -750,7 +750,7 @@ export const Organizations = [
         image: "../assets/Images/post7.jpg",
         title: "Health Awareness Workshop",
         description:
-          "We organized a workshop to raise awareness about early health checkups...",
+          "We organized a workshop to raise awareness about early health checkupsHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 8,
@@ -758,7 +758,7 @@ export const Organizations = [
         image: "../assets/Images/post8.jpg",
         title: "Orphans Support Day",
         description:
-          "A beautiful day spent with orphans, providing gifts and activities...",
+          "A beautiful day spent with orphans, providing gifts and activitiesHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
       {
         id: 9,
@@ -766,7 +766,7 @@ export const Organizations = [
         image: "../assets/Images/post9.jpg",
         title: "Blood Donation Campaign",
         description:
-          "Thank you to all the donors who participated in our blood donation event...",
+          "Thank you to all the donors who participated in our blood donation eventHopeBridge Foundation is a non-profit organization established in 2015 to support underprivileged families and promote access to.",
       },
     ],
 

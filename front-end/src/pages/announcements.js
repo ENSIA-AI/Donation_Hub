@@ -6,7 +6,6 @@ import SeeMoreButton from "../components/SeeMoreButton";
 import AnnouncemetCard from "../components/announcementCard";
 import Search from "../components/search";
 
-
 const announcements = [
   {
     id: 1,
@@ -96,15 +95,16 @@ const announcements = [
     category: "education",
   },
   {
-  id: 9,
+    id: 9,
     announcementDate: "November 5, 2025",
     announcementImage: "assets/pic/education.jpeg",
     announcementTitle: "New School Supplies Drive",
     announcementDescription:
       "We distributed over 500 school kits to children in the rural areas of Blida ..",
+
     region: "algiers",
     category: "education",
-},
+  },
 ];
 
 const Announcements = () => {
@@ -126,7 +126,6 @@ const Announcements = () => {
           </div>
         </div>
       </section>
-
       {/* ===== SEARCH BAR ===== */}
       <Search />
 
@@ -145,11 +144,11 @@ const Announcements = () => {
         </div>
 
         {/* ===== SEE MORE BUTTON / NO MORE POSTS ===== */}
-{visibleCount < announcements.length ? (
-  <SeeMoreButton onClick={loadMore} />
-) : (
-  <p className="no-more-posts">No more posts</p>
-)}
+        {visibleCount < announcements.length ? (
+          <SeeMoreButton onClick={loadMore} />
+        ) : (
+          <p className="no-more-posts">No more posts</p>
+        )}
       </div>
     </>
   );

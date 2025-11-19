@@ -11,7 +11,6 @@ const AnnouncemetCard = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   return (
     <>
       {/* CARD */}
@@ -56,8 +55,14 @@ const AnnouncemetCard = ({
 
       {/* MODAL */}
       {isModalOpen && (
-        <div className="announcement-modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <div className="announcement-modal-card" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="announcement-modal-overlay"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="announcement-modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="announcement_modal_date">{announcementDate}</div>
             <img src={announcementImage} className="modal-image" alt="" />
             <h2>{announcementTitle}</h2>
@@ -76,4 +81,3 @@ const AnnouncemetCard = ({
 };
 
 export default AnnouncemetCard;
-
