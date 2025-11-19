@@ -180,7 +180,11 @@ img{
     border-radius: 4px;
 -webkit-box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16); 
 box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
+<<<<<<< HEAD
     transition: all .7s ease-in-out;
+=======
+   transition: all .5s ease-in-out;
+>>>>>>> f83ba70711a655397db09850c3c22a4ddaf14dce
  }
  .card p {
   overflow: hidden;
@@ -199,8 +203,12 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
    
  }
  .card:hover{
+<<<<<<< HEAD
    transform: scale(1.05);
 
+=======
+  transform: scale(1.03);
+>>>>>>> f83ba70711a655397db09850c3c22a4ddaf14dce
  }
  .container{
     max-width: 1200px;

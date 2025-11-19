@@ -12,13 +12,14 @@ import ExploreOrganizations from "./pages/ExploreOrganizations";
 import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Announcements from "./pages/announcements";
+import Announcements from "./pages/Announcements";
 import Donate from "./pages/donate";
 
 function App() {
   return (
     <Router>
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
@@ -26,13 +27,14 @@ function App() {
           path="/ExploreOrganizations"
           element={<ExploreOrganizations />}
         />
-        <Route path="/announcements" element={< Announcements />} />
-        <Route path="/OrgProfile" element={<OrgProfile />} />
-         <Route path="/Login" element = {<Login />}/>
-         <Route path="/Register" element = {<Register />}/>
-         <Route path="/donate" element = {<Donate />}/>
-        </Routes>
-       
+        <Route path="/Announcements" element={<Announcements />} />
+        <Route path="/OrgProfile/:id" element={<OrgProfile />} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/donate" element={<Donate />} />
+      </Routes>
+
       <Footer />
     </Router>
   );
