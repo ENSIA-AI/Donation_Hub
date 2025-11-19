@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../styles/announcementStyle.css";
+import "../styles/AnnouncementStyle.css";
 
 
 import AnnouncemetCard from "../components/AnnouncementCard";
