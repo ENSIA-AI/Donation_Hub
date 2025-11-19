@@ -28,7 +28,7 @@
         background-color: var(--background-color);
         color: var(--text-color);
         margin: 0;
-        padding: 40px;
+       
     }
 
     .settings-container {

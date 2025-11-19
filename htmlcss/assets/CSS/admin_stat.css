@@ -706,7 +706,11 @@ body {
         padding: 2rem;
         padding-left: 2rem;
     }
-
+.dashboard_content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
     .circular-progress {
         width: 7rem;
         height: 7rem;
@@ -764,7 +768,11 @@ body {
     .col-sm-12 {
         width: 100%;
     }
-
+.dashboard_content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
     .statistic {
         padding: 2rem 4rem;
     }
