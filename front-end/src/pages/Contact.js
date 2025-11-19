@@ -13,6 +13,8 @@ const Contact = () => {
 
   // Error state
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+
 
   // Handle all input changes
   const handleChange = (e) => {
@@ -43,6 +45,11 @@ const Contact = () => {
     e.preventDefault();
     if (validate()) {
       console.log("Form submitted:", form);
+      setSuccessMessage("Your message has been sent successfully!");
+      handleReset();
+
+    // Hide message after 5 seconds
+    setTimeout(() => setSuccessMessage(""), 5000);
     }
   };
 
@@ -157,6 +164,10 @@ const Contact = () => {
             <label>Message</label>
             {errors.message && <div className="error-message">{errors.message}</div>}
           </div>
+
+{successMessage && (
+  <div className="success-message">{successMessage}</div>
+)}
 
           <div className="btn-group">
             <button type="reset" className="reset-btn">Reset</button>
