@@ -48,7 +48,7 @@ const Login = () => {
                     id="email"
                     placeholder="Email"
                     {...register("email", {
-                      required: true,
+                      required: "email required",
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         message: "Invalid email format",

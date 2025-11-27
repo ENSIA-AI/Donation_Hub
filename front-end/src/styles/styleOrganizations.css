@@ -44,6 +44,7 @@ img{
     font-weight: 600;
     color: var(--primary-color);
 }
+
 .subtitle{
     font-size:var(--text-font-size); 
     text-align: center;

@@ -79,7 +79,7 @@ a{
 }
  .text h3{
     font-family: var(--primary-font);
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     margin-bottom: 0.2em
 }
 .text p{
@@ -543,7 +543,7 @@ input[type="file"]::file-selector-button {
     }
 
     html {
-        font-size: 45%;
+        font-size: 50%;
     }
  .log-container{
     margin-top: 2em;
@@ -619,7 +619,7 @@ input[type="file"]::file-selector-button {
 
   
     html {
-        font-size: 45%;
+        font-size: 50%;
     }
 
 .log-container{
