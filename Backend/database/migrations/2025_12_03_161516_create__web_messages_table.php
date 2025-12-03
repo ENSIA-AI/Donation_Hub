@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('web_messages' , function (Blueprint $table){
+            $table->id('web_msg_id');
+            $table->string('sender_name')->unique();
+            $table->string('web_subject');
+            $table->text('web_message');
+             $table->timestamps();
+        }
+    );
     }
 
     /**
