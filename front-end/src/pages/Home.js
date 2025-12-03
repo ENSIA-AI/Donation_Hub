@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
 
-
-
 const Home = () => {
   return (
     <main>
@@ -16,11 +14,16 @@ const Home = () => {
             Transform Lives Together
           </h1>
           <p>
-            A powerful platform where organizations and donors collaborate to create real impact.
+            A powerful platform where organizations and donors collaborate to
+            create real impact.
           </p>
           <div className="hero-buttons">
-            <Link to="/ExploreOrganizations" className="btn">Explore Organizations</Link>
-            <Link to="/announcements" className="btn">View Campaigns</Link>
+            <Link to="/ExploreOrganizations" className="btn">
+              Explore Organizations
+            </Link>
+            <Link to="/announcements" className="btn">
+              View Campaigns
+            </Link>
           </div>
         </div>
       </section>
@@ -28,17 +31,24 @@ const Home = () => {
       <section className="difference">
         <h1>How we make a difference</h1>
         <p className="paragraph">
-          Our platform provides the tools and transparency needed to create real impact.
+          Our platform provides the tools and transparency needed to create real
+          impact.
         </p>
 
         <div className="cards">
           <div className="diff-card">
             <h3>Verified Organizations</h3>
-            <p>Link with verified organizations running impact projects in your area.</p>
+            <p>
+              Link with verified organizations running impact projects in your
+              area.
+            </p>
           </div>
           <div className="diff-card">
             <h3>Secure Payments</h3>
-            <p>Secure payments and track contributions with transparent dashboards.</p>
+            <p>
+              Secure payments and track contributions with transparent
+              dashboards.
+            </p>
           </div>
           <div className="diff-card">
             <h3>Transparency</h3>
@@ -50,7 +60,8 @@ const Home = () => {
       <section className="core-values">
         <h2>Our Core Values</h2>
         <p className="section-subtitle">
-          Built on principles that ensure trust, accessibility, and community empowerment.
+          Built on principles that ensure trust, accessibility, and community
+          empowerment.
         </p>
 
         <div className="values">
@@ -83,12 +94,17 @@ const Home = () => {
       <section className="join">
         <h1>Ready to make a difference?</h1>
         <p>
-          Join thousands of donors and organizations creating positive change in communities worldwide.
+          Join thousands of donors and organizations creating positive change in
+          communities worldwide.
         </p>
 
         <div className="btns">
-          <Link className="register_btn" to="/register">Register</Link>
-          <Link className="contact_btn" to="/contact">Contact Us</Link>
+          <Link className="register_btn" to="/register">
+            Register
+          </Link>
+          <Link className="contact_btn" to="/contact">
+            Contact Us
+          </Link>
         </div>
       </section>
     </main>
