@@ -13,6 +13,8 @@ const Donate = () => {
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -36,13 +38,41 @@ const Donate = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
-    if (validate()) {
+    if (!validate()) return;
+
+    const donationData = {
+      donor_firstName: form.first_name,
+      donor_lastName: form.last_name,
+      donor_phoneNumber: form.phone,
+      donor_email: form.email,
+      donation_amount: form.amount,
+      donation_type: form.donation_type,
+      donation_date: new Date().toISOString().split("T")[0], // today's date
+      donation_received: false, // default
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/donations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(donationData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to save donation");
+      }
+
+      const result = await response.json();
+      console.log("Saved:", result);
+
       setSuccessMessage("Thank you for your donation!");
-
-      // Reset form
       setForm({
         first_name: "",
         last_name: "",
@@ -51,10 +81,12 @@ const Donate = () => {
         donation_type: "",
         amount: "",
       });
-
       setErrors({});
 
       setTimeout(() => setSuccessMessage(""), 3000);
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage("Failed to save donation. Please try again.");
     }
   };
 
