@@ -19,26 +19,30 @@
         <div class="fluid_container flex-row">
             <!-- ===============================start sidebar ============================= -->
             <div class="dash_sideBare flex-column">
-                <div class="dash_admin_profile flex-column">
+                <div class="dash_admin_profile flex-column col-xl-2 col-lg-2 col-md-2">
                     <div class="dash_admin_profile_image">
                         <img src="assets\Images\admine_image.jpg" class="dash_admin_profile_img full_image"
                             alt="admin profile image">
                     </div>
                     <h6>Admin Name</h6>
                 </div>
-                <div class="dash_sidebar_items">
-                    <ul>
-                        <li class="dash_sidebar_item"><a href="./new_admin_stat.html"><i class="fa-solid fa-house"></i>
+                <div class="dash_sidebar_items_container">
+                    <ul class="dash_sidebar_items flex-column">
+                        <li class="dash_sidebar_item"><a href="./new_admin_stat.html"><i
+                                    class="fa-solid fa-house sidebar_btn"></i>
                                 Dashboard</a></li>
-                        <li class="dash_sidebar_item"><a href="#"><i class="fa-solid fa-building-ngo"></i> Organizations
+                        <li class="dash_sidebar_item"><a href="#"><i class="fa-solid fa-building-ngo sidebar_btn"></i>
+                                Organizations
                             </a>
                         </li>
-                        <li class="dash_sidebar_item"><a href="#"><i class="fa-solid fa-bullhorn"></i></i>
+                        <li class="dash_sidebar_item"><a href="#"><i class="fa-solid fa-bullhorn sidebar_btn"></i></i>
                                 Compaigns </a></li>
-                        <li class="dash_sidebar_item"><a href="#"><i class="fa-solid fa-hand-holding-dollar"></i>
+                        <li class="dash_sidebar_item"><a href="#"><i
+                                    class="fa-solid fa-hand-holding-dollar sidebar_btn"></i>
                                 Donations</a>
                         </li>
-                        <li class="dash_sidebar_item"><a href="#"><i class="fa-solid fa-message"></i> Messages</a></li>
+                        <li class="dash_sidebar_item"><a href="#"><i class="fa-solid fa-message sidebar_btn"></i>
+                                Messages</a></li>
                     </ul>
                 </div>
                 <div class="Admin_logOut">
@@ -51,52 +55,82 @@
             <!-- ===============================dash content  ============================= -->
             <div class="dash_stat_content dash_stat_container">
                 <div class="dash_date">
-                    <h6>February 14, 2025</h6>
+                    <h6>December 7, 2025</h6>
                 </div>
-                <div class="content_main_part">
-                    <div class="content_left_part">
+                <div class="content_main_part flex-row">
+                    <div class=" content_left_part ">
                         <!-- statistics , charts , pendingq  -->
                         <div class="stat_dash_cards flex-row">
                             <!-- card 1 -->
-                            <div class="stat_dash_card ">
-                                <div class="flex-row">
+                            <div class="stat_dash_card  green_card">
+                                <div class="stat_dash_card_name flex-row">
                                     <h1>
                                         Total Donations
                                     </h1>
-                                    <div>
+                                    <div class="stat_dash_card_icon_green">
                                         <i class="fa-solid fa-hand-holding-dollar"></i>
                                     </div>
                                 </div>
-                                <h1>1,245,000 DZD</h1>
+                                <h2>1,245,000 DZD</h2>
                             </div>
                             <!-- card 1 -->
                             <div class="stat_dash_card ">
-                                <div class="flex-row">
+                                <div class="stat_dash_card_name flex-row">
                                     <h1>
                                         Total compaigns
                                     </h1>
-                                    <div>
+                                    <div class="stat_dash_card_icon">
                                         <i class="fa-solid fa-bullhorn"></i>
                                     </div>
                                 </div>
-                                <h1>120</h1>
+                                <h2>120</h2>
                             </div>
                             <!-- card 1 -->
                             <div class="stat_dash_card ">
-                                <div class="flex-row">
+                                <div class="stat_dash_card_name flex-row">
                                     <h1>Organizations
                                     </h1>
-                                    <div>
+                                    <div class="stat_dash_card_icon">
                                         <i class="fa-solid fa-building-ngo"></i>
                                     </div>
                                 </div>
-                                <h1>45<h1>
+                                <h2>45<h1>
                             </div>
 
                         </div>
+                        <div class="content_left_part_charts  flex-row ">
+
+                            <div class="stat_chart_image_left">
+                                <img src="assets/Images/stat4.png" class="full_image stat_chart_img"
+                                    alt="Donation over time">
+                            </div>
+
+                            <div class="stat_chart_image_left">
+                                <img src="assets/Images/stat2.png" class="full_image stat_chart_img"
+                                    alt="Donation sources">
+                            </div>
+                        </div>
                     </div>
-                    <div class="content_left_part">
-                        <!-- only charts -->
+                    <div class="content_right_part flex-column">
+
+
+                        <div class="stat_chart_image">
+                            <img src="assets/Images/stat3.png" class="full_image stat_chart_img"
+                                alt="Donation by Region">
+                        </div>
+                        <div class="stat_chart_image">
+                            <img src="assets/Images/stat1.png" class="full_image stat_chart_img" alt="Donation sources">
+                        </div>
+
+                        <div class="stat_chart_image ">
+                            <img src="assets/Images/stat2.png" class="full_image stat_chart_img"
+                                alt="Donation by compains and Amount">
+                        </div>
+                        <div class="stat_chart_image ">
+                            <img src="assets/Images/stat3.png" class="full_image stat_chart_img"
+                                alt="Donation by Region">
+                        </div>
+
 
                     </div>
                 </div>
