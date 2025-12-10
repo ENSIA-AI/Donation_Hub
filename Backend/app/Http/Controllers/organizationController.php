@@ -21,7 +21,9 @@ class organizationController extends Controller
         $validated = $request->validate ([
            'org_name'=>'sometimes|max:255',
            'org_description'=>'sometimes',
-           'org_slogan'=>'somtimes',
+           'org_slogan'=>'sometimes',
+           'org_hero_img'=>'sometimes',
+           'org_logo'=>'sometimes'
 
         ]);
         $organization->update($validated);

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('org_name');
             $table->date('org_registrationDate');
             $table->text('org_description');
-            $table->foreignId('category_id')->references('categories')->constrained();
-            $table->foreignId('wilaya_id')->references('wilayas')->constrained();
+            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('wilaya_id')->constrained('wilayas');
             $table->string  ('org_email');
             $table->text('org_slogan')->nullable();
             $table->enum('status',['pending', 'approved' ,'rejected']);
