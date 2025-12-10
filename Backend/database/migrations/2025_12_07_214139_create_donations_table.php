@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('donations', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+
+            $table->string('donor_firstName');
+            $table->string('donor_lastName');
+            $table->string('donor_phoneNumber');
+            $table->string('donor_email');
+            $table->string('donation_type');
+            $table->decimal('donation_amount', 10, 2)->nullable();
+            $table->boolean('donation_received')->default(false);
+            $table->date('donation_date');
+
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('donations');
+    }
+};
