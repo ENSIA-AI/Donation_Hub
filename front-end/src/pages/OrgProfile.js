@@ -12,13 +12,22 @@ import OrgContactForm from "../components/OrgContactForm";
 import PostModal from "../components/PostModal";
 import { useParams } from "react-router-dom";
 import { Organizations } from "../data/Organizations";
+import axios from "axios";
 
 const OrgProfile = () => {
   const [activeSection, setActiveSection] = useState("Posts");
   const [underlineStyle, setUnderlineStyle] = useState({});
   const [visiblePosts, setVisiblePosts] = useState(6);
+  const [postTitle, setPostTitle] = useState("");
+  const [postDescription, setPostDescription] = useState("");
+  const [postImage, setPostImage] = useState(null);
+  const [showCreatePost, setShowCreatePost] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [compaigns, setCompaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const navRefs = useRef({});
   const { id } = useParams();
   const handleDonate = (post) => {
@@ -46,11 +55,60 @@ const OrgProfile = () => {
       });
     }
   }, [activeSection]);
+  // Handle create post submissionconst
+  const handleCreatePost = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("compaign_title", postTitle);
+    formData.append("compaign_content", postDescription); // match backend field name
+    if (postImage) formData.append("compaign_img", postImage);
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/compaigns",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log(response.data);
+      setCompaigns((prev) => [response.data, ...prev]);
+      setShowCreatePost(false);
+      setPostTitle("");
+      setPostDescription("");
+      setPostImage(null);
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
+  };
+
+  // fetch campaigns from API
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get("http://127.0.0.1:8000/api/compaigns")
+      .then((res) => {
+        if (isMounted) {
+          setCompaigns(res.data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          console.error(err);
+          setError("Failed to load campaigns.");
+          setLoading(false);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Handle invalid ID
   if (!org) {
     return <h1>Organization not found</h1>;
   }
+
   return (
     <>
       {/* Hero */}
@@ -87,20 +145,84 @@ const OrgProfile = () => {
       {/* Sections */}
       {activeSection === "Posts" && (
         <div className="org_container">
-          <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
-            {org.posts.slice(0, visiblePosts).map((post) => (
+          <div className="add_post">
+            <button
+              className="add_post_btn"
+              onClick={() => setShowCreatePost(true)}
+            >
+              <i className="fa-solid fa-plus"></i>
+              create post
+            </button>
+          </div>
+
+          {showCreatePost && (
+            <div
+              className="modal_overlay"
+              onClick={() => setShowCreatePost(false)}
+            >
+              <div
+                className="create_post_modal"
+                onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+              >
+                <form onSubmit={handleCreatePost}>
+                  <label htmlFor="post_T">Post Title</label>
+                  <br />
+                  <input
+                    type="text"
+                    id="post_T"
+                    required
+                    value={postTitle}
+                    onChange={(e) => setPostTitle(e.target.value)}
+                  />
+                  <br />
+
+                  <label htmlFor="post_D">Post Description</label>
+                  <br />
+                  <input
+                    type="text"
+                    maxLength="20000"
+                    id="post_D"
+                    value={postDescription}
+                    onChange={(e) => setPostDescription(e.target.value)}
+                    required
+                  />
+                  <br />
+
+                  <label htmlFor="PostImage">Post Image</label>
+                  <br />
+                  <input
+                    type="file"
+                    id="PostImage"
+                    onChange={(e) => setPostImage(e.target.files[0])}
+                  />
+                  <br />
+
+                  <div className="create_post_button flex-row">
+                    <button type="submit" className="create_post_btn">
+                      <i className="fa-solid fa-plus"></i>
+                      Create Post
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+          <div className={`posts flex-row ${loaded ? "posts-loaded" : ""}`}>
+            {loading && <p>Loading campaigns...</p>}
+            {error && <p>{error}</p>}
+            {compaigns.slice(0, visiblePosts).map((c) => (
               <OrgPostCard
-                key={post.id}
-                OrgPostDate={post.date}
-                OrgPostImage={post.image}
-                OrgPostTitle={post.title}
-                OrgPostDescription={post.description}
-                onReadMore={() => setSelectedPost(post)}
-                style={{ animationDelay: `${post.id * 0.1}s` }}
+                key={c.compaign_ID}
+                OrgPostDate={c.compaign_date}
+                OrgPostImage={`http://127.0.0.1:8000/storage/${c.compaign_img}`}
+                OrgPostTitle={c.compaign_title}
+                OrgPostDescription={c.compaign_content}
+                onDonate={() => handleDonate(c)}
+                onReadMore={() => setSelectedPost(c)}
               />
             ))}
           </div>
-          {visiblePosts < org.posts.length ? (
+          {visiblePosts < compaigns.length ? (
             <div className="see_more_btn flex-row">
               <div>
                 <i className="fa-solid fa-square-plus" />

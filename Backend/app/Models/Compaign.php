@@ -10,15 +10,16 @@ class Compaign extends Model
   protected $table = 'compaigns';
 
   protected $primaryKey = 'compaign_ID';
+  public $timestamps = false; 
   protected $fillable = [
     'compaign_img',
     'compaign_title',
     'compaign_content',
-    'compaign_date',
-    'compaign_approval',
+    // 'compaign_date',
+    // 'compaign_approval',
     ];
-    protected $casts = [
-    'compaign_approval' => 'boolean',
-    'compaign_date' => 'date',
-    ];
+    // protected $casts = [
+    // 'compaign_approval' => 'boolean',
+    // 'compaign_date' => 'date',
+    // ];
 }

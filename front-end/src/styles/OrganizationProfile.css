@@ -297,6 +297,159 @@ section {
 
 
 /* ===================================Post================================= */
+.add_post_btn {
+    margin-right: 0;
+    font-weight: 500;
+    color: black;
+    font-family: var(--secondary-font);
+    font-size: 1.6rem;
+    padding: .5rem 1rem;
+    background-color: white;
+    border-radius: 15px;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add_post {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+}
+/* ============= the form of creating a post ================ */
+
+.create_post form {
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    padding: 3rem;
+}
+.create_post label {
+    margin-top: 3rem;
+    font-family: var(--third-font);
+    padding: 0;
+    margin: 0;
+    color: rgb(57, 57, 57);
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.create_post input:not([type="file"]){
+    font-family: var(--third-font);
+    font-size: 1.8rem;
+    width: 100%;
+    height: 2.5rem;
+    border-color: #c3c0c0;
+    border-width: thin;
+    border-radius: 7px;
+    padding: 1rem;
+}
+.create_post_btn {
+    margin-top: 1.5rem;
+    padding: .6rem 1.2rem;
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+    background-color: var(--third-color);
+    border: none;
+    border-radius: 20px;
+   
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.create_post_link{
+    color:black;
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+.create_post input:hover{
+    box-shadow: rgba(243, 243, 243, 0.24) 0px 3px 8px;
+}
+.create_post_btn i {
+    font-size: 1.6rem;
+    margin-right: .5rem;
+    color:black; 
+}
+#post_D{
+    height: 8rem;
+}
+.create_post_btn:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(255, 223, 94, 0.948) 0px 0px 10px;
+}
+.create_post_button{
+    width :100%;
+}
+.create_post_button.flex-row {
+
+    align-items: center;
+    justify-content: center;
+} 
+/* ============end the form of creating a post ================ */
+/* Background blur */
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.2s ease-out;
+}
+
+
+.create_post_modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 480px;
+    max-width: 90%;
+    animation: popIn 0.25s ease-out;
+    margin-top: 3rem;
+        font-family: var(--third-font);
+        
+        color: rgb(57, 57, 57);
+        font-size: 1.8rem;
+        font-weight: 400;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
 .post-card {
     padding: 1.5rem;
     background-color: white;
