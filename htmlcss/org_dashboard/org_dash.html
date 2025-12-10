@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Organization Dashboard</title>
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="info">
+            <div class="logo"><img src="logo.png" alt="Logo"></div>
+            <div class="org-name">Organization Name</div>
+            <div class="profile">
+                <a href="#"><i class="fas fa-user"></i>View Profile</a>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#" class="tab-link" data-tab="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="#" class="tab-link" data-tab="donations"><i class="fas fa-hand-holding-heart"></i> Donations</a>
+            <a href="#" class="tab-link" data-tab="requests"><i class="fas fa-envelope-open-text"></i> Requests</a>
+        </nav>
+
+    </div>
+
+    <div class="main-content">
+
+        <div id="dashboard" class="tab-content"></div>
+
+        <div id="donations" class="tab-content">
+            <div class="donations-container">
+
+                <div class="top-bar">
+                    <div class="search-filter-wrapper">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search">
+                        </div>
+
+                        <button class="filter-btn">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                    </div>
+                </div>
+
+                <h2 class="section-title">donations</h2>
+
+                <table class="donations-table">
+                    <thead>
+                        <tr>
+                            <th>Donner</th>
+                            <th>organization receiver</th>
+                            <th>donation</th>
+                            <th>status</th>
+                            <th>date</th>
+                            <th>post</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="donations-body">
+
+
+                        <tr>
+                            <td>sender name</td>
+                            <td>organization name</td>
+                            <td>money <br><small>5000DA</small></td>
+                            <td>
+                                <select class="status-select">
+                                    <option value="waiting" selected>waiting</option>
+                                    <option value="received">received</option>
+                                </select>
+                            </td>
+                            <td>25/11/2025</td>
+                            <td>post title</td>
+                        </tr>
+
+                        <tr>
+                            <td>sender name</td>
+                            <td>organization name</td>
+                            <td>clothes <br><small>4 jackets</small></td>
+                            <td>
+                                <select class="status-select">
+                                    <option value="waiting">waiting</option>
+                                    <option value="received" selected>received</option>
+                                </select>
+                            </td>
+                            <td>25/11/2025</td>
+                            <td>post title</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <button class="add-btn">+</button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        const tabs = document.querySelectorAll('.tab-link');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                contents.forEach(c => c.style.display = 'none');
+
+                const target = this.dataset.tab;
+                document.getElementById(target).style.display = 'block';
+
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+
+        function styleSelect(select) {
+            if (select.value === "received") {
+                select.style.background = "#d0f0dc";
+                select.style.borderColor = "#2e8b57";
+            } else {
+                select.style.background = "#f2f2f2";
+                select.style.borderColor = "#aaa";
+            }
+        }
+
+        document.querySelectorAll(".status-select").forEach(s => styleSelect(s));
+
+        document.addEventListener("change", function (e) {
+            if (e.target.classList.contains("status-select")) {
+                styleSelect(e.target);
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
