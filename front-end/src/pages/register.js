@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 
 const Register = ()=>{
@@ -28,12 +29,37 @@ const {
   }
 );
    
-   const onSubmit = (data) => {
-  console.log("form Data:", data);
-  setSubmitSuccess(true);
-  reset();
-  setTimeout(() => setSubmitSuccess(false), 4000);
-}
+  const onSubmit = async (data) => {
+  try {
+    // Create FormData for file upload
+    const formData = new FormData();
+    formData.append("org_Name", data.orgName);
+    formData.append("org_type", data.organizationType);
+    formData.append("org_description", data.description || "");
+    formData.append("phoneNum", data.phoneNum);
+    formData.append("email", data.email);
+    formData.append("password", data.password); // You'll need to hash in backend
+    if (data.proof && data.proof[0]) {
+      formData.append("org_hero_img", data.proof[0]); // Example: uploading one file
+    }
+
+    // Send POST request to backend
+    const response = await axios.post("http://127.0.0.1:8000/api/organizations", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    console.log("Response:", response.data);
+    setSubmitSuccess(true);
+    reset();
+    setTimeout(() => setSubmitSuccess(false), 4000);
+
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("Error submitting form. Check console for details.");
+  }
+};
  return(
    <main>
     <div className="mainContainer">

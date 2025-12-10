@@ -15,7 +15,7 @@ return new class extends Migration
             Schema::create('organizations', function (Blueprint $table) {
                 $table->id('orgID');
                 $table->string('org_Name');
-                $table->string('org_registrationDate');
+                $table->date('org_registrationDate');
                 $table->text('org_description')->nullable();
                 $table->string('org_hero_img')->nullable();
                 $table->string('org_logo')->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Organization');
+        Schema::dropIfExists('Organizations');
     }
 };
