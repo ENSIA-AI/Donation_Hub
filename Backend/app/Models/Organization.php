@@ -13,7 +13,7 @@ class Organization extends Model
         'org_email',
         'org_slogan',
         'category_id',
-        'wilaya_id',
+        'region_id',
         'status',
         'org_hero_img',
         'org_logo'
@@ -24,7 +24,7 @@ class Organization extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function wilaya()
+    public function region()
     {
         return $this->belongsTo(Region::class);
     }
