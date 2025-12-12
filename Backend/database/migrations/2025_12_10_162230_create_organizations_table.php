@@ -24,6 +24,12 @@ return new class extends Migration
             $table->enum('status',['pending', 'approved' ,'rejected']);
             $table->string('org_hero_img')->nullable();
             $table->string('org_logo')->nullable();
+            $table->string('org_mission')->nullable();
+            $table->string('org_vision')->nullable();
+            $table->string('mission_img')->nullable();
+            $table->string('ptogram_title')->nullable();
+            $table->text('program_desc')->nullable();
+            $table->string('program_img')->nullable();
 
         });
     }

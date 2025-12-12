@@ -22,8 +22,6 @@ class organizationController extends Controller
            'org_name'=>'sometimes|max:255',
            'org_description'=>'sometimes',
            'org_slogan'=>'sometimes',
-           'org_hero_img'=>'sometimes',
-           'org_logo'=>'sometimes'
 
         ]);
         $organization->update($validated);

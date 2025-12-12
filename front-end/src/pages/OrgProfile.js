@@ -61,11 +61,11 @@ useEffect(() => {
       <OrgHero
         OrgHeroImage={org.heroImage}
         OrgLogoImage={org.logoImage}
-        OrgName={org.name}
-        OrgSlogan={org.slogan}
-        OrgType={org.type}
+        OrgName={org.org_name}
+        OrgSlogan={org.org_slogan}
+        OrgType={org.orgtype}
       />
-
+_
       {/* Navbar */}
       <div className="fluid_container">
         <div className="org_navbar">
