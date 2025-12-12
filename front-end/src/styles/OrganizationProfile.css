@@ -320,80 +320,199 @@ section {
     margin-bottom: 2rem;
 }
 /* ============= the form of creating a post ================ */
-
-.create_post form {
-    display: flex;
-    width: 40%;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 15px;
-    padding: 3rem;
-}
-.create_post label {
-    margin-top: 3rem;
-    font-family: var(--third-font);
-    padding: 0;
-    margin: 0;
-    color: rgb(57, 57, 57);
-    font-size: 1.8rem;
-    font-weight: 400;
-}
-
-.create_post input:not([type="file"]){
-    font-family: var(--third-font);
-    font-size: 1.8rem;
+/* Overlay for Create Post Modal */
+.create_post_modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 2.5rem;
-    border-color: #c3c0c0;
-    border-width: thin;
-    border-radius: 7px;
-    padding: 1rem;
-}
-.create_post_btn {
-    margin-top: 1.5rem;
-    padding: .6rem 1.2rem;
-    font-family: var(--secondary-font);
-    color: var(--secondary-color);
-    background-color: var(--third-color);
-    border: none;
-    border-radius: 20px;
-   
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.create_post_link{
-    color:black;
-    font-family: var(--secondary-font);
-    font-weight: 500;
-    font-size: 1.4rem;
-    text-decoration: none;
-}
-.create_post input:hover{
-    box-shadow: rgba(243, 243, 243, 0.24) 0px 3px 8px;
-}
-.create_post_btn i {
-    font-size: 1.6rem;
-    margin-right: .5rem;
-    color:black; 
-}
-#post_D{
-    height: 8rem;
-}
-.create_post_btn:hover {
-    transform: scale(1.05);
-    box-shadow: rgba(255, 223, 94, 0.948) 0px 0px 10px;
-}
-.create_post_button{
-    width :100%;
-}
-.create_post_button.flex-row {
-
-    align-items: center;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    display: flex;
     justify-content: center;
-} 
-/* ============end the form of creating a post ================ */
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal container */
+.create_post_modal {
+    background: #fff;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    animation: scaleUp 0.3s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Modal Title */
+.create_post_modal h2 {
+    font-family: var(--primary-font);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Error Text */
+.error_text {
+    color: #e74c3c;
+    font-family: var(--third-font);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Form inputs */
+.create_post_modal form label {
+    font-family: var(--third-font);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.create_post_modal form input[type="text"],
+.create_post_modal form input[type="file"],
+.create_post_modal form textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 1.3rem;
+    font-family: var(--third-font);
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.create_post_modal form input:focus,
+.create_post_modal form textarea:focus {
+    border-color: var(--third-color);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Textarea height */
+.create_post_modal form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Submit button */
+.create_post_modal form button {
+    background-color: var(--third-color);
+    color: #fff;
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    font-size: 1.3rem;
+    border-radius: 25px;
+    border: none;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.create_post_modal form button:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+.create_post_modal form button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+/* Add Post Button */
+.add_post_btn {
+    background-color: var(--third-color);
+    color: black;
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    font-size: 1.3rem;
+    border-radius: 25px;
+    border: none;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.add_post_btn:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .create_post_modal {
+        padding: 2rem;
+        width: 95%;
+    }
+
+    .create_post_modal h2 {
+        font-size: 1.6rem;
+    }
+
+    .create_post_modal form input,
+    .create_post_modal form textarea {
+        font-size: 1.1rem;
+    }
+
+    .create_post_modal form button,
+    .add_post_btn {
+        font-size: 1.1rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .create_post_modal h2 {
+        font-size: 1.4rem;
+    }
+
+    .create_post_modal form input,
+    .create_post_modal form textarea {
+        font-size: 1rem;
+    }
+
+    .create_post_modal form button,
+    .add_post_btn {
+        font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+    }
+}
+/*===========end the form of creating a post ================ */
 /* Background blur */
 .modal_overlay {
     position: fixed;
@@ -455,14 +574,24 @@ section {
     background-color: white;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    
 }
-
 .post {
     padding: 10px;
 
 }
+.fa-solid.fa-ellipsis{
+    font-size: 2.5rem;
+   
+    cursor: pointer;
+    color: rgb(68, 68, 68);
+}
+.post_header.flex-row{
+    justify-content: space-between;
+    align-items: center;
 
-
+}
 .read_more_action {
     padding-top: .7rem;
 }
@@ -602,8 +731,32 @@ section {
 /* ============end Post=============== */
 
 
+/* =========================== updating and deleting the post ============================== */
+.dropdown-menu {
+    position: absolute;
+    top: 30px;
+    right: 5px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
 
+.dropdown-menu button {
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
 
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+}
+/* =========================== end updating and deleting the post ============================== */
 
 /* ================================About us ====================================== */
 .org_description h1 {

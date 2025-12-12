@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import "../styles/OrganizationProfile.css";
 import OrgHero from "../components/OrgHero";
+
 import OrgPostCard from "../components/OrgPostCard";
 import OrgMission from "../components/OrgMission";
 import OrgValues from "../components/OrgValues";
@@ -10,24 +12,18 @@ import OrgContactInfos from "../components/OrgContactInfos";
 import OrgDescription from "../components/OrgDescription";
 import OrgContactForm from "../components/OrgContactForm";
 import PostModal from "../components/PostModal";
+import CreatePost from "../components/CreatePost";
+
 import { useParams } from "react-router-dom";
 import { Organizations } from "../data/Organizations";
-import axios from "axios";
 
 const OrgProfile = () => {
   const [activeSection, setActiveSection] = useState("Posts");
   const [underlineStyle, setUnderlineStyle] = useState({});
   const [visiblePosts, setVisiblePosts] = useState(6);
-  const [postTitle, setPostTitle] = useState("");
-  const [postDescription, setPostDescription] = useState("");
-  const [postImage, setPostImage] = useState(null);
-  const [showCreatePost, setShowCreatePost] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [compaigns, setCompaigns] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
+  const [selectedPost, setSelectedPost] = useState(null);
   const navRefs = useRef({});
   const { id } = useParams();
   const handleDonate = (post) => {
@@ -35,6 +31,9 @@ const OrgProfile = () => {
   };
   // Find the organization by ID
   const org = Organizations.find((o) => o.id === Number(id));
+  const [compaigns, setCompaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoaded(true);
@@ -55,35 +54,9 @@ const OrgProfile = () => {
       });
     }
   }, [activeSection]);
-  // Handle create post submissionconst
-  const handleCreatePost = async (e) => {
-    e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("compaign_title", postTitle);
-    formData.append("compaign_content", postDescription); // match backend field name
-    if (postImage) formData.append("compaign_img", postImage);
-
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/compaigns",
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
-      console.log(response.data);
-      setCompaigns((prev) => [response.data, ...prev]);
-      setShowCreatePost(false);
-      setPostTitle("");
-      setPostDescription("");
-      setPostImage(null);
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
-  };
-
-  // fetch campaigns from API
   useEffect(() => {
-    let isMounted = true;
+    let isMounted = true; // avoid memory leaks
     axios
       .get("http://127.0.0.1:8000/api/compaigns")
       .then((res) => {
@@ -104,11 +77,23 @@ const OrgProfile = () => {
     };
   }, []);
 
+  // Function to remove a post after deletion
+  const removePostFromState = (id) => {
+    setCompaigns(compaigns.filter((c) => c.compaign_ID !== id));
+  };
+
+  // Function to update a post after editing
+  const updatePostInState = (updatedPost) => {
+    setCompaigns(
+      compaigns.map((c) =>
+        c.compaign_ID === updatedPost.compaign_ID ? updatedPost : c
+      )
+    );
+  };
   // Handle invalid ID
   if (!org) {
     return <h1>Organization not found</h1>;
   }
-
   return (
     <>
       {/* Hero */}
@@ -145,80 +130,31 @@ const OrgProfile = () => {
       {/* Sections */}
       {activeSection === "Posts" && (
         <div className="org_container">
-          <div className="add_post">
-            <button
-              className="add_post_btn"
-              onClick={() => setShowCreatePost(true)}
-            >
-              <i className="fa-solid fa-plus"></i>
-              create post
-            </button>
-          </div>
+          <CreatePost
+            onPostCreated={(newPost) =>
+              setCompaigns((prev) => [newPost, ...prev])
+            }
+          />
 
-          {showCreatePost && (
-            <div
-              className="modal_overlay"
-              onClick={() => setShowCreatePost(false)}
-            >
-              <div
-                className="create_post_modal"
-                onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
-              >
-                <form onSubmit={handleCreatePost}>
-                  <label htmlFor="post_T">Post Title</label>
-                  <br />
-                  <input
-                    type="text"
-                    id="post_T"
-                    required
-                    value={postTitle}
-                    onChange={(e) => setPostTitle(e.target.value)}
-                  />
-                  <br />
-
-                  <label htmlFor="post_D">Post Description</label>
-                  <br />
-                  <input
-                    type="text"
-                    maxLength="20000"
-                    id="post_D"
-                    value={postDescription}
-                    onChange={(e) => setPostDescription(e.target.value)}
-                    required
-                  />
-                  <br />
-
-                  <label htmlFor="PostImage">Post Image</label>
-                  <br />
-                  <input
-                    type="file"
-                    id="PostImage"
-                    onChange={(e) => setPostImage(e.target.files[0])}
-                  />
-                  <br />
-
-                  <div className="create_post_button flex-row">
-                    <button type="submit" className="create_post_btn">
-                      <i className="fa-solid fa-plus"></i>
-                      Create Post
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
-          <div className={`posts flex-row ${loaded ? "posts-loaded" : ""}`}>
+          <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
             {loading && <p>Loading campaigns...</p>}
             {error && <p>{error}</p>}
             {compaigns.slice(0, visiblePosts).map((c) => (
               <OrgPostCard
-                key={c.compaign_ID}
-                OrgPostDate={c.compaign_date}
-                OrgPostImage={`http://127.0.0.1:8000/storage/${c.compaign_img}`}
+                key={`post-${c.compaign_ID}`}
+                OrgPostId={c.compaign_ID}
+                OrgPostDate={new Date(c.compaign_date).toLocaleDateString()}
+                OrgPostImage={
+                  c.compaign_img
+                    ? `http://127.0.0.1:8000/storage/${c.compaign_img}`
+                    : "https://via.placeholder.com/300"
+                }
                 OrgPostTitle={c.compaign_title}
                 OrgPostDescription={c.compaign_content}
                 onDonate={() => handleDonate(c)}
                 onReadMore={() => setSelectedPost(c)}
+                onDelete={(id) => removePostFromState(id)}
+                onUpdate={(updatedPost) => updatePostInState(updatedPost)}
               />
             ))}
           </div>

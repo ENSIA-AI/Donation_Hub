@@ -1,45 +1,44 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import OrgPostCard from "./OrgPostCard"; // your existing card
-import "../styles/OrganizationProfile.css";
+import OrgPostCard from "./OrgPostCard";
 
-function OrgPostList() {
+const OrgPostList = () => {
   const [compaigns, setCompaigns] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get("/api/v1/compaigns") // React proxy handles this
+      .get("http://127.0.0.1:8000/api/compaigns") // your Laravel API endpoint
       .then((res) => {
-        setCompaigns(res.data); // store API response
+        setCompaigns(res.data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
-        setError("Failed to load campaigns.");
+        console.error("Error fetching campaigns:", err);
         setLoading(false);
       });
   }, []);
 
   if (loading) return <p>Loading campaigns...</p>;
-  if (error) return <p>{error}</p>;
 
   return (
     <div className="row">
-      {compaigns.map((c) => (
+      {compaigns.map((compaign) => (
         <OrgPostCard
-          key={c.compaign_ID}
-          OrgPostDate={c.compaign_date}
-          OrgPostImage={c.compaign_img}
-          OrgPostTitle={c.compaign_title}
-          OrgPostDescription={c.compaign_content}
-          onDonate={() => alert(`Donate to ${c.compaign_title}`)}
-          onReadMore={() => alert(`Read more about ${c.compaign_title}`)}
+          key={compaign.id}
+          OrgPostTitle={compaign.compaign_title}
+          OrgPostDescription={compaign.compaign_content}
+          OrgPostDate={new Date(compaign.compaign_date).toLocaleDateString()}
+          OrgPostImage={
+            compaign.compaign_img
+              ? `http://127.0.0.1:8000/storage/${compaign.compaign_img}`
+              : "https://via.placeholder.com/300"
+          }
+          onReadMore={() => alert("Read more clicked!")}
         />
       ))}
     </div>
   );
-}
+};
 
 export default OrgPostList;
