@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-
+import AdminDashboardStat from "./pages/AdminDashboardStat";
 import ExploreOrganizations from "./pages/exploreOrganizations";
 import Donate from "./pages/donate";
 
@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Contact" element={<Contact />} />
-
+        <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
         <Route
           path="/exploreOrganizations"
           element={<ExploreOrganizations />}
