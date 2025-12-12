@@ -1,6 +1,5 @@
 <?php
-
-namespace Database\Seeders;
+ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,4 +21,4 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
     }
-}
+} 

@@ -28,7 +28,7 @@ const OrgProfile = () => {
 const [org, setOrg] = useState(null);
 
 useEffect(() => {
-  api.get(`/organizations/${id}`)
+  api.get(`/organization/${id}`)
     .then(res => setOrg(res.data))
     .catch(err => console.log(err));
 }, [id]);
@@ -59,11 +59,11 @@ useEffect(() => {
     <>
       {/* Hero */}
       <OrgHero
-        OrgHeroImage={org.heroImage}
-        OrgLogoImage={org.logoImage}
+        // OrgHeroImage={org.heroImage}
+        // OrgLogoImage={org.logoImage}
         OrgName={org.org_name}
         OrgSlogan={org.org_slogan}
-        OrgType={org.orgtype}
+        OrgType={org.category_id.name}
       />
 _
       {/* Navbar */}
@@ -89,7 +89,7 @@ _
       </div>
 
       {/* Sections */}
-      {activeSection === "Posts" && (
+      {/* {activeSection === "Posts" && (
         <div className="org_container">
           <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
             {org.posts.slice(0, visiblePosts).map((post) => (
@@ -131,24 +131,25 @@ _
             onDonate={handleDonate}
           />
         </div>
-      )}
+      )} */}
 
       {activeSection === "About" && (
         <section id="About_Us">
           <div className="about-container">
-            <OrgDescription name={org.name} description={org.description} />
+            <OrgDescription name={org.org_name} description={org.org_description} />
             <OrgMission
-              OrgMissionImg={org.mission.image}
-              OrganizationMission={org.mission.mission}
-              OrganizationVision={org.mission.vision}
+              // OrgMissionImg={org.mission.image}
+              OrganizationMission={org.org_mission}
+              OrganizationVision={org.org_vision}
             />
           </div>
           <OrgValues
-            OrgValue1={org.values[0]}
-            OrgValue2={org.values[1]}
-            OrgValue3={org.values[2]}
-            OrgValue4={org.values[3]}
+            OrgValue1={org.value1}
+            OrgValue2={org.value2}
+            OrgValue3={org.value3}
+            OrgValue4={org.value4}
           />
+          
           <OrgPrograms programs={org.programs} />
           <OrgImpact impacts={org.impact} />
         </section>

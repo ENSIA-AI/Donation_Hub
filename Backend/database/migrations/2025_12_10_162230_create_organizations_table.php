@@ -27,10 +27,26 @@ return new class extends Migration
             $table->string('org_mission')->nullable();
             $table->string('org_vision')->nullable();
             $table->string('mission_img')->nullable();
-            $table->string('ptogram_title')->nullable();
-            $table->text('program_desc')->nullable();
-            $table->string('program_img')->nullable();
-
+            $table->string('ptogram1_title')->nullable();
+            $table->text('program1_desc')->nullable();
+            $table->string('program1_img')->nullable();
+            $table->string('ptogram2_title')->nullable();
+            $table->text('program2_desc')->nullable();
+            $table->string('program2_img')->nullable();
+            $table->string('impact_value1')->nullable();
+            $table->text('imapct_desc1')->nullable();
+            $table->string('impact_value2')->nullable();
+            $table->text('imapct_desc2')->nullable();
+            $table->string('impact_value3')->nullable();
+            $table->text('imapct_desc3')->nullable();
+            $table->string('value1')->nullable();
+            $table->string('value2')->nullable();
+            $table->string('value3')->nullable();
+            $table->string('value4')->nullable();
+            $table->string('org_address')->nullable();
+            $table->string('org_phone')->nullable();
+            $table->string('org_facebook')->nullable();
+            $table->string('org_instagram')->nullable();
         });
     }
 
