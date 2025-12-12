@@ -11,7 +11,7 @@ import OrgDescription from "../components/OrgDescription";
 import OrgContactForm from "../components/OrgContactForm";
 import PostModal from "../components/PostModal";
 import { useParams } from "react-router-dom";
-import { Organizations } from "../data/Organizations";
+import api from "../api/axios";
 
 const OrgProfile = () => {
   const [activeSection, setActiveSection] = useState("Posts");
@@ -25,7 +25,13 @@ const OrgProfile = () => {
     alert(`Donate for post: ${post.title}`);
   };
   // Find the organization by ID
-  const org = Organizations.find((o) => o.id === Number(id));
+const [org, setOrg] = useState(null);
+
+useEffect(() => {
+  api.get(`/organizations/${id}`)
+    .then(res => setOrg(res.data))
+    .catch(err => console.log(err));
+}, [id]);
 
   useEffect(() => {
     setLoaded(true);
@@ -48,9 +54,7 @@ const OrgProfile = () => {
   }, [activeSection]);
 
   // Handle invalid ID
-  if (!org) {
-    return <h1>Organization not found</h1>;
-  }
+  if (!org) return <h1>Loading...</h1>;
   return (
     <>
       {/* Hero */}

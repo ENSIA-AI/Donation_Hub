@@ -29,5 +29,11 @@ class organizationController extends Controller
         $organization->update($validated);
         return response()->json($organization);
     }
+    public function destroy($id){
+        $organization =Organization::findOrFail($id);
+        $organization->delete();
+        return response()->json(['message'=>'deleted']);
+
+    }
 
 }

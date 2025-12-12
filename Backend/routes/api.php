@@ -11,4 +11,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/organizations/{id}',[organizationController::class,'show']);
 Route::put('/organization/{id}',[OrganizationController::class , 'update']);
-Route::delete('/organization/{id}',[OrganizationController::class,'delete']);
+Route::delete('/organization/{id}',[OrganizationController::class,'destroy']);
