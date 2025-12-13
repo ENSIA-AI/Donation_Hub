@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class organizationController extends Controller
 {
     public function show($id){
-        $organization = Organization::findOrFail($id);
+        $organization = Organization::with('category')->findOrFail($id);
         return response()->json([
             'id' => $organization->id,
             'org_name' => $organization->org_name,
@@ -19,6 +19,7 @@ class organizationController extends Controller
             'org_mission' => $organization->org_mission,
             'org_vision' => $organization->org_vision,
             
+            'category' => $organization->category,
             // Individual values (for backward compatibility)
             'value1' => $organization->value1,
             'value2' => $organization->value2,
@@ -41,7 +42,7 @@ class organizationController extends Controller
         ]);
     }
     public function index(){//to redefine latter
-        $organizations = Organization::all();
+        $organizations = Organization::with('category')->get();
         return response()->json($organizations);
     }
     

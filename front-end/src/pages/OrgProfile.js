@@ -63,7 +63,7 @@ useEffect(() => {
         // OrgLogoImage={org.logoImage}
         OrgName={org.org_name}
         OrgSlogan={org.org_slogan}
-        OrgType={org.category_id.name}
+        OrgType={org.category.category}
       />
 _
       {/* Navbar */}
