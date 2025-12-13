@@ -14,6 +14,32 @@ class OrganizationController extends Controller
         return response()->json(Organization::with(['category', 'region'])->get());
     }
 
+    // Reject organization (soft reject / status update)
+public function reject($id)
+{
+    $organization = Organization::findOrFail($id);
+    $organization->status = 'rejected';
+    $organization->save();
+
+    return response()->json([
+        'message' => 'Organization rejected successfully',
+        'organization' => $organization
+    ]);
+}
+
+
+    public function approve($id)
+{
+    $organization = Organization::findOrFail($id);
+
+    $organization->status = 'approved';
+    $organization->save();
+
+    return response()->json([
+        'message' => 'Organization approved successfully'
+    ]);
+}
+
     // Create new organization
     public function store(Request $request)
     {
