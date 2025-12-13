@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Organization extends Model
 {
   protected $fillable = [
-   'org_name',
+        'org_name',
         'org_registrationDate',
         'org_description',
         'category_id',
@@ -20,10 +20,10 @@ class Organization extends Model
         'org_mission',
         'org_vision',
         'mission_img',
-        'ptogram1_title',
+        'program1_title',
         'program1_desc',
         'program1_img',
-        'ptogram2_title',
+        'program2_title',
         'program2_desc',
         'program2_img',
         'impact_value1',
@@ -52,12 +52,12 @@ class Organization extends Model
     {
         return [
             [
-                'title' => $this->ptogram1_title ?? null,
+                'title' => $this->program1_title ?? null,
                 'description' => $this->program1_desc ?? null,
                 'image' => $this->program1_img ? asset('storage/' . $this->program1_img) : null,
             ],
             [
-                'title' => $this->ptogram2_title ?? null,
+                'title' => $this->program2_title ?? null,
                 'description' => $this->program2_desc ?? null,
                 'image' => $this->program2_img ? asset('storage/' . $this->program2_img) : null,
             ],

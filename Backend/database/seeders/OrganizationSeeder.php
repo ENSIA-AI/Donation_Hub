@@ -1,5 +1,7 @@
 <?php
+
 namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +22,8 @@ class OrganizationSeeder extends Seeder
             ['category' => 'Health'],
             ['category' => 'Environment'],
         ]);
+
+        // 3️⃣ Seed Organizations
         DB::table('organizations')->insert([
 
     [
@@ -36,10 +40,10 @@ class OrganizationSeeder extends Seeder
         'org_mission' => 'Protect the environment.',
         'org_vision' => 'A sustainable Algeria.',
         'mission_img' => 'mission1.png',
-        'ptogram1_title' => 'Tree Planting Program',
+        'program1_title' => 'Tree Planting Program',
         'program1_desc' => 'Planting 10,000 trees across Algeria.',
         'program1_img' => 'program1.jpg',
-        'ptogram2_title' => 'Recycling Awareness',
+        'program2_title' => 'Recycling Awareness',
         'program2_desc' => 'Teaching youth proper recycling habits.',
         'program2_img' => 'program2.jpg',
         'impact_value1' => '10k',
@@ -72,10 +76,10 @@ class OrganizationSeeder extends Seeder
         'org_mission' => 'Provide free workshops for students.',
         'org_vision' => 'Education for every Algerian child.',
         'mission_img' => 'mission2.png',
-        'ptogram1_title' => 'Math Boost Program',
+        'program1_title' => 'Math Boost Program',
         'program1_desc' => 'Helps students improve math skills.',
         'program1_img' => 'program2a.jpg',
-        'ptogram2_title' => 'Language Skills',
+        'program2_title' => 'Language Skills',
         'program2_desc' => 'Free English and French lessons.',
         'program2_img' => 'program2b.jpg',
         'impact_value1' => '2k',
@@ -108,10 +112,10 @@ class OrganizationSeeder extends Seeder
         'org_mission' => 'Support families in need of medical care.',
         'org_vision' => 'A healthy, empowered society.',
         'mission_img' => 'mission3.png',
-        'ptogram1_title' => 'Blood Donation Campaigns',
+        'program1_title' => 'Blood Donation Campaigns',
         'program1_desc' => 'Organizes frequent blood donation events.',
         'program1_img' => 'program3a.jpg',
-        'ptogram2_title' => 'Health Awareness',
+        'program2_title' => 'Health Awareness',
         'program2_desc' => 'Free public health workshops.',
         'program2_img' => 'program3b.jpg',
         'impact_value1' => '500',
@@ -144,10 +148,10 @@ class OrganizationSeeder extends Seeder
         'org_mission' => 'Reduce pollution on Algerian beaches.',
         'org_vision' => 'Plastic-free coasts.',
         'mission_img' => 'mission4.png',
-        'ptogram1_title' => 'Beach Cleanup Events',
+        'program1_title' => 'Beach Cleanup Events',
         'program1_desc' => 'Organizes volunteer cleanup campaigns.',
         'program1_img' => 'program4a.jpg',
-        'ptogram2_title' => 'Marine Education',
+        'program2_title' => 'Marine Education',
         'program2_desc' => 'Teaches kids about protecting marine life.',
         'program2_img' => 'program4b.jpg',
         'impact_value1' => '8 tons',
@@ -180,10 +184,10 @@ class OrganizationSeeder extends Seeder
         'org_mission' => 'Provide free training for women.',
         'org_vision' => 'Stronger women, stronger communities.',
         'mission_img' => 'mission5.png',
-        'ptogram1_title' => 'Entrepreneurship Training',
+        'program1_title' => 'Entrepreneurship Training',
         'program1_desc' => 'Workshops helping women start businesses.',
         'program1_img' => 'program5a.jpg',
-        'ptogram2_title' => 'Digital Skills',
+        'program2_title' => 'Digital Skills',
         'program2_desc' => 'Coding and tech literacy courses.',
         'program2_img' => 'program5b.jpg',
         'impact_value1' => '700',
@@ -216,10 +220,10 @@ class OrganizationSeeder extends Seeder
         'org_mission' => 'Create a healthier generation.',
         'org_vision' => 'All children deserve a healthy life.',
         'mission_img' => 'mission6.png',
-        'ptogram1_title' => 'Nutrition Classes',
+        'program1_title' => 'Nutrition Classes',
         'program1_desc' => 'Teaches kids about healthy eating.',
         'program1_img' => 'program6a.jpg',
-        'ptogram2_title' => 'Sports for All',
+        'program2_title' => 'Sports for All',
         'program2_desc' => 'Free access to physical activity programs.',
         'program2_img' => 'program6b.jpg',
         'impact_value1' => '1.2k',
@@ -239,4 +243,6 @@ class OrganizationSeeder extends Seeder
     ],
 
 ]);
-    }}
+
+    }
+}

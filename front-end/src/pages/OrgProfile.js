@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect  } from "react";
 import "../styles/OrganizationProfile.css";
 import OrgHero from "../components/OrgHero";
 import OrgPostCard from "../components/OrgPostCard";
@@ -12,8 +12,10 @@ import OrgContactForm from "../components/OrgContactForm";
 import PostModal from "../components/PostModal";
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
+import { Link ,useNavigate } from "react-router-dom";
 
 const OrgProfile = () => {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("Posts");
   const [underlineStyle, setUnderlineStyle] = useState({});
   const [visiblePosts, setVisiblePosts] = useState(6);
@@ -36,6 +38,23 @@ useEffect(() => {
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  const handleDelete = async () => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this organization?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    await api.delete(`/organization/${id}`);
+    alert("Organization deleted successfully");
+    navigate("/organization"); // go back to list page
+  } catch (error) {
+    console.error(error);
+    alert("Failed to delete organization");
+  }
+};
 
   // handle see more button
   const handleSeeMore = () => {
@@ -65,7 +84,22 @@ useEffect(() => {
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
-_
+      <Link to={`/OrgProfile/${org.id}/edit`}>edit profile</Link>
+       {/* _ delete org  */}
+         <button
+  onClick={handleDelete}
+  style={{
+    marginLeft: "15px",
+    background: "red",
+    color: "white",
+    padding: "6px 12px",
+    border: "none",
+    cursor: "pointer",
+  }}
+>
+  Delete profile
+</button>
+ 
       {/* Navbar */}
       <div className="fluid_container">
         <div className="org_navbar">

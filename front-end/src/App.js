@@ -16,6 +16,7 @@ import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
 import Register from "./pages/register";
 import Announcements from "./pages/announcements";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         />
         <Route path="/Login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/OrgProfile/:id/edit" element={<EditProfile />} />
         <Route path="/OrgProfile/:id" element={<OrgProfile />} />
 
         <Route path="/announcements" element={<Announcements />} />

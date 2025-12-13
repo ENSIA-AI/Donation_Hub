@@ -27,10 +27,10 @@ return new class extends Migration
             $table->string('org_mission')->nullable();
             $table->string('org_vision')->nullable();
             $table->string('mission_img')->nullable();
-            $table->string('ptogram1_title')->nullable();
+            $table->string('program1_title')->nullable();
             $table->text('program1_desc')->nullable();
             $table->string('program1_img')->nullable();
-            $table->string('ptogram2_title')->nullable();
+            $table->string('program2_title')->nullable();
             $table->text('program2_desc')->nullable();
             $table->string('program2_img')->nullable();
             $table->string('impact_value1')->nullable();

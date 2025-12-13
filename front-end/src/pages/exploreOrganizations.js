@@ -3,8 +3,7 @@ import "../styles/styleOrganizations.css";
 import OrganizationCard from "../components/organizationCard";
 import SearchBar from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";
-
-import axios from"axios";
+import axios from"../api/axios";
 
 const ExploreOrganizations = () => {
   const [visibleCount, setVisibleCount] = useState(8);
@@ -14,7 +13,7 @@ const ExploreOrganizations = () => {
   const [organizations, setOrganizations] = useState([]);
     useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/organization")
+      .get('/organization')
       .then((response) => {
         setOrganizations(response.data);
       })

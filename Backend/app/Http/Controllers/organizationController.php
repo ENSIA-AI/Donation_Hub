@@ -5,8 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 
-class organizationController extends Controller
+class OrganizationController  extends Controller
 {
+     public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'program1_title' => 'required|max:255',
+            'program1_desc' => 'required',
+            'program2_title'=> 'required',
+            'program2_desc' =>'required'
+
+        ]);
+
+        $organization = Organization::create($validated);
+
+        return response()->json($organization, 201);
+    }
     public function show($id){
         $organization = Organization::with('category')->findOrFail($id);
         return response()->json([
@@ -52,6 +66,16 @@ class organizationController extends Controller
            'org_name'=>'sometimes|max:255',
            'org_description'=>'sometimes',
            'org_slogan'=>'sometimes',
+            'org_mission'=>'sometimes',
+            'org_vision'=>'sometimes',
+            'program1_title' =>'sometimes',
+            'program1_desc '=>'sometimes',
+            'program2_title'=>'sometimes',
+            'program2_desc'=>'sometimes',
+            'value1'=>'sometimes',
+            'value2'=>'sometimes',
+            'value3'=>'sometimes',
+            'value4'=>'sometimes'
 
         ]);
         $organization->update($validated);
