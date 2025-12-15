@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Register from "./pages/register";
 import Announcements from "./pages/announcements";
 import EditProfile from "./pages/EditProfile";
+import AddDataOrg from "./pages/AddDataOrg";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/OrgProfile/:id/edit" element={<EditProfile />} />
         <Route path="/OrgProfile/:id" element={<OrgProfile />} />
-
+        <Route path="/AddDataOrg" element={<AddDataOrg />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/donate" element={<Donate />} />
       </Routes>

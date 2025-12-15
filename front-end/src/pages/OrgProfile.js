@@ -49,7 +49,7 @@ useEffect(() => {
   try {
     await api.delete(`/organization/${id}`);
     alert("Organization deleted successfully");
-    navigate("/organization"); // go back to list page
+    navigate("/ExploreOrganizations"); // go back to list page
   } catch (error) {
     console.error(error);
     alert("Failed to delete organization");
@@ -84,9 +84,12 @@ useEffect(() => {
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
-      <Link to={`/OrgProfile/${org.id}/edit`}>edit profile</Link>
+
+
+  <div className="edit_delete_container">
+      <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">edit profile</Link>
        {/* _ delete org  */}
-         <button
+  <button className="Link_style"
   onClick={handleDelete}
   style={{
     marginLeft: "15px",
@@ -94,11 +97,11 @@ useEffect(() => {
     color: "white",
     padding: "6px 12px",
     border: "none",
-    cursor: "pointer",
   }}
 >
   Delete profile
 </button>
+</div>
  
       {/* Navbar */}
       <div className="fluid_container">

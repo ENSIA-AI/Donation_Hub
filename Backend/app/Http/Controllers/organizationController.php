@@ -7,20 +7,36 @@ use Illuminate\Http\Request;
 
 class OrganizationController  extends Controller
 {
-     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'program1_title' => 'required|max:255',
-            'program1_desc' => 'required',
-            'program2_title'=> 'required',
-            'program2_desc' =>'required'
+ public function store(Request $request)
+{
+    $validated = $request->validate([
+        'org_name' => 'required|max:255',
+        'org_description' => 'required',
+        'org_slogan' => 'required',
+        'org_mission' => 'required',
+        'org_vision' => 'required',
 
-        ]);
+        'program1_title' => 'required',
+        'program1_desc' => 'required',
+        'program2_title' => 'required',
+        'program2_desc' => 'required',
 
-        $organization = Organization::create($validated);
+        'value1' => 'required',
+        'value2' => 'required',
+        'value3' => 'required',
+        'value4' => 'required',
 
-        return response()->json($organization, 201);
-    }
+        'status' => 'nullable',
+        'org_email' => 'nullable|email',
+        'wilaya_id' => 'nullable',
+        'category_id' => 'nullable',
+        'org_registrationDate' => 'nullable|date',
+    ]);
+
+    return Organization::create($validated);
+}
+
+
     public function show($id){
         $organization = Organization::with('category')->findOrFail($id);
         return response()->json([
@@ -47,8 +63,11 @@ class OrganizationController  extends Controller
             'programs' => $organization->programs,    // Always 2 items
             'impact' => $organization->impact,        // Always 3 items
             'contact' => $organization->contact,      // Dynamic based on what exists
-            'posts' => $organization->posts,          // All campaigns
-            
+            'posts' => $organization->posts,        // All campaigns
+            'program1_desc' =>$organization->program1_desc,
+            'program1_title' =>$organization->program1_title,
+            'program2_desc' =>$organization->program2_desc,
+            'program2_title' =>$organization->program2_title,
             // Images with full URLs
             'heroImage' => $organization->org_hero_img ? asset('storage/' . $organization->org_hero_img) : null,
             'logoImage' => $organization->org_logo ? asset('storage/' . $organization->org_logo) : null,

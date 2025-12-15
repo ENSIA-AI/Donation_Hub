@@ -4,6 +4,7 @@ import OrganizationCard from "../components/organizationCard";
 import SearchBar from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";
 import axios from"../api/axios";
+import { Link } from "react-router-dom";
 
 const ExploreOrganizations = () => {
   const [visibleCount, setVisibleCount] = useState(8);
@@ -30,6 +31,7 @@ const ExploreOrganizations = () => {
           communities
         </p>
       </div>
+      <div className="add_org_container"><Link to={'/AddDataOrg'} className="Add_org">Add data from here</Link></div>
 
       {/* Search bar */}
       <SearchBar />
