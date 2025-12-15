@@ -15,7 +15,6 @@ const Donate = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -23,80 +22,71 @@ const Donate = () => {
   const validate = () => {
     let newErrors = {};
 
-    if (!form.first_name.trim())
-      newErrors.first_name = "First name is required";
+    if (!form.first_name.trim()) newErrors.first_name = "First name is required";
     if (!form.last_name.trim()) newErrors.last_name = "Last name is required";
     if (!form.phone.trim()) newErrors.phone = "Phone number is required";
     if (!form.email.trim()) newErrors.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       newErrors.email = "Invalid email format";
-    if (!form.donation_type)
-      newErrors.donation_type = "Please select a donation type";
-   if (form.donation_type === "money" && !form.amount.trim()) {
-  newErrors.amount = "Amount is required for money donations";
-}
 
+    if (!form.donation_type) newErrors.donation_type = "Please select a donation type";
+
+    if (form.donation_type === "money" && !form.amount.trim()) {
+      newErrors.amount = "Amount is required for money donations";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setErrorMessage("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMessage("");
 
-  if (!validate()) return;
+    if (!validate()) return;
 
-  const donationData = {
-    donor_firstName: form.first_name,
-    donor_lastName: form.last_name,
-    donor_phoneNumber: form.phone,
-    donor_email: form.email,
-    donation_type: form.donation_type,
-    donation_amount: form.donation_type === "money" ? form.amount : null,
-    donation_date: new Date().toISOString().split("T")[0],
-    donation_received: false,
-  };
+    const donationData = {
+      donor_firstName: form.first_name,
+      donor_lastName: form.last_name,
+      donor_phoneNumber: form.phone,
+      donor_email: form.email,
+      donation_type: form.donation_type,
+      donation_amount: form.donation_type === "money" ? form.amount : null,
+      donation_date: new Date().toISOString().split("T")[0],
+      donation_received: false,
+    };
 
-  try {
-    const response = await fetch("http://127.0.0.1:8000/api/donations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(donationData),
-    });
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/donations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(donationData),
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (!response.ok) {
-      if (result.errors) {
-        setErrors(result.errors); // show field-specific errors
-      } else {
-        setErrorMessage(result.message || "Failed to save donation");
+      if (!response.ok) {
+        if (result.errors) setErrors(result.errors);
+        else setErrorMessage(result.message || "Failed to save donation");
+        return;
       }
-      return;
+
+      setSuccessMessage("Thank you for your donation!");
+      setForm({
+        first_name: "",
+        last_name: "",
+        phone: "",
+        email: "",
+        donation_type: "",
+        amount: "",
+      });
+      setErrors({});
+      setTimeout(() => setSuccessMessage(""), 3000);
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage("Failed to save donation. Please try again.");
     }
-
-    console.log("Saved:", result);
-    setSuccessMessage("Thank you for your donation!");
-    setForm({
-      first_name: "",
-      last_name: "",
-      phone: "",
-      email: "",
-      donation_type: "",
-      amount: "",
-    });
-    setErrors({});
-    setTimeout(() => setSuccessMessage(""), 3000);
-
-  } catch (error) {
-    console.error("Error:", error);
-    setErrorMessage("Failed to save donation. Please try again.");
-  }
-};
-
+  };
 
   const handleReset = () => {
     setForm({
@@ -118,8 +108,7 @@ const handleSubmit = async (e) => {
           <div className="org-card">
             <h1 className="org-name">Organization Name</h1>
             <p className="org-description">
-              Every contribution, big or small, helps us build a stronger, more
-              resilient
+              Every contribution, big or small, helps us build a stronger, more resilient
               <br />
               community. See how your generosity makes a direct impact.
             </p>
@@ -157,15 +146,10 @@ const handleSubmit = async (e) => {
         {/* Donation Form */}
         <div className="donation-form col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
           <div className="form-card">
-            <form
-              className="donation-form-content"
-              onSubmit={handleSubmit}
-              onReset={handleReset}
-            >
+            <form className="donation-form-content" onSubmit={handleSubmit} onReset={handleReset}>
+              {/* First Name */}
               <div className={`form-group ${errors.first_name ? "error" : ""}`}>
-                <label htmlFor="first-name" className="form-label">
-                  First Name*
-                </label>
+                <label htmlFor="first-name" className="form-label">First Name*</label>
                 <input
                   type="text"
                   id="first-name"
@@ -175,15 +159,12 @@ const handleSubmit = async (e) => {
                   value={form.first_name}
                   onChange={handleChange}
                 />
-                {errors.first_name && (
-                  <div className="error-message">{errors.first_name}</div>
-                )}
+                {errors.first_name && <div className="error-message">{errors.first_name}</div>}
               </div>
 
+              {/* Last Name */}
               <div className={`form-group ${errors.last_name ? "error" : ""}`}>
-                <label htmlFor="last-name" className="form-label">
-                  Last Name*
-                </label>
+                <label htmlFor="last-name" className="form-label">Last Name*</label>
                 <input
                   id="last-name"
                   name="last_name"
@@ -193,15 +174,12 @@ const handleSubmit = async (e) => {
                   value={form.last_name}
                   onChange={handleChange}
                 />
-                {errors.last_name && (
-                  <div className="error-message">{errors.last_name}</div>
-                )}
+                {errors.last_name && <div className="error-message">{errors.last_name}</div>}
               </div>
 
+              {/* Phone */}
               <div className={`form-group ${errors.phone ? "error" : ""}`}>
-                <label htmlFor="phone" className="form-label">
-                  Phone Number*
-                </label>
+                <label htmlFor="phone" className="form-label">Phone Number*</label>
                 <input
                   type="tel"
                   id="phone"
@@ -211,15 +189,12 @@ const handleSubmit = async (e) => {
                   value={form.phone}
                   onChange={handleChange}
                 />
-                {errors.phone && (
-                  <div className="error-message">{errors.phone}</div>
-                )}
+                {errors.phone && <div className="error-message">{errors.phone}</div>}
               </div>
 
+              {/* Email */}
               <div className={`form-group ${errors.email ? "error" : ""}`}>
-                <label htmlFor="email" className="form-label">
-                  Email Address*
-                </label>
+                <label htmlFor="email" className="form-label">Email Address*</label>
                 <input
                   type="email"
                   id="email"
@@ -229,65 +204,51 @@ const handleSubmit = async (e) => {
                   value={form.email}
                   onChange={handleChange}
                 />
-                {errors.email && (
-                  <div className="error-message">{errors.email}</div>
-                )}
+                {errors.email && <div className="error-message">{errors.email}</div>}
               </div>
 
-              <div
-                className={`form-group ${errors.donation_type ? "error" : ""}`}
-              >
-                <label htmlFor="donation-type" className="form-label">
-                  Donation Type
-                </label>
+              {/* Donation Type */}
+              <div className={`form-group ${errors.donation_type ? "error" : ""}`}>
+                <label htmlFor="donation-type" className="form-label">Donation Type</label>
                 <select
                   id="donation-type"
                   name="donation_type"
                   className="form-input form-select"
                   value={form.donation_type}
                   onChange={handleChange}
-                  placeholder="Select Donation Type"
                 >
-                  <option value="" disabled selected hidden>
-                    Select a type
-                  </option>
+                  <option value="" disabled hidden>Select a type</option>
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
                 </select>
-                {errors.donation_type && (
-                  <div className="error-message">{errors.donation_type}</div>
-                )}
+                {errors.donation_type && <div className="error-message">{errors.donation_type}</div>}
               </div>
 
-              <div className={`form-group ${errors.amount ? "error" : ""}`}>
-                <label htmlFor="amount" className="form-label">
-                  Donation Amount*
-                </label>
-                <input
-                  type="text"
-                  id="amount"
-                  name="amount"
-                  className="form-input"
-                  placeholder="Enter amount"
-                  value={form.amount}
-                  onChange={handleChange}
-                />
-                {errors.amount && (
-                  <div className="error-message">{errors.amount}</div>
-                )}
-              </div>
-              {successMessage && (
-                <div className="success-message">{successMessage}</div>
+              {/* Donation Amount (only shows for money)*/}
+              {form.donation_type === "money" && (
+                <div className={`form-group ${errors.amount ? "error" : ""}`}>
+                  <label htmlFor="amount" className="form-label">Donation Amount*</label>
+                  <input
+                    type="text"
+                    id="amount"
+                    name="amount"
+                    className="form-input"
+                    placeholder="Enter amount"
+                    value={form.amount}
+                    onChange={handleChange}
+                  />
+                  {errors.amount && <div className="error-message">{errors.amount}</div>}
+                </div>
               )}
 
+              {/* Success message */}
+              {successMessage && <div className="success-message">{successMessage}</div>}
+
+              {/* Form buttons */}
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                <button type="submit" className="donate_btns">
-                  Donate
-                </button>
-                <button type="reset" className="reset_btns">
-                  Reset
-                </button>
+                <button type="submit" className="donate_btns">Donate</button>
+                <button type="reset" className="reset_btns">Reset</button>
               </div>
             </form>
           </div>

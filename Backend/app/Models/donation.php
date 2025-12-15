@@ -10,7 +10,6 @@ class Donation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'post_id',
         'donor_firstName',
         'donor_lastName',
         'donor_phoneNumber',
@@ -27,15 +26,8 @@ class Donation extends Model
         'donation_received' => 'boolean',
     ];
 
-    // Relationship with Post
-    /*public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
 
-    // Full name accessor
-    public function getDonorFullNameAttribute()
-    {
-        return "{$this->donor_firstName} {$this->donor_lastName}";
-    }*/
 }
+
+
+
