@@ -5,8 +5,10 @@ function Dashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [stats, setStats] = useState(null);
   const [donations, setDonations] = useState([]);
+  const [requests, setRequests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [statusFilter, setStatusFilter] = useState('all');
 
   // Fetch statistics
   useEffect(() => {
@@ -29,42 +31,111 @@ function Dashboard() {
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching donations:', error);
+        alert(error)
+        console.log('Error fetching donations:');
+        setLoading(false);
+      });
+  }, []);
+
+  //Fetch all requests
+   useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/dashboard/requests')
+      .then(res => res.json())
+      .then(data => {
+        console.log('Requests:', data);
+        setRequests(data.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        alert(error)
+        console.log('Error fetching requests:');
         setLoading(false);
       });
   }, []);
 
   // Handle status change
-  const handleStatusChange = async (donationId, newStatus) => {
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/api/dashboard/donations/${donationId}/status`, {
+const handleStatusChange = async (donationId, newStatus) => {
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/donations/${donationId}/status`,
+      {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          donation_received: newStatus === 'received'
-        })
-      });
-
-      if (response.ok) {
-        // Update local state
-        setDonations(donations.map(d => 
-          d.id === donationId ? { ...d, donation_received: newStatus === 'received' } : d
-        ));
+          donation_received: newStatus === 'received',
+        }),
       }
-    } catch (error) {
-      console.error('Error updating status:', error);
-    }
-  };
+    );
 
-  // Filter donations by search
-  const filteredDonations = donations.filter(donation => 
-    donation.donor_firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    donation.donor_lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    donation.donor_email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    donation.donation_type.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      setDonations(prev =>
+        prev.map(d =>
+          d.id === donationId
+            ? { ...d, donation_received: result.data.donation_received }
+            : d
+        )
+      );
+    }
+  } catch (error) {
+    console.error('Error updating status:', error);
+  }
+};
+
+const handleDeleteDonation = async (id) => {
+  if (!window.confirm('Delete this donation?')) return;
+
+  try {
+    const res = await fetch(
+      `http://127.0.0.1:8000/api/donations/${id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+        },
+      }
+    );
+
+    const data = await res.json();
+    console.log('DELETE response:', data);
+
+    if (!res.ok) {
+      throw new Error(data.message || 'Delete failed');
+    }
+
+    setDonations(prev => prev.filter(d => d.id !== id));
+
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+const filteredDonations = donations.filter(donation => {
+  const matchesSearch =
+     (donation.donor_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (donation.donor_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (donation.donor_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (donation.donation_type ?? '').toLowerCase().includes(searchTerm.toLowerCase());
+  
+  const matchesStatus = 
+     statusFilter === 'all' ||
+     (statusFilter === 'received' && donation.donation_received) ||
+     (statusFilter === 'waiting' && !donation.donation_received);
+
+
+  return matchesSearch && matchesStatus;
+})
+
+
+const filteredRequests = requests.filter(request =>
+  (request.rec_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+  (request.rec_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+  (request.rec_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+  (request.rec_type ?? '').toLowerCase().includes(searchTerm.toLowerCase())
+);
 
   return (
     <div style={{ display: 'flex', margin: 0, fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f4f4f9' }}>
@@ -156,9 +227,12 @@ function Dashboard() {
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                  <button className="filter-btn">
-                    <i className="fas fa-filter"></i> Filter
-                  </button>
+                  <select className='filter-btn' value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                     <option value="all">All</option>
+                     <option value="received">Received</option>
+                     <option value="waiting">Waiting</option>
+                  </select>
+                    
                 </div>
               </div>
 
@@ -193,20 +267,25 @@ function Dashboard() {
                           )}
                         </td>
                         <td>
-                          <select 
-                            className="status-select"
-                            value={donation.donation_received ? 'received' : 'waiting'}
-                            onChange={(e) => handleStatusChange(donation.id, e.target.value)}
-                            style={{
-                              background: donation.donation_received ? '#d0f0dc' : '#f2f2f2',
-                              borderColor: donation.donation_received ? '#2e8b57' : '#aaa'
-                            }}
+                          <select
+                              className={`status-select ${donation.donation_received ? 'status-received' : 'status-waiting'}`}
+                              value={donation.donation_received ? 'received' : 'waiting'}
+                              onChange={(e) => handleStatusChange(donation.id, e.target.value)}
                           >
                             <option value="waiting">Waiting</option>
                             <option value="received">Received</option>
                           </select>
+
                         </td>
                         <td>{new Date(donation.donation_date).toLocaleDateString()}</td>
+                        <td>
+                           <button
+                               className="delete-btn"
+                               onClick={() => handleDeleteDonation(donation.id)}
+                            >
+                             Delete</button>
+                        </td>
+
                       </tr>
                     ))}
                   </tbody>
@@ -221,8 +300,60 @@ function Dashboard() {
         {/* Requests Tab */}
         {activeTab === 'requests' && (
           <div className="tab-content" style={{ display: 'block' }}>
-            <h2 className="section-title">Requests</h2>
-            <p>Requests content will go here...</p>
+            <div className="requests-container">
+              
+              <div className="top-bar">
+                <div className="search-filter-wrapper">
+                  <div className="search-box">
+                    <i className="fas fa-search"></i>
+                    <input 
+                      type="text" 
+                      placeholder="Search" 
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </div>
+                  <button className="filter-btn">
+                    <i className="fas fa-filter"></i> Filter
+                  </button>
+                </div>
+              </div>
+
+              <h2 className="section-title">Requests</h2>
+
+              {loading ? (
+                <p>Loading requests...</p>
+              ) : filteredRequests.length === 0 ? (
+                <p>No requests found.</p>
+              ) : (
+                <table className="requests-table">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Type</th>
+                      <th>Message</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredRequests.map((request) => (
+                      <tr key={request.id}>
+                        <td>{request.rec_firstName} {request.rec_lastName}</td>
+                        <td>{request.rec_email}</td>
+                        <td>{request.rec_phoneNumber}</td>
+                        <td>{request.rec_type}</td>
+                        <td>{request.rec_message}</td>
+                        <td>{new Date(request.rec_date).toLocaleDateString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+
+              <button className="add-btn">+</button>
+            </div>
           </div>
         )}
 
