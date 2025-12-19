@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
+
   protected $fillable = [
         'org_name',
         'org_registrationDate',
@@ -180,4 +181,5 @@ public function wilaya()
 {
     return $this->belongsTo(Wilaya::class);
 }
+
 }

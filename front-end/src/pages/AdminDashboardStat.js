@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "../styles/AdminDashStat.css";
 
 import Sidebar from "../components/Sidebar";
@@ -6,7 +7,61 @@ import OrgRequest from "../components/OrgRequest";
 import CampaignRequest from "../components/CampaignRequest";
 import StatCard from "../components/StatCard";
 
+
 const AdminDashboardStat = () => {
+
+  const [organizations, setOrganizations] = useState([]);
+
+  const fetchPendingOrganizations = async () => {
+  try {
+    const response = await axios.get(
+      "http://127.0.0.1:8000/api/organizations"
+    );
+
+    const pending = response.data.filter(
+      (org) => org.status === "pending"
+    );
+
+    setOrganizations(pending);
+  } catch (error) {
+    console.error("Error fetching organizations", error);
+  }
+};
+useEffect(() => {
+  fetchPendingOrganizations();
+}, []);
+
+
+const approveOrganization = async (id) => {
+  try {
+    await axios.patch(
+      `http://127.0.0.1:8000/api/organizations/${id}/approve`
+    );
+
+    alert("Organization approved");
+    fetchPendingOrganizations();
+  } catch (error) {
+    console.error("Approve failed", error);
+    alert("Error approving organization");
+  }
+};
+
+const rejectOrganization = async (id) => {
+  try {
+    await axios.delete(
+      `http://127.0.0.1:8000/api/organizations/${id}`
+    );
+
+    alert("Organization rejected");
+    fetchPendingOrganizations();
+  } catch (error) {
+    console.error("Reject failed", error);
+    alert("Error rejecting organization");
+  }
+};
+
+
+
   return (
     <section id="dash_section">
       <div className="fluid_container flex-row">
@@ -66,63 +121,33 @@ const AdminDashboardStat = () => {
               <div className="content_left_part_requests flex-row">
                 {/* Organization Requests */}
                 <div className="content_left_part_org_requests">
-                  <div className="requests_title">
-                    <h3>Pending Organizations</h3>
-                  </div>
-                  {[
-                    {
-                      initials: "TR",
-                      name: "Organization Name",
-                      status: "waiting",
-                      proofLink: "#",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      initials: "BK",
-                      name: "Organization Name",
-                      status: "waiting",
-                      proofLink: "#",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      initials: "LM",
-                      name: "Organization Name",
-                      status: "accepted",
-                      proofLink: "#",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      initials: "TR",
-                      name: "Organization Name",
-                      status: "waiting",
-                      proofLink: "#",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      initials: "BK",
-                      name: "Organization Name",
-                      status: "waiting",
-                      proofLink: "#",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      initials: "LM",
-                      name: "Organization Name",
-                      status: "accepted",
-                      proofLink: "#",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      initials: "LM",
-                      name: "Organization Name",
-                      status: "accepted",
-                      proofLink: "#",
-                      date: "12 December, 2025",
-                    },
-                  ].map((org, i) => (
-                    <OrgRequest key={i} {...org} />
-                  ))}
-                </div>
+  <div className="requests_title">
+    <h3>Pending Organizations</h3>
+  </div>
+
+  {organizations.length === 0 && <p>No pending organizations</p>}
+
+  {organizations.map((org) => (
+    <OrgRequest
+      key={org.id}
+      name={org.org_name}
+      date={org.created_at}
+      status={org.status}
+      onApprove={() => approveOrganization(org.id)}
+    />
+  ))}
+
+  {organizations.map((org) => (
+  <OrgRequest
+    key={org.id}
+    name={org.org_name}
+    date={org.created_at}
+    status={org.status}
+    onApprove={() => approveOrganization(org.id)}
+    onReject={() => rejectOrganization(org.id)}
+  />
+))}
+</div>
 
                 {/* Campaign Requests */}
                 <div className="content_left_part_post_requests">

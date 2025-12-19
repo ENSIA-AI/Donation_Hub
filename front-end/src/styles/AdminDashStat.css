@@ -110,6 +110,8 @@ a {
     height: 100%;
 }
 
+
+
 .dash_admin_profile {
     display: flex;
     align-items: center;
@@ -490,6 +492,8 @@ a {
     padding: 0;
 }
 
+
+
 .org_raquest_profile {
     background-color: var(--primary-color);
     color: white;
@@ -515,10 +519,7 @@ a {
     justify-content: space-between;
 }
 
-.org_request.flex-row {
-    gap: .5rem;
-    justify-content: space-between;
-}
+
 
 .org_name_status.flex-row {
     justify-content: space-between;
@@ -534,7 +535,7 @@ a {
     font-family: var(--secondary-font);
     font-weight: 500;
     font-size: 1.5rem;
-    margin-top: 0px;
+    
 }
 
 .flex-row.org_img_date {
@@ -570,27 +571,6 @@ a {
     font-size: 1.2rem;
 }
 
-.org_request_status.accepted {
-    border: none;
-    border-radius: 11px;
-    color: var(--primary-color);
-    font-family: var(--third-font);
-    font-size: 1.2rem;
-    background-color: var(--soft-green);
-    padding: .5rem 1rem;
-    font-weight: bold;
-}
-
-.org_request_status.waiting {
-    border: none;
-    border-radius: 11px;
-    color: var(--fourth-color);
-    font-family: var(--third-font);
-    font-size: 1.2rem;
-    background-color: var(--soft-yellow);
-    padding: .5rem 1rem;
-    font-weight: bold;
-}
 
 .fa-solid.fa-image {
     font-size: 4.6rem;
@@ -604,6 +584,35 @@ a {
     background-color: var(--third-color);
     transform: scale(1.2);
 }
+
+.org_request_actions  {
+  margin-top: 0px;
+  gap: 10px;
+  align-items: center;
+  
+
+  
+
+}
+
+.approve_btn {
+  background: var(--soft-green);
+  border: none;
+  padding: 6px 12px;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.reject_btn {
+  background: var(--soft-yellow);
+  border: none;
+  padding: 6px 12px;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 
 /* =====================================Classes ========================================= */
 

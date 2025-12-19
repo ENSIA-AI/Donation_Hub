@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 
 const Register = ()=>{
@@ -28,12 +29,38 @@ const {
   }
 );
    
-   const onSubmit = (data) => {
-  console.log("form Data:", data);
-  setSubmitSuccess(true);
-  reset();
-  setTimeout(() => setSubmitSuccess(false), 4000);
-}
+  const onSubmit = async (data) => {
+  try {
+    // Convert file input to null or handle it later
+    const formData = { ...data };
+    if (formData.proof) formData.proof = null;
+
+    const response = await axios.post(
+      "http://127.0.0.1:8000/api/organizations",
+      {
+        org_name: formData.orgName,
+        org_registrationDate: new Date().toISOString().slice(0, 10),
+        org_description: formData.description,
+        org_email: formData.email,
+        category_id: 1, // replace with real category ID or dropdown selection
+        region_id: 1,   // replace with real region ID or dropdown selection
+        org_slogan: formData.description.slice(0, 50),
+        status: "pending",
+        org_hero_img: null,
+        org_logo: null,
+      }
+    );
+
+    console.log("Organization created:", response.data);
+    setSubmitSuccess(true);
+    reset();
+    setTimeout(() => setSubmitSuccess(false), 4000);
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("Error submitting form. Check console for details.");
+  }
+};
+
  return(
    <main>
     <div className="mainContainer">
