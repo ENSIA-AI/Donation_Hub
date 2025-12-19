@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect  } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
+
 import "../styles/OrganizationProfile.css";
 import OrgHero from "../components/OrgHero";
+
 import OrgPostCard from "../components/OrgPostCard";
 import OrgMission from "../components/OrgMission";
 import OrgValues from "../components/OrgValues";
@@ -10,9 +13,11 @@ import OrgContactInfos from "../components/OrgContactInfos";
 import OrgDescription from "../components/OrgDescription";
 import OrgContactForm from "../components/OrgContactForm";
 import PostModal from "../components/PostModal";
+import CreatePost from "../components/CreatePost";
+
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const OrgProfile = () => {
   const navigate = useNavigate();
@@ -20,6 +25,7 @@ const OrgProfile = () => {
   const [underlineStyle, setUnderlineStyle] = useState({});
   const [visiblePosts, setVisiblePosts] = useState(6);
   const [loaded, setLoaded] = useState(false);
+
   const [selectedPost, setSelectedPost] = useState(null);
   const navRefs = useRef({});
   const { id } = useParams();
@@ -27,34 +33,40 @@ const OrgProfile = () => {
     alert(`Donate for post: ${post.title}`);
   };
   // Find the organization by ID
-const [org, setOrg] = useState(null);
 
-useEffect(() => {
-  api.get(`/organization/${id}`)
-    .then(res => setOrg(res.data))
-    .catch(err => console.log(err));
-}, [id]);
+  const [org, setOrg] = useState(null);
+
+  useEffect(() => {
+    api
+      .get(`/organization/${id}`)
+      .then((res) => setOrg(res.data))
+      .catch((err) => console.log(err));
+  }, [id]);
+
+  const [compaigns, setCompaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoaded(true);
   }, []);
 
   const handleDelete = async () => {
-  const confirmDelete = window.confirm(
-    "Are you sure you want to delete this organization?"
-  );
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this organization?"
+    );
 
-  if (!confirmDelete) return;
+    if (!confirmDelete) return;
 
-  try {
-    await api.delete(`/organization/${id}`);
-    alert("Organization deleted successfully");
-    navigate("/ExploreOrganizations"); // go back to list page
-  } catch (error) {
-    console.error(error);
-    alert("Failed to delete organization");
-  }
-};
+    try {
+      await api.delete(`/organization/${id}`);
+      alert("Organization deleted successfully");
+      navigate("/ExploreOrganizations"); // go back to list page
+    } catch (error) {
+      console.error(error);
+      alert("Failed to delete organization");
+    }
+  };
 
   // handle see more button
   const handleSeeMore = () => {
@@ -72,6 +84,41 @@ useEffect(() => {
     }
   }, [activeSection]);
 
+  useEffect(() => {
+    let isMounted = true; // avoid memory leaks
+    axios
+      .get("http://127.0.0.1:8000/api/compaigns")
+      .then((res) => {
+        if (isMounted) {
+          setCompaigns(res.data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          console.error(err);
+          setError("Failed to load campaigns.");
+          setLoading(false);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Function to remove a post after deletion
+  const removePostFromState = (id) => {
+    setCompaigns(compaigns.filter((c) => c.compaign_ID !== id));
+  };
+
+  // Function to update a post after editing
+  const updatePostInState = (updatedPost) => {
+    setCompaigns(
+      compaigns.map((c) =>
+        c.compaign_ID === updatedPost.compaign_ID ? updatedPost : c
+      )
+    );
+  };
   // Handle invalid ID
   if (!org) return <h1>Loading...</h1>;
   return (
@@ -85,24 +132,26 @@ useEffect(() => {
         OrgType={org.category.category}
       />
 
+      <div className="edit_delete_container">
+        <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
+          edit profile
+        </Link>
+        {/* _ delete org  */}
+        <button
+          className="Link_style"
+          onClick={handleDelete}
+          style={{
+            marginLeft: "15px",
+            background: "red",
+            color: "white",
+            padding: "6px 12px",
+            border: "none",
+          }}
+        >
+          Delete profile
+        </button>
+      </div>
 
-  <div className="edit_delete_container">
-      <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">edit profile</Link>
-       {/* _ delete org  */}
-  <button className="Link_style"
-  onClick={handleDelete}
-  style={{
-    marginLeft: "15px",
-    background: "red",
-    color: "white",
-    padding: "6px 12px",
-    border: "none",
-  }}
->
-  Delete profile
-</button>
-</div>
- 
       {/* Navbar */}
       <div className="fluid_container">
         <div className="org_navbar">
@@ -128,20 +177,35 @@ useEffect(() => {
       {/* Sections */}
       {/* {activeSection === "Posts" && (
         <div className="org_container">
+          <CreatePost
+            onPostCreated={(newPost) =>
+              setCompaigns((prev) => [newPost, ...prev])
+            }
+          />
+
           <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
-            {org.posts.slice(0, visiblePosts).map((post) => (
+            {loading && <p>Loading campaigns...</p>}
+            {error && <p>{error}</p>}
+            {compaigns.slice(0, visiblePosts).map((c) => (
               <OrgPostCard
-                key={post.id}
-                OrgPostDate={post.date}
-                OrgPostImage={post.image}
-                OrgPostTitle={post.title}
-                OrgPostDescription={post.description}
-                onReadMore={() => setSelectedPost(post)}
-                style={{ animationDelay: `${post.id * 0.1}s` }}
+                key={`post-${c.compaign_ID}`}
+                OrgPostId={c.compaign_ID}
+                OrgPostDate={new Date(c.compaign_date).toLocaleDateString()}
+                OrgPostImage={
+                  c.compaign_img
+                    ? `http://127.0.0.1:8000/storage/${c.compaign_img}`
+                    : "https://via.placeholder.com/300"
+                }
+                OrgPostTitle={c.compaign_title}
+                OrgPostDescription={c.compaign_content}
+                onDonate={() => handleDonate(c)}
+                onReadMore={() => setSelectedPost(c)}
+                onDelete={(id) => removePostFromState(id)}
+                onUpdate={(updatedPost) => updatePostInState(updatedPost)}
               />
             ))}
           </div>
-          {visiblePosts < org.posts.length ? (
+          {visiblePosts < compaigns.length ? (
             <div className="see_more_btn flex-row">
               <div>
                 <i className="fa-solid fa-square-plus" />
@@ -173,7 +237,10 @@ useEffect(() => {
       {activeSection === "About" && (
         <section id="About_Us">
           <div className="about-container">
-            <OrgDescription name={org.org_name} description={org.org_description} />
+            <OrgDescription
+              name={org.org_name}
+              description={org.org_description}
+            />
             <OrgMission
               // OrgMissionImg={org.mission.image}
               OrganizationMission={org.org_mission}
@@ -186,7 +253,7 @@ useEffect(() => {
             OrgValue3={org.value3}
             OrgValue4={org.value4}
           />
-          
+
           <OrgPrograms programs={org.programs} />
           <OrgImpact impacts={org.impact} />
         </section>

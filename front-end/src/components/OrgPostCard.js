@@ -1,12 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CreatePost from "./CreatePost";
+import UpdatePost from "./UpdatePost";
+
+import axios from "axios";
+
 import "../styles/OrganizationProfile.css";
 
 const OrgPostCard = (props) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+
   return (
     <div className="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12 ">
       <div className="post-card">
-        <div className="Post_Date">{props.OrgPostDate}</div>
+        <div className="post_header flex-row">
+          <div className="Post_Date">{props.OrgPostDate}</div>
+          <i
+            className="fa-solid fa-ellipsis"
+            onClick={() => setShowDropdown(!showDropdown)}
+            style={{ cursor: "pointer" }}
+          ></i>
+
+          {showDropdown && (
+            <div className="dropdown-menu">
+              <button
+                onClick={() => {
+                  setShowUpdateModal(true);
+                  setShowDropdown(false);
+                }}
+              >
+                Update
+              </button>
+              <button
+                onClick={async () => {
+                  setShowDropdown(false);
+                  const confirmed = window.confirm(
+                    "Are you sure you want to delete this post?"
+                  );
+                  if (confirmed) {
+                    try {
+                      // Use the correct API route
+                      await axios.delete(`/api/compaigns/${props.OrgPostId}`);
+                      // Notify parent to remove post from list
+                      props.onDelete && props.onDelete(props.OrgPostId);
+                    } catch (error) {
+                      console.error("Delete failed:", error);
+                    }
+                  }
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
+
         <div className="post-image">
           <img
             src={props.OrgPostImage}
@@ -50,6 +99,17 @@ const OrgPostCard = (props) => {
           </div>
         </div>
       </div>
+      {showUpdateModal && (
+        <UpdatePost
+          postId={props.OrgPostId}
+          initialTitle={props.OrgPostTitle}
+          initialDescription={props.OrgPostDescription}
+          onPostCreated={(updatedPost) => {
+            props.onUpdate && props.onUpdate(updatedPost);
+          }}
+          onClose={() => setShowUpdateModal(false)}
+        />
+      )}
     </div>
   );
 };
