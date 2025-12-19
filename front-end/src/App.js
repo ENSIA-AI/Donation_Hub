@@ -14,12 +14,17 @@ import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
 import Register from "./pages/register";
 import Announcements from "./pages/announcements";
+
 import Dashboard from "./pages/Dashboard";
+import EditProfile from "./pages/EditProfile";
+import AddDataOrg from "./pages/AddDataOrg";
+
 
 function App() {
   return (
     <Router>
       <Routes>
+
 
         {/* Pages WITH Header & Footer */}
         <Route element={<MainLayout />}>
@@ -29,7 +34,9 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/OrgProfile/:id" element={<OrgProfile />} />
+          <Route path="/OrgProfile/:id/edit" element={<EditProfile />} />
           <Route path="/announcements" element={<Announcements />} />
+          <Route path="/AddDataOrg" element={<AddDataOrg />} />
           <Route path="/donate" element={<Donate />} />
         </Route>
 
@@ -38,6 +45,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
         </Route>
+
 
       </Routes>
     </Router>

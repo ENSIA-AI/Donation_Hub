@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect  } from "react";
 import "../styles/OrganizationProfile.css";
 import OrgHero from "../components/OrgHero";
 import OrgPostCard from "../components/OrgPostCard";
@@ -11,9 +11,11 @@ import OrgDescription from "../components/OrgDescription";
 import OrgContactForm from "../components/OrgContactForm";
 import PostModal from "../components/PostModal";
 import { useParams } from "react-router-dom";
-import { Organizations } from "../data/Organizations";
+import api from "../api/axios";
+import { Link ,useNavigate } from "react-router-dom";
 
 const OrgProfile = () => {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("Posts");
   const [underlineStyle, setUnderlineStyle] = useState({});
   const [visiblePosts, setVisiblePosts] = useState(6);
@@ -25,11 +27,34 @@ const OrgProfile = () => {
     alert(`Donate for post: ${post.title}`);
   };
   // Find the organization by ID
-  const org = Organizations.find((o) => o.id === Number(id));
+const [org, setOrg] = useState(null);
+
+useEffect(() => {
+  api.get(`/organization/${id}`)
+    .then(res => setOrg(res.data))
+    .catch(err => console.log(err));
+}, [id]);
 
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  const handleDelete = async () => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this organization?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    await api.delete(`/organization/${id}`);
+    alert("Organization deleted successfully");
+    navigate("/ExploreOrganizations"); // go back to list page
+  } catch (error) {
+    console.error(error);
+    alert("Failed to delete organization");
+  }
+};
 
   // handle see more button
   const handleSeeMore = () => {
@@ -48,20 +73,36 @@ const OrgProfile = () => {
   }, [activeSection]);
 
   // Handle invalid ID
-  if (!org) {
-    return <h1>Organization not found</h1>;
-  }
+  if (!org) return <h1>Loading...</h1>;
   return (
     <>
       {/* Hero */}
       <OrgHero
-        OrgHeroImage={org.heroImage}
-        OrgLogoImage={org.logoImage}
-        OrgName={org.name}
-        OrgSlogan={org.slogan}
-        OrgType={org.type}
+        // OrgHeroImage={org.heroImage}
+        // OrgLogoImage={org.logoImage}
+        OrgName={org.org_name}
+        OrgSlogan={org.org_slogan}
+        OrgType={org.category.category}
       />
 
+
+  <div className="edit_delete_container">
+      <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">edit profile</Link>
+       {/* _ delete org  */}
+  <button className="Link_style"
+  onClick={handleDelete}
+  style={{
+    marginLeft: "15px",
+    background: "red",
+    color: "white",
+    padding: "6px 12px",
+    border: "none",
+  }}
+>
+  Delete profile
+</button>
+</div>
+ 
       {/* Navbar */}
       <div className="fluid_container">
         <div className="org_navbar">
@@ -85,7 +126,7 @@ const OrgProfile = () => {
       </div>
 
       {/* Sections */}
-      {activeSection === "Posts" && (
+      {/* {activeSection === "Posts" && (
         <div className="org_container">
           <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
             {org.posts.slice(0, visiblePosts).map((post) => (
@@ -127,24 +168,25 @@ const OrgProfile = () => {
             onDonate={handleDonate}
           />
         </div>
-      )}
+      )} */}
 
       {activeSection === "About" && (
         <section id="About_Us">
           <div className="about-container">
-            <OrgDescription name={org.name} description={org.description} />
+            <OrgDescription name={org.org_name} description={org.org_description} />
             <OrgMission
-              OrgMissionImg={org.mission.image}
-              OrganizationMission={org.mission.mission}
-              OrganizationVision={org.mission.vision}
+              // OrgMissionImg={org.mission.image}
+              OrganizationMission={org.org_mission}
+              OrganizationVision={org.org_vision}
             />
           </div>
           <OrgValues
-            OrgValue1={org.values[0]}
-            OrgValue2={org.values[1]}
-            OrgValue3={org.values[2]}
-            OrgValue4={org.values[3]}
+            OrgValue1={org.value1}
+            OrgValue2={org.value2}
+            OrgValue3={org.value3}
+            OrgValue4={org.value4}
           />
+          
           <OrgPrograms programs={org.programs} />
           <OrgImpact impacts={org.impact} />
         </section>

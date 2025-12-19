@@ -7,7 +7,7 @@ const OrganizationCard = (props) => {
     <div className="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
       <div className="card">
         <div>
-          <img src={props.image} alt="" className="image_card" />
+          {/* <img src={props.image} alt="" className="image_card" /> */}
         </div>
         <div className="cardContent">
           <h4>{props.title} </h4>
