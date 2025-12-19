@@ -122,6 +122,7 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
+.requests-container,
 .donations-container {
     padding: 20px;
 }
@@ -138,7 +139,7 @@ body {
     align-items: center;
 }
 
-.search-box {
+.search-boxx {
     flex: 1;
     width: 400px;
     background: #fff;
@@ -151,7 +152,7 @@ body {
     transition: box-shadow 0.3s, border-color 0.3s;
 }
 
-.search-box input {
+.search-boxx input {
     border: none;
     outline: none;
     margin-left: 10px;
@@ -159,16 +160,16 @@ body {
     font-size: 14px;
 }
 
-.search-box:hover {
+.search-boxx:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
     border-color: #aaa;
 }
 
-.search-box input::placeholder {
+.search-boxx input::placeholder {
     color: #888;
 }
 
-.filter-btn {
+.filter_btn {
     flex: 0;
     display: flex;
     align-items: center;
@@ -188,6 +189,7 @@ body {
     font-weight: bold;
 }
 
+.requests-table,
 .donations-table {
     width: 100%;
     border-collapse: collapse;
@@ -195,16 +197,20 @@ body {
     border-radius: 8px;
 }
 
+.requests-table th,
+.requests-table td,
 .donations-table th,
 .donations-table td {
     padding: 12px;
     text-align: left;
 }
 
+.requests-table tbody tr,
 .donations-table tbody tr {
     border-bottom: 1px solid #eee;
 }
 
+.requests-table tbody tr:nth-child(even),
 .donations-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -293,3 +299,4 @@ body {
 .stat-card.received {
     border-left: 4px solid #27ae60;
 }
+

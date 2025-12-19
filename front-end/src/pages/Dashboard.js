@@ -9,6 +9,11 @@ function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('all');
+  const [showMoreDonations, setShowMoreDonations] = useState(false);
+  const [showMoreRequests, setShowMoreRequests] = useState(false);
+
+  const VISIBLE_ROWS = 4;
+
 
   // Fetch statistics
   useEffect(() => {
@@ -127,7 +132,9 @@ const filteredDonations = donations.filter(donation => {
 
 
   return matchesSearch && matchesStatus;
-})
+});
+    
+  const visibleDonations = showMoreDonations ? filteredDonations : filteredDonations.slice(0, VISIBLE_ROWS);
 
 
 const filteredRequests = requests.filter(request =>
@@ -136,6 +143,8 @@ const filteredRequests = requests.filter(request =>
   (request.rec_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
   (request.rec_type ?? '').toLowerCase().includes(searchTerm.toLowerCase())
 );
+  
+  const visibleRequests = showMoreRequests ? filteredRequests : filteredRequests.slice(0, VISIBLE_ROWS);
 
   return (
     <div style={{ display: 'flex', margin: 0, fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f4f4f9' }}>
@@ -218,7 +227,7 @@ const filteredRequests = requests.filter(request =>
               
               <div className="top-bar">
                 <div className="search-filter-wrapper">
-                  <div className="search-box">
+                  <div className="search-boxx">
                     <i className="fas fa-search"></i>
                     <input 
                       type="text" 
@@ -227,7 +236,7 @@ const filteredRequests = requests.filter(request =>
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                  <select className='filter-btn' value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                  <select className='filter_btn' value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
                      <option value="all">All</option>
                      <option value="received">Received</option>
                      <option value="waiting">Waiting</option>
@@ -255,7 +264,7 @@ const filteredRequests = requests.filter(request =>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredDonations.map((donation) => (
+                    {visibleDonations.map((donation) => (
                       <tr key={donation.id}>
                         <td>{donation.donor_firstName} {donation.donor_lastName}</td>
                         <td>{donation.donor_email}</td>
@@ -292,7 +301,8 @@ const filteredRequests = requests.filter(request =>
                 </table>
               )}
 
-              <button className="add-btn">+</button>
+              <button className="add-btn"
+                onClick={() => setShowMoreDonations(!showMoreDonations)}>{showMoreDonations ? '-' : '+' }</button>
             </div>
           </div>
         )}
@@ -304,7 +314,7 @@ const filteredRequests = requests.filter(request =>
               
               <div className="top-bar">
                 <div className="search-filter-wrapper">
-                  <div className="search-box">
+                  <div className="search-boxx">
                     <i className="fas fa-search"></i>
                     <input 
                       type="text" 
@@ -313,7 +323,7 @@ const filteredRequests = requests.filter(request =>
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                  <button className="filter-btn">
+                  <button className="filter_btn">
                     <i className="fas fa-filter"></i> Filter
                   </button>
                 </div>
@@ -338,7 +348,7 @@ const filteredRequests = requests.filter(request =>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredRequests.map((request) => (
+                    {visibleRequests.map((request) => (
                       <tr key={request.id}>
                         <td>{request.rec_firstName} {request.rec_lastName}</td>
                         <td>{request.rec_email}</td>
@@ -352,7 +362,8 @@ const filteredRequests = requests.filter(request =>
                 </table>
               )}
 
-              <button className="add-btn">+</button>
+              <button className="add-btn"
+              onClick={() => setShowMoreRequests(!showMoreRequests)}>{showMoreRequests? '-' : '+'}</button>
             </div>
           </div>
         )}
