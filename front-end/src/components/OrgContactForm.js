@@ -6,7 +6,6 @@ const OrgContactForm = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // <-- ADD THIS: store backend validation errors
   const [serverErrors, setServerErrors] = useState({});
 
   const {
@@ -28,8 +27,7 @@ const OrgContactForm = () => {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    setServerErrors({}); // <-- clear previous backend errors
-
+    setServerErrors({}); 
     try {
       const formData = new FormData();
       formData.append('rec_firstName', data.firstName);
@@ -44,7 +42,7 @@ const OrgContactForm = () => {
         formData.append('rec_file', data.file[0]);
       }
 
-      // <-- CHANGE: full backend URL
+  
       const response = await fetch('http://127.0.0.1:8000/api/requests', {
         method: 'POST',
         body: formData,
@@ -62,7 +60,6 @@ const OrgContactForm = () => {
       } else {
         console.error('Submission failed:', result);
 
-        // <-- ADD: save backend validation errors if present
         if (result.errors) {
           setServerErrors(result.errors);
         } else {
