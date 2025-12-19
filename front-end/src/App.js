@@ -36,6 +36,7 @@ function App() {
         {/* Dashboard WITHOUT Header & Footer */}
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
         </Route>
 
       </Routes>
