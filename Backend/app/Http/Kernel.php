@@ -15,7 +15,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \App\Http\Middleware\Cors::class,  // your CORS middleware
+           \Illuminate\Http\Middleware\HandleCors::class,  // your CORS middleware
         ],
     ];
 
