@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Wilaya extends Model
 {
-    protected $fillable = ['category'];
+    protected $fillable = ['wilaya_name'];
 
     public function organizations()
     {
         return $this->hasMany(Organization::class);
     }
 }
-

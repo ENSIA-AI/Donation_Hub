@@ -1,51 +1,29 @@
 <?php
 
-
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DonationController;
-use App\Http\Controllers\RequestsController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\CompaignController;
-use App\Http\Controllers\organizationController;
-
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RegionController;
+use App\Http\Controllers\WilayaController;
+use App\Http\Controllers\OrganizationController;
 
 
-Route::post('/donations', [DonationController::class, 'store']);
-Route::get('/donations', [DonationController::class, 'index']);
-Route::get('/donations/statistics', [DonationController::class, 'statistics']);
-Route::put('/donations/{id}', [DonationController::class, 'update']);
-Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
-Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
-Route::get('/dashboard/donations', [DonationController::class, 'index']);
-Route::post('/requests', [RequestsController::class, 'store']);
-Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::post('/categories', [CategoryController::class, 'store']);
+Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/organization',[OrganizationController::class ,'index']);
-Route::get('/organization/{id}',[OrganizationController::class,'show']);
-Route::put('/organization/{id}',[OrganizationController::class , 'update']);
-Route::delete('/organization/{id}',[OrganizationController::class,'destroy']);
-Route::post('/organization', [OrganizationController::class, 'store']);
-Route::apiResource('compaigns', CompaignController::class);
+Route::post('/wilayas', [WilayaController::class, 'store']);
+Route::get('/wilayas', [WilayaController::class, 'index']);
 
 
-
-
-
-
-Route::apiResource('organizations', OrganizationController::class);
-Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
+Route::post('/organizations', [OrganizationController::class, 'store']);
+Route::get('/organizations', [OrganizationController::class, 'index']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
-Route::apiResource('categories', CategoryController::class);
-Route::apiResource('regions', RegionController::class);
+Route::patch('/organizations/{id}/reject', [OrganizationController::class, 'reject']);
+Route::delete('/organizations/{id}', [OrganizationController::class, 'destroy']);
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+
+
+
+
+
+
 
