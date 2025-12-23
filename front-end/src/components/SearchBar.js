@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-function SearchBar({ onSearch, categories = [] }) {
+function SearchBar({ onSearch }) {
   const [name, setName] = useState("");
   const [wilaya, setWilaya] = useState("");
   const [category, setCategory] = useState("");
   const [wilayas, setWilayas] = useState([]);
-  const [filteredWilayas, setFilteredWilayas] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/wilayas")
@@ -14,6 +13,14 @@ function SearchBar({ onSearch, categories = [] }) {
       .then((data) => setWilayas(data))
       .catch((err) => console.error(err));
   }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/categories")
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   useEffect(() => {
     if (onSearch) {
       onSearch({ name, wilaya, category });
@@ -72,29 +79,16 @@ function SearchBar({ onSearch, categories = [] }) {
 
       {/* Category (dropdown) */}
       <div className="filter_org_category">
-        <select
-          value={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-          }}
-        >
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option value="">All categories</option>
           {categories.length ? (
             categories.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.name}
+                {c.category_name}
               </option>
             ))
           ) : (
-            <>
-              <option value="1">Education</option>
-              <option value="2">Health</option>
-              <option value="3">Charity / Humanitarian</option>
-              <option value="4">Environment</option>
-              <option value="5">Technology</option>
-              <option value="6">Culture & Arts</option>
-              <option value="7">Sports & Youth</option>
-            </>
+            <option disabled>Loading categories...</option>
           )}
         </select>
       </div>
