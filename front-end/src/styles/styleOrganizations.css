@@ -294,6 +294,59 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
     font-size: 2.5rem;
     font-style: italic;
 }
+.search_org.flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.search_by_org_name input {
+    width: 40rem;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border-color: #c0b9b9;
+}
+
+.search_by_wilaya input {
+    width: 15rem;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border-color: #c0b9b9;
+}
+
+.filter_org_category select {
+    width: 15rem;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border-color: #c0b9b9;
+}
+.search_by_wilaya {
+    position: relative;
+}
+.wilaya-dropdown {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    z-index: 10;
+}
+
+.wilaya-dropdown li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.wilaya-dropdown li:hover {
+    background-color: #f0f0f0;
+}
 /* =====================================Classes ========================================= */
 
 @media (min-width: 1200px) {
@@ -465,7 +518,17 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
     html {
         font-size: 50%;
     }
+.search_by_org_name input {
+    width: 100%;
+    max-width: 40rem;
+    padding: 0.5rem;
+}
 
+.search_by_wilaya input,
+.filter_org_category select {
+    width: 15rem;
+    padding: 0.5rem;
+}
 
 }
 
@@ -529,10 +592,25 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
         justify-content: center;
         gap: 2em;
     }
+          .search_by_org_name input {
+              width: 100%;
+              max-width: 40rem;
+              padding: 0.5rem;
+          }
     
+          .search_by_wilaya input,
+          .filter_org_category select {
+              width: 15rem;
+              padding: 0.5rem;
+          }
    
  }
-
+@media (min-width: 991px) and (max-width: 1279px) {
+    .search_by_org_name input {
+        width: 100%;
+        max-width: 600px;
+    }
+}
 /* Extra Small (xs) screens (464px to 575px) */
 @media (min-width: 464px) and (max-width: 575px) {
     .col-xs-1 {
@@ -592,9 +670,27 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
         justify-content: center;
         gap: 2em;
     }
-    .search-bar-containe{
-        padding-right: 15px 
-   
+  
+.search_by_wilaya input {
+    width: 26rem;
+    padding: 0.4rem;
+}
+
+.filter_org_category select {
+    width: 26rem;
+    padding: 0.4rem;
+}
+
+.search_by_org_name input {
+    width: 100%;
+    max-width: 40rem;
+    padding: 0.5rem;
+}
+
+.search_by_wilaya input,
+.filter_org_category select {
+    width: 15rem;
+    padding: 0.5rem;
 }
 
 }   
@@ -661,6 +757,16 @@ box-shadow: 5px 5px 16px 5px rgba(64,64,64,0.16);
         align-items: center;
         gap: 2em;
     }
-   
+   .search_by_org_name input {
+       width: 100%;
+       max-width: 30rem;
+       padding: 0.3rem;
+   }
+
+   .search_by_wilaya input,
+   .filter_org_category select {
+       width: 15rem;
+       padding: 0.3rem;
+   }
 
 }

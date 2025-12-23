@@ -1,330 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Organizations</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/CSS/ExploreOrg.css">
-    <link rel="stylesheet" href="assets/CSS/style.css">
-    <link rel="icon" type="image/png" href="assets/pictures/logo.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Organizations</title>
+  <!-- Font Awesome Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-T4a2+LgXzX+6E+wvlAXn+uR/eZ+khYHVGGRp9U5a7kIU5rR1+M2vQqH2DdN4O5mZY/7D0e4q9R3cZV/53iE5ZA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  `
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/CSS/ExploreOrg.css">
+  <link rel="stylesheet" href="assets/CSS/style.css">
+  <link rel="icon" type="image/png" href="assets/pictures/logo.png">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;600&family=Lato:wght@400;700&display=swap"
+    rel="stylesheet">
+
 
 </head>
+
 <body>
-    <header>
-            <div class="header">
-        <div class="container">
-            <div class="row">
+  <header>
+    <div class="header">
+      <div class="container">
+        <div class="row">
 
-                <!-- Logo -->
-                <div class="col-2">
-                   
-                      <img src="assets/pictures/logo_nav.png" alt="Donify Logo" class="logo">
-                      
-                </div>
-                <div class="overlay-blur" id="overlay"></div>
+          <!-- Logo -->
+          <div class="col-2">
 
-                <div class="overlay-blur" id="overlay"></div>
+            <img src="assets/pictures/logo_nav.png" alt="Donify Logo" class="logo">
 
-                <!-- Navigation -->
-                <div class="col-10">
-                    <div class="nav">
-                        <div class="hamburger" id="hamburger">☰</div>
-                        <ul class="nav-menu" id="nav-menu">
+          </div>
+          <div class="overlay-blur" id="overlay"></div>
 
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="ExploreOrganization.html">Organizations</a></li>
-                            <li><a href="announcements.html">Announcements</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li class="btn"><a href="login.html" >log in</a></li>
-                            <li class="btn"><a href="register.html">register</a></li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="overlay-blur" id="overlay"></div>
+
+          <!-- Navigation -->
+          <div class="col-10">
+            <div class="nav">
+              <div class="hamburger" id="hamburger">☰</div>
+              <ul class="nav-menu" id="nav-menu">
+
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ExploreOrganization.html">Organizations</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="btn"><a href="login.html">log in</a></li>
+                <li class="btn"><a href="register.html">register</a></li>
+              </ul>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="assets/scripts/script.js"></script>
-    </header>
-    <main>
-      <!-------------------------title------------------------------------------>
-        <div class="title ">
-          <h1 >Verified organizations</h1>
-          <p class="subtitle">discover trusted organizations making a real difference in our communities</p>
-        </div>
-      <!-------------------------search bar------------------------------------------>
-        <div class="search-bar-container  flex-row " >
-          <div class="search-bar  col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xxs-10">
-              <div class="search-by-name  col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xs-10">
-                <img src="assets/icons/search.svg" alt="search">
-                <form action="">
-                 <input type="search" id="serchInput" placeholder="search">
-                </form>
-              </div>
-    
-            
-                <form action="">
-                <div class="search-filter  col-lg-2 col-xl-2 col-md-2 col-sm-2 col-xs-2 col-xxs-2">
-                  <div class="catego ">
-                   <button class="filter-btn">
-                   <span class="material-symbols-outlined">keyboard_arrow_down</span>
-                   <span class="filter-title">filter</span>
-                   </button >
-                   
-                   <div class="filter-options">
-                    <div class="options options-not-active options-active">
-                      <p>categories</p>
-                      <div class="option">
-                        <input type="checkbox" id="health" value="health"> 
-                        <label for="health">health</label>
-                     
-                      </div>
-                      <div class="option">
-                        <input type="checkbox" id="education" value="education"> 
-                        <label for="education">education</label>
-                      </div>
-                      <div class="option">
-                        <input type="checkbox" id="children" value="children">
-                        <label for="children">children</label> 
-                      </div>
-                      <div class="option">
-                        <input type="checkbox" id="food" value="food">
-                        <label for="food">food</label>
-                        </div>
-                  
-                         <p>regions</p>
-                      <div class="option">
-                        <input type="checkbox" id="algeries" value="algeries"> 
-                        <label for="algeries">algeries</label>
-                      </div>
-                      <div class="option">
-                        <input type="checkbox" id="bouira" value="bouira"> 
-                        <label for="bouira">bouira</label>
-                      </div>
-                      <div class="option">
-                        <input type="checkbox" id="Oran" value="Oran"> 
-                        <label for="Oran">Oran</label> 
-                      </div>
-                      <div class="option">
-                        <input type="checkbox" id="jijel" value="jijel"> 
-                        <label for="jijel">jijel</label>
-                        </div>
-                    </div>
+  </header>
+  <main>
+    <!-------------------------title------------------------------------------>
+    <div class="title ">
+      <h1>Verified organizations</h1>
+      <p class="subtitle">discover trusted organizations making a real difference in our communities</p>
+    </div>
+    <!-------------------------search bar------------------------------------------>
+    <div class="search_org flex-row">
+      <div class="search_by_org_name" style="position: relative; display: inline-block  ;max-width: 500PX;">
+        <i class="fa-solid fa-magnifying-glass"
+          style=" position: absolute; left: 10px; top: 50%;font-size: 1.5rem; transform: translateY(-50%); color: #403f3f;"></i>
+        <input type="text" placeholder="Search organization..." style="padding-left: 35px; box-sizing: border-box;">
+      </div>
 
-                    
-                   </div>
-
-                   </div>
-                  </div>
-                </form>
-                </div>
-        </div>
+      <div class="search_by_wilaya">
+        <input type="text" placeholder="Choose wilaya...">
+      </div>
+      <div class="filter_org_category">
+        <select value={category}>
+          <option value="">All categories</option>
+          <option value="1">Education</option>
+          <option value="2">Health</option>
+          <option value="3">Charity / Humanitarian</option>
+          <option value="4">Environment</option>
+          <option value="5">Technology</option>
+          <option value="6">Culture & Arts</option>
+          <option value="7">Sports & Youth</option>
+        </select>
+      </div>
 
     </div>
-<!---------------------------------cards-------------------------------------------->
+
+    </div>
+    <!---------------------------------cards-------------------------------------------->
     <div class="container ">
       <div class="cards-container flex-row flex-row-center">
-<!------------------------------------card--------------- --->
-       <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
-    <!------------------------------------card--------------- --->
-      <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
-    <!------------------------------------card--------------- --->
-      <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
-    <!------------------------------------card--------------- --->
-      <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
-    <!------------------------------------card--------------- --->
-      <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
-     <!------------------------------------card--------------- --->
-<div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
-     <!------------------------------------card--------------- --->
-      <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
-     <!------------------------------------card--------------- --->
-      <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
-              <div class="card">
-                <div>
-                 <img src="assets/images/card-image.png" alt="" class="image_card">
-                </div>
-                <div>
-                  <h4>Bright Future Education </h4>
-                  <p>
-                  Supports underprivileged students with school supplies,
-                  tutoring programs, and digital learning workshops
-                  </p>
-                </div>
-                <div class="learn-more">
-                  <img src="assets/icons/arrow-forward.svg" alt="">
-                  <a href="org_profile.html">learn more</a>
-                </div>
-              </div>
+        <!------------------------------------card--------------- --->
+        <div class="card-container col-lg-3 col-xl-3 col-md-6 col-sm-12 col-xs-12 col-xxs-12">
+          <div class="card">
+            <div>
+              <img src="assets/images/card-image.png" alt="" class="image_card">
+            </div>
+            <div>
+              <h4>Bright Future Education </h4>
+              <p>
+                Supports underprivileged students with school supplies,
+                tutoring programs, and digital learning workshops
+              </p>
+            </div>
+            <div class="learn-more">
+              <img src="assets/icons/arrow-forward.svg" alt="">
+              <a href="org_profile.html">learn more</a>
+            </div>
+          </div>
         </div>
 
-    
-    </div>
+
+      </div>
     </div>
 
     <!------------see more button--------------->
     <div class="containerButton">
-    <div class="button-container">
-      <div class="icon-container">
-        <img src="assets/icons/seeMore.svg" alt="">
-      </div>
-      <div>
-       <button>see more </button>
+      <div class="button-container">
+        <div class="icon-container">
+          <img src="assets/icons/seeMore.svg" alt="">
+        </div>
+        <div>
+          <button>see more </button>
+        </div>
       </div>
     </div>
+  </main>
+
+  <!------------foooter----------------------->
+  <footer>
+    <div class="links">
+      <div class="donify">Donify_DZ</div>
+      <div class="link">
+        <a href="index.html">Home</a>
+        <a href="ExploreOrganization.html">Organizations</a>
+        <a href="announcements.html">Announcements</a>
+        <a href="contact.html">Conatct</a>
+      </div>
     </div>
-    </main>
 
-    <!------------foooter----------------------->
-    <footer>
-        <div class="links">
-            <div class="donify">Donify_DZ</div>
-            <div class="link">
-                <a href="index.html">Home</a>
-                <a href="ExploreOrganization.html">Organizations</a>
-                <a href="announcements.html">Announcements</a>
-                <a href="contact.html">Conatct</a>
-            </div>
-        </div>
+    <div class="line"></div>
 
-        <div class="line"></div>
+    <div class="media">
+      <div class="rights">
+        <p>Donify_dz@2025. All rights reserved</p>
+      </div>
 
-        <div class="media">
-            <div class="rights">
-                <p>Donify_dz@2025. All rights reserved</p>
-            </div>
-
-            <div class="social_media">
-                <a id="facebook" href="https://www.facebook.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
-                <a id="instagram" href="https://www.instagram.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
-                <a id="linkedin" href="https://www.linkedin.com/company/Donify_DZ" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a id="email-icon" href="mailto:contact@donifydz.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-        </div>
-    </footer>
-    <script src="assets/scripts/scriptsOrg.js"></script>
+      <div class="social_media">
+        <a id="facebook" href="https://www.facebook.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i
+            class="fa-brands fa-facebook-f"></i></a>
+        <a id="instagram" href="https://www.instagram.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i
+            class="fa-brands fa-instagram"></i></a>
+        <a id="linkedin" href="https://www.linkedin.com/company/Donify_DZ" target="_blank" rel="noopener noreferrer"><i
+            class="fa-brands fa-linkedin-in"></i></a>
+        <a id="email-icon" href="mailto:contact@donifydz.com" target="_blank" rel="noopener noreferrer"><i
+            class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/scripts/scriptsOrg.js"></script>
 </body>
+
 </html>

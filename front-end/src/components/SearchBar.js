@@ -1,66 +1,105 @@
-import React, { useState } from "react";
-import "../styles/styleOrganizations.css";
-const SearchBar = () => {
-  const [showFilters, setShowFilters] = useState(false);
+import React, { useState, useEffect } from "react";
 
-  const toggleFilters = (e) => {
-    e.preventDefault();
-    setShowFilters((prev) => !prev);
-  };
+function SearchBar({ onSearch, categories = [] }) {
+  const [name, setName] = useState("");
+  const [wilaya, setWilaya] = useState("");
+  const [category, setCategory] = useState("");
+  const [wilayas, setWilayas] = useState([]);
+  const [filteredWilayas, setFilteredWilayas] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/wilayas")
+      .then((res) => res.json())
+      .then((data) => setWilayas(data))
+      .catch((err) => console.error(err));
+  }, []);
+  useEffect(() => {
+    if (onSearch) {
+      onSearch({ name, wilaya, category });
+    }
+  }, [name, wilaya, category]);
 
   return (
-    <div className="search-bar-container flex-center">
-      <div className="search-bar col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10 col-xxs-10">
-        <div className="search-by-name col-lg-10 col-xl-10 col-md-10 col-sm-10 col-xs-10">
-          <img src="/assets/icons/search.svg" alt="search" />
-          <form action="">
-            <input type="search" id="searchInput" placeholder="search" />
-          </form>
-        </div>
+    <div className="search_org flex-row">
+      {/* Organization Name */}
+      <div
+        className="search_by_org_name"
+        style={{
+          position: "relative",
+          display: "inline-block",
+          maxWidth: "500px",
+        }}
+      >
+        <i
+          className="fa-solid fa-magnifying-glass"
+          style={{
+            position: "absolute",
+            left: "10px",
+            top: "50%",
+            fontSize: "1.5rem",
+            transform: "translateY(-50%)",
+            color: "#403f3f",
+          }}
+        ></i>
+        <input
+          type="text"
+          placeholder="Search organization..."
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          style={{ paddingLeft: "35px", boxSizing: "border-box" }}
+        />
+      </div>
 
-        <form action="">
-          <div className="search-filter col-lg-2 col-xl-2 col-md-2 col-sm-2 col-xs-2 col-xxs-2">
-            <div className="catego">
-              <button className="filter-btn" onClick={toggleFilters}>
-                <span className="material-symbols-outlined">
-                  keyboard_arrow_down
-                </span>
-                <span className="filter-title">filter</span>
-              </button>
+      {/* Wilaya (search box) */}
+      <div className="search_by_wilaya">
+        <input
+          type="text"
+          placeholder="Choose wilaya..."
+          value={wilaya}
+          onChange={(e) => setWilaya(e.target.value)}
+          list="wilayas-list"
+        />
 
-              <div className="filter-options">
-                <div
-                  className={`options ${
-                    showFilters ? "options-active" : "options-not-active"
-                  }`}
-                >
-                  <p>categories</p>
-                  {["health", "education", "children", "food"].map((cat) => (
-                    <div className="option" key={cat}>
-                      <input type="checkbox" id={cat} defaultValue={cat} />
-                      <label htmlFor={cat}>{cat}</label>
-                    </div>
-                  ))}
+        <datalist id="wilayas-list">
+          {wilayas.map((w) => (
+            <option key={w.id} value={w.wilaya_name} />
+          ))}
+        </datalist>
+      </div>
 
-                  <p>regions</p>
-                  {["algeries", "bouira", "Oran", "jijel"].map((region) => (
-                    <div className="option" key={region}>
-                      <input
-                        type="checkbox"
-                        id={region}
-                        defaultValue={region}
-                      />
-                      <label htmlFor={region}>{region}</label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+      {/* Category (dropdown) */}
+      <div className="filter_org_category">
+        <select
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+        >
+          <option value="">All categories</option>
+          {categories.length ? (
+            categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))
+          ) : (
+            <>
+              <option value="1">Education</option>
+              <option value="2">Health</option>
+              <option value="3">Charity / Humanitarian</option>
+              <option value="4">Environment</option>
+              <option value="5">Technology</option>
+              <option value="6">Culture & Arts</option>
+              <option value="7">Sports & Youth</option>
+            </>
+          )}
+        </select>
       </div>
     </div>
   );
-};
+}
 
 export default SearchBar;
