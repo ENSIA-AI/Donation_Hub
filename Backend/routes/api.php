@@ -17,3 +17,5 @@ Route::post('/organization', [OrganizationController::class, 'store']);
 Route::get('/wilayas', [WilayaController::class, 'index']); 
 Route::get('/categories', [CategoryController::class, 'index']); 
 Route::get('/wilayas/search', [WilayaController::class, 'search']);
+Route::get('/api/organizations/autocomplete', [OrganizationController::class, 'autocomplete']);
+Route::get('/organizations/search', [OrganizationController::class, 'search']);// this is for searching org based on naem , wilaya and category

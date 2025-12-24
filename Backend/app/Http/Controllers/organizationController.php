@@ -106,5 +106,47 @@ class OrganizationController  extends Controller
         return response()->json(['message'=>'deleted']);
 
     }
+   public function autocomplete(Request $request)
+{
+    $q = $request->query('q'); 
+    if (!$q || strlen($q) < 2) {
+        return response()->json([]);
+    }
+
+    // Order by relevance: exact match first, then startsWith, then contains
+    $results = Organization::where('org_name', 'LIKE', "%{$q}%")
+        ->orderByRaw("
+            CASE
+                WHEN org_name LIKE ? THEN 0
+                WHEN org_name LIKE ? THEN 1
+                ELSE 2
+            END
+        ", ["{$q}", "{$q}%"])
+        ->limit(8)
+        ->pluck('org_name');
+
+    return response()->json($results);
+}
+
+public function search(Request $request){
+    $q = $request->query('q'); 
+    $wilayaId = $request->query('wilaya_id');
+    $categoryId = $request->query('category_id');
+
+    $query = Organization::query();
+
+    if($q) $query->where('org_name', 'LIKE', "%{$q}%");
+    if($categoryId) $query->where('category_id', $categoryId);
+    if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
+
+    $query->orderBy('org_name');
+
+    return response()->json($query->get());
+}
+
+
+
+
+
 
 }

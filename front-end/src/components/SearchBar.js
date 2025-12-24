@@ -6,24 +6,40 @@ function SearchBar({ onSearch }) {
   const [category, setCategory] = useState("");
   const [wilayas, setWilayas] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [orgSuggestions, setOrgSuggestions] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/wilayas")
+    fetch(`http://localhost:8000/api/wilayas`)
       .then((res) => res.json())
       .then((data) => setWilayas(data))
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/categories")
+    fetch(`http://localhost:8000/api/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
+    if (name.length < 2) {
+      setOrgSuggestions([]);
+      return;
+    }
+
+    fetch(`http://localhost:8000/api/organizations/autocomplete?q=${name}`)
+      .then((res) => res.json())
+      .then((data) => setOrgSuggestions(data))
+      .catch(console.error);
+  }, [name]);
+
+  // In SearchBar
+  useEffect(() => {
     if (onSearch) {
-      onSearch({ name, wilaya, category });
+      const selectedWilayaId =
+        wilayas.find((w) => w.wilaya_name === wilaya)?.id || "";
+      onSearch({ name, wilaya_id: selectedWilayaId, category_id: category });
     }
   }, [name, wilaya, category]);
 
@@ -58,6 +74,21 @@ function SearchBar({ onSearch }) {
           }}
           style={{ paddingLeft: "35px", boxSizing: "border-box" }}
         />
+        {orgSuggestions.length > 0 && (
+          <ul className="autocomplete-list">
+            {orgSuggestions.map((org, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  setName(org);
+                  setOrgSuggestions([]);
+                }}
+              >
+                {org}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* Wilaya (search box) */}
