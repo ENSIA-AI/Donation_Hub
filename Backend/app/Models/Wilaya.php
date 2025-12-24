@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Wilaya extends Model
 {
     protected $fillable = ['wilaya_name'];
-
     public function organizations()
     {
-        return $this->hasMany(Organization::class);
+       return $this->hasMany(Organization::class);
     }
 }

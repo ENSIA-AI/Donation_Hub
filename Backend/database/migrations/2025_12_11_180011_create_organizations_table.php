@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+   
     public function up(): void
     {
         Schema::create('organizations', function (Blueprint $table) {
@@ -14,15 +15,18 @@ return new class extends Migration
             $table->string('org_name');
             $table->date('org_registrationDate');
             $table->text('org_description');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('wilaya_id')->constrained('wilayas');
-            $table->string('org_email');
-            $table->string('org_proof')->nullable(); 
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); 
-            
+            $table->foreignId('category_id')->constrained('categories', 'id');
+            $table->foreignId('region_id')->constrained('regions', 'id');
+            $table->string  ('org_email');
+            $table->text('org_slogan')->nullable();
+            $table->enum('status',['pending', 'approved' ,'rejected']);
+            $table->string('org_hero_img')->nullable();
+            $table->string('org_logo')->nullable();
+
         });
     }
 
+    
     public function down(): void
     {
         Schema::dropIfExists('organizations');

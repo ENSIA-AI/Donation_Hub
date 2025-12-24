@@ -2,22 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    // List all categories
+    // Get all categories
     public function index()
     {
+<<<<<<< HEAD
         return response()->json(Category::all(), 200);
 
+=======
+        return response()->json(Category::all());
+>>>>>>> parent of a8748d6f (Merge branch 'CRUD-organization-regester')
     }
 
     // Create a new category
     public function store(Request $request)
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of a8748d6f (Merge branch 'CRUD-organization-regester')
         $request->validate([
             'name' => 'required|string|max:255'
         ]);
