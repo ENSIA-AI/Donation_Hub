@@ -6,22 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('key_words', function (Blueprint $table) {
-            $table->id('keyword_value');
+        Schema::create('wilayas', function (Blueprint $table) {
+            $table->id();
+            $table->string('wilaya_name');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('key_words');
+        Schema::dropIfExists('wilayas');
     }
 };
+
