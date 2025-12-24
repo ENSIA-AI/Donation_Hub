@@ -11,22 +11,14 @@ class CategoryController extends Controller
     // Get all categories
     public function index()
     {
-<<<<<<< HEAD
-        return response()->json(Category::all(), 200);
 
-=======
-        return response()->json(Category::all());
->>>>>>> parent of a8748d6f (Merge branch 'CRUD-organization-regester')
+        return response()->json(Category::all(), 200);
     }
 
     // Create a new category
     public function store(Request $request)
     {
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of a8748d6f (Merge branch 'CRUD-organization-regester')
-        $request->validate([
+               $request->validate([
             'name' => 'required|string|max:255'
         ]);
 

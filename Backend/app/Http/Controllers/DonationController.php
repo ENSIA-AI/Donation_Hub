@@ -37,7 +37,7 @@ class DonationController extends Controller
                 $validated['donation_type'] === 'money'
                 && empty($validated['donation_amount'])
             ) {
-                return response()->json([
+                return $response()->json([
                     'success' => false,
                     'errors' => [
                         'donation_amount' => ['Amount is required for money donations']
@@ -47,14 +47,14 @@ class DonationController extends Controller
 
             $donation = Donation::create($validated);
 
-            return response()->json([
+            return $response()->json([
                 'success' => true,
                 'message' => 'Donation created successfully',
                 'data' => $donation
             ], 201);
 
         } catch (ValidationException $e) {
-            return response()->json([
+            return $response()->json([
                 'success' => false,
                 'errors' => $e->errors()
             ], 422);
