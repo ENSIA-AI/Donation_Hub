@@ -175,7 +175,7 @@ const OrgProfile = () => {
       </div>
 
       {/* Sections */}
-      {/* {activeSection === "Posts" && (
+      {activeSection === "Posts" && (
         <div className="org_container">
           <CreatePost
             onPostCreated={(newPost) =>
@@ -232,7 +232,7 @@ const OrgProfile = () => {
             onDonate={handleDonate}
           />
         </div>
-      )} */}
+      )}
 
       {activeSection === "About" && (
         <section id="About_Us">
