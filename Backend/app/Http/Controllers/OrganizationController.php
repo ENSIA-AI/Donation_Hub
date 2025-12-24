@@ -32,7 +32,7 @@ class OrganizationController extends Controller
             'category_id' => 'required|exists:categories,id',
             'wilaya_id' => 'required|exists:wilayas,id',
             'org_email' => 'required|email',
-            'org_proof' => 'required|file|mimes:pdf,jpg,jpeg,png',
+            'org_proof' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
         ]);
 
         // Handle file upload
