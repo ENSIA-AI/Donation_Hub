@@ -11,14 +11,14 @@ class CategoryController extends Controller
     // Get all categories
     public function index()
     {
-
         return response()->json(Category::all(), 200);
+
     }
 
     // Create a new category
     public function store(Request $request)
     {
-               $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255'
         ]);
 
