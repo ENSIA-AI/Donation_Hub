@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -11,7 +11,9 @@ class CategoryController extends Controller
     // Get all categories
     public function index()
     {
-        return response()->json(Category::all());
+
+        return response()->json(Category::all(), 200);
+
     }
 
     // Create a new category
