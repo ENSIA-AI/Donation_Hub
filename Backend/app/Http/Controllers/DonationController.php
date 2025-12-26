@@ -27,7 +27,7 @@ class DonationController extends Controller
                 'donor_lastName'      => 'required|string|max:255',
                 'donor_phoneNumber'   => 'required|string|max:20',
                 'donor_email'         => 'required|email|max:100',
-                'donation_type'       => 'required|string|in:money,food,medicins',
+                'donation_type'       => 'required|string|max:30',
                 'donation_amount'     => 'nullable|numeric|min:0',
                 'donation_date'       => 'required|date',
                 'donation_received'   => 'boolean',
@@ -37,7 +37,7 @@ class DonationController extends Controller
                 $validated['donation_type'] === 'money'
                 && empty($validated['donation_amount'])
             ) {
-                return $response()->json([
+                return response()->json([
                     'success' => false,
                     'errors' => [
                         'donation_amount' => ['Amount is required for money donations']
@@ -47,14 +47,14 @@ class DonationController extends Controller
 
             $donation = Donation::create($validated);
 
-            return $response()->json([
+            return response()->json([
                 'success' => true,
                 'message' => 'Donation created successfully',
                 'data' => $donation
             ], 201);
 
         } catch (ValidationException $e) {
-            return $response()->json([
+            return response()->json([
                 'success' => false,
                 'errors' => $e->errors()
             ], 422);

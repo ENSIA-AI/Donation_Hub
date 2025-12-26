@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import '../styles/dashboard.css';
 
 function Dashboard() {
@@ -16,15 +17,20 @@ function Dashboard() {
 
 
   // Fetch statistics
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/dashboard/statistics')
-      .then(res => res.json())
-      .then(data => {
-        console.log('Stats:', data);
-        setStats(data.data);
-      })
-      .catch(error => console.error('Error fetching stats:', error));
-  }, []);
+ useEffect(() => {
+  fetch('http://127.0.0.1:8000/api/dashboard')
+    .then(res => res.json())
+    .then(data => {
+      console.log('Raw stats:', data);
+      console.log('donations_by_type:', data.data?.donations_by_type); 
+      setStats(data.data);
+    })
+    .catch(error => console.error('Error fetching stats:', error));
+}, []);
+
+console.log('pieData:', pieData);
+console.log('barData:', barData);
+
 
   // Fetch all donations
   useEffect(() => {
@@ -118,6 +124,22 @@ const handleDeleteDonation = async (id) => {
   }
 };
 
+const COLORS = ["#82ca9d", "#8884d8"];
+
+  const pieData = stats
+  ? [
+      { name: "Received", value: stats.received_donations },
+      { name: "Waiting", value: stats.waiting_donations },
+    ]
+  : [];
+
+const barData = stats ? stats.donations_by_type.map(d => ({
+  type: d.donation_type,
+  count: d.count,
+  totalAmount: d.total_amount || 0
+})) : [];
+
+
 const filteredDonations = donations.filter(donation => {
   const matchesSearch =
      (donation.donor_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -145,6 +167,10 @@ const filteredRequests = requests.filter(request =>
 );
   
   const visibleRequests = showMoreRequests ? filteredRequests : filteredRequests.slice(0, VISIBLE_ROWS);
+
+
+
+
 
   return (
     <div style={{ display: 'flex', margin: 0, fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f4f4f9' }}>
@@ -192,7 +218,8 @@ const filteredRequests = requests.filter(request =>
         {activeTab === 'dashboard' && (
           <div className="tab-content" style={{ display: 'block' }}>
             <h2 className="section-title">Dashboard Statistics</h2>
-            {stats && (
+            {stats ? (
+              <>
               <div className="stats-grid">
                 <div className="stat-card">
                   <h3>Total Donations</h3>
@@ -216,6 +243,36 @@ const filteredRequests = requests.filter(request =>
                   <small>{stats.received_money_amount} DZD</small>
                 </div>
               </div>
+
+              {/* Charts */}
+                <div style={{ width: '100%', height: 300, marginTop: 20 }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
+                        {pieData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+
+                <div style={{ width: '100%', height: 300, marginTop: 20 }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={barData}>
+                      <XAxis dataKey="type" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="count" fill="#8884d8" name="Number of Donations" />
+                      <Bar dataKey="totalAmount" fill="#82ca9d" name="Total Amount (DZD)" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+
+              </>
+              ) : (
+              <p>Loading stats...</p>
             )}
           </div>
         )}
