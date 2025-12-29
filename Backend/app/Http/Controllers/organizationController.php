@@ -88,7 +88,7 @@ class OrganizationController  extends Controller
             'org_mission'=>'sometimes',
             'org_vision'=>'sometimes',
             'program1_title' =>'sometimes',
-            'program1_desc '=>'sometimes',
+            'program1_desc'=>'sometimes',
             'program2_title'=>'sometimes',
             'program2_desc'=>'sometimes',
             'value1'=>'sometimes',
@@ -106,13 +106,13 @@ class OrganizationController  extends Controller
         return response()->json(['message'=>'deleted']);
 
     }
-   public function autocomplete(Request $request)
-{
-    $q = $request->query('q'); 
-    if (!$q || strlen($q) < 2) {
-        return response()->json([]);
-    }
 
+    public function autocomplete(Request $request)
+    {
+    $q = $request->query('q'); 
+        if (!$q || strlen($q) < 2) {
+            return response()->json([]);
+        }
     // Order by relevance: exact match first, then startsWith, then contains
     $results = Organization::where('org_name', 'LIKE', "%{$q}%")
         ->orderByRaw("
@@ -124,6 +124,7 @@ class OrganizationController  extends Controller
         ", ["{$q}", "{$q}%"])
         ->limit(8)
         ->pluck('org_name');
+
 
     return response()->json($results);
 }
@@ -137,16 +138,14 @@ public function search(Request $request){
 
     if($q) $query->where('org_name', 'LIKE', "%{$q}%");
     if($categoryId) $query->where('category_id', $categoryId);
-    if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
+
+    // if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
+if($wilayaId) $query->where('wilaya_id', $wilayaId);
 
     $query->orderBy('org_name');
 
     return response()->json($query->get());
 }
-
-
-
-
 
 
 }

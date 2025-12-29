@@ -14,11 +14,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
         OrganizationSeeder::class,
+        WilayaSeeder::class,
+        CategorySeeder::class,
+        CompaignSeeder::class,
          ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 } 

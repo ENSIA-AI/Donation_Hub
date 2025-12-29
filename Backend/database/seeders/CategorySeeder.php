@@ -10,13 +10,15 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['category_name' => 'Education'],
-            ['category_name' => 'Health'],
-            ['category_name' => 'Charity / Humanitarian'],
-            ['category_name' => 'Environment'],
-            ['category_name' => 'Technology'],
-            ['category_name' => 'Culture & Arts'],
-            ['category_name' => 'Sports & Youth'],
+
+            ['category' => 'Education'],
+            ['category' => 'Health'],
+            ['category' => 'Charity / Humanitarian'],
+            ['category' => 'Environment'],
+            ['category' => 'Technology'],
+            ['category' => 'Culture & Arts'],
+            ['category' => 'Sports & Youth'],
+
         ];
 
         Category::insert($categories);

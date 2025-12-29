@@ -9,14 +9,18 @@ function SearchBar({ onSearch }) {
   const [orgSuggestions, setOrgSuggestions] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/wilayas`)
+
+    fetch("http://localhost:8000/api/wilayas")
+
       .then((res) => res.json())
       .then((data) => setWilayas(data))
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/categories`)
+
+    fetch("http://localhost:8000/api/categories")
+
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error(err));
@@ -115,7 +119,9 @@ function SearchBar({ onSearch }) {
           {categories.length ? (
             categories.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.category_name}
+
+                {c.category}
+
               </option>
             ))
           ) : (

@@ -144,7 +144,38 @@
     <!-- =============================end Organization navbar ============================ -->
 
     <!-- ============================= Organization Posts ============================ -->
+
+
     <div class="org_container">
+        <div class="add_post">
+            <button class="add_post_btn">
+                <i class="fa-solid fa-plus"></i>
+                create post
+            </button>
+        </div>
+        <div class="create_post">
+            <form method="post">
+                <label for="post_T">Post Title </label><br>
+                <input type="text" maxlength="200" id="post_T" name="post_title" required><br>
+
+                <label for="post_D">Post Description </label><br>
+                <input type="text" maxlength="20000" id="post_D" name="post_title" required><br>
+
+                <label for="PostImage">Post Image </label><br>
+                <input type="file" id="PostImage" name="post_image"><br>
+                <div class="create_post_button flex-row">
+                    <div class="create_post_btn ">
+                        <i class="fa-solid fa-plus"></i>
+                        <a href="#" class="create_post_link">Create Post</a>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
         <div class="posts  flex-row">
             <div class="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12">
                 <div class="post-card ">
@@ -237,7 +268,7 @@
                                 <a href="donate.html" class="post_action_link">Donnate</a>
                             </div>
                             <div class="read_more_action ">
-                                <i class="fa-solid fa-arrow-right"></i>
+
                                 <a href="#" class="post_action_link">Read more</a>
                             </div>
                         </div>
@@ -725,10 +756,14 @@
             </div>
 
             <div class="social_media">
-                <a id="facebook" href="https://www.facebook.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
-                <a id="instagram" href="https://www.instagram.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
-                <a id="linkedin" href="https://www.linkedin.com/company/Donify_DZ" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a id="email-icon" href="mailto:contact@donifydz.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a>
+                <a id="facebook" href="https://www.facebook.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-facebook-f"></i></a>
+                <a id="instagram" href="https://www.instagram.com/Donify_DZ" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <a id="linkedin" href="https://www.linkedin.com/company/Donify_DZ" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a id="email-icon" href="mailto:contact@donifydz.com" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </footer>

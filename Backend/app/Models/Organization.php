@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
+
   protected $fillable = [
         'org_name',
         'org_registrationDate',
@@ -158,20 +159,8 @@ class Organization extends Model
         return $contact;
     }
 
-    // Transform posts for React
-    // public function getPostsAttribute()
-    // {
-    //     return $this->campaigns->map(function($campaign) {
-    //         return [
-    //             'id' => $campaign->id,
-    //             'title' => $campaign->title,
-    //             'description' => $campaign->description,
-    //             'image' => $campaign->image ? asset('storage/' . $campaign->image) : null,
-    //             'date' => $campaign->date,
-    //         ];
-    //     })->toArray();
-    // }
-    public function category()
+   
+public function category()
 {
     return $this->belongsTo(Category::class);
 }
@@ -180,4 +169,5 @@ public function wilaya()
 {
     return $this->belongsTo(Wilaya::class);
 }
+
 }
