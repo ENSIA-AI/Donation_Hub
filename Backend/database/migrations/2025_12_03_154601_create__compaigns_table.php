@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('compaign_content');
             $table->date('compaign_date')->default(DB::raw('CURRENT_DATE')); 
             $table->boolean('compaign_approval')->default(false);
+            $table->enum('status', ['waiting', 'accepted', 'rejected'])->default('waiting');
             $table->timestamps();
         });
     }

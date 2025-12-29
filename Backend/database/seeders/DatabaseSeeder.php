@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         OrganizationSeeder::class,
         WilayaSeeder::class,
         CategorySeeder::class,
+        CompaignSeeder::class,
          ]);
 
         // User::factory()->create([

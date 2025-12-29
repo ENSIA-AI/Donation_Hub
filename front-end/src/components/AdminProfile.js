@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/AdminDashStat.css";
+import axios from "../api/axios";
 
 const AdminProfile = ({ name, image }) => {
   const [hover, setHover] = useState(false);
@@ -7,17 +8,33 @@ const AdminProfile = ({ name, image }) => {
 
   // Admin info state
   const [adminData, setAdminData] = useState({
-    username: name,
-    email: "admin@example.com",
+    username: "",
+    email: "",
     password: "",
-    image: image,
+    image: "",
   });
 
+  useEffect(() => {
+    axios
+      .get("admin/profile")
+      .then((res) => {
+        console.log("API Response:", res.data); // Debug
+        setAdminData({
+          username: res.data.username,
+          email: res.data.email,
+          password: "",
+          image: res.data.profile_image || "https://via.placeholder.com/150", // Fallback image
+        });
+      })
+      .catch((err) => {
+        console.error("Error fetching admin profile:", err);
+        console.log(err.response.data);
+      });
+  }, []);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setAdminData({ ...adminData, [name]: value });
   };
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {

@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompaignController;
 use App\Http\Controllers\organizationController;
 use App\Http\Controllers\WilayaController;
-
+use App\Http\Controllers\AdminController;
 
 
 
@@ -27,20 +27,20 @@ Route::apiResource('compaigns', CompaignController::class);
 
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
-Route::get('/organization',[OrganizationController::class ,'index']);
-Route::get('/organization/{id}',[OrganizationController::class,'show']);
-Route::put('/organization/{id}',[OrganizationController::class , 'update']);
-Route::delete('/organization/{id}',[OrganizationController::class,'destroy']);
+Route::get('/organization', [OrganizationController::class, 'index']);
+Route::get('/organization/{id}', [OrganizationController::class, 'show']);
+Route::put('/organization/{id}', [OrganizationController::class, 'update']);
+Route::delete('/organization/{id}', [OrganizationController::class, 'destroy']);
 Route::post('/organization', [OrganizationController::class, 'store']);
 
 
-Route::get('/wilayas', [WilayaController::class, 'index']); 
-Route::get('/categories', [CategoryController::class, 'index']); 
+Route::get('/wilayas', [WilayaController::class, 'index']);
+Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/wilayas/search', [WilayaController::class, 'search']);
 Route::get('/api/organizations/autocomplete', [OrganizationController::class, 'autocomplete']);
-Route::get('/organizations/search', [OrganizationController::class, 'search']);// this is for searching org based on naem , wilaya and category
+Route::get('/organizations/search', [OrganizationController::class, 'search']); // this is for searching org based on naem , wilaya and category
 
-
+Route::get('/admin/profile', [AdminController::class, 'profile'])->middleware('auth:sanctum');
 
 
 

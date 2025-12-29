@@ -20,5 +20,6 @@ class Compaign extends Model
         'compaign_title',
         'compaign_content',
         'compaign_date',
+        'status',
     ];
 }
