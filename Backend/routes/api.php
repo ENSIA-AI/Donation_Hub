@@ -1,18 +1,12 @@
 <?php
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestsController;
-
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompaignController;
 use App\Http\Controllers\organizationController;
-
-
-use App\Http\Controllers\CategoryController;
-
-
 
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
@@ -30,16 +24,14 @@ Route::put('/organization/{id}',[OrganizationController::class , 'update']);
 Route::delete('/organization/{id}',[OrganizationController::class,'destroy']);
 Route::post('/organization', [OrganizationController::class, 'store']);
 Route::apiResource('compaigns', CompaignController::class);
-
-
-
+Route::apiResource('categories', CategoryController::class);
 
 
 
 Route::apiResource('organizations', OrganizationController::class);
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
-Route::apiResource('categories', CategoryController::class);
+
 
 
 Route::get('/user', function (Request $request) {
