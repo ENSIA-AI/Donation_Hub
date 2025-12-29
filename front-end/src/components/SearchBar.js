@@ -28,7 +28,7 @@ function SearchBar({ onSearch }) {
       return;
     }
 
-    fetch("http://localhost:8000/api/organizations/autocomplete?q=${name}")
+    fetch(`http://localhost:8000/api/organizations/autocomplete?q=${name}`)
       .then((res) => res.json())
       .then((data) => setOrgSuggestions(data))
       .catch(console.error);

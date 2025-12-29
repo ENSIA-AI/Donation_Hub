@@ -136,8 +136,8 @@ public function search(Request $request){
 
     if($q) $query->where('org_name', 'LIKE', "%{$q}%");
     if($categoryId) $query->where('category_id', $categoryId);
-    if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
-
+    // if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
+if($wilayaId) $query->where('wilaya_id', $wilayaId);
     $query->orderBy('org_name');
 
     return response()->json($query->get());

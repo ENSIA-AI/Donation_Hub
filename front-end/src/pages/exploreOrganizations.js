@@ -16,7 +16,7 @@ const ExploreOrganizations = () => {
     if (wilaya_id) params.append("wilaya_id", wilaya_id);
     if (category_id) params.append("category_id", category_id);
 
-    fetch("http://localhost:8000/api/organizations/search?${params.toString()}")
+    fetch(`http://localhost:8000/api/organizations/search?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => setOrganizations(data)) // update state
       .catch(console.error);
@@ -51,7 +51,7 @@ const ExploreOrganizations = () => {
       </div>
 
       {/* Search bar */}
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
 
       {/* Cards rendered dynamically */}
       <div className="container">
