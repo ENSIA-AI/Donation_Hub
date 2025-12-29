@@ -1,4 +1,7 @@
 <?php
+
+
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestsController;
@@ -13,7 +16,7 @@ use App\Http\Controllers\RegionController;
 
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
-Route::get('/dashboard', [DonationController::class, 'statistics']);
+Route::get('/donations/statistics', [DonationController::class, 'statistics']);
 Route::put('/donations/{id}', [DonationController::class, 'update']);
 Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
 Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
@@ -40,6 +43,7 @@ Route::apiResource('organizations', OrganizationController::class);
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
 Route::apiResource('categories', CategoryController::class);
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
