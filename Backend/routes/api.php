@@ -1,17 +1,17 @@
 <?php
 
 
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestsController;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\CompaignController;
 use App\Http\Controllers\organizationController;
 
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RegionController;
+
 
 
 Route::post('/donations', [DonationController::class, 'store']);
@@ -23,9 +23,6 @@ Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus
 Route::get('/dashboard/donations', [DonationController::class, 'index']);
 Route::post('/requests', [RequestsController::class, 'store']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
 Route::get('/organization',[OrganizationController::class ,'index']);
 Route::get('/organization/{id}',[OrganizationController::class,'show']);
