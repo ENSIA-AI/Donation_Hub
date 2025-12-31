@@ -18,7 +18,7 @@ import Announcements from "./pages/announcements";
 import Dashboard from "./pages/Dashboard";
 import EditProfile from "./pages/EditProfile";
 import AddDataOrg from "./pages/AddDataOrg";
-
+import AdminDashBoardORG from "./pages/AdminDashBoardORG";
 
 function App() {
   return (
@@ -44,6 +44,7 @@ function App() {
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
+          <Route path="/AdminDashBoardORG" element={<AdminDashBoardORG/>}/>
         </Route>
 
 
