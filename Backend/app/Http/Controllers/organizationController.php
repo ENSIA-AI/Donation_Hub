@@ -38,7 +38,10 @@ class OrganizationController  extends Controller
 
 
     public function show($id){
-        $organization = Organization::with('category')->findOrFail($id);
+    $organization = Organization::with(['category','wilaya'])
+        ->where('id', $id)
+        ->where('status', 'approved') // only approved
+        ->firstOrFail();
         return response()->json([
             'id' => $organization->id,
             'org_name' => $organization->org_name,
@@ -74,10 +77,18 @@ class OrganizationController  extends Controller
             'mission_img' => $organization->mission_img ? asset('storage/' . $organization->mission_img) : null,
         ]);
     }
-    public function index(){//to redefine latter
-        $organizations = Organization::with('category','wilaya')->get();
-        return response()->json($organizations);
-    }
+  public function index(Request $request){
+    // Optional: allow query parameter for filtering
+    $status = $request->query('status', 'approved'); // default = approved
+
+    $organizations = Organization::with(['category','wilaya'])
+        ->when($status, function($q, $status) {
+            $q->where('status', $status);
+        })
+        ->get();
+
+    return response()->json($organizations);
+}
    
     
     public function update(Request $request ,$id){

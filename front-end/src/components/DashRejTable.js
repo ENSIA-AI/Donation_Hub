@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashRejCard from "./DashRejCard";
+import axios from "../api/axios";
 
 const DashRejTable = ()=>{
+    const [rejected ,setRejected]=useState([]);
+    useEffect(()=>{
+        axios
+        .get('/organization?status=rejected')
+        .then((response)=>{
+            setRejected(response.data);
+        })
+        .catch((error)=>{
+            console.error("Error fetching organizations:", error);
+        });
+    },[]);
     return(
        <div className="dashOrgTable">
             <div className="orgDashTitle">
@@ -28,14 +40,17 @@ const DashRejTable = ()=>{
                         <p>Proof</p>
                     </div>
                 </div>
+                { rejected.slice(0,10).map((rej)=>(
                 <DashRejCard
-                name= "emaple name"
-                email= "exemple@mail.com"
-                number= "058475275" 
-                category = "category"
-                wilaya = "wilaya"
+                name= {rej.org_name}
+                email= {rej.org_email}
+                number= {rej.org_phone}
+                category = {rej.category?.category}
+                wilaya = {rej.wilaya?.wilaya_name}
                 proof = "proof"
                 />
+                ))
+                }
             </div>
         </div>
     );
