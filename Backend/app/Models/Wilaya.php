@@ -24,4 +24,5 @@ class Wilaya extends Model
         }  
         return $query ; 
     }
+    
 }

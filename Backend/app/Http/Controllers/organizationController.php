@@ -75,9 +75,10 @@ class OrganizationController  extends Controller
         ]);
     }
     public function index(){//to redefine latter
-        $organizations = Organization::with('category')->get();
+        $organizations = Organization::with('category','wilaya')->get();
         return response()->json($organizations);
     }
+   
     
     public function update(Request $request ,$id){
         $organization =Organization::findOrfail($id);
