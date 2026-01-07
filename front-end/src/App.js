@@ -19,6 +19,9 @@ import Dashboard from "./pages/Dashboard";
 import EditProfile from "./pages/EditProfile";
 import AddDataOrg from "./pages/AddDataOrg";
 
+import DashCampaigns from "./pages/DashCampaigns";
+import DashMessages from "./pages/DashMessages";
+
 
 function App() {
   return (
@@ -44,6 +47,8 @@ function App() {
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
+          <Route path="/campaigns" element={<DashCampaigns />} />
+          <Route path="/messages" element={<DashMessages />} />
         </Route>
 
 
