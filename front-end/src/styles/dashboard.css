@@ -122,6 +122,20 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
+.tab-content.hidden {
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+
+.tab-content.active {
+  position: relative;
+  visibility: visible;
+  height: auto;
+}
+
+
 .requests-container,
 .donations-container {
     padding: 20px;

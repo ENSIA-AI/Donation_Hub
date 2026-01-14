@@ -8,61 +8,77 @@ function Dashboard() {
   const [donations, setDonations] = useState([]);
   const [requests, setRequests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('all');
+  const [loadingDonations, setLoadingDonations] = useState(true);
+  const [loadingRequests, setLoadingRequests] = useState(true);
   const [showMoreDonations, setShowMoreDonations] = useState(false);
   const [showMoreRequests, setShowMoreRequests] = useState(false);
 
   const VISIBLE_ROWS = 4;
-
+  const COLORS = ["#107361", "#FEDA79"];
 
   // Fetch statistics
  useEffect(() => {
-  fetch('http://127.0.0.1:8000/api/dashboard')
-    .then(res => res.json())
-    .then(data => {
-      console.log('Raw stats:', data);
-      console.log('donations_by_type:', data.data?.donations_by_type); 
-      setStats(data.data);
-    })
-    .catch(error => console.error('Error fetching stats:', error));
-}, []);
+    fetch('http://127.0.0.1:8000/api/dashboard')
+      .then(res => res.json())
+      .then(data => {
+        setStats(data.data);
+      })
+      .catch(err => console.error(err));
+  }, []);
 
-console.log('pieData:', pieData);
-console.log('barData:', barData);
+useEffect(() => {
+  if (stats) {
+    console.log('pieData:', pieData);
+    console.log('barData:', barData);
+  }
+}, [stats]);
+
+
+const pieData = stats ? [
+  { name: "Received", value: stats.received_donations || 0 },
+  { name: "Waiting", value: stats.waiting_donations || 0 },
+] : [];
+
+//chart data
+const barData = stats && Array.isArray(stats.donations_by_type)
+  ? stats.donations_by_type.map(d => ({
+      type: d.donation_type,
+      count: d.count,
+      totalAmount: d.total_amount || 0
+    }))
+  : [];
 
 
   // Fetch all donations
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/dashboard/donations')
-      .then(res => res.json())
-      .then(data => {
-        console.log('Donations:', data);
-        setDonations(data.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        alert(error)
-        console.log('Error fetching donations:');
-        setLoading(false);
-      });
-  }, []);
+  fetch('http://127.0.0.1:8000/api/dashboard/donations')
+    .then(res => res.json())
+    .then(data => {
+      console.log('API Response:', data); // See full response
+      console.log('Donations array:', data.data); // See the donations array
+      console.log('Number of donations:', data.data?.length); // Count
+      setDonations(data.data || []);
+      setLoadingDonations(false);
+    })
+    .catch((err) => {
+      console.error('Error fetching donations:', err);
+      setLoadingDonations(false);
+    });
+}, []);
 
   //Fetch all requests
    useEffect(() => {
     fetch('http://127.0.0.1:8000/api/dashboard/requests')
       .then(res => res.json())
       .then(data => {
-        console.log('Requests:', data);
         setRequests(data.data);
-        setLoading(false);
+        setLoadingRequests(false);
       })
-      .catch(error => {
-        alert(error)
-        console.log('Error fetching requests:');
-        setLoading(false);
-      });
+      .catch(() => setLoadingRequests(false));
   }, []);
+
+
 
   // Handle status change
 const handleStatusChange = async (donationId, newStatus) => {
@@ -124,20 +140,8 @@ const handleDeleteDonation = async (id) => {
   }
 };
 
-const COLORS = ["#82ca9d", "#8884d8"];
 
-  const pieData = stats
-  ? [
-      { name: "Received", value: stats.received_donations },
-      { name: "Waiting", value: stats.waiting_donations },
-    ]
-  : [];
 
-const barData = stats ? stats.donations_by_type.map(d => ({
-  type: d.donation_type,
-  count: d.count,
-  totalAmount: d.total_amount || 0
-})) : [];
 
 
 const filteredDonations = donations.filter(donation => {
@@ -215,8 +219,7 @@ const filteredRequests = requests.filter(request =>
       <div className="main-content">
         
         {/* Dashboard Tab */}
-        {activeTab === 'dashboard' && (
-          <div className="tab-content" style={{ display: 'block' }}>
+          <div className={`tab-content ${activeTab === 'dashboard' ? 'active' : 'hidden'}`}>
             <h2 className="section-title">Dashboard Statistics</h2>
             {stats ? (
               <>
@@ -245,10 +248,19 @@ const filteredRequests = requests.filter(request =>
               </div>
 
               {/* Charts */}
-                <div style={{ width: '100%', height: 300, marginTop: 20 }}>
-                  <ResponsiveContainer width="100%" height="100%">
+                <div className='charts'>
+                  <div className='chart-container' style={{ width: '100%', height: 300 }}>
+                  <ResponsiveContainer>
                     <PieChart>
-                      <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
+                      <Pie 
+                         data={pieData} 
+                         dataKey="value" 
+                         nameKey="name" 
+                         cx="50%" 
+                         cy="50%" 
+                         outerRadius={80} 
+                         label
+                      >
                         {pieData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
                       </Pie>
                       <Tooltip />
@@ -257,29 +269,27 @@ const filteredRequests = requests.filter(request =>
                   </ResponsiveContainer>
                 </div>
 
-                <div style={{ width: '100%', height: 300, marginTop: 20 }}>
-                  <ResponsiveContainer width="100%" height="100%">
+                <div className='chart-container' style={{ width: '100%', height: 300 }}>
+                  <ResponsiveContainer>
                     <BarChart data={barData}>
                       <XAxis dataKey="type" />
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Bar dataKey="count" fill="#8884d8" name="Number of Donations" />
-                      <Bar dataKey="totalAmount" fill="#82ca9d" name="Total Amount (DZD)" />
+                      <Bar dataKey="count" fill="#FEDA79" name="Number of Donations" />
+                      <Bar dataKey="totalAmount" fill="#107361" name="Total Amount (DZD)" />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
-
+            </div>
               </>
               ) : (
               <p>Loading stats...</p>
             )}
           </div>
-        )}
-
+        
         {/* Donations Tab */}
-        {activeTab === 'donations' && (
-          <div className="tab-content" style={{ display: 'block' }}>
+          <div className={`tab-content ${activeTab === 'donations' ? 'active' : 'hidden'}`}>
             <div className="donations-container">
               
               <div className="top-bar">
@@ -304,7 +314,7 @@ const filteredRequests = requests.filter(request =>
 
               <h2 className="section-title">Donations ({filteredDonations.length})</h2>
 
-              {loading ? (
+              {loadingDonations ? (
                 <p>Loading donations...</p>
               ) : filteredDonations.length === 0 ? (
                 <p>No donations found.</p>
@@ -362,13 +372,11 @@ const filteredRequests = requests.filter(request =>
                 onClick={() => setShowMoreDonations(!showMoreDonations)}>{showMoreDonations ? '-' : '+' }</button>
             </div>
           </div>
-        )}
+        
 
         {/* Requests Tab */}
-        {activeTab === 'requests' && (
-          <div className="tab-content" style={{ display: 'block' }}>
+          <div className={`tab-content ${activeTab === 'requests' ? 'active' : 'hidden'}`}>
             <div className="requests-container">
-              
               <div className="top-bar">
                 <div className="search-filter-wrapper">
                   <div className="search-boxx">
@@ -388,7 +396,7 @@ const filteredRequests = requests.filter(request =>
 
               <h2 className="section-title">Requests</h2>
 
-              {loading ? (
+              {loadingRequests ? (
                 <p>Loading requests...</p>
               ) : filteredRequests.length === 0 ? (
                 <p>No requests found.</p>
@@ -423,7 +431,7 @@ const filteredRequests = requests.filter(request =>
               onClick={() => setShowMoreRequests(!showMoreRequests)}>{showMoreRequests? '-' : '+'}</button>
             </div>
           </div>
-        )}
+        
 
       </div>
     </div>
