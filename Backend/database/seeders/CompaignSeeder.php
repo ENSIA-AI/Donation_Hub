@@ -4,22 +4,40 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Compaign;
+use App\Models\Organization;
+use App\Models\Category;
 
 class CompaignSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Example static campaigns
+        $organization = Organization::first();
+
+        if (!$organization) {
+            // If no organizations exist, create one
+            $organization = Organization::create([
+                'org_name' => 'Default Org',
+                'org_description' => 'Automatically created organization',
+                'org_slogan' => 'Helping people',
+            ]);
+        }
+
+        // Get some categories
+        $categories = Category::all();
+        if ($categories->isEmpty()) {
+            $this->command->info('No categories found. Run CategorySeeder first!');
+            return;
+        }
+
         $campaigns = [
             [
                 'compaign_title' => 'Clean Water Initiative',
                 'compaign_content' => 'Providing clean water to rural areas.',
-                'compaign_img' => null, // or you can put 'compaigns/example1.jpg'
+                'compaign_img' => null,
                 'compaign_date' => now(),
                 'status' => 'waiting',
+                'organization_id' => $organization->id,
+                'category_id' => $categories->where('category', 'Health')->first()->id ?? $categories->first()->id,
             ],
             [
                 'compaign_title' => 'School Supplies Drive',
@@ -27,6 +45,8 @@ class CompaignSeeder extends Seeder
                 'compaign_img' => null,
                 'compaign_date' => now(),
                 'status' => 'waiting',
+                'organization_id' => $organization->id,
+                'category_id' => $categories->where('category', 'Education')->first()->id ?? $categories->first()->id,
             ],
             [
                 'compaign_title' => 'Tree Planting Campaign',
@@ -34,6 +54,8 @@ class CompaignSeeder extends Seeder
                 'compaign_img' => null,
                 'compaign_date' => now(),
                 'status' => 'waiting',
+                'organization_id' => $organization->id,
+                'category_id' => $categories->where('category', 'Environment')->first()->id ?? $categories->first()->id,
             ],
         ];
 

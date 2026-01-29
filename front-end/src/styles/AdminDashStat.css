@@ -81,7 +81,13 @@ a {
 
 
 
-
+/* ======================compaign image ============================= */
+.campaign_request_img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
 /* ======================pending compaign status ==================== */
 .status_button_wrapper {
@@ -250,7 +256,8 @@ a {
 
 .content_left_part_charts {
     display: flex;
-    gap: 1rem;
+    gap: 3rem;
+    align-items: flex-start;
     /* space between images */
 }
 
@@ -352,6 +359,8 @@ a {
     max-width: 500px;
     text-align: center;
     position: relative;
+    z-index: 1001;
+
 }
 /* Modal profile image */
 .modal_profile_image {
@@ -431,6 +440,10 @@ a {
 }
 
 .stat_chart_image_left {
+    height: 350px;
+        
+        min-height: 200px;
+        
     margin: 1rem 0;
     width: 49%;
 }
@@ -525,7 +538,8 @@ a {
 .content_left_part_org_requests,
 .content_left_part_post_requests {
     background-color: white;
-    padding: 2rem;
+    padding:2rem;
+    
     border-radius: var(--card-border-radius);
 }
 

@@ -9,8 +9,10 @@ use App\Http\Controllers\CompaignController;
 use App\Http\Controllers\organizationController;
 use App\Http\Controllers\WilayaController;
 use App\Http\Controllers\AdminController;
-
-
+use App\Models\Compaign;
+use Illuminate\Support\Facades\DB;
+use App\Models\Organization;
+use App\Http\Controllers\DashboardController;
 
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
@@ -22,12 +24,23 @@ Route::get('/dashboard/donations', [DonationController::class, 'index']);
 Route::post('/requests', [RequestsController::class, 'store']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
 
-Route::apiResource('compaigns', CompaignController::class);
 
+// ===============compaigns : 
+Route::get('/compaigns/pending', [CompaignController::class, 'pending']);
+Route::patch('/compaigns/{id}/approve', [CompaignController::class, 'approve']);
+
+Route::patch('/compaigns/{id}/reject', [CompaignController::class, 'reject']);
+//Route::get('organizations/{id}/compaigns', [CompaignController::class, 'byOrganization']);
+
+Route::get('organizations/{organization}/compaigns', [CompaignController::class, 'byOrganization']);
+Route::get('/compaigns/autocomplete', [CompaignController::class, 'autocomplete']);
+Route::get('/compaigns/search', [CompaignController::class, 'search']);
+
+Route::apiResource('compaigns', CompaignController::class);
 
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
-Route::get('/organization', [OrganizationController::class, 'index']);
+Route::get('/organizations', [OrganizationController::class, 'index']);
 Route::get('/organization/{id}', [OrganizationController::class, 'show']);
 Route::put('/organization/{id}', [OrganizationController::class, 'update']);
 Route::delete('/organization/{id}', [OrganizationController::class, 'destroy']);
@@ -43,9 +56,29 @@ Route::get('/organizations/search', [OrganizationController::class, 'search']); 
 Route::get('/admin/profile', [AdminController::class, 'profile'])->middleware('auth:sanctum');
 
 
+Route::get('/organization-count', function () {
+    return response()->json([
+        'TotalOrgs' => Organization::count()
+    ]);
+});
 
+
+
+Route::get('/dashboard/campaigns-by-category', function () {
+    return Compaign::select('category', DB::raw('COUNT(*) as campaigns'))
+        ->groupBy('category')
+        ->get();
+});
 
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+
+// ============================ Dashboard controller ===========================================
+Route::get(
+    '/campaigns-by-category',
+    [DashboardController::class, 'campaignsByCategory']
+);
+Route::get('/dashboard/organizations-by-category-count', [DashboardController::class, 'organizationsByCategoryCount']);

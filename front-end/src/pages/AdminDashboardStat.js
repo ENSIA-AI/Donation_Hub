@@ -1,66 +1,143 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/AdminDashStat.css";
-
+import "../styles/styleOrganizations.css";
 import Sidebar from "../components/Sidebar";
+
+import CampaignsByCategory from "../components/AdminCharts/CampaignsByCategory";
+import OrganizationsByCategory from "../components/AdminCharts/organizationByCategory";
 import OrgRequest from "../components/OrgRequest";
 import CampaignRequest from "../components/CampaignRequest";
 import StatCard from "../components/StatCard";
 
-
 const AdminDashboardStat = () => {
-
   const [organizations, setOrganizations] = useState([]);
+  const [acceptedCampaigns, setAcceptedCampaigns] = useState([]);
+  const [TotalOrgs, setTotalOrgs] = useState(0);
 
+  const [pendingCampaigns, setPendingCampaigns] = useState([]);
+  const [loadingCampaigns, setLoadingCampaigns] = useState(true);
+  const totalCampaigns = acceptedCampaigns.length;
   const fetchPendingOrganizations = async () => {
-  try {
-    const response = await axios.get(
-      "http://127.0.0.1:8000/api/organizations"
-    );
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/organizations",
+      );
 
-    const pending = response.data.filter(
-      (org) => org.status === "pending"
-    );
+      const pending = response.data.filter((org) => org.status === "pending");
 
-    setOrganizations(pending);
-  } catch (error) {
-    console.error("Error fetching organizations", error);
-  }
-};
-useEffect(() => {
-  fetchPendingOrganizations();
-}, []);
-
-
-const approveOrganization = async (id) => {
-  try {
-    await axios.patch(
-      `http://127.0.0.1:8000/api/organizations/${id}/approve`
-    );
-
-    alert("Organization approved");
+      setOrganizations(pending);
+    } catch (error) {
+      console.error("Error fetching organizations", error);
+    }
+  };
+  useEffect(() => {
     fetchPendingOrganizations();
-  } catch (error) {
-    console.error("Approve failed", error);
-    alert("Error approving organization");
-  }
-};
+  }, []);
 
-const rejectOrganization = async (id) => {
-  try {
-    await axios.delete(
-      `http://127.0.0.1:8000/api/organizations/${id}`
-    );
+  const approveOrganization = async (id) => {
+    try {
+      await axios.patch(
+        `http://127.0.0.1:8000/api/organizations/${id}/approve`,
+      );
 
-    alert("Organization rejected");
-    fetchPendingOrganizations();
-  } catch (error) {
-    console.error("Reject failed", error);
-    alert("Error rejecting organization");
-  }
-};
+      alert("Organization approved");
+      fetchPendingOrganizations();
+    } catch (error) {
+      console.error("Approve failed", error);
+      alert("Error approving organization");
+    }
+  };
 
+  const rejectOrganization = async (id) => {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/api/organizations/${id}`);
 
+      alert("Organization rejected");
+      fetchPendingOrganizations();
+    } catch (error) {
+      console.error("Reject failed", error);
+      alert("Error rejecting organization");
+    }
+  };
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8000/api/dashboard/campaigns-by-category")
+  //     .then((res) => {
+  //       console.log("API data:", res.data); // Check in browser console
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => console.error("API error:", err));
+  // }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/organization-count")
+      .then((res) => setTotalOrgs(res.data.TotalOrgs))
+      .catch((err) => console.error(err));
+  }, []);
+  // =============================== fetching pending compaigns  =============================
+  const fetchAcceptedCampaigns = async () => {
+    try {
+      const res = await axios.get(
+        "http://127.0.0.1:8000/api/compaigns?status=accepted",
+      );
+      setAcceptedCampaigns(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    fetchAcceptedCampaigns();
+  }, []);
+
+  const fetchPendingCampaigns = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/compaigns/pending",
+      );
+
+      setPendingCampaigns(response.data);
+    } catch (error) {
+      console.error("Error fetching campaigns:", error);
+    } finally {
+      setLoadingCampaigns(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPendingCampaigns();
+
+    const interval = setInterval(() => {
+      fetchPendingCampaigns();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const approveCampaign = async (id) => {
+    try {
+      await axios.patch(`http://127.0.0.1:8000/api/compaigns/${id}`, {
+        status: "accepted",
+      });
+      fetchPendingCampaigns();
+      fetchAcceptedCampaigns();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const rejectCampaign = async (id) => {
+    try {
+      await axios.patch(`http://127.0.0.1:8000/api/compaigns/${id}`, {
+        status: "rejected",
+      });
+      fetchPendingCampaigns();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // ===============================end fetching pending compaigns =============================
 
   return (
     <section id="dash_section">
@@ -87,33 +164,31 @@ const rejectOrganization = async (id) => {
                 />
                 <StatCard
                   title="Total Compaigns"
-                  value="120"
+                  value={totalCampaigns}
                   iconClass="fa-bullhorn"
                 />
                 <StatCard
                   title="Organizations"
-                  value="45"
+                  value={TotalOrgs}
                   iconClass="fa-building-ngo"
                 />
-                <StatCard title="Requests" value="12" iconClass="fa-bell" />
+                <StatCard title="Messages" value="12" iconClass="fa-bell" />
               </div>
 
               {/* ===== charts left part ===== */}
               <div className="content_left_part_charts flex-row">
-                <div className="stat_chart_image_left">
-                  <img
-                    src="assets/Images/stat4.png"
-                    alt="Donation over time"
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                  />
+                <div
+                  className="stat_chart_image_left"
+                  style={{ height: 350, minHeight: 200, width: "100%" }}
+                >
+                  <CampaignsByCategory />
                 </div>
 
-                <div className="stat_chart_image_left">
-                  <img
-                    src="assets/Images/stat2.png"
-                    alt="Donation sources"
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                  />
+                <div
+                  className="stat_chart_image_left"
+                  style={{ height: 350, minHeight: 200, width: "100%" }}
+                >
+                  <OrganizationsByCategory />
                 </div>
               </div>
 
@@ -121,85 +196,61 @@ const rejectOrganization = async (id) => {
               <div className="content_left_part_requests flex-row">
                 {/* Organization Requests */}
                 <div className="content_left_part_org_requests">
-  <div className="requests_title">
-    <h3>Pending Organizations</h3>
-  </div>
+                  <div className="requests_title">
+                    <h3>Pending Organizations</h3>
+                  </div>
 
-  {organizations.length === 0 && <p>No pending organizations</p>}
+                  {organizations.length === 0 && (
+                    <p>No pending organizations</p>
+                  )}
 
-  {organizations.map((org) => (
-    <OrgRequest
-      key={org.id}
-      name={org.org_name}
-      date={org.created_at}
-      status={org.status}
-      onApprove={() => approveOrganization(org.id)}
-    />
-  ))}
+                  {organizations.map((org) => (
+                    <OrgRequest
+                      key={org.id}
+                      name={org.org_name}
+                      date={org.created_at}
+                      status={org.status}
+                      onApprove={() => approveOrganization(org.id)}
+                    />
+                  ))}
 
-  {organizations.map((org) => (
-  <OrgRequest
-    key={org.id}
-    name={org.org_name}
-    date={org.created_at}
-    status={org.status}
-    onApprove={() => approveOrganization(org.id)}
-    onReject={() => rejectOrganization(org.id)}
-  />
-))}
-</div>
+                  {organizations.map((org) => (
+                    <OrgRequest
+                      key={org.id}
+                      name={org.org_name}
+                      date={org.created_at}
+                      status={org.status}
+                      onApprove={() => approveOrganization(org.id)}
+                      onReject={() => rejectOrganization(org.id)}
+                    />
+                  ))}
+                </div>
 
-                {/* Campaign Requests */}
+                {/* Pending Campaigns */}
                 <div className="content_left_part_post_requests">
                   <div className="requests_title">
                     <h3>Pending Compaigns</h3>
                   </div>
-                  {[
-                    {
-                      title: "Compaign Title",
-                      organization: "Organization Name",
-                      status: "waiting",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      title: "Compaign Title",
-                      organization: "Organization Name",
-                      status: "accepted",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      title: "Compaign Title",
-                      organization: "Organization Name",
-                      status: "waiting",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      title: "Compaign Title",
-                      organization: "Organization Name",
-                      status: "accepted",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      title: "Compaign Title",
-                      organization: "Organization Name",
-                      status: "waiting",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      title: "Compaign Title",
-                      organization: "Organization Name",
-                      status: "accepted",
-                      date: "12 December, 2025",
-                    },
-                    {
-                      title: "Compaign Title",
-                      organization: "Organization Name",
-                      status: "accepted",
-                      date: "12 December, 2025",
-                    },
-                  ].map((camp, i) => (
-                    <CampaignRequest key={i} {...camp} />
-                  ))}
+
+                  {loadingCampaigns && <p>Loading campaigns...</p>}
+
+                  {!loadingCampaigns && pendingCampaigns.length === 0 && (
+                    <p>No pending campaigns.</p>
+                  )}
+
+                  {!loadingCampaigns &&
+                    pendingCampaigns.map((camp) => (
+                      <CampaignRequest
+                        key={camp.compaign_ID}
+                        title={camp.compaign_title}
+                        organization={camp.organization.org_name}
+                        date={camp.compaign_date || camp.created_at}
+                        status={camp.status}
+                        // image={camp.compaign_img}
+                        onApprove={() => approveCampaign(camp.compaign_ID)}
+                        onReject={() => rejectCampaign(camp.compaign_ID)}
+                      />
+                    ))}
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 <?php
- namespace Database\Seeders;
+
+namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -9,19 +10,21 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    
+
     public function run(): void
     {
         $this->call([
-        OrganizationSeeder::class,
-        WilayaSeeder::class,
-        CategorySeeder::class,
-        CompaignSeeder::class,
-         ]);
+            CategorySeeder::class,
+            OrganizationSeeder::class,
+            WilayaSeeder::class,
+
+            CompaignSeeder::class,
+            AdminSeeder::class,
+        ]);
 
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
     }
-} 
+}
