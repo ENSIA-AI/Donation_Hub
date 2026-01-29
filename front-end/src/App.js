@@ -14,23 +14,23 @@ import OrgProfile from "./pages/OrgProfile";
 import Login from "./pages/Login";
 import Register from "./pages/register";
 import Announcements from "./pages/announcements";
-
+import AdminRoute from "./AdminRoute";
 import Dashboard from "./pages/Dashboard";
 import EditProfile from "./pages/EditProfile";
 import AddDataOrg from "./pages/AddDataOrg";
-
 
 function App() {
   return (
     <Router>
       <Routes>
-
-
         {/* Pages WITH Header & Footer */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/exploreOrganizations" element={<ExploreOrganizations />} />
+          <Route
+            path="/exploreOrganizations"
+            element={<ExploreOrganizations />}
+          />
           <Route path="/Login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/OrgProfile/:id" element={<OrgProfile />} />
@@ -39,14 +39,22 @@ function App() {
           <Route path="/AddDataOrg" element={<AddDataOrg />} />
           <Route path="/donate" element={<Donate />} />
         </Route>
-
         {/* Dashboard WITHOUT Header & Footer */}
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
         </Route>
 
-
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <DashboardLayout />
+            </AdminRoute>
+          }
+        >
+          <Route index element={<AdminDashboardStat />} />
+        </Route>
       </Routes>
     </Router>
   );
