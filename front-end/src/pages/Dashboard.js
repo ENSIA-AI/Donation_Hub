@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import '../styles/dashboard.css';
 
 function Dashboard() {
@@ -18,6 +17,7 @@ function Dashboard() {
   const COLORS = ["#107361", "#FEDA79"];
 
   // Fetch statistics
+<<<<<<< HEAD
  useEffect(() => {
     fetch('http://127.0.0.1:8000/api/dashboard')
       .then(res => res.json())
@@ -49,6 +49,17 @@ const barData = stats && Array.isArray(stats.donations_by_type)
     }))
   : [];
 
+=======
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/dashboard/statistics')
+      .then(res => res.json())
+      .then(data => {
+        console.log('Stats:', data);
+        setStats(data.data);
+      })
+      .catch(error => console.error('Error fetching stats:', error));
+  }, []);
+>>>>>>> c7abb5f0c5f65e2d390dd475d539a25bf880b307
 
   // Fetch all donations
   useEffect(() => {
@@ -140,10 +151,13 @@ const handleDeleteDonation = async (id) => {
   }
 };
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> c7abb5f0c5f65e2d390dd475d539a25bf880b307
 const filteredDonations = donations.filter(donation => {
   const matchesSearch =
      (donation.donor_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -171,10 +185,6 @@ const filteredRequests = requests.filter(request =>
 );
   
   const visibleRequests = showMoreRequests ? filteredRequests : filteredRequests.slice(0, VISIBLE_ROWS);
-
-
-
-
 
   return (
     <div style={{ display: 'flex', margin: 0, fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f4f4f9' }}>
@@ -221,8 +231,7 @@ const filteredRequests = requests.filter(request =>
         {/* Dashboard Tab */}
           <div className={`tab-content ${activeTab === 'dashboard' ? 'active' : 'hidden'}`}>
             <h2 className="section-title">Dashboard Statistics</h2>
-            {stats ? (
-              <>
+            {stats && (
               <div className="stats-grid">
                 <div className="stat-card">
                   <h3>Total Donations</h3>
@@ -246,6 +255,7 @@ const filteredRequests = requests.filter(request =>
                   <small>{stats.received_money_amount} DZD</small>
                 </div>
               </div>
+<<<<<<< HEAD
 
               {/* Charts */}
                 <div className='charts'>
@@ -285,6 +295,8 @@ const filteredRequests = requests.filter(request =>
               </>
               ) : (
               <p>Loading stats...</p>
+=======
+>>>>>>> c7abb5f0c5f65e2d390dd475d539a25bf880b307
             )}
           </div>
         

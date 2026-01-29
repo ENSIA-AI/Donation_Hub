@@ -11,4 +11,17 @@ class Wilaya extends Model
     {
        return $this->hasMany(Organization::class);
     }
+    public function setWilayaNameAttribute($value){
+        $this->attributes['wilaya_name']=strtolower($value);
+    }
+    public function getWilayaNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+    public function scopeSearch($query , $term){
+        if($term){
+             return $query->whereRaw('LOWER(wilaya_name) LIKE ?', ['%' . strtolower($term) . '%']);
+        }  
+        return $query ; 
+    }
 }

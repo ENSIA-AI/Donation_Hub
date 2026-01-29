@@ -14,20 +14,10 @@ const Donate = () => {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [otherType, setOtherType] = useState("");
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    if(name === "other_type"){
-      setOtherType(value);
-    }
-    else
-    {
-      setForm({ ...form, [e.target.name]: e.target.value });
-    }
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
-
-
 
   const validate = () => {
     let newErrors = {};
@@ -40,10 +30,6 @@ const Donate = () => {
       newErrors.email = "Invalid email format";
 
     if (!form.donation_type) newErrors.donation_type = "Please select a donation type";
-    if (form.donation_type === "other" && !otherType.trim()) {
-        newErrors.other_type = "Please specify the donation type";
-    }
-
 
     if (form.donation_type === "money" && !form.amount.trim()) {
       newErrors.amount = "Amount is required for money donations";
@@ -64,7 +50,7 @@ const Donate = () => {
       donor_lastName: form.last_name,
       donor_phoneNumber: form.phone,
       donor_email: form.email,
-      donation_type: form.donation_type === "other" ? otherType : form.donation_type,
+      donation_type: form.donation_type,
       donation_amount: form.donation_type === "money" ? form.amount : null,
       donation_date: new Date().toISOString().split("T")[0],
       donation_received: false,
@@ -235,28 +221,9 @@ const Donate = () => {
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
-                  <option value="other">Other</option>
                 </select>
                 {errors.donation_type && <div className="error-message">{errors.donation_type}</div>}
               </div>
-
-              {/* Other type input */}
-              {form.donation_type === "other" && (
-                <div className={`form-group ${errors.other_type ? "error" : ""}`}>
-                <label htmlFor="other-type" className="form-label">Please specify</label>
-                <input
-                  type="text"
-                  id="other-type"
-                  name="other_type"
-                  className="form-input"
-                  placeholder="Enter donation type"
-                  value={otherType}
-                  onChange={handleChange}
-                />
-                  {errors.other_type && <div className="error-message">{errors.other_type}</div>}
-                </div>
-              )}
-
 
               {/* Donation Amount (only shows for money)*/}
               {form.donation_type === "money" && (
@@ -274,7 +241,6 @@ const Donate = () => {
                   {errors.amount && <div className="error-message">{errors.amount}</div>}
                 </div>
               )}
-
 
               {/* Success message */}
               {successMessage && <div className="success-message">{successMessage}</div>}

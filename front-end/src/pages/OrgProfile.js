@@ -14,7 +14,6 @@ import OrgDescription from "../components/OrgDescription";
 import OrgContactForm from "../components/OrgContactForm";
 import PostModal from "../components/PostModal";
 import CreatePost from "../components/CreatePost";
-
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";

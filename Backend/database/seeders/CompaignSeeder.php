@@ -21,6 +21,7 @@ class CompaignSeeder extends Seeder
                 'org_slogan' => 'Helping people',
             ]);
         }
+
         $campaigns = [
             [
                 'compaign_title' => 'Clean Water Initiative',

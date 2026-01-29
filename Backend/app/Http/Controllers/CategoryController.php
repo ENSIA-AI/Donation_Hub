@@ -8,22 +8,21 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    // Get all categories
+
     public function index()
     {
-        return response()->json(Category::all(), 200);
-
+        return response()->json(Category::all());
     }
 
     // Create a new category
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255'
+            'category' => 'required|string|max:255'
         ]);
 
         $category = Category::create([
-            'name' => $request->name
+            'category' => $request->category
         ]);
 
         return response()->json($category, 201);
@@ -40,12 +39,12 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255'
+            'category' => 'required|string|max:255'
         ]);
 
         $category = Category::findOrFail($id);
         $category->update([
-            'name' => $request->name
+            'category' => $request->name
         ]);
 
         return response()->json($category);
