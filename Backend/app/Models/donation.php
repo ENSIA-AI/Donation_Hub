@@ -10,6 +10,8 @@ class Donation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'organization_id',
+        'compaign_id',
         'donor_firstName',
         'donor_lastName',
         'donor_phoneNumber',

@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         WilayaSeeder::class,
         CategorySeeder::class,
         CompaignSeeder::class,
+        DonationSeeder::class,
          ]);
+      
 
         // User::factory()->create([
         //     'name' => 'Test User',
