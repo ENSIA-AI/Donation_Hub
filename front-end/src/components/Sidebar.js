@@ -15,7 +15,7 @@ const Sidebar = () => {
     },
     { iconClass: "fa-building-ngo", label: "Organizations", href: "AdminDashBoardORG" },
     { iconClass: "fa-bullhorn", label: "Compaigns", href: "AdminDashboardCompain" },
-    { iconClass: "fa-hand-holding-dollar", label: "Donations", href: "#" },
+    { iconClass: "fa-hand-holding-dollar", label: "Donations", href: "AdminDashboardDonation" },
     { iconClass: "fa-message", label: "Messages", href: "#" },
   ];
 

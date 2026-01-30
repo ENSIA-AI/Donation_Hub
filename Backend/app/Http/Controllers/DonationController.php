@@ -10,14 +10,16 @@ use Illuminate\Validation\ValidationException;
 class DonationController extends Controller
 {
     public function index()
-    {
-        $donations = Donation::orderBy('created_at', 'desc')->get();
+{
+    $donations = Donation::with(['organization', 'post'])
+        ->orderBy('created_at', 'desc')
+        ->get();
 
-        return response()->json([
-            'success' => true,
-            'data' => $donations
-        ]);
-    }
+    return response()->json([
+        'success' => true,
+        'data' => $donations
+    ]);
+}
 
     public function store(Request $request)
     {

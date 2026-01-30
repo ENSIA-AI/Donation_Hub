@@ -27,6 +27,17 @@ class Donation extends Model
     ];
 
 
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Compaign::class);
+    }
+
+
 }
 
 

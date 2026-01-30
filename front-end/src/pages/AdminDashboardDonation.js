@@ -4,7 +4,7 @@ import DashDonationTable from "../components/DashDonationTable";
 import axios from "axios";
 import "../styles/AdminDashStat.css";
 import "../styles/AdminDashBoardORG.css";
-const AdminDashBoardCompain =()=>{
+const AdminDashboardDonation =()=>{
     return(
     <section id="dash_section">
           <div div className="fluid_container flex-row">
@@ -16,4 +16,4 @@ const AdminDashBoardCompain =()=>{
     </section>  
     );     
 };
-export default AdminDashBoardCompain;
+export default AdminDashboardDonation;

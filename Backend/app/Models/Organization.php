@@ -170,4 +170,9 @@ public function wilaya()
     return $this->belongsTo(Wilaya::class);
 }
 
+public function donations()
+{
+    return $this->hasMany(Donation::class);
+}
+
 }

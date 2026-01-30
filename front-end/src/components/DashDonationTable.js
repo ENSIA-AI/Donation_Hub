@@ -9,23 +9,21 @@ const DashDonationTable = ()=>{
         </div>
         <div className="rej_title">
                     <div className="rej_title_cont">
-                        <p>organization name</p>
+                        <p>sender name</p>
                     </div>
                     <div className="rej_title_cont">
-                        <p>Email Adress</p>
+                        <p>receiver name</p>
                     </div>
                     <div className="rej_title_cont">
-                        <p>Phone number</p>
+                        <p>donation</p>
                     </div>
                     <div className="rej_title_cont">
-                        <p>Category</p>
+                        <p>date </p>
                     </div>
                     <div className="rej_title_cont">
-                        <p>Wilaya</p>
+                        <p>compain name</p>
                     </div>
-                    <div className="rej_title_cont">
-                        <p>Proof</p>
-                    </div>
+                    
         </div>
         <div className="OrgCards">
           <DashDonaCard

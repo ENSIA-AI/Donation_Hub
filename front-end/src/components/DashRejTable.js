@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import DashRejCard from "./DashRejCard";
+import React , { useEffect, useState } from "react";
 import axios from "../api/axios";
+import DashRejCard from "./DashRejCard";
 
 const DashRejTable = ()=>{
     const [rejected ,setRejected]=useState([]);

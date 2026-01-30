@@ -20,6 +20,16 @@ return new class extends Migration
             $table->decimal('donation_amount', 10, 2)->nullable();
             $table->boolean('donation_received')->default(false);
             $table->date('donation_date');
+
+             $table->foreignId('organization_id')
+            ->constrained()
+            ->cascadeOnDelete();
+
+            $table->foreignId('compaign_id')
+            ->nullable()
+            ->constrained()
+            ->nullOnDelete();
+
             $table->softDeletes();
             $table->timestamps();
         });
