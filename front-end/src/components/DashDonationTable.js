@@ -1,7 +1,21 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import "../styles/AdminDashBoardORG.css"
 import DashDonaCard from "./DashDonaCard.js";
+import axios from "../api/axios";
+
 const DashDonationTable = ()=>{
+  const [donations, setDonations] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/donations")
+      .then((response) => {
+         setDonations(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching donations:", error);
+      });
+  }, []);
     return(
       <div className="dashOrgTable">
         <div className="orgDashTitle">
@@ -26,14 +40,17 @@ const DashDonationTable = ()=>{
                     
         </div>
         <div className="OrgCards">
+        {donations.slice(0, 10).map((donation) => (
           <DashDonaCard
-           donner = "sender name"
-           receiver = "organization name"
-           type = "money"
-           amount = "5000"
-           date = "25/11/2025"
-           post="post title"
+           key={donation.id}
+            donner={`${donation.donor_firstName} ${donation.donor_lastName}`}
+            receiver={donation.organization?.org_name}
+            type={donation.donation_type}
+            amount={donation.donation_amount}
+            date={donation.donation_date}
+            post={donation.post?.compaign_title}
           />
+           ))}
         </div>
     </div>
     );
