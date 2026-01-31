@@ -8,8 +8,14 @@ class Category extends Model
 {
 
         protected $fillable = ['category'];
-                public function organizations()
-                {
+        public function organizations()
+        {
                 return $this->hasMany(Organization::class);
-                }
+        }
+
+
+        public function compaigns()
+        {
+                return $this->hasMany(Compaign::class);
+        }
 }

@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-
             OrganizationSeeder::class,
             WilayaSeeder::class,
             CategorySeeder::class,
+
             CompaignSeeder::class,
             AdminSeeder::class,
         ]);
@@ -27,8 +27,4 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
     }
-
 }
-
-
-

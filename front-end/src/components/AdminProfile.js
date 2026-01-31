@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import "../styles/AdminDashStat.css";
 import axios from "../api/axios";
 
@@ -73,60 +74,63 @@ const AdminProfile = ({ name, image }) => {
         <h6>{adminData.username}</h6>
       </div>
 
-      {showModal && (
-        <div className="modal_overlay" onClick={() => setShowModal(false)}>
-          <div
-            className="admin_modal larger_modal"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2>Admin Profile</h2>
+      {/* Render modal at root level using Portal */}
+      {showModal &&
+        createPortal(
+          <div className="modal_overlay" onClick={() => setShowModal(false)}>
+            <div
+              className="admin_modal larger_modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2>Admin Profile</h2>
 
-            <div className="profile_image_edit flex-column">
-              <img
-                src={adminData.image}
-                alt="Profile"
-                className="modal_profile_image"
-              />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-              />
+              <div className="profile_image_edit flex-column">
+                <img
+                  src={adminData.image}
+                  alt="Profile"
+                  className="modal_profile_image"
+                />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </div>
+
+              <div className="profile_fields">
+                <label>Username:</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={adminData.username}
+                  onChange={handleInputChange}
+                />
+
+                <label>Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={adminData.email}
+                  onChange={handleInputChange}
+                />
+
+                <label>Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={adminData.password}
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div className="modal_buttons">
+                <button onClick={handleSave}>Save</button>
+                <button onClick={() => setShowModal(false)}>Cancel</button>
+              </div>
             </div>
-
-            <div className="profile_fields">
-              <label>Username:</label>
-              <input
-                type="text"
-                name="username"
-                value={adminData.username}
-                onChange={handleInputChange}
-              />
-
-              <label>Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={adminData.email}
-                onChange={handleInputChange}
-              />
-
-              <label>Password:</label>
-              <input
-                type="password"
-                name="password"
-                value={adminData.password}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="modal_buttons">
-              <button onClick={handleSave}>Save</button>
-              <button onClick={() => setShowModal(false)}>Cancel</button>
-            </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body, // ← Render at root level
+        )}
     </>
   );
 };

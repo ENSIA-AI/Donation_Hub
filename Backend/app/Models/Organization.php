@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Organization extends Model
 {
 
-  protected $fillable = [
+    protected $fillable = [
         'org_name',
         'org_registrationDate',
         'org_description',
@@ -42,14 +42,11 @@ class Organization extends Model
         'org_phone',
         'org_facebook',
         'org_instagram',
-  ];
-      // Relationship to campaigns
-    // public function campaigns()
-    // {
-    //     return $this->hasMany(Campaign::class);
-    // }
-
-    // Transform programs into array - ALWAYS return all slots
+    ];
+    public function campaigns()
+    {
+        return $this->hasMany(Compaign::class);
+    }
     public function getProgramsAttribute()
     {
         return [
@@ -100,7 +97,7 @@ class Organization extends Model
     public function getContactAttribute()
     {
         $contact = [];
-        
+
         if ($this->org_address) {
             $contact[] = [
                 'type' => 'Address',
@@ -109,7 +106,7 @@ class Organization extends Model
                 'isLink' => false,
             ];
         }
-        
+
         if ($this->org_phone) {
             $contact[] = [
                 'type' => 'Phone',
@@ -119,7 +116,7 @@ class Organization extends Model
                 'href' => 'tel:' . $this->org_phone,
             ];
         }
-        
+
         if ($this->org_email) {
             $contact[] = [
                 'type' => 'Email',
@@ -129,7 +126,7 @@ class Organization extends Model
                 'href' => 'mailto:' . $this->org_email,
             ];
         }
-        
+
         // Social Media
         $socialLinks = [];
         if ($this->org_facebook) {
@@ -139,7 +136,7 @@ class Organization extends Model
                 'href' => $this->org_facebook,
             ];
         }
-        
+
         if ($this->org_instagram) {
             $socialLinks[] = [
                 'name' => 'Instagram',
@@ -147,7 +144,7 @@ class Organization extends Model
                 'href' => $this->org_instagram,
             ];
         }
-        
+
         if (!empty($socialLinks)) {
             $contact[] = [
                 'type' => 'Social Media',
@@ -156,19 +153,22 @@ class Organization extends Model
                 'links' => $socialLinks,
             ];
         }
-        
+
         return $contact;
     }
 
-   
-public function category()
-{
-    return $this->belongsTo(Category::class);
-}
 
-public function wilaya()
-{
-    return $this->belongsTo(Wilaya::class);
-}
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
+    public function wilaya()
+    {
+        return $this->belongsTo(Wilaya::class);
+    }
+    public function compaigns()
+    {
+        return $this->hasMany(Compaign::class);
+    }
 }

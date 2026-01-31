@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
 import "../styles/announcementStyle.css";
-
+import SearchBarPosts from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";
 import AnnouncemetCard from "../components/announcementCard";
-import Search from "../components/search";
 
 const announcements = [
   {
@@ -108,6 +107,22 @@ const announcements = [
 ];
 
 const Announcements = () => {
+  // ==============================start search bar =============================
+  const [compaigns, setcompaigns] = useState([]);
+
+  const handleSearch = ({ name, wilaya_id, category_id }) => {
+    const params = new URLSearchParams();
+    if (name) params.append("q", name);
+    if (wilaya_id) params.append("wilaya_id", wilaya_id);
+    if (category_id) params.append("category_id", category_id);
+
+    fetch(`http://localhost:8000/api/compaigns/search?${params.toString()}`)
+      .then((res) => res.json())
+      .then((data) => setcompaigns(data)) // update state
+      .catch(console.error);
+  };
+
+  // =============================end search bar  ==================================
   const loadMore = () => {
     setVisibleCount((prev) => prev + 3); // show 3 more cards when we need more
   };
@@ -121,13 +136,13 @@ const Announcements = () => {
             <h1 className="page-title">Active Campaigns & Announcements</h1>
             <p className="page-description">
               Discover urgent needs and ongoing campaigns from verified
-              organizations. Your contribution can make a real difference.
+              compaigns. Your contribution can make a real difference.
             </p>
           </div>
         </div>
       </section>
       {/* ===== SEARCH BAR ===== */}
-      <Search />
+      <SearchBarPosts onSearch={handleSearch} />
 
       {/* ===== ANNOUNCEMENT CARDS ===== */}
       <div className="containerAnn">

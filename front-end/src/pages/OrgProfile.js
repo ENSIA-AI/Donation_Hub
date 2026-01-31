@@ -24,27 +24,26 @@ const OrgProfile = () => {
   const [underlineStyle, setUnderlineStyle] = useState({});
   const [visiblePosts, setVisiblePosts] = useState(6);
   const [loaded, setLoaded] = useState(false);
-
   const [selectedPost, setSelectedPost] = useState(null);
   const navRefs = useRef({});
   const { id } = useParams();
+  const [compaigns, setCompaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [org, setOrg] = useState(null);
+
   const handleDonate = (post) => {
     alert(`Donate for post: ${post.title}`);
   };
   // Find the organization by ID
-
-  const [org, setOrg] = useState(null);
 
   useEffect(() => {
     api
       .get(`/organization/${id}`)
       .then((res) => setOrg(res.data))
       .catch((err) => console.log(err));
+    console.log("Org ID:", id);
   }, [id]);
-
-  const [compaigns, setCompaigns] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoaded(true);
@@ -83,28 +82,6 @@ const OrgProfile = () => {
     }
   }, [activeSection]);
 
-  useEffect(() => {
-    let isMounted = true; // avoid memory leaks
-    axios
-      .get("http://127.0.0.1:8000/api/compaigns")
-      .then((res) => {
-        if (isMounted) {
-          setCompaigns(res.data);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        if (isMounted) {
-          console.error(err);
-          setError("Failed to load campaigns.");
-          setLoading(false);
-        }
-      });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
   // Function to remove a post after deletion
   const removePostFromState = (id) => {
     setCompaigns(compaigns.filter((c) => c.compaign_ID !== id));
@@ -118,6 +95,25 @@ const OrgProfile = () => {
       )
     );
   };
+
+  //  function to fetch only approved campaigns
+
+  const fetchApprovedCampaigns = async () => {
+    try {
+      const res = await api.get(`/organizations/${id}/compaigns`);
+      setCompaigns(res.data);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to load campaigns.");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchApprovedCampaigns();
+  }, []);
+
   // Handle invalid ID
   if (!org) return <h1>Loading...</h1>;
   return (
@@ -176,11 +172,7 @@ const OrgProfile = () => {
       {/* Sections */}
       {activeSection === "Posts" && (
         <div className="org_container">
-          <CreatePost
-            onPostCreated={(newPost) =>
-              setCompaigns((prev) => [newPost, ...prev])
-            }
-          />
+          <CreatePost orgId={org.id} onPostCreated={fetchApprovedCampaigns} />
 
           <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
             {loading && <p>Loading campaigns...</p>}

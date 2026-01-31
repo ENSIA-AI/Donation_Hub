@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Compaign;
 use App\Models\Organization;
+use App\Models\Category;
 
 class CompaignSeeder extends Seeder
 {
@@ -22,14 +23,24 @@ class CompaignSeeder extends Seeder
             ]);
         }
 
+
+        // Get some categories
+        $categories = Category::all();
+        if ($categories->isEmpty()) {
+            $this->command->info('No categories found. Run CategorySeeder first!');
+            return;
+        }
+
+
         $campaigns = [
             [
                 'compaign_title' => 'Clean Water Initiative',
                 'compaign_content' => 'Providing clean water to rural areas.',
-                'compaign_img' => null, // or you can put 'compaigns/example1.jpg'
+                'compaign_img' => null,
                 'compaign_date' => now(),
                 'status' => 'waiting',
                 'organization_id' => $organization->id,
+                'category_id' => $categories->where('category', 'Health')->first()->id ?? $categories->first()->id,
 
             ],
             [
@@ -39,6 +50,7 @@ class CompaignSeeder extends Seeder
                 'compaign_date' => now(),
                 'status' => 'waiting',
                 'organization_id' => $organization->id,
+                'category_id' => $categories->where('category', 'Education')->first()->id ?? $categories->first()->id,
 
             ],
             [
@@ -48,6 +60,7 @@ class CompaignSeeder extends Seeder
                 'compaign_date' => now(),
                 'status' => 'waiting',
                 'organization_id' => $organization->id,
+                'category_id' => $categories->where('category', 'Environment')->first()->id ?? $categories->first()->id,
 
             ],
         ];
