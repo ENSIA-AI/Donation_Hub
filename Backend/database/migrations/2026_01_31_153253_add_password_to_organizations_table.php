@@ -9,20 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-{
-    Schema::create('regions', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->timestamps();
-    });
-}
+    public function up(): void
+    {
+
+        Schema::table('organizations', function (Blueprint $table) {
+        $table->string('password')->after('org_email');
+      });
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('regions');
+        Schema::table('organizations', function (Blueprint $table) {
+            //
+        });
     }
 };

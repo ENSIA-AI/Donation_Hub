@@ -14,6 +14,7 @@ class Organization extends Model
         'category_id',
         'wilaya_id',
         'org_email',
+        'password',
         'org_slogan',
         'status',
         'org_hero_img',

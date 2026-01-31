@@ -28,6 +28,7 @@ class OrganizationController  extends Controller
 
         'status' => 'nullable',
         'org_email' => 'nullable|email',
+        'password' => 'required|min:8',
         'wilaya_id' => 'nullable',
         'category_id' => 'nullable',
         'org_registrationDate' => 'nullable|date',
@@ -74,6 +75,7 @@ class OrganizationController  extends Controller
             'mission_img' => $organization->mission_img ? asset('storage/' . $organization->mission_img) : null,
         ]);
     }
+    
     public function index(){//to redefine latter
         $organizations = Organization::with('category')->get();
         return response()->json($organizations);
