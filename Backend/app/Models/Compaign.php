@@ -10,6 +10,7 @@ class Compaign extends Model
     use HasFactory;
 
     protected $table = 'compaigns';
+
     protected $primaryKey = 'compaign_ID';
     public $incrementing = true;
     protected $keyType = 'int';
@@ -23,6 +24,9 @@ class Compaign extends Model
     }
     public $timestamps = true;  // <-- FIXED !!!
 
+    
+  
+
     protected $fillable = [
         'compaign_img',
         'compaign_title',
@@ -32,4 +36,10 @@ class Compaign extends Model
         'organization_id',
         'category_id',
     ];
+
+    public function donations()
+{
+    return $this->hasMany(Donation::class);
 }
+}
+

@@ -163,6 +163,7 @@ class Organization extends Model
         return $this->belongsTo(Category::class);
     }
 
+
     public function wilaya()
     {
         return $this->belongsTo(Wilaya::class);
@@ -171,4 +172,12 @@ class Organization extends Model
     {
         return $this->hasMany(Compaign::class);
     }
+
+
+public function donations()
+{
+    return $this->hasMany(Donation::class);
 }
+
+}
+

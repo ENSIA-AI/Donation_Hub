@@ -32,14 +32,44 @@ class OrganizationController  extends Controller
         'wilaya_id' => 'nullable',
         'category_id' => 'nullable',
         'org_registrationDate' => 'nullable|date',
+        // Images validation
+        'org_hero_img' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+        'org_logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'mission_img' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
     ]);
-
-    return Organization::create($validated);
+    // Handle hero image
+if ($request->hasFile('org_hero_img')) {
+    $validated['org_hero_img'] = $request->file('org_hero_img')->store('organizations/hero', 'public');
 }
 
+// Handle logo
+if ($request->hasFile('org_logo')) {
+    $validated['org_logo'] = $request->file('org_logo')->store('organizations/logo', 'public');
+}
+
+// Handle mission image
+if ($request->hasFile('mission_img')) {
+    $validated['mission_img'] = $request->file('mission_img')->store('organizations/mission', 'public');
+}
+$validated['status'] = 'pending';
+ $organization = Organization::create($validated);
+   return response()->json([
+    'message' => 'Organization created successfully',
+    'organization' => [
+        'id' => $organization->id,
+        'org_name' => $organization->org_name,
+        'org_hero_img' => $organization->org_hero_img ? asset('storage/' . $organization->org_hero_img) : null,
+        'org_logo' => $organization->org_logo ? asset('storage/' . $organization->org_logo) : null,
+        'mission_img' => $organization->mission_img ? asset('storage/' . $organization->mission_img) : null,
+    ]
+], 201);
+}
 
     public function show($id){
-        $organization = Organization::with('category')->findOrFail($id);
+        $organization = Organization::with(['category','wilaya'])
+        ->where('id', $id)
+        ->where('status', 'approved') // only approved
+        ->firstOrFail();
         return response()->json([
             'id' => $organization->id,
             'org_name' => $organization->org_name,
@@ -75,11 +105,44 @@ class OrganizationController  extends Controller
             'mission_img' => $organization->mission_img ? asset('storage/' . $organization->mission_img) : null,
         ]);
     }
-    
-    public function index(){//to redefine latter
-        $organizations = Organization::with('category')->get();
-        return response()->json($organizations);
-    }
+
+    public function index(Request $request)
+{
+    $status = $request->query('status', 'approved');
+
+    $organizations = Organization::with(['category','wilaya'])
+        ->when($status, function($q, $status) {
+            $q->where('status', $status);
+        })
+        ->get();
+
+    $organizations = $organizations->map(function ($organization) {
+        return [
+            'id' => $organization->id,
+            'org_name' => $organization->org_name,
+            'org_description' => $organization->org_description,
+            'category' => $organization->category,
+             'wilaya' => $organization->wilaya,
+            'heroImage' => $organization->org_hero_img
+                ? asset('storage/' . $organization->org_hero_img)
+                : null,
+
+            'logoImage' => $organization->org_logo
+                ? asset('storage/' . $organization->org_logo)
+                : null,
+
+            'mission_img' => $organization->mission_img
+                ? asset('storage/' . $organization->mission_img)
+                : null,
+        ];
+    });
+
+    return response()->json($organizations);
+}
+
+   
+
+
     
     public function update(Request $request ,$id){
         $organization =Organization::findOrfail($id);
@@ -96,9 +159,23 @@ class OrganizationController  extends Controller
             'value1'=>'sometimes',
             'value2'=>'sometimes',
             'value3'=>'sometimes',
-            'value4'=>'sometimes'
-
+            'value4'=>'sometimes',
+            // Images validation
+        'org_hero_img' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+        'org_logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+      'mission_img' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
+        // Handle images
+        if ($request->hasFile('org_hero_img')) {
+            $validated['org_hero_img'] = $request->file('org_hero_img')->store('organizations/hero', 'public');
+        }
+        if ($request->hasFile('org_logo')) {
+            $validated['org_logo'] = $request->file('org_logo')->store('organizations/logo', 'public');
+        }
+        if ($request->hasFile('mission_img')) {
+            $validated['mission_img'] = $request->file('mission_img')->store('organizations/mission', 'public');
+        }
+
         $organization->update($validated);
         return response()->json($organization);
     }
@@ -108,6 +185,7 @@ class OrganizationController  extends Controller
         return response()->json(['message'=>'deleted']);
 
     }
+
     public function autocomplete(Request $request)
     {
     $q = $request->query('q'); 
@@ -126,6 +204,7 @@ class OrganizationController  extends Controller
         ->limit(8)
         ->pluck('org_name');
 
+
     return response()->json($results);
 }
 
@@ -138,13 +217,14 @@ public function search(Request $request){
 
     if($q) $query->where('org_name', 'LIKE', "%{$q}%");
     if($categoryId) $query->where('category_id', $categoryId);
+
     // if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
 if($wilayaId) $query->where('wilaya_id', $wilayaId);
+
     $query->orderBy('org_name');
 
     return response()->json($query->get());
 }
-
 
 
 }

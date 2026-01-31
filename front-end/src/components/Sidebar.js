@@ -13,10 +13,12 @@ const Sidebar = () => {
       label: "Dashboard",
       href: "./new_admin_stat.html",
     },
-    { iconClass: "fa-building-ngo", label: "Organizations", href: "#" },
-    { iconClass: "fa-bullhorn", label: "Compaigns", href: "/campaigns" },
-    { iconClass: "fa-hand-holding-dollar", label: "Donations", href: "#" },
-    { iconClass: "fa-message", label: "Messages", href: "messages" },
+
+    { iconClass: "fa-building-ngo", label: "Organizations", href: "AdminDashBoardORG" },
+    { iconClass: "fa-bullhorn", label: "Compaigns", href: "AdminDashboardCompain" },
+    { iconClass: "fa-hand-holding-dollar", label: "Donations", href: "AdminDashboardDonation" },
+    { iconClass: "fa-message", label: "Messages", href: "#" },
+
   ];
 
   return (

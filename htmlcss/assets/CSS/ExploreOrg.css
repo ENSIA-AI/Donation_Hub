@@ -252,6 +252,38 @@ p{
     background-color: #e6c259;
     color: #0A3F36;
 }
+
+/* =====================================new search bar =========================================== */
+.search_org.flex-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.search_by_org_name input  {
+    width:40rem;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border-color: #c0b9b9;
+}
+.search_by_wilaya input  {
+    width: 15rem;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border-color: #c0b9b9;
+}
+.filter_org_category select {
+    width: 15rem;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border-color: #c0b9b9;
+}
+/* copy media classes  */
+/* =====================================end new search bar =========================================== */
+
 /* =====================================Classes ========================================= */
 
 @media (min-width: 1200px) {
@@ -309,9 +341,6 @@ p{
     }
 
 }
-
-
-
 
 /* Large (lg) screens (992px to 1199px) */
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -426,7 +455,12 @@ p{
 
 
 }
-
+@media (min-width: 991px) and (max-width: 1279px) {
+.search_by_org_name  input {
+        width: 100%;
+        max-width: 600px;
+    }
+}
 /* Small (sm) screens (576px to 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
     .col-sm-1 {
@@ -486,6 +520,16 @@ p{
         display: flex;
         justify-content: center;
         gap: 2em;
+    }
+    
+    .search_by_org_name input  {
+        width: 100%;
+        max-width: 40rem;
+        padding: 0.5rem;
+    }
+    .search_by_wilaya input , .filter_org_category select {
+        width: 12rem;
+        padding: 0.5rem;
     }
     
    
@@ -550,10 +594,27 @@ p{
         justify-content: center;
         gap: 2em;
     }
-    .search-bar-containe{
-        padding-right: 15px 
-   
-}
+    .search_by_wilaya input {
+        width: 26rem;
+        padding: 0.4rem;
+    }
+
+    .filter_org_category select {
+        width: 26rem;
+        padding: 0.4rem;
+    }
+         .search_by_org_name input {
+             width: 100%;
+             max-width: 40rem;
+             padding: 0.5rem;
+         }
+    
+         .search_by_wilaya input,
+         .filter_org_category select {
+             width: 12rem;
+             padding: 0.5rem;
+         }
+
 }   
 /* Extra Extra Small (xxs) screens (0px to 463px) */
 @media (min-width: 0px) and (max-width: 463px) {
@@ -618,6 +679,16 @@ p{
         align-items: center;
         gap: 2em;
     }
-   
+   .search_by_org_name input {
+       width: 100%;
+       max-width: 30rem;
+       padding: 0.3rem;
+   }
+
+   .search_by_wilaya input,
+   .filter_org_category select {
+       width: 11rem;
+       padding: 0.3rem;
+   }
 
 }

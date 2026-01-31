@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\CategoryController;
@@ -64,6 +65,7 @@ Route::get('/organization-count', function () {
 
 
 
+
 Route::get('/dashboard/campaigns-by-category', function () {
     return Compaign::select('category', DB::raw('COUNT(*) as campaigns'))
         ->groupBy('category')
@@ -76,9 +78,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+
 // ============================ Dashboard controller ===========================================
 Route::get(
     '/campaigns-by-category',
     [DashboardController::class, 'campaignsByCategory']
 );
 Route::get('/dashboard/organizations-by-category-count', [DashboardController::class, 'organizationsByCategoryCount']);
+

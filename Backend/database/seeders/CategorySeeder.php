@@ -10,6 +10,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
+
             ['category' => 'Education'],
             ['category' => 'Health'],
             ['category' => 'Charity / Humanitarian'],
@@ -17,6 +18,7 @@ class CategorySeeder extends Seeder
             ['category' => 'Technology'],
             ['category' => 'Culture & Arts'],
             ['category' => 'Sports & Youth'],
+
         ];
 
         Category::insert($categories);
