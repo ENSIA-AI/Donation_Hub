@@ -7,15 +7,46 @@ use App\Http\Controllers\CompaignController;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AdminAuthController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-Route::post('/admin/logout', function (Request $request) {
-    Auth::logout();                       // log out the admin
-    $request->session()->invalidate();    // clear the session
-    $request->session()->regenerateToken(); // prevent CSRF reuse
-    return response()->json(['message' => 'Logged out']);
+
+Route::prefix('admin')->group(function () {
+    Route::post('/logout', [AdminAuthController::class, 'logout']);
+    Route::get('/check', [AdminAuthController::class, 'check']);
+});
+
+
+Route::post('/admin/login', function (Request $request) {
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+
+        return response()->json(['message' => 'Admin logged in']);
+    }
+
+    return response()->json(['message' => 'Invalid credentials'], 401);
+});
+
+
+Route::get('/csrf-token', function () {
+    return response()->json(['csrf_token' => csrf_token()]);
+});
+
+Route::middleware(['cors'])->group(function () {
+    Route::get('/csrf-token', function () {
+        return response()->json(['csrf_token' => csrf_token()]);
+    });
+
+    Route::post('/admin/logout', function (Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->json(['message' => 'Logged out']);
+    });
 });

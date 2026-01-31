@@ -1,23 +1,33 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/AdminDashStat.css";
+import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
+      // Step 1: get CSRF token from Laravel
+      const tokenRes = await axios.get("http://localhost:8000/csrf-token", {
+        withCredentials: true,
+      });
+      const csrfToken = tokenRes.data.csrf_token;
+
+      // Step 2: send logout POST with token
       await axios.post(
-        "http://127.0.0.1:8000/admin/logout",
+        "http://localhost:8000/admin/logout",
         {},
-        { withCredentials: true }, // send cookies
+        {
+          withCredentials: true,
+          headers: {
+            "X-CSRF-TOKEN": csrfToken,
+          },
+        },
       );
 
       navigate("/");
     } catch (error) {
       console.error("Logout failed", error);
-      alert("Logout failed. Please try again."); // optional feedback
+      alert("Logout failed. Please try again.");
     }
   };
 
