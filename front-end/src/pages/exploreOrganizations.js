@@ -26,15 +26,15 @@ const ExploreOrganizations = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("/organization")
-      .then((response) => {
-        setOrganizations(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching organizations:", error);
-      });
-  }, []);
+  axios
+    .get("/organization?status=approved")
+    .then((response) => {
+      setOrganizations(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching organizations:", error);
+    });
+}, []);
   return (
     <main>
       <div className="title">
@@ -58,11 +58,12 @@ const ExploreOrganizations = () => {
         <div className="cards-container flex-row-org ">
           {organizations.slice(0, visibleCount).map((org, index) => (
             <OrganizationCard
+              image={org.heroImage}
               key={org.id}
               id={org.id}
               title={org.org_name}
               description={org.org_description}
-              // image={org.heroImage}
+               
             />
           ))}
         </div>

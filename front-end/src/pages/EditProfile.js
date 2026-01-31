@@ -3,6 +3,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../api/axios"
 import "../styles/EditProfile.css";
 const EditProfile = ()=>{
+    const [heroFile, setHeroFile] = useState(null);
+    const [logoFile, setLogoFile] = useState(null);
+    const [missionFile, setMissionFile] = useState(null);
     const {id} =useParams();
     const navigate = useNavigate();
     const [form,setForm] = useState(
@@ -16,10 +19,10 @@ const EditProfile = ()=>{
             program1_desc :"",
             program2_title: "",
             program2_desc :"",
-            org_value1:"",
-            org_value2:"",
-            org_value3:"",
-            org_value4:""
+            value1:"",
+            value2:"",
+            value3:"",
+            value4:""
 
         }
     );
@@ -36,10 +39,10 @@ const EditProfile = ()=>{
                     program1_desc :res.data.program1_desc,
                     program2_title: res.data.program2_title,
                     program2_desc :res.data.program2_desc,
-                    org_value1:res.data.value1,
-                    org_value2:res.data.value2,
-                    org_value3:res.data.value3,
-                    org_value4:res.data.value4,
+                    value1:res.data.value1,
+                    value2:res.data.value2,
+                    value3:res.data.value3,
+                    value4:res.data.value4,
                 }
             );
         });
@@ -47,15 +50,28 @@ const EditProfile = ()=>{
     const handleChange =(e)=>{
         setForm({...form,[e.target.name]:e.target.value});
     };
-    const handleSubmit =(e)=>{
-        e.preventDefault();
-        api.put(`/organization/${id}`,form).then(()=>{
-            alert("updated!");
-            navigate(`/OrgProfile/${id}`)
-        }).catch(err => {
-        alert("Update failed: " + err.message);
-    });
-    };
+    const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const data = new FormData();
+    Object.entries(form).forEach(([key, value]) => data.append(key, value));
+
+    if (heroFile) data.append("org_hero_img", heroFile);
+    if (logoFile) data.append("org_logo", logoFile);
+    if (missionFile) data.append("mission_img", missionFile);
+
+    await api.post(`/organization/${id}?_method=PUT`, data, {
+  headers: { "Content-Type": "multipart/form-data" },
+});
+
+    alert("Organization updated successfully!");
+  } catch (error) {
+    console.error(error.response?.data || error);
+    alert("Update failed");
+  }
+};
+
     return(
         <>
          <div className="edit_container">
@@ -124,34 +140,44 @@ const EditProfile = ()=>{
                     onChange={handleChange}
                     placeholder="program 2 description"
                 />
-                <label for="org_value1">value 1 of organization</label>
+                <label for="value1">value 1 of organization</label>
                 <input
-                    name="org_value1"
-                    value={form.org_value1}
+                    name="value1"
+                    value={form.value1}
                     onChange={handleChange}
                     placeholder="value 1"
                 />
-                <label for="org_value2">value 2 of organization</label>
+                <label for="value2">value 2 of organization</label>
                 <input
-                    name="org_value2"
-                    value={form.org_value2}
+                    name="value2"
+                    value={form.value2}
                     onChange={handleChange}
                     placeholder="value 2"
                 />
-                <label for="org_value3">value 3 of organization</label>
+                <label for="value3">value 3 of organization</label>
                 <input
-                    name="org_value3"
-                    value={form.org_value3}
+                    name="value3"
+                    value={form.value3}
                     onChange={handleChange}
                     placeholder="value 3"
                 />
-                <label for="org_value4">value 4 of organization</label>
+                <label for="value4">value 4 of organization</label>
                 <input
-                    name="org_value4"
-                    value={form.org_value4}
+                    name="value4"
+                    value={form.value4}
                     onChange={handleChange}
                     placeholder="value 4"
                 />
+
+                <label>Hero Image</label>
+                <input type="file" onChange={(e) => setHeroFile(e.target.files[0])} />
+
+                <label>Logo</label>
+                <input type="file" onChange={(e) => setLogoFile(e.target.files[0])} />
+
+                <label>Mission Image</label>
+                <input type="file" onChange={(e) => setMissionFile(e.target.files[0])} />
+
 
                 <div className="save_button">
                 <button type="submit">Save changes</button>

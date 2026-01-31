@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import api from "../api/axios";
 import "../styles/EditProfile.css";
+
 const AddOrganization = () => {
+  const [heroFile, setHeroFile] = useState(null);
+const [logoFile, setLogoFile] = useState(null);
+const [missionFile, setMissionFile] = useState(null);
   const [formData, setFormData] = useState({
     org_name: "",
     org_description: "",
@@ -33,38 +37,33 @@ const AddOrganization = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await api.post("/organization", formData);
-      console.log("Organization created:", response.data);
-      alert("Organization added successfully!");
+  try {
+    const data = new FormData();
 
-      setFormData({
-        org_name: "",
-        org_description: "",
-        org_slogan: "",
-        org_mission: "",
-        org_vision: "",
-        program1_title: "",
-        program1_desc: "",
-        program2_title: "",
-        program2_desc: "",
-        value1: "",
-        value2: "",
-        value3: "",
-        value4: "",
-        org_email: "",
-        wilaya_id: "",
-        category_id: "",
-        org_registrationDate: "",
-      });
-    } catch (error) {
-      console.error("Error adding organization:", error.response?.data || error);
-      alert("Failed to add organization");
-    }
-  };
+    // Append all text fields
+    Object.entries(formData).forEach(([key, value]) => {
+      data.append(key, value);
+    });
+
+    // Append files if selected
+    if (heroFile) data.append("org_hero_img", heroFile);
+    if (logoFile) data.append("org_logo", logoFile);
+    if (missionFile) data.append("mission_img", missionFile);
+
+    const response = await api.post("/organization", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    console.log("Organization created:", response.data);
+    alert("Organization added successfully!");
+  } catch (error) {
+    console.error("Error adding organization:", error.response?.data || error);
+    alert("Failed to add organization");
+  }
+};
 
   return (
     <div className="edit_container">
@@ -127,7 +126,14 @@ const AddOrganization = () => {
         value={formData.org_registrationDate}
         onChange={handleChange}
       />
+      <label>Hero Image</label>
+<input type="file" onChange={(e) => setHeroFile(e.target.files[0])} />
 
+<label>Logo</label>
+<input type="file" onChange={(e) => setLogoFile(e.target.files[0])} />
+
+<label>Mission Image</label>
+<input type="file" onChange={(e) => setMissionFile(e.target.files[0])} />
       <div className="save_button">
         <button type="submit">Save changes</button>
       </div>

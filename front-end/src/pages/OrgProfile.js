@@ -124,8 +124,8 @@ const OrgProfile = () => {
     <>
       {/* Hero */}
       <OrgHero
-        // OrgHeroImage={org.heroImage}
-        // OrgLogoImage={org.logoImage}
+         OrgHeroImage={org.heroImage}
+         OrgLogoImage={org.logoImage}
         OrgName={org.org_name}
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
