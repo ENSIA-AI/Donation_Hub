@@ -11,10 +11,9 @@ use App\Http\Controllers\WilayaController;
 use App\Http\Controllers\AdminController;
 
 
-
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
-Route::get('/donations/statistics', [DonationController::class, 'statistics']);
+Route::get('/dashboard/statistics', [DonationController::class, 'statistics']);
 Route::put('/donations/{id}', [DonationController::class, 'update']);
 Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
 Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);

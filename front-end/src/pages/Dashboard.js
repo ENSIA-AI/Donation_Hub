@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/dashboard.css';
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  BarChart,
+  XAxis,
+  YAxis,
+  Bar
+} from 'recharts';
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -16,16 +28,18 @@ function Dashboard() {
   const VISIBLE_ROWS = 4;
   const COLORS = ["#107361", "#FEDA79"];
 
+
   // Fetch statistics
-<<<<<<< HEAD
- useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/dashboard')
+     useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/dashboard/statistics')
       .then(res => res.json())
       .then(data => {
+        console.log('Stats:', data);
         setStats(data.data);
       })
-      .catch(err => console.error(err));
+      .catch(error => console.error('Error fetching stats:', error));
   }, []);
+
 
 useEffect(() => {
   if (stats) {
@@ -49,17 +63,6 @@ const barData = stats && Array.isArray(stats.donations_by_type)
     }))
   : [];
 
-=======
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/dashboard/statistics')
-      .then(res => res.json())
-      .then(data => {
-        console.log('Stats:', data);
-        setStats(data.data);
-      })
-      .catch(error => console.error('Error fetching stats:', error));
-  }, []);
->>>>>>> c7abb5f0c5f65e2d390dd475d539a25bf880b307
 
   // Fetch all donations
   useEffect(() => {
@@ -151,13 +154,10 @@ const handleDeleteDonation = async (id) => {
   }
 };
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> c7abb5f0c5f65e2d390dd475d539a25bf880b307
 const filteredDonations = donations.filter(donation => {
   const matchesSearch =
      (donation.donor_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -231,7 +231,8 @@ const filteredRequests = requests.filter(request =>
         {/* Dashboard Tab */}
           <div className={`tab-content ${activeTab === 'dashboard' ? 'active' : 'hidden'}`}>
             <h2 className="section-title">Dashboard Statistics</h2>
-            {stats && (
+            {stats ? (
+              <>
               <div className="stats-grid">
                 <div className="stat-card">
                   <h3>Total Donations</h3>
@@ -255,8 +256,7 @@ const filteredRequests = requests.filter(request =>
                   <small>{stats.received_money_amount} DZD</small>
                 </div>
               </div>
-<<<<<<< HEAD
-
+            
               {/* Charts */}
                 <div className='charts'>
                   <div className='chart-container' style={{ width: '100%', height: 300 }}>
@@ -295,8 +295,7 @@ const filteredRequests = requests.filter(request =>
               </>
               ) : (
               <p>Loading stats...</p>
-=======
->>>>>>> c7abb5f0c5f65e2d390dd475d539a25bf880b307
+
             )}
           </div>
         
@@ -400,9 +399,7 @@ const filteredRequests = requests.filter(request =>
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                  <button className="filter_btn">
-                    <i className="fas fa-filter"></i> Filter
-                  </button>
+              
                 </div>
               </div>
 
@@ -422,6 +419,7 @@ const filteredRequests = requests.filter(request =>
                       <th>Type</th>
                       <th>Message</th>
                       <th>Date</th>
+                      <th>File</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -433,6 +431,19 @@ const filteredRequests = requests.filter(request =>
                         <td>{request.rec_type}</td>
                         <td>{request.rec_message}</td>
                         <td>{new Date(request.rec_date).toLocaleDateString()}</td>
+                        <td>
+                          {request.rec_file_path ? (
+                            <a
+                               href={`http://localhost:8000/storage/${request.rec_file_path}`} 
+                               target="_blank" 
+                               rel="noreferrer"
+                            >
+                               View File
+                            </a>
+                          ) : (
+                             'No File'
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

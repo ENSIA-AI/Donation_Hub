@@ -48,17 +48,17 @@ class OrganizationController  extends Controller
             'wilaya_id' => $organization->wilaya_id,
             'org_mission' => $organization->org_mission,
             'org_vision' => $organization->org_vision,
-            
+
             'category' => $organization->category,
             // Individual values (for backward compatibility)
             'value1' => $organization->value1,
             'value2' => $organization->value2,
             'value3' => $organization->value3,
             'value4' => $organization->value4,
-            
+
             // Array format (new way)
             'values' => $organization->values,
-            
+
             // These arrays now ALWAYS have all slots
             'programs' => $organization->programs,    // Always 2 items
             'impact' => $organization->impact,        // Always 3 items
@@ -78,7 +78,7 @@ class OrganizationController  extends Controller
         $organizations = Organization::with('category')->get();
         return response()->json($organizations);
     }
-    
+
     public function update(Request $request ,$id){
         $organization =Organization::findOrfail($id);
         $validated = $request->validate ([
@@ -108,7 +108,7 @@ class OrganizationController  extends Controller
     }
     public function autocomplete(Request $request)
     {
-    $q = $request->query('q'); 
+    $q = $request->query('q');
         if (!$q || strlen($q) < 2) {
             return response()->json([]);
         }
@@ -128,7 +128,7 @@ class OrganizationController  extends Controller
 }
 
 public function search(Request $request){
-    $q = $request->query('q'); 
+    $q = $request->query('q');
     $wilayaId = $request->query('wilaya_id');
     $categoryId = $request->query('category_id');
 
