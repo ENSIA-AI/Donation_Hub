@@ -13,13 +13,28 @@ class DonationController extends Controller
 {
     $donations = Donation::with(['organization', 'post'])
         ->orderBy('created_at', 'desc')
-        ->get();
+        ->get()
+        ->map(function($donation) {
+            return [
+                'id' => $donation->id,
+                'donor_firstName' => $donation->donor_firstName,
+                'donor_lastName' => $donation->donor_lastName,
+                'donor_email' => $donation->donor_email,
+                'donation_type' => $donation->donation_type,
+                'donation_amount' => $donation->donation_amount,
+                'donation_received' => $donation->donation_received,
+                'donation_date' => $donation->donation_date->format('Y-m-d'), // <--- clean format
+                'organization' => $donation->organization,
+                'post' => $donation->post,
+            ];
+        });
 
     return response()->json([
         'success' => true,
         'data' => $donations
     ]);
 }
+
 
     public function store(Request $request)
     {

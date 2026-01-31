@@ -35,9 +35,9 @@ class Donation extends Model
     }
 
     public function post()
-    {
-        return $this->belongsTo(Compaign::class);
-    }
+{
+    return $this->belongsTo(Compaign::class, 'compaign_id');
+}
 
 
 }
