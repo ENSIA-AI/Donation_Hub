@@ -17,4 +17,16 @@ class WilayaController extends Controller
         $wilayas = Wilaya::search($term)->get(); 
         return response()->json($wilayas);
     }
+    public function store(Request $request)
+{
+    $request->validate([
+        'wilaya_name' => 'required|string|max:255',
+    ]);
+
+    $wilaya = Wilaya::create([
+        'wilaya_name' => $request->wilaya_name
+    ]);
+
+    return response()->json($wilaya, 201);
+}
 }
