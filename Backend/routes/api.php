@@ -38,9 +38,11 @@ Route::get('organizations/{organization}/compaigns', [CompaignController::class,
 Route::get('/compaigns/autocomplete', [CompaignController::class, 'autocomplete']);
 Route::get('/compaigns/search', [CompaignController::class, 'search']);
 
+
 Route::apiResource('compaigns', CompaignController::class);
 
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
+Route::post('/organizations', [OrganizationController::class, 'regester']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
 Route::get('/organization', [OrganizationController::class, 'index']);
 Route::get('/organization/{id}', [OrganizationController::class, 'show']);
