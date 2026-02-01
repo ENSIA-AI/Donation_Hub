@@ -8,7 +8,7 @@ const DashOrgTable = ()=>{
       axios
         .get("/organization")
         .then((response) => {
-          setOrganizations(response.data.organizations);
+          setOrganizations(response.data);
         })
         .catch((error) => {
           console.error("Error fetching organizations:", error);

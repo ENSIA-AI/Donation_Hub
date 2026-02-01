@@ -18,7 +18,7 @@ const ExploreOrganizations = () => {
 
     fetch(`http://localhost:8000/api/organizations/search?${params.toString()}`)
       .then((res) => res.json())
-      .then((data) => setOrganizations(data.organizations)) // update state
+      .then((data) => setOrganizations(data)) // update state
       .catch(console.error);
   };
   const loadMore = () => {
@@ -29,7 +29,7 @@ const ExploreOrganizations = () => {
   axios
     .get("/organization?status=approved")
     .then(response => {
-     setOrganizations(response.data.organizations);
+     setOrganizations(response.data);
     })
     .catch((error) => {
       console.error("Error fetching organizations:", error);
