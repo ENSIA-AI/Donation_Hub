@@ -8,7 +8,7 @@ const DashRejTable = ()=>{
         axios
         .get('/organization?status=rejected')
         .then((response)=>{
-            setRejected(response.data);
+            setRejected(response.data.organizations);
         })
         .catch((error)=>{
             console.error("Error fetching organizations:", error);
