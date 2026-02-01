@@ -18,17 +18,17 @@ class DatabaseSeeder extends Seeder
             OrganizationSeeder::class,
             WilayaSeeder::class,
             CategorySeeder::class,
+
             CompaignSeeder::class,
+            DonationSeeder::class,
             AdminSeeder::class,
         ]);
+
+
 
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
     }
-
 }
-
-
-

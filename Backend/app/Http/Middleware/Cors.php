@@ -8,25 +8,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Cors
 {
-    public function handle(Request $request, Closure $next): Response
+
+    public function handle(Request $request, Closure $next)
     {
-        $headers = [
-            'Access-Control-Allow-Origin'      => 'http://localhost:3000',
-            'Access-Control-Allow-Methods'     => 'POST, GET, OPTIONS, PUT, DELETE, PATCH',
-            'Access-Control-Allow-Headers'     => 'Content-Type, Authorization, X-Requested-With',
-            'Access-Control-Allow-Credentials' => 'true',
-        ];
-
-        // Handle preflight OPTIONS request
-        if ($request->getMethod() === "OPTIONS") {
-            return response()->json('OK', 200, $headers);
-        }
-
         $response = $next($request);
 
-        foreach ($headers as $key => $value) {
-            $response->headers->set($key, $value);
-        }
+        $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-TOKEN, Authorization, X-Requested-With');
+        $response->headers->set('Access-Control-Allow-Credentials', 'true');
 
         return $response;
     }

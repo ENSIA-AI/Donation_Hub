@@ -10,6 +10,8 @@ class Donation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'organization_id',
+        'compaign_ID',
         'donor_firstName',
         'donor_lastName',
         'donor_phoneNumber',
@@ -27,7 +29,13 @@ class Donation extends Model
     ];
 
 
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Compaign::class, 'compaign_ID');
+    }
 }
-
-
-

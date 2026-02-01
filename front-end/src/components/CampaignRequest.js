@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import "../styles/AdminDashStat.css";
-const CampaignRequest = ({ title, organization, status, date }) => {
+const CampaignRequest = ({
+  title,
+  organization,
+  status,
+  date,
+
+  onApprove,
+  onReject,
+}) => {
   const [showOptions, setShowOptions] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(status);
 
@@ -12,16 +20,15 @@ const CampaignRequest = ({ title, organization, status, date }) => {
   const handleAccept = () => {
     setCurrentStatus("accepted");
     setShowOptions(false);
-    // TODO: Send API request to update status
-    console.log("Campaign accepted");
+    if (onApprove) onApprove();
   };
 
   const handleReject = () => {
     setCurrentStatus("rejected");
     setShowOptions(false);
-    // TODO: Send API request to update status
-    console.log("Campaign rejected");
+    if (onReject) onReject();
   };
+
   const wrapperRef = useRef(null);
   useEffect(() => {
     const handleClickOutside = (event) => {
