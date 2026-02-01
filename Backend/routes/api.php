@@ -7,7 +7,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompaignController;
-use App\Http\Controllers\organizationController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\WilayaController;
 use App\Http\Controllers\AdminController;
 use App\Models\Compaign;
