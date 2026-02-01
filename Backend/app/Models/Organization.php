@@ -13,6 +13,7 @@ class Organization extends Model
         'category_id',
         'wilaya_id',
         'org_email',
+        'password', 
         'org_proof',
         'status',
     ];

@@ -14,7 +14,7 @@ Route::post('/wilayas', [WilayaController::class, 'store']);
 Route::get('/wilayas', [WilayaController::class, 'index']);
 
 
-Route::post('/organizations', [OrganizationController::class, 'store']);
+Route::post('/organizations', [OrganizationController::class, 'regester']);
 Route::get('/organizations', [OrganizationController::class, 'index']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
 Route::patch('/organizations/{id}/reject', [OrganizationController::class, 'reject']);
