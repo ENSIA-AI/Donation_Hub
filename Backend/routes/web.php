@@ -5,6 +5,7 @@ use App\Models\Organization;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompaignController;
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminAuthController;
@@ -50,3 +51,4 @@ Route::middleware(['cors'])->group(function () {
         return response()->json(['message' => 'Logged out']);
     });
 });
+

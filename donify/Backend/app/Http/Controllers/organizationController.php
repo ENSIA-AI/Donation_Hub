@@ -78,17 +78,17 @@ $validated['status'] = 'pending';
             'wilaya_id' => $organization->wilaya_id,
             'org_mission' => $organization->org_mission,
             'org_vision' => $organization->org_vision,
-            
+
             'category' => $organization->category,
             // Individual values (for backward compatibility)
             'value1' => $organization->value1,
             'value2' => $organization->value2,
             'value3' => $organization->value3,
             'value4' => $organization->value4,
-            
+
             // Array format (new way)
             'values' => $organization->values,
-            
+
             // These arrays now ALWAYS have all slots
             'programs' => $organization->programs,    // Always 2 items
             'impact' => $organization->impact,        // Always 3 items
@@ -104,6 +104,13 @@ $validated['status'] = 'pending';
             'mission_img' => $organization->mission_img ? asset('storage/' . $organization->mission_img) : null,
         ]);
     }
+<<<<<<<< HEAD:Backend/app/Http/Controllers/OrganizationController.php
+    public function index(){//to redefine latter
+        $organizations = Organization::with('category')->get();
+        return response()->json($organizations);
+    }
+
+========
     public function index(Request $request)
 {
     $status = $request->query('status', 'approved');
@@ -141,6 +148,7 @@ $validated['status'] = 'pending';
    
 
     
+>>>>>>>> a832633c09ce98dd0c4e81e64bf8cfbc261dc98e:donify/Backend/app/Http/Controllers/organizationController.php
     public function update(Request $request ,$id){
         $organization =Organization::findOrfail($id);
         $validated = $request->validate ([
@@ -185,7 +193,7 @@ $validated['status'] = 'pending';
 
     public function autocomplete(Request $request)
     {
-    $q = $request->query('q'); 
+    $q = $request->query('q');
         if (!$q || strlen($q) < 2) {
             return response()->json([]);
         }
@@ -206,7 +214,7 @@ $validated['status'] = 'pending';
 }
 
 public function search(Request $request){
-    $q = $request->query('q'); 
+    $q = $request->query('q');
     $wilayaId = $request->query('wilaya_id');
     $categoryId = $request->query('category_id');
 
@@ -224,4 +232,9 @@ if($wilayaId) $query->where('wilaya_id', $wilayaId);
 }
 
 
+<<<<<<<< HEAD:Backend/app/Http/Controllers/OrganizationController.php
+
 }
+========
+}
+>>>>>>>> a832633c09ce98dd0c4e81e64bf8cfbc261dc98e:donify/Backend/app/Http/Controllers/organizationController.php

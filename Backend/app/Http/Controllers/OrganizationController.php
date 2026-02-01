@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class OrganizationController extends Controller
 {
-    /**
-     * List all organizations
+    /* List all organizations
      */
     public function index()
     {
@@ -21,47 +20,44 @@ class OrganizationController extends Controller
         ], 200);
     }
 
-    /**
-     * Create a new organization (with proof upload)
+    /* Create a new organization (with proof upload)
      */
-    
 
-public function regester(Request $request)
-{
-    $data = $request->validate([
-        'org_name' => 'required|string',
-        'org_registrationDate' => 'required|date',
-        'org_description' => 'required|string',
-        'category_id' => 'required|exists:categories,id',
-        'wilaya_id' => 'required|exists:wilayas,id',
-        'org_email' => 'required|email',
-        'password' => 'required|string|min:6',
-        'org_proof' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
-    ]);
 
-    //  HASH PASSWORD
-    $data['password'] = Hash::make($data['password']);
+    public function regester(Request $request)
+    {
+        $data = $request->validate([
+            'org_name' => 'required|string',
+            'org_registrationDate' => 'required|date',
+            'org_description' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'wilaya_id' => 'required|exists:wilayas,id',
+            'org_email' => 'required|email',
+            'password' => 'required|string|min:6',
+            'org_proof' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
+        ]);
 
-    // Handle file upload
-    if ($request->hasFile('org_proof')) {
-        $path = $request->file('org_proof')->store('proofs', 'public');
-        $data['org_proof'] = $path;
+        //  HASH PASSWORD
+        $data['password'] = Hash::make($data['password']);
+
+        // Handle file upload
+        if ($request->hasFile('org_proof')) {
+            $path = $request->file('org_proof')->store('proofs', 'public');
+            $data['org_proof'] = $path;
+        }
+
+        // Force status to pending
+        $data['status'] = 'pending';
+
+        $organization = Organization::create($data);
+
+        return response()->json([
+            'message' => 'Organization registered successfully.',
+            'organization' => $organization
+        ], 201);
     }
 
-    // Force status to pending
-    $data['status'] = 'pending';
-
-    $organization = Organization::create($data);
-
-    return response()->json([
-        'message' => 'Organization registered successfully.',
-        'organization' => $organization
-    ], 201);
-}
-
-
-    /**
-     * Approve an organization
+    /* Approve an organization
      */
     public function approve($id)
     {
@@ -75,8 +71,7 @@ public function regester(Request $request)
         ], 200);
     }
 
-    /**
-     * Reject an organization
+    /* Reject an organization
      */
     public function reject($id)
     {

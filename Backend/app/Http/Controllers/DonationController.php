@@ -47,7 +47,7 @@ class DonationController extends Controller
                 'donor_lastName'      => 'required|string|max:255',
                 'donor_phoneNumber'   => 'required|string|max:20',
                 'donor_email'         => 'required|email|max:100',
-                'donation_type'       => 'required|string|in:money,food,medicins',
+                'donation_type'       => 'required|string|',
                 'donation_amount'     => 'nullable|numeric|min:0',
                 'donation_date'       => 'required|date',
                 'donation_received'   => 'boolean',

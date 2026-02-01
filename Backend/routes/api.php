@@ -16,9 +16,10 @@ use App\Models\Organization;
 use App\Models\Donation;
 use App\Http\Controllers\DashboardController;
 
+
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
-Route::get('/donations/statistics', [DonationController::class, 'statistics']);
+Route::get('/dashboard/statistics', [DonationController::class, 'statistics']);
 Route::put('/donations/{id}', [DonationController::class, 'update']);
 Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
 Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
@@ -27,7 +28,7 @@ Route::post('/requests', [RequestsController::class, 'store']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
 
 
-// ===============compaigns============= : 
+// ===============compaigns============= :
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);
 Route::patch('/compaigns/{id}/approve', [CompaignController::class, 'approve']);
 

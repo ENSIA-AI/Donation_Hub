@@ -224,9 +224,21 @@ body {
     border-bottom: 1px solid #eee;
 }
 
+
 .requests-table tbody tr:nth-child(even),
 .donations-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+
+.requests-table td {
+    white-space: normal;       /* Allow wrapping */
+    /*word-break: break-word;     Break long words */
+    max-width: 400px;          /* Optional: limit width of all cells */
+}
+
+.requests-table td:nth-child(5) {
+    max-width: 300px;          /* Specifically limit message column */
 }
 
 .status-waiting {
