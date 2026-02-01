@@ -11,7 +11,7 @@ class Donation extends Model
 
     protected $fillable = [
         'organization_id',
-        'compaign_id',
+        'compaign_ID',
         'donor_firstName',
         'donor_lastName',
         'donor_phoneNumber',
@@ -35,12 +35,7 @@ class Donation extends Model
     }
 
     public function post()
-{
-    return $this->belongsTo(Compaign::class, 'compaign_id');
+    {
+        return $this->belongsTo(Compaign::class, 'compaign_ID');
+    }
 }
-
-
-}
-
-
-

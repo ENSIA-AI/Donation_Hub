@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Models\Compaign;
 use Illuminate\Support\Facades\DB;
 use App\Models\Organization;
+use App\Models\Donation;
 use App\Http\Controllers\DashboardController;
 
 Route::post('/donations', [DonationController::class, 'store']);
@@ -26,7 +27,7 @@ Route::post('/requests', [RequestsController::class, 'store']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
 
 
-// ===============compaigns : 
+// ===============compaigns============= : 
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);
 Route::patch('/compaigns/{id}/approve', [CompaignController::class, 'approve']);
 
@@ -41,7 +42,7 @@ Route::apiResource('compaigns', CompaignController::class);
 
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
-Route::get('/organizations', [OrganizationController::class, 'index']);
+Route::get('/organization', [OrganizationController::class, 'index']);
 Route::get('/organization/{id}', [OrganizationController::class, 'show']);
 Route::put('/organization/{id}', [OrganizationController::class, 'update']);
 Route::delete('/organization/{id}', [OrganizationController::class, 'destroy']);
@@ -85,4 +86,33 @@ Route::get(
     [DashboardController::class, 'campaignsByCategory']
 );
 Route::get('/dashboard/organizations-by-category-count', [DashboardController::class, 'organizationsByCategoryCount']);
+Route::get('/total-money-donations', [DonationController::class, 'totalMoneyDonations']);
+Route::get('/donations-top-wilayas', [DonationController::class, 'topWilayasByDonation']);
+Route::get('/donations/by-type', [DonationController::class, 'donationsByType']);
+Route::get('/top-organizations', function () {
+    $topOrgs = Organization::select(
+        'organizations.id',
+        'org_name',
+        DB::raw('COUNT(compaigns.compaign_ID) as campaigns_count')
+    )
+        ->join('compaigns', 'compaigns.organization_id', '=', 'organizations.id')
 
+        ->groupBy('organizations.id', 'org_name')
+        ->orderByDesc('campaigns_count')
+        ->limit(6)
+        ->get();
+
+    return response()->json($topOrgs);
+});
+
+Route::get('/donations-over-time', function () {
+    return DB::table('donations')
+        ->select(
+            DB::raw('DATE(donation_date) as date'),
+            DB::raw('COUNT(*) as count')
+        )
+        ->where('donation_received', true)
+        ->groupBy(DB::raw('DATE(donation_date)'))
+        ->orderBy('date')
+        ->get();
+});

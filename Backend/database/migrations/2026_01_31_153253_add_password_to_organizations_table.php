@@ -13,8 +13,8 @@ return new class extends Migration
     {
 
         Schema::table('organizations', function (Blueprint $table) {
-        $table->string('password')->after('org_email');
-      });
+            $table->string('password')->nullable()->after('org_email');
+        });
     }
 
     /**

@@ -3,22 +3,24 @@ import "../styles/AdminDashStat.css";
 import AdminProfile from "./AdminProfile";
 import SidebarItem from "./SidebarItem";
 import LogoutButton from "./LogoutButton";
-
+import { Link } from "react-router-dom";
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const items = [
+    { iconClass: "fa-house", label: "Dashboard", to: "/AdminDashboardStat" },
     {
-      iconClass: "fa-house",
-      label: "Dashboard",
-      href: "./new_admin_stat.html",
+      iconClass: "fa-building-ngo",
+      label: "Organizations",
+      to: "/AdminDashBoardORG",
     },
-
-    { iconClass: "fa-building-ngo", label: "Organizations", href: "AdminDashBoardORG" },
-    { iconClass: "fa-bullhorn", label: "Compaigns", href: "AdminDashboardCompain" },
-    { iconClass: "fa-hand-holding-dollar", label: "Donations", href: "AdminDashboardDonation" },
-    { iconClass: "fa-message", label: "Messages", href: "#" },
-
+    { iconClass: "fa-bullhorn", label: "Compaigns", to: "/campaigns" },
+    {
+      iconClass: "fa-hand-holding-dollar",
+      label: "Donations",
+      to: "/AdminDashboardDonation",
+    },
+    { iconClass: "fa-message", label: "Messages", to: "/messages" },
   ];
 
   return (
@@ -32,7 +34,7 @@ const Sidebar = () => {
               key={index}
               iconClass={item.iconClass}
               label={item.label}
-              href={item.href}
+              to={item.to}
               isActive={activeIndex === index}
               onClick={() => setActiveIndex(index)}
             />

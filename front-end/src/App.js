@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Layouts
 import MainLayout from "./layouts/MainLayout";
@@ -19,17 +19,19 @@ import Dashboard from "./pages/Dashboard";
 import EditProfile from "./pages/EditProfile";
 import AddDataOrg from "./pages/AddDataOrg";
 
+import Sidebar from "./components/Sidebar";
 
-import DashCampaigns from "./pages/DashCampaigns";
-import DashMessages from "./pages/DashMessages";
+// import AdminDashboardCompain from "./pages/AdminDashboardCompain";
 
 import AdminDashBoardORG from "./pages/AdminDashBoardORG";
 import AdminDashboardDonation from "./pages/AdminDashboardDonation";
 
+import DashCampaigns from "./pages/DashCampaigns";
+import DashMessages from "./pages/DashMessages";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         {/* Pages WITH Header & Footer */}
         <Route element={<MainLayout />}>
@@ -55,9 +57,11 @@ function App() {
           <Route path="/campaigns" element={<DashCampaigns />} />
           <Route path="/messages" element={<DashMessages />} />
 
-          <Route path="/AdminDashBoardORG" element={<AdminDashBoardORG/>}/>
-          <Route path="/AdminDashboardDonation" element={<AdminDashboardDonation/>}></Route>
-
+          <Route path="/AdminDashBoardORG" element={<AdminDashBoardORG />} />
+          <Route
+            path="/AdminDashboardDonation"
+            element={<AdminDashboardDonation />}
+          ></Route>
         </Route>
 
         <Route
@@ -71,7 +75,7 @@ function App() {
           <Route index element={<AdminDashboardStat />} />
         </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

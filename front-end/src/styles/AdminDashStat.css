@@ -433,6 +433,7 @@ a {
 
 .content_main_part {
     width: 100%;
+    
 }
 
 .content_left_part {
@@ -445,7 +446,12 @@ a {
     width: 30%;
     padding: 2rem;
     padding-top: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
+    display: flex;
+        flex-direction: column;
+        flex: 1;
+       
+        
 }
 
 .stat_chart_image_left {

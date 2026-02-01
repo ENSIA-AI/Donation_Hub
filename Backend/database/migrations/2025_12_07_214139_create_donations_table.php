@@ -20,15 +20,17 @@ return new class extends Migration
             $table->decimal('donation_amount', 10, 2)->nullable();
             $table->boolean('donation_received')->default(false);
             $table->date('donation_date');
+            $table->unsignedBigInteger('compaign_ID')->nullable();
+            $table->foreignId('organization_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
-             $table->foreignId('organization_id')
-            ->constrained()
-            ->cascadeOnDelete();
 
-            $table->foreignId('compaign_id')
-            ->nullable()
-            ->constrained()
-            ->nullOnDelete();
+
+            $table->foreign('compaign_ID')
+                ->references('compaign_ID')   // <-- match the primary key in compaigns
+                ->on('compaigns')
+                ->onDelete('set null');
 
             $table->softDeletes();
             $table->timestamps();

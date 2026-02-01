@@ -4,36 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Donation;
+use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+
+
 
 class DonationController extends Controller
 {
     public function index()
-{
-    $donations = Donation::with(['organization', 'post'])
-        ->orderBy('created_at', 'desc')
-        ->get()
-        ->map(function($donation) {
-            return [
-                'id' => $donation->id,
-                'donor_firstName' => $donation->donor_firstName,
-                'donor_lastName' => $donation->donor_lastName,
-                'donor_email' => $donation->donor_email,
-                'donation_type' => $donation->donation_type,
-                'donation_amount' => $donation->donation_amount,
-                'donation_received' => $donation->donation_received,
-                'donation_date' => $donation->donation_date->format('Y-m-d'), // <--- clean format
-                'organization' => $donation->organization,
-                'post' => $donation->post,
-            ];
-        });
+    {
+        $donations = Donation::with(['organization', 'post'])
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($donation) {
+                return [
+                    'id' => $donation->id,
+                    'donor_firstName' => $donation->donor_firstName,
+                    'donor_lastName' => $donation->donor_lastName,
+                    'donor_email' => $donation->donor_email,
+                    'donation_type' => $donation->donation_type,
+                    'donation_amount' => $donation->donation_amount,
+                    'donation_received' => $donation->donation_received,
+                    'donation_date' => $donation->donation_date->format('Y-m-d'), // <--- clean format
+                    'organization' => $donation->organization,
+                    'post' => $donation->post,
+                ];
+            });
 
-    return response()->json([
-        'success' => true,
-        'data' => $donations
-    ]);
-}
+        return response()->json([
+            'success' => true,
+            'data' => $donations
+        ]);
+    }
 
 
     public function store(Request $request)
@@ -69,7 +72,6 @@ class DonationController extends Controller
                 'message' => 'Donation created successfully',
                 'data' => $donation
             ], 201);
-
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
@@ -134,23 +136,23 @@ class DonationController extends Controller
 
 
     public function destroy($id)
-{
-    $donation = Donation::find($id);
+    {
+        $donation = Donation::find($id);
 
-    if (!$donation) {
+        if (!$donation) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Donation not found'
+            ], 404);
+        }
+
+        $donation->delete();
+
         return response()->json([
-            'success' => false,
-            'message' => 'Donation not found'
-        ], 404);
+            'success' => true,
+            'message' => 'Donation deleted successfully'
+        ]);
     }
-
-    $donation->delete();
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Donation deleted successfully'
-    ]);
-}
 
 
 
@@ -161,30 +163,30 @@ class DonationController extends Controller
             'total_donations' => Donation::count(),
 
             'total_money_amount' =>
-                Donation::whereNotNull('donation_amount')->sum('donation_amount'),
+            Donation::whereNotNull('donation_amount')->sum('donation_amount'),
 
             'waiting_donations' =>
-                Donation::where('donation_received', false)->count(),
+            Donation::where('donation_received', false)->count(),
 
             'received_donations' =>
-                Donation::where('donation_received', true)->count(),
+            Donation::where('donation_received', true)->count(),
 
             'waiting_money_amount' =>
-                Donation::whereNotNull('donation_amount')
-                    ->where('donation_received', false)
-                    ->sum('donation_amount'),
+            Donation::whereNotNull('donation_amount')
+                ->where('donation_received', false)
+                ->sum('donation_amount'),
 
             'received_money_amount' =>
-                Donation::whereNotNull('donation_amount')
-                    ->where('donation_received', true)
-                    ->sum('donation_amount'),
+            Donation::whereNotNull('donation_amount')
+                ->where('donation_received', true)
+                ->sum('donation_amount'),
 
             'donations_by_type' =>
-                Donation::select(
-                    'donation_type',
-                    DB::raw('count(*) as count'),
-                    DB::raw('sum(donation_amount) as total_amount')
-                )
+            Donation::select(
+                'donation_type',
+                DB::raw('count(*) as count'),
+                DB::raw('sum(donation_amount) as total_amount')
+            )
                 ->groupBy('donation_type')
                 ->get(),
         ];
@@ -192,6 +194,34 @@ class DonationController extends Controller
         return response()->json([
             'success' => true,
             'data' => $stats
+        ]);
+    }
+    public function totalMoneyDonations()
+    {
+        $total = Donation::where('donation_type', 'money')->sum('donation_amount');
+        return response()->json(['total' => $total]);
+    }
+
+
+
+    public function topWilayasByDonation()
+    {
+        $data = Donation::select('wilayas.wilaya_name', DB::raw('SUM(donation_amount) as total'))
+            ->join('organizations', 'donations.organization_id', '=', 'organizations.id')
+            ->join('wilayas', 'organizations.wilaya_id', '=', 'wilayas.id')
+            ->groupBy('wilayas.wilaya_name')
+            ->orderByDesc('total') // sort descending by total donations
+            ->limit(6)             // only top 6
+            ->get();
+
+        return response()->json($data);
+    }
+    public function donationsByType()
+    {
+        return response()->json([
+            'money' => Donation::where('donation_type', 'money')->count(),
+            'food' => Donation::where('donation_type', 'food')->count(),
+            'medicine' => Donation::where('donation_type', 'medicine')->count(),
         ]);
     }
 }

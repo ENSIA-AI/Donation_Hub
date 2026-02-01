@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
 
             CompaignSeeder::class,
-             DonationSeeder::class,
+            DonationSeeder::class,
             AdminSeeder::class,
         ]);
 
-      
+
 
         // User::factory()->create([
         //     'name' => 'Test User',

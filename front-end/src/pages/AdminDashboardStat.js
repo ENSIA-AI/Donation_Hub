@@ -9,11 +9,15 @@ import OrganizationsByCategory from "../components/AdminCharts/organizationByCat
 import OrgRequest from "../components/OrgRequest";
 import CampaignRequest from "../components/CampaignRequest";
 import StatCard from "../components/StatCard";
-
+import DonationsByWilaya from "../components/AdminCharts/DonationsByWilaya";
+import DonationsByType from "../components/AdminCharts/DonationsByType";
+import TopOrgsLeaderboard from "../components/AdminCharts/TopOrgsLeaderboard";
+import DonationsOverTime from "../components/AdminCharts/DonationsOverTime";
 const AdminDashboardStat = () => {
   const [organizations, setOrganizations] = useState([]);
   const [acceptedCampaigns, setAcceptedCampaigns] = useState([]);
   const [TotalOrgs, setTotalOrgs] = useState(0);
+  const [totalDonations, setTotalDonations] = useState(0);
 
   const [pendingCampaigns, setPendingCampaigns] = useState([]);
   const [loadingCampaigns, setLoadingCampaigns] = useState(true);
@@ -114,6 +118,15 @@ const AdminDashboardStat = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/total-money-donations")
+      .then((res) => {
+        setTotalDonations(res.data.total); // assume backend returns { total: 1245000 }
+      })
+      .catch((err) => console.error("Error fetching total donations:", err));
+  }, []);
+
   const approveCampaign = async (id) => {
     try {
       await axios.patch(`http://127.0.0.1:8000/api/compaigns/${id}`, {
@@ -158,7 +171,7 @@ const AdminDashboardStat = () => {
               <div className="stat_dash_cards flex-row">
                 <StatCard
                   title="Total Donations"
-                  value="1,245,000 DZD"
+                  value={`${totalDonations.toLocaleString()} DZD`}
                   iconClass="fa-hand-holding-dollar"
                   colorClass="green_card"
                 />
@@ -257,26 +270,36 @@ const AdminDashboardStat = () => {
 
             {/* ===== right charts ===== */}
             <div className="content_right_part flex-column">
+              <div
+                className="stat_chart_img"
+                style={{ height: 250, minHeight: 200, width: "100%" }}
+              >
+                <DonationsByWilaya />
+              </div>
+
+              <div
+                className="stat_chart_img"
+                style={{ height: 310, minHeight: 200, width: "100%" }}
+              >
+                <DonationsByType />
+              </div>
+              <div
+                className="stat_chart_img"
+                style={{ height: 250, minHeight: 200, width: "100%" }}
+              >
+                <TopOrgsLeaderboard />
+              </div>
               <img
                 src="assets/Images/stat3.png"
-                className=" stat_chart_img"
+                className="stat_chart_img "
                 alt="Donation by Region"
               />
-              <img
-                src="assets/Images/stat1.png"
-                className=" stat_chart_img"
-                alt="Donation sources"
-              />
-              <img
-                src="assets/Images/stat2.png"
-                className=" stat_chart_img"
-                alt="Donation by campaigns and Amount"
-              />
-              <img
-                src="assets/Images/stat3.png"
-                className=" stat_chart_img"
-                alt="Donation by Region"
-              />
+              <div
+                className="stat_chart_img"
+                style={{ height: 250, minHeight: 200, width: "100%" }}
+              >
+                <DonationsOverTime />
+              </div>
             </div>
           </div>
         </div>

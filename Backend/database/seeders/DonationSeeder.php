@@ -11,8 +11,9 @@ class DonationSeeder extends Seeder
     public function run()
     {
         Donation::insert([
-            [   'organization_id' => 1,
-                'compaign_id' => 1,
+            [
+                'organization_id' => 1,
+                'compaign_ID' => 1,
                 'donor_firstName' => 'Ali',
                 'donor_lastName' => 'Benali',
                 'donor_phoneNumber' => '0550123456',
@@ -24,8 +25,9 @@ class DonationSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [   'organization_id' => 1,
-                'compaign_id' => 1,
+            [
+                'organization_id' => 1,
+                'compaign_ID' => 1,
                 'donor_firstName' => 'Sara',
                 'donor_lastName' => 'Khelifi',
                 'donor_phoneNumber' => '0660987654',
@@ -37,8 +39,9 @@ class DonationSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [    'organization_id' => 1,
-                 'compaign_id' => 1,
+            [
+                'organization_id' => 1,
+                'compaign_ID' => 1,
                 'donor_firstName' => 'Mohamed',
                 'donor_lastName' => 'Amrani',
                 'donor_phoneNumber' => '0770456123',
@@ -50,8 +53,9 @@ class DonationSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [    'organization_id' => 1,
-                 'compaign_id' => 1,
+            [
+                'organization_id' => 1,
+                'compaign_ID' => 1,
                 'donor_firstName' => 'Lina',
                 'donor_lastName' => 'Toumi',
                 'donor_phoneNumber' => '0541122334',

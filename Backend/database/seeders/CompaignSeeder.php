@@ -34,6 +34,7 @@ class CompaignSeeder extends Seeder
 
         $campaigns = [
             [
+                'compaign_ID' => 1,
                 'compaign_title' => 'Clean Water Initiative',
                 'compaign_content' => 'Providing clean water to rural areas.',
                 'compaign_img' => null,
@@ -44,6 +45,7 @@ class CompaignSeeder extends Seeder
 
             ],
             [
+                'compaign_ID' => 2,
                 'compaign_title' => 'School Supplies Drive',
                 'compaign_content' => 'Helping students get the supplies they need.',
                 'compaign_img' => null,
@@ -54,6 +56,7 @@ class CompaignSeeder extends Seeder
 
             ],
             [
+                'compaign_ID' => 3,
                 'compaign_title' => 'Tree Planting Campaign',
                 'compaign_content' => 'Planting trees in urban areas for a greener city.',
                 'compaign_img' => null,
