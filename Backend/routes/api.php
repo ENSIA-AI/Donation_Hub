@@ -45,11 +45,12 @@ Route::apiResource('compaigns', CompaignController::class);
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
 Route::post('/organizations', [OrganizationController::class, 'regester']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
+Route::get('/organizations/pending', [OrganizationController::class, 'pending']);
 Route::get('/organization', [OrganizationController::class, 'index']);
 Route::get('/organization/{id}', [OrganizationController::class, 'show']);
 Route::put('/organization/{id}', [OrganizationController::class, 'update']);
 Route::delete('/organization/{id}', [OrganizationController::class, 'destroy']);
-Route::post('/organization', [OrganizationController::class, 'store']);
+// Route::post('/organization', [OrganizationController::class, 'store']);
 
 
 Route::get('/wilayas', [WilayaController::class, 'index']);

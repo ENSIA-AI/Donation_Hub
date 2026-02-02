@@ -12,13 +12,11 @@ class OrganizationController extends Controller
     /* List all organizations
      */
     public function index()
-    {
-        $organizations = Organization::with(['category','wilaya'])->get();
-
-        return response()->json([
-            'organizations' => $organizations
-        ], 200);
-    }
+{
+    return response()->json([
+        'organizations' => Organization::orderBy('created_at', 'desc')->get()
+    ]);
+}
 
     /* Create a new organization (with proof upload)
      */
@@ -103,4 +101,9 @@ class OrganizationController extends Controller
             'message' => 'Organization deleted successfully.'
         ], 200);
     }
+
+    public function pending()
+{
+    return Organization::where('status', 'pending')->get();
+}
 }
