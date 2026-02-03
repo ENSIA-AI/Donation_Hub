@@ -213,30 +213,23 @@ const AdminDashboardStat = () => {
                     <h3>Pending Organizations</h3>
                   </div>
 
-                  {organizations.length === 0 && (
-                    <p>No pending organizations</p>
-                  )}
+                  {organizations.length === 0 && <p>No pending organizations</p>}
 
-                  {organizations.map((org) => (
-                    <OrgRequest
-                      key={org.id}
-                      name={org.org_name}
-                      date={org.created_at}
-                      status={org.status}
-                      onApprove={() => approveOrganization(org.id)}
-                    />
-                  ))}
-
-                  {organizations.map((org) => (
-                    <OrgRequest
-                      key={org.id}
-                      name={org.org_name}
-                      date={org.created_at}
-                      status={org.status}
-                      onApprove={() => approveOrganization(org.id)}
-                      onReject={() => rejectOrganization(org.id)}
-                    />
-                  ))}
+{organizations.map((org) => (
+  <OrgRequest
+    key={org.id}
+    name={org.org_name}
+    date={org.created_at}
+    status={org.status}
+    proof={
+      org.org_proof
+        ? `http://127.0.0.1:8000/storage/${org.org_proof}`
+        : null
+    }
+    onApprove={() => approveOrganization(org.id)}
+    onReject={() => rejectOrganization(org.id)}
+  />
+))}
                 </div>
 
                 {/* Pending Campaigns */}

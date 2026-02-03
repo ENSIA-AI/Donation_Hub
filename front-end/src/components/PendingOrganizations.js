@@ -10,25 +10,14 @@ const PendingOrganizations = () => {
   }, []);
 
   const fetchPending = async () => {
-    const res = await axios.get(
-      "http://127.0.0.1:8000/api/organizations/pending"
-    );
-    setOrgs(res.data);
-  };
+  const res = await axios.get(
+    "http://127.0.0.1:8000/api/organizations/pending"
+  );
 
-  const approveOrg = async (id) => {
-    await axios.put(
-      `http://127.0.0.1:8000/api/organizations/${id}/approve`
-    );
-    fetchPending(); // refresh list
-  };
+  console.log("PENDING ORGS FROM API:", res.data); // 👈 ADD THIS LINE
 
-  const rejectOrg = async (id) => {
-    await axios.put(
-      `http://127.0.0.1:8000/api/organizations/${id}/reject`
-    );
-    fetchPending();
-  };
+  setOrgs(res.data);
+};
 
   return (
     <div>

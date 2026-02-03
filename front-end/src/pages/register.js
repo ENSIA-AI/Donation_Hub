@@ -46,7 +46,7 @@ const {
     formData.append("category_id", 1);
     formData.append("wilaya_id", 1);
 
-    // ✅ THIS IS THE IMPORTANT LINE
+    
     if (data.proof && data.proof[0]) {
       formData.append("org_proof", data.proof[0]);
     }
