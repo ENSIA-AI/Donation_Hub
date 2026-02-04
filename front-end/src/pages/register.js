@@ -31,35 +31,46 @@ const {
    
   const onSubmit = async (data) => {
   try {
-    // Convert file input to null or handle it later
-    const formData = { ...data };
-    if (formData.proof) formData.proof = null;
+    const formData = new FormData();
+
+    formData.append("org_name", data.orgName);
+    formData.append(
+      "org_registrationDate",
+      new Date().toISOString().slice(0, 10)
+    );
+    formData.append("org_description", data.description);
+    formData.append("org_email", data.email);
+    formData.append("password", data.password);
+
+    // TEMP IDs (later we make them dynamic)
+    formData.append("category_id", 1);
+    formData.append("wilaya_id", 1);
+
+    
+    if (data.proof && data.proof[0]) {
+      formData.append("org_proof", data.proof[0]);
+    }
 
     const response = await axios.post(
       "http://127.0.0.1:8000/api/organizations",
+      formData,
       {
-        org_name: formData.orgName,
-        org_registrationDate: new Date().toISOString().slice(0, 10),
-        org_description: formData.description,
-        org_email: formData.email,
-        category_id: 1, // replace with real category ID or dropdown selection
-        region_id: 1,   // replace with real region ID or dropdown selection
-        org_slogan: formData.description.slice(0, 50),
-        status: "pending",
-        org_hero_img: null,
-        org_logo: null,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
 
     console.log("Organization created:", response.data);
     setSubmitSuccess(true);
     reset();
-    setTimeout(() => setSubmitSuccess(false), 4000);
   } catch (error) {
-    console.error("Error submitting form:", error);
-    alert("Error submitting form. Check console for details.");
+    console.error(error.response?.data || error);
+    alert("Registration failed");
   }
 };
+
+
 
  return(
    <main>

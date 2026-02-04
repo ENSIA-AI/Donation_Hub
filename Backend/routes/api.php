@@ -7,7 +7,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompaignController;
-use App\Http\Controllers\organizationController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\WilayaController;
 use App\Http\Controllers\AdminController;
 use App\Models\Compaign;
@@ -16,9 +16,10 @@ use App\Models\Organization;
 use App\Models\Donation;
 use App\Http\Controllers\DashboardController;
 
+
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
-Route::get('/donations/statistics', [DonationController::class, 'statistics']);
+Route::get('/dashboard/statistics', [DonationController::class, 'statistics']);
 Route::put('/donations/{id}', [DonationController::class, 'update']);
 Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
 Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
@@ -27,7 +28,7 @@ Route::post('/requests', [RequestsController::class, 'store']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
 
 
-// ===============compaigns============= : 
+// ===============compaigns============= :
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);
 Route::patch('/compaigns/{id}/approve', [CompaignController::class, 'approve']);
 
@@ -38,18 +39,23 @@ Route::get('organizations/{organization}/compaigns', [CompaignController::class,
 Route::get('/compaigns/autocomplete', [CompaignController::class, 'autocomplete']);
 Route::get('/compaigns/search', [CompaignController::class, 'search']);
 
+
 Route::apiResource('compaigns', CompaignController::class);
 
 Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
+Route::post('/organizations', [OrganizationController::class, 'regester']);
 Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
+Route::get('/organizations/pending', [OrganizationController::class, 'pending']);
 Route::get('/organization', [OrganizationController::class, 'index']);
 Route::get('/organization/{id}', [OrganizationController::class, 'show']);
 Route::put('/organization/{id}', [OrganizationController::class, 'update']);
 Route::delete('/organization/{id}', [OrganizationController::class, 'destroy']);
-Route::post('/organization', [OrganizationController::class, 'store']);
+// Route::post('/organization', [OrganizationController::class, 'store']);
 
 
 Route::get('/wilayas', [WilayaController::class, 'index']);
+Route::post('/wilayas', [WilayaController::class, 'store']);
+Route::post('/categories', [CategoryController::class, 'store']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/wilayas/search', [WilayaController::class, 'search']);
 Route::get('/api/organizations/autocomplete', [OrganizationController::class, 'autocomplete']);

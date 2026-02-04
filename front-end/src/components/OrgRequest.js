@@ -22,7 +22,7 @@ const OrgRequest = ({ name, status, date, proof, onApprove, onReject }) => {
         </div>
 
         <div className="flex-row org_img_date">
-          <h4>{new Date(date).toLocaleDateString()}</h4>
+          <h4>{date ? new Date(date).toLocaleDateString() : "No date"}</h4>
         </div>
 
         <div className="org_request_actions flex-row">

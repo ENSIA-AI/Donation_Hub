@@ -9,6 +9,7 @@ const Donate = () => {
     email: "",
     donation_type: "",
     amount: "",
+    other_type: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -35,6 +36,10 @@ const Donate = () => {
       newErrors.amount = "Amount is required for money donations";
     }
 
+    if (form.donation_type === "other" && !form.other_type.trim()) {
+        newErrors.other_type = "Please specify the donation type";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -50,7 +55,7 @@ const Donate = () => {
       donor_lastName: form.last_name,
       donor_phoneNumber: form.phone,
       donor_email: form.email,
-      donation_type: form.donation_type,
+      donation_type: form.donation_type === "other" ? form.other_type : form.donation_type,
       donation_amount: form.donation_type === "money" ? form.amount : null,
       donation_date: new Date().toISOString().split("T")[0],
       donation_received: false,
@@ -79,6 +84,7 @@ const Donate = () => {
         email: "",
         donation_type: "",
         amount: "",
+        other_type: "",
       });
       setErrors({});
       setTimeout(() => setSuccessMessage(""), 3000);
@@ -221,6 +227,7 @@ const Donate = () => {
                   <option value="money">Money</option>
                   <option value="food">Food</option>
                   <option value="medicins">Medicins</option>
+                  <option value="other">Other</option>
                 </select>
                 {errors.donation_type && <div className="error-message">{errors.donation_type}</div>}
               </div>
@@ -241,6 +248,28 @@ const Donate = () => {
                   {errors.amount && <div className="error-message">{errors.amount}</div>}
                 </div>
               )}
+
+              {form.donation_type === "other" && (
+                   <div className={`form-group ${errors.other_type ? "error" : ""}`}>
+                     <label htmlFor="other_type" className="form-label">
+                         Specify Donation Type*
+                      </label>
+                    <input
+                       type="text"
+                       id="other_type"
+                       name="other_type"
+                       className="form-input"
+                       placeholder="e.g. Clothes, Books, Blankets"
+                        value={form.other_type}
+                        onChange={handleChange}
+                     />
+                        {errors.other_type && (
+                       <div className="error-message">{errors.other_type}</div>
+                          )}
+                </div>
+              )}
+
+                
 
               {/* Success message */}
               {successMessage && <div className="success-message">{successMessage}</div>}
