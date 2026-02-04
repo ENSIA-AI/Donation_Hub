@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import "../styles/announcementStyle.css";
 
 const AnnouncemetCard = ({
@@ -13,20 +12,23 @@ const AnnouncemetCard = ({
 
   return (
     <>
-      {/* CARD */}
-      <div className="announcement col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 co-xxs-12">
+      {/* ===== CARD ===== */}
+      <div className="announcement col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 col-xxs-12">
         <div className="announcement-card">
           <div className="announcement_Date">{announcementDate}</div>
+
           <div className="announcement-image">
             <img
               src={announcementImage}
               className="full-image announcement-image"
-              alt=""
+              alt={announcementTitle}
             />
           </div>
+
           <div className="announcement_details">
             <div className="announcement_description">
               <div className="announcement_title">{announcementTitle}</div>
+
               <div className="announcement_text_content">
                 {announcementDescription.slice(0, 120)}
                 {announcementDescription.length > 120 && "..."}
@@ -53,7 +55,7 @@ const AnnouncemetCard = ({
         </div>
       </div>
 
-      {/* MODAL */}
+      {/* ===== MODAL ===== */}
       {isModalOpen && (
         <div
           className="announcement-modal-overlay"
@@ -64,9 +66,16 @@ const AnnouncemetCard = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="announcement_modal_date">{announcementDate}</div>
-            <img src={announcementImage} className="modal-image" alt="" />
+
+            <img
+              src={announcementImage}
+              className="modal-image"
+              alt={announcementTitle}
+            />
+
             <h2>{announcementTitle}</h2>
             <p>{announcementDescription}</p>
+
             <button
               className="close-modal-btn"
               onClick={() => setIsModalOpen(false)}

@@ -1,53 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import "../styles/AdminDashStat.css";
 import axios from "../api/axios";
+import "../styles/AdminDashStat.css";
 
-const AdminProfile = ({ name, image }) => {
+const AdminProfile = () => {
   const [hover, setHover] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // Admin info state
   const [adminData, setAdminData] = useState({
     username: "",
     email: "",
     password: "",
     image: "",
+    imageFile: null, // store actual file for upload
   });
 
   useEffect(() => {
     axios
-      .get("admin/profile")
+      .get("admin/profile", { withCredentials: true })
       .then((res) => {
-        console.log("API Response:", res.data); // Debug
         setAdminData({
           username: res.data.username,
           email: res.data.email,
           password: "",
-          image: res.data.profile_image || "https://via.placeholder.com/150", // Fallback image
+          image: res.data.profile_image || "https://via.placeholder.com/150",
+          imageFile: null,
         });
       })
-      .catch((err) => {
-        console.error("Error fetching admin profile:", err);
-        console.log(err.response.data);
-      });
+      .catch((err) => console.error(err.response?.data || err));
   }, []);
+
+  // 2️⃣ Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setAdminData({ ...adminData, [name]: value });
   };
+
+  // 3️⃣ Handle image changes
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setAdminData({ ...adminData, image: imageUrl });
+      setAdminData({ ...adminData, image: imageUrl, imageFile: file });
     }
   };
 
-  const handleSave = () => {
-    // Here you would send updated data to backend
-    console.log("Saved admin data:", adminData);
-    setShowModal(false);
+  // 4️⃣ Save changes to backend
+  const handleSave = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("username", adminData.username);
+      formData.append("email", adminData.email);
+      if (adminData.password) formData.append("password", adminData.password);
+      if (adminData.imageFile) formData.append("image", adminData.imageFile);
+
+      const response = await axios.post("admin/profile/update", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
+
+      console.log("Profile updated:", response.data);
+
+      setAdminData({
+        ...adminData,
+        password: "",
+        image: response.data.admin.profile_image
+          ? response.data.admin.profile_image
+          : adminData.image,
+        imageFile: null,
+      });
+
+      setShowModal(false);
+    } catch (err) {
+      console.error("Error saving profile:", err.response?.data || err);
+      alert("Failed to save profile. Check console for errors.");
+    }
   };
 
   return (
@@ -74,7 +101,7 @@ const AdminProfile = ({ name, image }) => {
         <h6>{adminData.username}</h6>
       </div>
 
-      {/* Render modal at root level using Portal */}
+      {/* Modal */}
       {showModal &&
         createPortal(
           <div className="modal_overlay" onClick={() => setShowModal(false)}>
@@ -129,7 +156,7 @@ const AdminProfile = ({ name, image }) => {
               </div>
             </div>
           </div>,
-          document.body, // ← Render at root level
+          document.body,
         )}
     </>
   );

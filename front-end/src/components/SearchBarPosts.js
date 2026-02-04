@@ -67,7 +67,7 @@ function SearchBarPosts({ onSearch }) {
         ></i>
         <input
           type="text"
-          placeholder="Search organization..."
+          placeholder="Search compaign..."
           value={name}
           onChange={(e) => {
             setName(e.target.value);

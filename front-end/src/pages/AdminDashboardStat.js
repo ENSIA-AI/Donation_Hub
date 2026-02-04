@@ -22,6 +22,12 @@ const AdminDashboardStat = () => {
   const [pendingCampaigns, setPendingCampaigns] = useState([]);
   const [loadingCampaigns, setLoadingCampaigns] = useState(true);
   const totalCampaigns = acceptedCampaigns.length;
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   const fetchPendingOrganizations = async () => {
     try {
       const response = await axios.get(
@@ -162,7 +168,7 @@ const AdminDashboardStat = () => {
         {/* ===============================dash content  ============================= */}
         <div className="dash_stat_content dash_stat_container">
           <div className="dash_date">
-            <h6>December 7, 2025</h6>
+            <h6>{formattedDate}</h6>
           </div>
 
           <div className="content_main_part flex-row">
@@ -289,11 +295,7 @@ const AdminDashboardStat = () => {
               >
                 <TopOrgsLeaderboard />
               </div>
-              <img
-                src="assets/Images/stat3.png"
-                className="stat_chart_img "
-                alt="Donation by Region"
-              />
+
               <div
                 className="stat_chart_img"
                 style={{ height: 250, minHeight: 200, width: "100%" }}

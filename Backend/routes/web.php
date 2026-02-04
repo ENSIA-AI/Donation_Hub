@@ -8,18 +8,16 @@ use App\Http\Controllers\CompaignController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Route::prefix('admin')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout']);
     Route::get('/check', [AdminAuthController::class, 'check']);
 });
-
 
 Route::post('/admin/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
@@ -49,4 +47,9 @@ Route::middleware(['cors'])->group(function () {
         $request->session()->regenerateToken();
         return response()->json(['message' => 'Logged out']);
     });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('admin/profile', [AdminController::class, 'profile']);
+    Route::post('admin/profile/update', [AdminController::class, 'updateProfile']);
 });

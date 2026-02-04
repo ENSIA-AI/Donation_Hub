@@ -78,7 +78,7 @@ class CompaignController extends Controller
     {
         $compaign = Compaign::findOrFail($id);
         $compaign->delete();
-        return response()->json(['messsage' => 'Compaign deleted successfully']);
+        return response()->json(['message' => 'Compaign deleted successfully']);
     }
     // function to fetch pending compaigns 
     public function pending()
@@ -139,22 +139,29 @@ class CompaignController extends Controller
 
     public function search(Request $request)
     {
-        $wilayaId = $request->query('wilaya_id');      // region filter
-        $categoryId = $request->query('category_id');  // category filter
+        $q = $request->query('q');                 // 🔹 campaign name
+        $wilayaId = $request->query('wilaya_id');
+        $categoryId = $request->query('category_id');
 
-        $query = Compaign::with('organization'); // eager load org info
+        $query = Compaign::where('status', 'accepted')
+            ->with('organization');
 
+        // 🔹 SEARCH BY CAMPAIGN TITLE
+        if ($q) {
+            $query->where('compaign_title', 'LIKE', "%{$q}%");
+        }
+
+        // 🔹 FILTER BY WILAYA
         if ($wilayaId) {
-            // only include campaigns whose org is in this wilaya
-            $query->whereHas('organization', function ($q) use ($wilayaId) {
-                $q->where('wilaya_id', $wilayaId);
+            $query->whereHas('organization', function ($org) use ($wilayaId) {
+                $org->where('wilaya_id', $wilayaId);
             });
         }
 
+        // 🔹 FILTER BY CATEGORY
         if ($categoryId) {
-            // only include campaigns whose org is in this category
-            $query->whereHas('organization', function ($q) use ($categoryId) {
-                $q->where('category_id', $categoryId);
+            $query->whereHas('organization', function ($org) use ($categoryId) {
+                $org->where('category_id', $categoryId);
             });
         }
 
