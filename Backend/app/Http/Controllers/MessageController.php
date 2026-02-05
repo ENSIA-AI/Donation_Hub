@@ -80,4 +80,11 @@ class MessageController extends Controller
             ], 500);
         }
     }
+    // Get total number of messages
+    public function count()
+    {
+        return response()->json([
+            'total' => Message::count()
+        ]);
+    }
 }

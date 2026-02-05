@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../styles/AdminDashStat.css";
 import AdminProfile from "./AdminProfile";
 import SidebarItem from "./SidebarItem";
 import LogoutButton from "./LogoutButton";
-import { Link } from "react-router-dom";
+
 const Sidebar = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const location = useLocation();
 
   const items = [
     { iconClass: "fa-house", label: "Dashboard", to: "/AdminDashboardStat" },
@@ -23,10 +24,12 @@ const Sidebar = () => {
     { iconClass: "fa-message", label: "Messages", to: "/messages" },
   ];
 
+  // Find which item is active based on current route
+  const activeIndex = items.findIndex((item) => item.to === location.pathname);
+
   return (
     <div className="dash_sideBare flex-column">
       <AdminProfile name="Admin Name" image="assets/Images/admine_image.jpg" />
-
       <div className="dash_sidebar_items_container">
         <ul className="dash_sidebar_items flex-column">
           {items.map((item, index) => (
@@ -36,12 +39,10 @@ const Sidebar = () => {
               label={item.label}
               to={item.to}
               isActive={activeIndex === index}
-              onClick={() => setActiveIndex(index)}
             />
           ))}
         </ul>
       </div>
-
       <LogoutButton href="#" />
     </div>
   );

@@ -152,10 +152,12 @@ const Contact = () => {
           )}
 
           <div className="btn-group">
-            <button type="button" onClick={handleReset}>
+            <button type="button" className="reset-btn" onClick={handleReset}>
               Reset
             </button>
-            <button type="submit">Send</button>
+            <button type="submit" className="send-btn">
+              Send
+            </button>
           </div>
         </form>
       </div>

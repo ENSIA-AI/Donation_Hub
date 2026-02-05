@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SidebarItem = ({ iconClass, label, to, isActive, onClick }) => {
+const SidebarItem = ({ iconClass, label, to, isActive }) => {
   return (
-    <li
-      className={`dash_sidebar_item ${isActive ? "active" : ""}`}
-      onClick={onClick}
-    >
+    <li className={`dash_sidebar_item ${isActive ? "active" : ""}`}>
       <Link to={to} className={isActive ? "active" : ""}>
         <i className={`fa-solid ${iconClass} sidebar_btn`}></i>
         {label}

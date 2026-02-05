@@ -133,3 +133,5 @@ Route::post('/messages', [MessageController::class, 'store']);
 Route::get('/messages', [MessageController::class, 'index']);
 Route::patch('/messages/{id}/read', [MessageController::class, 'markRead']);
 Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
+
+Route::get('/messages/count', [MessageController::class, 'count']);
