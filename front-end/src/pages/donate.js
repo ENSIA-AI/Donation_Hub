@@ -60,6 +60,7 @@ const Donate = () => {
       donation_amount: form.donation_type === "money" ? Number(form.amount) : null,
       donation_date: new Date().toISOString().split("T")[0],
       donation_received: false,
+      
     };
 
     try {
