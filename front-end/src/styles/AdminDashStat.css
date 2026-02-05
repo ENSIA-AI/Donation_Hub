@@ -588,7 +588,28 @@ a {
     padding: 0;
 }
 
+/* ===== Waiting status ONLY ===== */
+.org_request_status.waiting {
+    background: linear-gradient(135deg, var(--third-color),var(--soft-yellow));
+    color: var(--fourth-color);
+    padding: 4px 9px;
+    /* smaller */
+    font-size: 1.25rem;
+    /* compact text */
+    font-weight: 500;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
 
+.org_request_status.waiting:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
 
 .org_raquest_profile {
     background-color: var(--primary-color);
