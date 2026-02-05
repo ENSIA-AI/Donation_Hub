@@ -44,11 +44,7 @@ const ExploreOrganizations = () => {
           communities
         </p>
       </div>
-      <div className="add_org_container">
-        <Link to={"/AddDataOrg"} className="Add_org">
-          Add data from here
-        </Link>
-      </div>
+      
 
       {/* Search bar */}
       <SearchBar onSearch={handleSearch} />

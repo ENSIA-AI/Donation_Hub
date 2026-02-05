@@ -278,6 +278,9 @@ public function approve($id)
         ], 201);
     }
 
-
+     public function pending()
+    {
+        return Organization::where('status', 'pending')->get();
+    }
 }
 
