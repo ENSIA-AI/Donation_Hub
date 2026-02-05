@@ -46,6 +46,7 @@ const Donate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("SUBMIT CLICKED");
     setErrorMessage("");
 
     if (!validate()) return;
@@ -56,7 +57,7 @@ const Donate = () => {
       donor_phoneNumber: form.phone,
       donor_email: form.email,
       donation_type: form.donation_type === "other" ? form.other_type : form.donation_type,
-      donation_amount: form.donation_type === "money" ? form.amount : null,
+      donation_amount: form.donation_type === "money" ? Number(form.amount) : null,
       donation_date: new Date().toISOString().split("T")[0],
       donation_received: false,
     };
@@ -101,6 +102,7 @@ const Donate = () => {
       phone: "",
       email: "",
       donation_type: "",
+      other_type: "",
       amount: "",
     });
     setErrors({});
@@ -276,8 +278,11 @@ const Donate = () => {
 
               {/* Form buttons */}
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                <button type="submit" className="donate_btns">Donate</button>
+                <button type="submit" className="donate_btns" >Donate</button>
+                
                 <button type="reset" className="reset_btns">Reset</button>
+
+
               </div>
             </form>
           </div>

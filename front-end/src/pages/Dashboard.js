@@ -15,7 +15,13 @@ import {
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState({
+    total_donations: 0,
+    total_money_amount: 0,
+    waiting_donations: 0,
+    received_donations: 0,
+    donations_by_type: []
+  });
   const [donations, setDonations] = useState([]);
   const [requests, setRequests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -35,18 +41,12 @@ function Dashboard() {
       .then(res => res.json())
       .then(data => {
         console.log('Stats:', data);
-        setStats(data.data);
+        setStats(data.data ?? data);
       })
       .catch(error => console.error('Error fetching stats:', error));
   }, []);
 
 
-useEffect(() => {
-  if (stats) {
-    console.log('pieData:', pieData);
-    console.log('barData:', barData);
-  }
-}, [stats]);
 
 
 const pieData = stats ? [
@@ -72,7 +72,7 @@ const barData = stats && Array.isArray(stats.donations_by_type)
       console.log('API Response:', data); // See full response
       console.log('Donations array:', data.data); // See the donations array
       console.log('Number of donations:', data.data?.length); // Count
-      setDonations(data.data || []);
+      setDonations(Array.isArray(data.data) ? data.data : data);
       setLoadingDonations(false);
     })
     .catch((err) => {
@@ -86,7 +86,7 @@ const barData = stats && Array.isArray(stats.donations_by_type)
     fetch('http://127.0.0.1:8000/api/dashboard/requests')
       .then(res => res.json())
       .then(data => {
-        setRequests(data.data);
+        setRequests(Array.isArray(data.data) ? data.data : []);
         setLoadingRequests(false);
       })
       .catch(() => setLoadingRequests(false));
@@ -260,6 +260,7 @@ const filteredRequests = requests.filter(request =>
               {/* Charts */}
                 <div className='charts'>
                   <div className='chart-container' style={{ width: '100%', height: 300 }}>
+                  {pieData.length > 0 && (
                   <ResponsiveContainer>
                     <PieChart>
                       <Pie 
@@ -277,9 +278,11 @@ const filteredRequests = requests.filter(request =>
                       <Legend />
                     </PieChart>
                   </ResponsiveContainer>
+                  )}
                 </div>
 
                 <div className='chart-container' style={{ width: '100%', height: 300 }}>
+                  {barData.length > 0 && (
                   <ResponsiveContainer>
                     <BarChart data={barData}>
                       <XAxis dataKey="type" />
@@ -290,6 +293,7 @@ const filteredRequests = requests.filter(request =>
                       <Bar dataKey="totalAmount" fill="#107361" name="Total Amount (DZD)" />
                     </BarChart>
                   </ResponsiveContainer>
+                  )}
                 </div>
             </div>
               </>
