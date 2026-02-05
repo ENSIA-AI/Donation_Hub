@@ -40,12 +40,12 @@ const {
     );
     formData.append("org_description", data.description);
     formData.append("org_email", data.email);
-    formData.append("password", data.password);
+    formData.append("org_password", data.password);
 
     // TEMP IDs (later we make them dynamic)
     formData.append("category_id", 1);
     formData.append("wilaya_id", 1);
-
+formData.append("org_phone", data.phoneNum)
     
     if (data.proof && data.proof[0]) {
       formData.append("org_proof", data.proof[0]);
