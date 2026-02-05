@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'paths' => ['api/*', 'csrf-token', 'admin/*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'csrf-token', 'admin/*'],
 
     'allowed_methods' => ['*'],
 
@@ -10,7 +10,7 @@ return [
     'http://localhost:3001',
 ],
 
-
+    'allowed_methods' => ['*'],
     'allowed_headers' => ['*'],
 
     'exposed_headers' => [],

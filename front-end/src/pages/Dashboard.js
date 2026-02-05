@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/dashboard.css";
+import { getCurrentUser } from "../services/authService";
 import {
   ResponsiveContainer,
   PieChart,
@@ -45,6 +46,21 @@ function Dashboard() {
       console.log("barData:", barData);
     }
   }, [stats]);
+  const [org, setOrg] = useState(null);
+
+useEffect(() => {
+  const fetchOrg = async () => {
+    try {
+      const data = await getCurrentUser();
+      setOrg(data);
+    } catch (err) {
+      console.error("Failed to fetch organization", err);
+    }
+  };
+
+  fetchOrg();
+}, []);
+
 
   const pieData = stats
     ? [
@@ -209,7 +225,7 @@ function Dashboard() {
           </div>
           <div className="org-name">Organization Name</div>
           <div className="profile">
-            <a href="#">
+            <a href={`/OrgProfile/${org?.id}`}>
               <i className="fas fa-user"></i>View Profile
             </a>
           </div>

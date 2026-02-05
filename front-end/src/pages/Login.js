@@ -1,103 +1,52 @@
-import React from "react";
-import "../styles/register.css";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { login } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const onSubmit = (data) => {
-    console.log("form Data:", data);
-    reset({
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
-  };
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await login(email, password);
+// Store token and organization id
+    localStorage.setItem("token", response.token);
+    localStorage.setItem("orgId", response.organization.id);
+    navigate(`/OrgProfile/${response.organization.id}`);
+  } catch (err) {
+    setError("Invalid email or password");
+  }
+};
+
   return (
-    <main>
-      <div className="mainContainer">
-        <div className="log-container ">
-          <div className="toggle-box col-lg-6 col-xl-6 col-md-6">
-            <div className="text">
-              <h3>welcome back to donifyDz !</h3>
-              <p>don't have an account?</p>
-            </div>
-            <div className="register ">
-              <button id="register">
-                <Link to="/Register">register</Link>
-              </button>
-            </div>
-          </div>
-          {/* login form */}
-          <div className="form-box login   col-lg-6 col-xl-6 col-md-6">
-            <div className="login-form ">
-              <div className="title ">
-                <h2>login</h2>
-              </div>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className=" placeholder">
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Email"
-                    {...register("email", {
-                      required: "email required",
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Invalid email format",
-                      },
-                    })}
-                  />
-                  {errors.email && <span>{errors.email.message}</span>}
-                </div>
-                <div className=" placeholder">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    {...register("password", {
-                      required: "password is required",
-                      pattern: {
-                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
-                        message:
-                          "Must contain 8+ chars, uppercase, lowercase and number",
-                      },
-                    })}
-                  />
-                  {errors.password && <span>{errors.password.message}</span>}
-                </div>
-                <div className=" placeholder">
-                  <input
-                    type="password"
-                    placeholder="Confirm password"
-                    {...register("confirmPassword", {
-                      required: "Please confirm your password",
-                      validate: (value) =>
-                        value === watch("password") || "Passwords do not match",
-                    })}
-                  />
-                  {errors.confirmPassword && (
-                    <span>{errors.confirmPassword.message}</span>
-                  )}
-                </div>
-                <div className=" submit">
-                  <button type="submit" className="submitBnt">
-                    {" "}
-                    login
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <div>
+      <h2>Login</h2>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 };
 

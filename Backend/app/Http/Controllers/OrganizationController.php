@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class OrganizationController  extends Controller
 {
@@ -51,6 +52,9 @@ if ($request->hasFile('mission_img')) {
     $validated['mission_img'] = $request->file('mission_img')->store('organizations/mission', 'public');
 }
 $validated['status'] = 'pending';
+if(isset($validated['password'])){
+    $validated['password'] = Hash::make($validated['password']);
+}
  $organization = Organization::create($validated);
    return response()->json([
     'message' => 'Organization created successfully',

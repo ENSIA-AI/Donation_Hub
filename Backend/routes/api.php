@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Organization;
 use App\Models\Donation;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
@@ -58,6 +59,17 @@ Route::get('/api/organizations/autocomplete', [OrganizationController::class, 'a
 Route::get('/organizations/search', [OrganizationController::class, 'search']); // this is for searching org based on naem , wilaya and category
 
 Route::get('/admin/profile', [AdminController::class, 'profile'])->middleware('auth:sanctum');
+
+
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/me', [AuthController::class, 'me']);
+});
+
+Route::post('/register', [AuthController::class, 'register']);
 
 
 Route::get('/organization-count', function () {
@@ -118,3 +130,4 @@ Route::get('/donations-over-time', function () {
         ->orderBy('date')
         ->get();
 });
+
