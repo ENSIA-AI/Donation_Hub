@@ -32,7 +32,7 @@ const AdminDashboardStat = () => {
   const fetchPendingOrganizations = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/organizations",
+        "http://127.0.0.1:8000/api/organizations/pending",
       );
 
       const pending = response.data.filter((org) => org.status === "pending");
@@ -69,7 +69,9 @@ const AdminDashboardStat = () => {
 
   const rejectOrganization = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/organizations/${id}`);
+      await axios.patch(
+  `http://127.0.0.1:8000/api/organizations/${id}/reject`
+);
 
       alert("Organization rejected");
       fetchPendingOrganizations();

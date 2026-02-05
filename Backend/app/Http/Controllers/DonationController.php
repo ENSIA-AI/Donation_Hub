@@ -51,6 +51,8 @@ class DonationController extends Controller
                 'donation_amount'     => 'nullable|numeric|min:0',
                 'donation_date'       => 'required|date',
                 'donation_received'   => 'boolean',
+                'organization_id'     => 'required|exists:organizations,id',   
+                'compaign_ID'         => 'nullable|exists:compaigns,compaign_ID',
             ]);
 
             if (

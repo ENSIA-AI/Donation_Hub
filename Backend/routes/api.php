@@ -35,6 +35,7 @@ Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests'])
 // ===============compaigns============= :
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);
 Route::patch('/compaigns/{id}/approve', [CompaignController::class, 'approve']);
+Route::get('/compaigns/accepted', [CompaignController::class, 'accepted']);
 
 Route::patch('/compaigns/{id}/reject', [CompaignController::class, 'reject']);
 //Route::get('organizations/{id}/compaigns', [CompaignController::class, 'byOrganization']);

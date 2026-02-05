@@ -124,6 +124,13 @@ class CompaignController extends Controller
 
         return response()->json(['message' => 'Campaign rejected']);
     }
+
+    public function accepted()
+{
+    return Compaign::with('organization')
+        ->where('status', 'accepted')
+        ->get();
+}
     // In CompaignController
 
     public function byOrganization($orgId)
