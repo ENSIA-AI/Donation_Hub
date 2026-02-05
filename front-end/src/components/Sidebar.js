@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import "../styles/AdminDashStat.css";
 import AdminProfile from "./AdminProfile";
 import SidebarItem from "./SidebarItem";
-import LogoutButton from "./LogoutButton";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -43,7 +42,6 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
-      <LogoutButton href="#" />
     </div>
   );
 };
