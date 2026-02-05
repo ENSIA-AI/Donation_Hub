@@ -18,6 +18,7 @@ const AdminDashboardStat = () => {
   const [acceptedCampaigns, setAcceptedCampaigns] = useState([]);
   const [TotalOrgs, setTotalOrgs] = useState(0);
   const [totalDonations, setTotalDonations] = useState(0);
+  const [totalMessages, setTotalMessages] = useState(0);
 
   const [pendingCampaigns, setPendingCampaigns] = useState([]);
   const [loadingCampaigns, setLoadingCampaigns] = useState(true);
@@ -41,6 +42,13 @@ const AdminDashboardStat = () => {
       console.error("Error fetching organizations", error);
     }
   };
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/messages/count")
+      .then((res) => setTotalMessages(res.data.total))
+      .catch((err) => console.error("Error fetching message count:", err));
+  }, []);
+
   useEffect(() => {
     fetchPendingOrganizations();
   }, []);
@@ -191,7 +199,11 @@ const AdminDashboardStat = () => {
                   value={TotalOrgs}
                   iconClass="fa-building-ngo"
                 />
-                <StatCard title="Messages" value="12" iconClass="fa-bell" />
+                <StatCard
+                  title="Messages"
+                  value={totalMessages}
+                  iconClass="fa-bell"
+                />
               </div>
 
               {/* ===== charts left part ===== */}
@@ -219,23 +231,25 @@ const AdminDashboardStat = () => {
                     <h3>Pending Organizations</h3>
                   </div>
 
-                  {organizations.length === 0 && <p>No pending organizations</p>}
+                  {organizations.length === 0 && (
+                    <p>No pending organizations</p>
+                  )}
 
-{organizations.map((org) => (
-  <OrgRequest
-    key={org.id}
-    name={org.org_name}
-    date={org.created_at}
-    status={org.status}
-    proof={
-      org.org_proof
-        ? `http://127.0.0.1:8000/storage/${org.org_proof}`
-        : null
-    }
-    onApprove={() => approveOrganization(org.id)}
-    onReject={() => rejectOrganization(org.id)}
-  />
-))}
+                  {organizations.map((org) => (
+                    <OrgRequest
+                      key={org.id}
+                      name={org.org_name}
+                      date={org.created_at}
+                      status={org.status}
+                      proof={
+                        org.org_proof
+                          ? `http://127.0.0.1:8000/storage/${org.org_proof}`
+                          : null
+                      }
+                      onApprove={() => approveOrganization(org.id)}
+                      onReject={() => rejectOrganization(org.id)}
+                    />
+                  ))}
                 </div>
 
                 {/* Pending Campaigns */}
