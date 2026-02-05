@@ -14,10 +14,18 @@ const Login = () => {
 
   try {
     const response = await login(email, password);
-// Store token and organization id
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("orgId", response.organization.id);
-    navigate(`/OrgProfile/${response.organization.id}`);
+
+localStorage.setItem("token", response.token);
+localStorage.setItem("role", response.role);
+
+if (response.role === "admin") {
+  localStorage.setItem("adminId", response.user.id);
+  navigate("/AdminDashboardStat");
+} else if (response.role === "organization") {
+  localStorage.setItem("orgId", response.organization.id);
+  navigate(`/OrgProfile/${response.organization.id}`);
+}
+
   } catch (err) {
     setError("Invalid email or password");
   }
@@ -26,6 +34,7 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
+      
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 

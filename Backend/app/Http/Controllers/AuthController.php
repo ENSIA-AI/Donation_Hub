@@ -4,16 +4,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\Admin;
 class AuthController extends Controller
 {
     public function login(Request $request)
 {
+
     $request->validate([
         'email' => 'required|email',
         'password' => 'required'
     ]);
+    $admin = Admin::where('email', $request->email)->first();
+    if ($admin && Hash::check($request->password, $admin->password)) {
 
+        $token = $admin->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'token' => $token,
+            'user' => $admin,
+            'role' => 'admin'
+        ]);
+    }
     $org = Organization::where('org_email', $request->email)->first();
 
     if (!$org || !Hash::check($request->password, $org->org_password)) {
@@ -25,11 +36,12 @@ class AuthController extends Controller
     $token = $org->createToken('auth_token')->plainTextToken;
     
     return response()->json([
-        'message' => 'Login successful',
-        'token' => $token,
-        'organization' => $org
-        
-    ]);
+    'message' => 'Login successful',
+    'token' => $token,
+    'organization' => $org,
+    'role' => 'organization'
+]);
+
 }
 
 

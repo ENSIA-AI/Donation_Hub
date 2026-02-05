@@ -32,8 +32,14 @@ const OrgProfile = () => {
   const [error, setError] = useState(null);
   const [org, setOrg] = useState(null);
   const [orgLoading, setOrgLoading] = useState(true);
-  const loggedInOrgId = localStorage.getItem("orgId");
 
+  const loggedInOrgId = localStorage.getItem("orgId");
+  const role = localStorage.getItem("role");
+  const isOwner =
+    role === "organization" &&
+    loggedInOrgId &&
+    org &&
+    Number(loggedInOrgId) === Number(org.id);
   
   const handleDonate = (post) => {
     alert(`Donate for post: ${post.title}`);
@@ -128,9 +134,6 @@ useEffect(() => {
   fetchApprovedCampaigns();
 }, [id]);
 
-
-const isOwner =
-  loggedInOrgId && org && Number(loggedInOrgId) === Number(org.id);
 
 if (orgLoading) return <h1>Loading organization...</h1>;
 
