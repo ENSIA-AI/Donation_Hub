@@ -9,6 +9,7 @@ function DashboardLayout() {
         <Outlet /> {/* This renders the nested dashboard page */}
       </div>
     </div>
+    
   );
 }
 

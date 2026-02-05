@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import api from "../api/axios";
 import "../styles/EditProfile.css";
 
+
 const AddOrganization = () => {
   const [heroFile, setHeroFile] = useState(null);
 const [logoFile, setLogoFile] = useState(null);
@@ -28,6 +29,7 @@ const [missionFile, setMissionFile] = useState(null);
     wilaya_id: "",
     category_id: "",
     org_registrationDate: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -60,13 +62,19 @@ const handleSubmit = async (e) => {
     console.log("Organization created:", response.data);
     alert("Organization added successfully!");
   } catch (error) {
-    console.error("Error adding organization:", error.response?.data || error);
+  console.error("Error adding organization:", error.response?.data || error);
+
+  if (error.response && error.response.data.errors) {
+    alert(JSON.stringify(error.response.data.errors, null, 2));
+  } else {
     alert("Failed to add organization");
   }
+}
+
 };
 
   return (
-    <div className="edit_container">
+    <div clasasName="edit_container">
     <form onSubmit={handleSubmit}>
       <h1 className="edit_title">Add organization information</h1>
 
@@ -112,6 +120,15 @@ const handleSubmit = async (e) => {
       {/* Optional fields */}
       <label htmlFor="org_email">Organization email</label>
       <input type="email" name="org_email" value={formData.org_email} onChange={handleChange} />
+      
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        value={formData.password || ""}
+        onChange={handleChange}
+        required
+      />
 
       <label htmlFor="wilaya_id">Wilaya ID</label>
       <input type="number" name="wilaya_id" value={formData.wilaya_id} onChange={handleChange} />

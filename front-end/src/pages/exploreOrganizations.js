@@ -28,8 +28,8 @@ const ExploreOrganizations = () => {
   useEffect(() => {
   axios
     .get("/organization?status=approved")
-    .then((response) => {
-      setOrganizations(response.data);
+    .then(response => {
+     setOrganizations(response.data);
     })
     .catch((error) => {
       console.error("Error fetching organizations:", error);
@@ -56,7 +56,8 @@ const ExploreOrganizations = () => {
       {/* Cards rendered dynamically */}
       <div className="container">
         <div className="cards-container flex-row-org ">
-          {organizations.slice(0, visibleCount).map((org, index) => (
+         
+          {organizations.slice(0, visibleCount).map((org) => (
             <OrganizationCard
               image={org.heroImage}
               key={org.id}

@@ -2,12 +2,16 @@
 
 return [
 
-
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'admin/*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'csrf-token', 'admin/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000'],
+    'allowed_origins' => [
+    'http://localhost:3000',
+    'http://localhost:3001',
+],
+
+    
 
     'allowed_headers' => ['*'],
 

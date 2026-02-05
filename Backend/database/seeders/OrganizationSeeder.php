@@ -33,6 +33,7 @@ class OrganizationSeeder extends Seeder
         'category_id' => 3, // Environment
         'wilaya_id' => 1,   // Algiers
         'org_email' => 'contact@greenfuture.org',
+        'org_password' => bcrypt('password'),
         'org_slogan' => 'Together for a greener future',
         'status' => 'approved',
         'org_hero_img' => 'hero1.jpg',
@@ -69,6 +70,7 @@ class OrganizationSeeder extends Seeder
         'category_id' => 1, // Education
         'wilaya_id' => 2,   // Oran
         'org_email' => 'info@youthnetwork.org',
+        'org_password' => bcrypt('password'),
         'org_slogan' => 'Empowering future leaders',
         'status' => 'approved',
         'org_hero_img' => 'hero2.jpg',
@@ -105,6 +107,7 @@ class OrganizationSeeder extends Seeder
         'category_id' => 2, // Health
         'wilaya_id' => 1,   // Algiers
         'org_email' => 'contact@hopemedical.org',
+        'org_password' => bcrypt('password'),
         'org_slogan' => 'Health for all',
         'status' => 'approved',
         'org_hero_img' => 'hero3.jpg',
@@ -141,6 +144,7 @@ class OrganizationSeeder extends Seeder
         'category_id' => 3, // Environment
         'wilaya_id' => 2,   // Oran (coast)
         'org_email' => 'contact@cleancoast.org',
+        'org_password' => bcrypt('password'),
         'org_slogan' => 'Cleaner oceans, brighter future',
         'status' => 'approved',
         'org_hero_img' => 'hero4.jpg',
@@ -177,6 +181,7 @@ class OrganizationSeeder extends Seeder
         'category_id' => 1, // Education
         'wilaya_id' => 3,   // Constantine
         'org_email' => 'support@awe.org',
+        'org_password' => bcrypt('password'),
         'org_slogan' => 'Empower a woman, empower a nation',
         'status' => 'approved',
         'org_hero_img' => 'hero5.jpg',
@@ -213,6 +218,7 @@ class OrganizationSeeder extends Seeder
         'category_id' => 2, // Health
         'wilaya_id' => 3,   // Constantine
         'org_email' => 'hello@healthykids.org',
+        'org_password' => bcrypt('password'),
         'org_slogan' => 'Strong bodies, strong minds',
         'status' => 'approved',
         'org_hero_img' => 'hero6.jpg',
