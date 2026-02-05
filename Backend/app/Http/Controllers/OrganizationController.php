@@ -117,25 +117,28 @@ $validated['status'] = 'pending';
         ->get();
 
     $organizations = $organizations->map(function ($organization) {
-        return [
-            'id' => $organization->id,
-            'org_name' => $organization->org_name,
-            'org_description' => $organization->org_description,
-            'category' => $organization->category,
-             'wilaya' => $organization->wilaya,
-            'heroImage' => $organization->org_hero_img
-                ? asset('storage/' . $organization->org_hero_img)
-                : null,
+    return [
+        'id' => $organization->id,
+        'org_name' => $organization->org_name,
+        'org_email' => $organization->org_email,      // <-- add this
+        'org_phone' => $organization->org_phone,      // <-- add this
+        'org_description' => $organization->org_description,
+        'category' => $organization->category,
+        'wilaya' => $organization->wilaya,
+        'org_proof_url' => $organization->org_proof ? asset('storage/' . $organization->org_proof) : null,
 
-            'logoImage' => $organization->org_logo
-                ? asset('storage/' . $organization->org_logo)
-                : null,
+        'heroImage' => $organization->org_hero_img
+            ? asset('storage/' . $organization->org_hero_img)
+            : null,
+        'logoImage' => $organization->org_logo
+            ? asset('storage/' . $organization->org_logo)
+            : null,
+        'mission_img' => $organization->mission_img
+            ? asset('storage/' . $organization->mission_img)
+            : null,
+    ];
+});
 
-            'mission_img' => $organization->mission_img
-                ? asset('storage/' . $organization->mission_img)
-                : null,
-        ];
-    });
 
     return response()->json($organizations);
 }
@@ -254,12 +257,13 @@ public function approve($id)
             'category_id' => 'required|exists:categories,id',
             'wilaya_id' => 'required|exists:wilayas,id',
             'org_email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'org_phone'=>'required',
+            'org_password' => 'required|string|min:6',
             'org_proof' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
         ]);
 
         //  HASH PASSWORD
-        $data['password'] = Hash::make($data['password']);
+        $data['org_password'] = Hash::make($data['org_password']);
 
         // Handle file upload
         if ($request->hasFile('org_proof')) {
@@ -278,6 +282,9 @@ public function approve($id)
         ], 201);
     }
 
-
+     public function pending()
+    {
+        return Organization::where('status', 'pending')->get();
+    }
 }
 

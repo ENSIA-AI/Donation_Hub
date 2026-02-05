@@ -41,14 +41,15 @@ const DashRejTable = ()=>{
                     </div>
                 </div>
                 { rejected.slice(0,10).map((rej)=>(
-                <DashRejCard
-                name= {rej.org_name}
-                email= {rej.org_email}
-                number= {rej.org_phone}
-                category = {rej.category?.category}
-                wilaya = {rej.wilaya?.wilaya_name}
-                proof = "proof"
+               <DashRejCard
+                name={rej.org_name}
+                email={rej.org_email}      // corrected
+                number={rej.org_phone}     // corrected
+                category={rej.category?.category}
+                wilaya={rej.wilaya?.wilaya_name}
+                proof={rej.org_proof_url}
                 />
+
                 ))
                 }
             </div>
