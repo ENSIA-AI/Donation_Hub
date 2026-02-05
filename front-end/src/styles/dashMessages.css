@@ -1,132 +1,144 @@
 :root {
-    --primary-font: "Poppins";
+    --primary-font: "Poppins", sans-serif;
     --secondary-font: "Montserrat", sans-serif;
-    --third-font: "Lato";
+    --third-font: "Lato", sans-serif;
     --primary-color: #107361;
     --secondary-color: #0F594C;
-    --third-color: #FEDA79;
-    --background-color: #F2F2F2;
-    --text-font-size: 1.6rem;
-    --section-title-font-size: 4rem;
-    --subtitle-font-size: 2.5rem;
-    --bottom-font-size: 1.3rem;
-    --card-border-radius:10px;
-    --button-border-radius: 20px;
-}
-* {
- 
-  box-sizing: border-box;
+    --accent-color: #feda79;
+    --background-color: #f9f9f9;
+    --card-radius: 12px;
+    --btn-radius: 8px;
 }
 
-.flex-row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-html {
-    font-size: 62.5%;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body
-{
+body {
     background-color: var(--background-color);
-}
-.messages-container
-{
-    background-color: white;
-    margin-top: 2rem;
-    padding: 1rem;
     font-family: var(--primary-font);
-    border-radius: var(--card-border-radius);
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-.messages-container h1
-{
+.messages-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: var(--card-radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.messages-container h1 {
     color: var(--secondary-color);
     margin-bottom: 2rem;
+    font-size: 3rem;
+    text-align: center;
 }
 
-.message-card
-{
-    width:100%;
-    border-radius: var(--card-border-radius);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    margin-bottom: 2rem;
-    
-
+.message-card {
+    background-color: #fff;
+    border-radius: var(--card-radius);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    margin-bottom: 1.8rem;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.message-header
-{
-    width: 100%;
-    background-color: var(--background-color);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 1rem;
-    gap: 1rem;
-    font-size: 12px;
-    font-weight: 400;
+.message-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-i
-{
-    margin-right: 0.5rem ;
-}
-
-.message-body
-{
-    background-color: white;
-    padding: 1rem;
-}
-
-.message-content
-{
-    font-size: 15px;
-    font-family: var(--third-font);
-    margin-bottom: 2rem;
-}
-
-.line
-{
-    width: 100%;
-    height: 0.1px;
-    background-color: rgb(209, 189, 189);
-    margin-bottom: 1rem;
-}
-
-.message-settings
-{
+.message-header {
     display: flex;
-    justify-content: flex-end;
-    gap: 15px;
+    justify-content: space-between;
     align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #eee;
 }
 
-.message-btn
-{
-    width: fit-content;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    padding: 0.5rem;
-    border-radius: var(--card-border-radius);
+.user-info h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: var(--primary-color);
 }
 
-.read-message
-{
-    color: white;
+.user-info span {
+    display: block;
+    font-size: 1.4rem;
+    color: #555;
+}
+
+.status-time {
+    text-align: right;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    color: #fff;
+}
+
+.status-badge.read {
     background-color: var(--primary-color);
 }
 
-.delete-message
-{
-    color: black;
-    background-color: var(--third-color);
+.status-badge.unread {
+    background-color: #f08a5d;
 }
 
+.datetime {
+    display: block;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.message-body {
+    padding: 1.5rem;
+}
+
+.message-content {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.message-settings {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.message-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.read-btn.read {
+    background-color: #aaa;
+    color: #fff;
+    cursor: default;
+}
+
+.read-btn.unread {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.read-btn:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.delete-btn {
+    background-color: var(--accent-color);
+    color: #000;
+}
+
+.delete-btn:hover {
+    opacity: 0.9;
+}

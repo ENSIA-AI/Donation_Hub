@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Storage;
 
 class OrganizationController  extends Controller
 {
 
-   
 
- 
-public function show($id){
-        $organization = Organization::with(['category','wilaya'])
-        ->where('id', $id)
-        ->where('status', 'approved') // only approved
-        ->firstOrFail();
+
+
+    public function show($id)
+    {
+        $organization = Organization::with(['category', 'wilaya'])
+            ->where('id', $id)
+            ->where('status', 'approved') // only approved
+            ->firstOrFail();
         return response()->json([
             'id' => $organization->id,
             'org_name' => $organization->org_name,
@@ -43,10 +44,10 @@ public function show($id){
             'impact' => $organization->impact,        // Always 3 items
             'contact' => $organization->contact,      // Dynamic based on what exists
             'posts' => $organization->posts,        // All campaigns
-            'program1_desc' =>$organization->program1_desc,
-            'program1_title' =>$organization->program1_title,
-            'program2_desc' =>$organization->program2_desc,
-            'program2_title' =>$organization->program2_title,
+            'program1_desc' => $organization->program1_desc,
+            'program1_title' => $organization->program1_title,
+            'program2_desc' => $organization->program2_desc,
+            'program2_title' => $organization->program2_title,
             // Images with full URLs
             'heroImage' => $organization->org_hero_img ? asset('storage/' . $organization->org_hero_img) : null,
             'logoImage' => $organization->org_logo ? asset('storage/' . $organization->org_logo) : null,
@@ -54,130 +55,130 @@ public function show($id){
         ]);
     }
     public function index(Request $request)
-{
-    $status = $request->query('status', 'approved');
+    {
+        $status = $request->query('status', 'approved');
 
-    $organizations = Organization::with(['category','wilaya'])
-        ->when($status, function($q, $status) {
-            $q->where('status', $status);
-        })
-        ->get();
+        $organizations = Organization::with(['category', 'wilaya'])
+            ->when($status, function ($q, $status) {
+                $q->where('status', $status);
+            })
+            ->get();
 
-    $organizations = $organizations->map(function ($organization) {
-        return [
-            'id' => $organization->id,
-            'org_name' => $organization->org_name,
-            'org_description' => $organization->org_description,
-            'category' => $organization->category,
-             'wilaya' => $organization->wilaya,
-            'heroImage' => $organization->org_hero_img
-                ? asset('storage/' . $organization->org_hero_img)
-                : null,
+        $organizations = $organizations->map(function ($organization) {
+            return [
+                'id' => $organization->id,
+                'org_name' => $organization->org_name,
+                'org_description' => $organization->org_description,
+                'category' => $organization->category,
+                'wilaya' => $organization->wilaya,
+                'heroImage' => $organization->org_hero_img
+                    ? asset('storage/' . $organization->org_hero_img)
+                    : null,
 
-            'logoImage' => $organization->org_logo
-                ? asset('storage/' . $organization->org_logo)
-                : null,
+                'logoImage' => $organization->org_logo
+                    ? asset('storage/' . $organization->org_logo)
+                    : null,
 
-            'mission_img' => $organization->mission_img
-                ? asset('storage/' . $organization->mission_img)
-                : null,
-        ];
-    });
+                'mission_img' => $organization->mission_img
+                    ? asset('storage/' . $organization->mission_img)
+                    : null,
+            ];
+        });
 
-    return response()->json($organizations);
-}
-public function update(Request $request, $id)
-{
-    $organization = Organization::findOrFail($id);
-
-    if ($organization->status !== 'approved') {
-        return response()->json([
-            'message' => 'Organization not approved yet'
-        ], 403);
+        return response()->json($organizations);
     }
+    public function update(Request $request, $id)
+    {
+        $organization = Organization::findOrFail($id);
 
-    $validated = $request->validate([
-        'org_slogan' => 'sometimes|string',
-        'org_mission' => 'sometimes|string',
-        'org_vision' => 'sometimes|string',
+        if ($organization->status !== 'approved') {
+            return response()->json([
+                'message' => 'Organization not approved yet'
+            ], 403);
+        }
 
-        'program1_title' => 'sometimes|string',
-        'program1_desc' => 'sometimes|string',
-        'program2_title' => 'sometimes|string',
-        'program2_desc' => 'sometimes|string',
+        $validated = $request->validate([
+            'org_slogan' => 'sometimes|string',
+            'org_mission' => 'sometimes|string',
+            'org_vision' => 'sometimes|string',
 
-        'value1' => 'sometimes|string',
-        'value2' => 'sometimes|string',
-        'value3' => 'sometimes|string',
-        'value4' => 'sometimes|string',
+            'program1_title' => 'sometimes|string',
+            'program1_desc' => 'sometimes|string',
+            'program2_title' => 'sometimes|string',
+            'program2_desc' => 'sometimes|string',
 
-        'org_hero_img' => 'nullable|image',
-        'org_logo' => 'nullable|image',
-        'mission_img' => 'nullable|image',
-    ]);
+            'value1' => 'sometimes|string',
+            'value2' => 'sometimes|string',
+            'value3' => 'sometimes|string',
+            'value4' => 'sometimes|string',
 
-    // images
-    if ($request->hasFile('org_hero_img')) {
-        $validated['org_hero_img'] =
-            $request->file('org_hero_img')->store('organizations/hero', 'public');
+            'org_hero_img' => 'nullable|image',
+            'org_logo' => 'nullable|image',
+            'mission_img' => 'nullable|image',
+        ]);
+
+        // images
+        if ($request->hasFile('org_hero_img')) {
+            $validated['org_hero_img'] =
+                $request->file('org_hero_img')->store('organizations/hero', 'public');
+        }
+
+        if ($request->hasFile('org_logo')) {
+            $validated['org_logo'] =
+                $request->file('org_logo')->store('organizations/logo', 'public');
+        }
+
+        if ($request->hasFile('mission_img')) {
+            $validated['mission_img'] =
+                $request->file('mission_img')->store('organizations/mission', 'public');
+        }
+
+        $organization->update($validated);
+
+        return response()->json($organization);
     }
-
-    if ($request->hasFile('org_logo')) {
-        $validated['org_logo'] =
-            $request->file('org_logo')->store('organizations/logo', 'public');
-    }
-
-    if ($request->hasFile('mission_img')) {
-        $validated['mission_img'] =
-            $request->file('mission_img')->store('organizations/mission', 'public');
-    }
-
-    $organization->update($validated);
-
-    return response()->json($organization);
-}
 
 
     public function autocomplete(Request $request)
     {
-    $q = $request->query('q');
+        $q = $request->query('q');
         if (!$q || strlen($q) < 2) {
             return response()->json([]);
         }
-    // Order by relevance: exact match first, then startsWith, then contains
-    $results = Organization::where('org_name', 'LIKE', "%{$q}%")
-        ->orderByRaw("
+        // Order by relevance: exact match first, then startsWith, then contains
+        $results = Organization::where('org_name', 'LIKE', "%{$q}%")
+            ->orderByRaw("
             CASE
                 WHEN org_name LIKE ? THEN 0
                 WHEN org_name LIKE ? THEN 1
                 ELSE 2
             END
         ", ["{$q}", "{$q}%"])
-        ->limit(8)
-        ->pluck('org_name');
+            ->limit(8)
+            ->pluck('org_name');
 
 
-    return response()->json($results);
-}
+        return response()->json($results);
+    }
 
-public function search(Request $request){
-    $q = $request->query('q');
-    $wilayaId = $request->query('wilaya_id');
-    $categoryId = $request->query('category_id');
+    public function search(Request $request)
+    {
+        $q = $request->query('q');
+        $wilayaId = $request->query('wilaya_id');
+        $categoryId = $request->query('category_id');
 
-    $query = Organization::query();
+        $query = Organization::query();
 
-    if($q) $query->where('org_name', 'LIKE', "%{$q}%");
-    if($categoryId) $query->where('category_id', $categoryId);
+        if ($q) $query->where('org_name', 'LIKE', "%{$q}%");
+        if ($categoryId) $query->where('category_id', $categoryId);
 
-    // if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
-if($wilayaId) $query->where('wilaya_id', $wilayaId);
+        // if($wilayaId) $query->orderByRaw('CASE WHEN wilaya_id = ? THEN 0 ELSE 1 END', [$wilayaId]);
+        if ($wilayaId) $query->where('wilaya_id', $wilayaId);
 
-    $query->orderBy('org_name');
+        $query->orderBy('org_name');
 
-    return response()->json($query->get());
-
-}
+        return response()->json($query->get());
+    }
 
 
 
@@ -263,8 +264,7 @@ if($wilayaId) $query->where('wilaya_id', $wilayaId);
     }
 
     public function pending()
-{
-    return Organization::where('status', 'pending')->get();
-}
-
+    {
+        return Organization::where('status', 'pending')->get();
+    }
 }

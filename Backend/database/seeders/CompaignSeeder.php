@@ -37,7 +37,7 @@ class CompaignSeeder extends Seeder
                 'compaign_ID' => 1,
                 'compaign_title' => 'Clean Water Initiative',
                 'compaign_content' => 'Providing clean water to rural areas.',
-                'compaign_img' => null,
+                'compaign_img' => 'compaigns/postagri.jpg',
                 'compaign_date' => now(),
                 'status' => 'waiting',
                 'organization_id' => $organization->id,

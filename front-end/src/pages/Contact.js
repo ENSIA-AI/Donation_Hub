@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../styles/Contact.css";
 
 const Contact = () => {
-  // Form fields state
   const [form, setForm] = useState({
     fname: "",
     lname: "",
@@ -11,49 +10,30 @@ const Contact = () => {
     message: "",
   });
 
-  // Error state
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
 
-
-  // Handle all input changes
+  // Handle input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Validation logic
+  // Validate fields
   const validate = () => {
-    let newErrors = {};
-
+    const newErrors = {};
     if (!form.fname.trim()) newErrors.fname = "First name cannot be blank";
     if (!form.lname.trim()) newErrors.lname = "Last name cannot be blank";
-    if (!form.message.trim()) newErrors.message = "Message cannot be blank";
-    if (!form.subject.trim()) newErrors.subject = "Subject cannot be blank";
-
-    // Email validation
     if (!form.email.trim()) newErrors.email = "Email cannot be blank";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       newErrors.email = "Invalid email format";
+    if (!form.subject.trim()) newErrors.subject = "Subject cannot be blank";
+    if (!form.message.trim()) newErrors.message = "Message cannot be blank";
 
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   };
 
-  // Submit handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      console.log("Form submitted:", form);
-      setSuccessMessage("Your message has been sent successfully!");
-      handleReset();
-
-    // Hide message after 5 seconds
-    setTimeout(() => setSuccessMessage(""), 5000);
-    }
-  };
-
-  // Reset handler
+  // Reset form
   const handleReset = () => {
     setForm({
       fname: "",
@@ -63,115 +43,119 @@ const Contact = () => {
       message: "",
     });
     setErrors({});
+    setSuccessMessage("");
+  };
+
+  // Submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    try {
+      const response = await fetch("http://localhost:8000/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSuccessMessage(data.message);
+        handleReset();
+
+        // Optional: trigger event so dashboard updates immediately
+        window.dispatchEvent(
+          new CustomEvent("newMessage", { detail: data.data }),
+        );
+
+        setTimeout(() => setSuccessMessage(""), 5000);
+      } else {
+        setErrors(
+          data.errors || { general: data.message || "Error sending message" },
+        );
+      }
+    } catch (err) {
+      console.error("Error sending message:", err);
+      setErrors({ general: "Network error. Check backend." });
+    }
   };
 
   return (
     <section className="contact-container">
       <div className="contact-card">
-        {/* Left info section */}
         <div className="contact-info">
           <h1>Contact Us</h1>
-          <p>
-            We'd love to hear from you! Whether it's feedback, a partnership
-            idea, or support — reach out anytime.
-          </p>
-
-          <div className="info-item">
-            <i className="fas fa-envelope"></i> contact@donifydz.com
-          </div>
-          <div className="info-item">
-            <i className="fas fa-phone"></i> 0 799 999 999
-          </div>
-          <div className="info-item">
-            <i className="fas fa-map-marker-alt"></i> Algiers, Algeria
-          </div>
-
-          <div className="socials">
-            <a href="https://www.facebook.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/Donify_DZ" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/Donify_DZ" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a>
-          </div>
+          <p>We'd love to hear from you! Reach out anytime.</p>
         </div>
 
-        {/* Right form section */}
-        <form className="contact-form" onSubmit={handleSubmit} onReset={handleReset}>
+        <form className="contact-form" onSubmit={handleSubmit}>
+          {/* First & Last Name */}
           <div className="name-field">
-            {/* First Name */}
-            <div className={`input-group ${errors.fname ? "error" : form.fname ? "success" : ""}`}>
-              <input
-                type="text"
-                name="fname"
-                value={form.fname}
-                onChange={handleChange}
-                className={form.fname ? "has-value" : ""}
-              />
+            <div className={`input-group ${errors.fname ? "error" : ""}`}>
+              <input name="fname" value={form.fname} onChange={handleChange} />
               <label>First Name</label>
-              {errors.fname && <div className="error-message">{errors.fname}</div>}
+              {errors.fname && (
+                <div className="error-message">{errors.fname}</div>
+              )}
             </div>
 
-            {/* Last Name */}
-            <div className={`input-group ${errors.lname ? "error" : form.lname ? "success" : ""}`}>
-              <input
-                type="text"
-                name="lname"
-                value={form.lname}
-                onChange={handleChange}
-                className={form.lname ? "has-value" : ""}
-              />
+            <div className={`input-group ${errors.lname ? "error" : ""}`}>
+              <input name="lname" value={form.lname} onChange={handleChange} />
               <label>Last Name</label>
-              {errors.lname && <div className="error-message">{errors.lname}</div>}
+              {errors.lname && (
+                <div className="error-message">{errors.lname}</div>
+              )}
             </div>
           </div>
 
           {/* Email */}
-          <div className={`input-group ${errors.email ? "error" : form.email ? "success" : ""}`}>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              className={form.email ? "has-value" : ""}
-            />
-            <label>Email Address</label>
-            {errors.email && <div className="error-message">{errors.email}</div>}
+          <div className={`input-group ${errors.email ? "error" : ""}`}>
+            <input name="email" value={form.email} onChange={handleChange} />
+            <label>Email</label>
+            {errors.email && (
+              <div className="error-message">{errors.email}</div>
+            )}
           </div>
 
           {/* Subject */}
-          <div className={`input-group ${errors.subject ? "error" : form.subject ? "success" : ""}`}>
-            <select
-              name="subject"
-              value={form.subject}
-              onChange={handleChange}
-              className={form.subject ? "has-value" : ""}
-            >
-              <option value="" disabled>Select Subject</option>
+          <div className={`input-group ${errors.subject ? "error" : ""}`}>
+            <select name="subject" value={form.subject} onChange={handleChange}>
+              <option value="">Select Subject</option>
               <option>Feedback</option>
               <option>Technical Issue</option>
               <option>Other</option>
             </select>
-            {errors.subject && <div className="error-message">{errors.subject}</div>}
+            {errors.subject && (
+              <div className="error-message">{errors.subject}</div>
+            )}
           </div>
 
           {/* Message */}
-          <div className={`input-group ${errors.message ? "error" : form.message ? "success" : ""}`}>
+          <div className={`input-group ${errors.message ? "error" : ""}`}>
             <textarea
               name="message"
-              rows="5"
               value={form.message}
               onChange={handleChange}
-              className={form.message ? "has-value" : ""}
             ></textarea>
             <label>Message</label>
-            {errors.message && <div className="error-message">{errors.message}</div>}
+            {errors.message && (
+              <div className="error-message">{errors.message}</div>
+            )}
           </div>
 
-{successMessage && (
-  <div className="success-message">{successMessage}</div>
-)}
+          {errors.general && (
+            <div className="error-message">{errors.general}</div>
+          )}
+          {successMessage && (
+            <div className="success-message">{successMessage}</div>
+          )}
 
           <div className="btn-group">
-            <button type="reset" className="reset-btn">Reset</button>
-            <button type="submit" className="send-btn">Send</button>
+            <button type="button" onClick={handleReset}>
+              Reset
+            </button>
+            <button type="submit">Send</button>
           </div>
         </form>
       </div>

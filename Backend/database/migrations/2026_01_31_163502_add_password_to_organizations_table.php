@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('organizations', function (Blueprint $table) {
-            $table->string('password')->after('org_email');
+            // $table->string('password')->after('org_email');
         });
     }
 
@@ -26,4 +26,3 @@ return new class extends Migration
         });
     }
 };
-

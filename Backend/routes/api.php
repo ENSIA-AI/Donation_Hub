@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Organization;
 use App\Models\Donation;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\MessageController;
 
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
@@ -122,3 +122,13 @@ Route::get('/donations-over-time', function () {
         ->orderBy('date')
         ->get();
 });
+
+
+
+
+
+// Message API Routes
+Route::post('/messages', [MessageController::class, 'store']);
+Route::get('/messages', [MessageController::class, 'index']);
+Route::patch('/messages/{id}/read', [MessageController::class, 'markRead']);
+Route::delete('/messages/{id}', [MessageController::class, 'destroy']);

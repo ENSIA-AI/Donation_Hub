@@ -1,47 +1,51 @@
 import React, { useState } from "react";
+import "../styles/dashMessages.css";
 
-const MessageCard = ({ user, datetime, email, content, initialStatus }) => {
-  const [status, setStatus] = useState(initialStatus); // 'read' or 'unread'
+const MessageCard = ({
+  user,
+  datetime,
+  email,
+  content,
+  initialStatus,
+  markRead,
+  deleteMessage,
+}) => {
+  const [status, setStatus] = useState(initialStatus);
 
-  const markRead = () => {
+  const handleMarkRead = () => {
     if (status === "read") return;
+    markRead();
     setStatus("read");
   };
 
   return (
-    <div className="message-card">
+    <div className={`message-card ${status}`}>
       <div className="message-header">
-        <div className="info"><i className="fas fa-user"></i> {user}</div>
-        <div className="info"><i className="fas fa-clock"></i> {datetime}</div>
-        <div className="info"><i className="fas fa-envelope"></i> {email}</div>
-        <div className={`status ${status}`}>
-          {status === "read" ? (
-            <><i className="fas fa-check"></i> Read</>
-          ) : (
-            <><i className="fas fa-times"></i> Unread</>
-          )}
+        <div className="user-info">
+          <h3>{user}</h3>
+          <span>{email}</span>
+        </div>
+        <div className="status-time">
+          <span className={`status-badge ${status}`}>
+            {status === "read" ? "Read" : "Unread"}
+          </span>
+          <span className="datetime">{datetime}</span>
         </div>
       </div>
 
       <div className="message-body">
-        <div className="message-content">
-          <p>{content}</p>
-        </div>
-
-        <div className="line"></div>
-
+        <p className="message-content">{content}</p>
         <div className="message-settings">
-          <div
-            className="message-btn read-message"
-            onClick={markRead}
-            style={{ opacity: status === "read" ? 0.6 : 1, pointerEvents: status === "read" ? "none" : "auto" }}
+          <button
+            className={`message-btn read-btn ${status}`}
+            onClick={handleMarkRead}
+            disabled={status === "read"}
           >
-            {status === "read" ? <><i className="fas fa-check"></i> Read</> : <><i className="fas fa-plus"></i> Mark Read</>}
-          </div>
-
-          <div className="message-btn delete-message">
-            <i className="fas fa-trash"></i> Delete
-          </div>
+            {status === "read" ? "Read" : "Mark Read"}
+          </button>
+          <button className="message-btn delete-btn" onClick={deleteMessage}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

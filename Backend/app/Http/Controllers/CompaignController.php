@@ -9,7 +9,19 @@ class CompaignController extends Controller
 {
     public function index()
     {
-        return Compaign::all();
+        $campaigns = Compaign::with('organization')->get()->map(function ($c) {
+            return [
+                'id' => $c->id,
+                'title' => $c->compaign_title,
+                'content' => $c->compaign_content,
+                'image_url' => $c->compaign_img ? asset('storage/' . $c->compaign_img) : null,
+                'organization' => $c->organization->name,
+                'status' => $c->status,
+                'date' => $c->compaign_date,
+            ];
+        });
+
+        return response()->json($campaigns);
     }
     public function show($id)
     {
@@ -53,7 +65,7 @@ class CompaignController extends Controller
             'compaign_title' => 'required|string|max:255',
             'compaign_content' => 'required|string',
             'compaign_img' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
-            'organization_id' => 'required|exists:organizations,id', // <-- add this
+            'organization_id' => 'required|exists:organizations,id',
         ]);
 
         $imagePath = null;
@@ -67,10 +79,18 @@ class CompaignController extends Controller
             'compaign_img' => $imagePath,
             'status' => 'waiting',
             'compaign_date' => now(),
-            'organization_id' => $request->organization_id, // <-- add this
+            'organization_id' => $request->organization_id,
         ]);
 
-        return response()->json($compaign, 201);
+        return response()->json([
+            'id' => $compaign->id,
+            'title' => $compaign->compaign_title,
+            'content' => $compaign->compaign_content,
+            'image_url' => $imagePath ? asset('storage/' . $imagePath) : null, // <-- full URL
+            'organization' => $compaign->organization->name,
+            'status' => $compaign->status,
+            'date' => $compaign->compaign_date,
+        ], 201);
     }
 
 

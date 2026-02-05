@@ -26,15 +26,15 @@ const ExploreOrganizations = () => {
   };
 
   useEffect(() => {
-  axios
-    .get("/organization?status=approved")
-    .then((response) => {
-      setOrganizations(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching organizations:", error);
-    });
-}, []);
+    axios
+      .get("/organization?status=approved")
+      .then((response) => {
+        setOrganizations(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching organizations:", error);
+      });
+  }, []);
   return (
     <main>
       <div className="title">
@@ -63,7 +63,6 @@ const ExploreOrganizations = () => {
               id={org.id}
               title={org.org_name}
               description={org.org_description}
-               
             />
           ))}
         </div>
