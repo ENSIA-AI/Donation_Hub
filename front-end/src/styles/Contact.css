@@ -20,7 +20,6 @@ html {
     min-height: 80vh;
     max-width: 1000px;
     margin: 0 auto;
-    /* center it */
     background: linear-gradient(135deg, #f9f9f9, #e6f4ef);
 }
 
@@ -65,7 +64,6 @@ html {
 .contact-info .info-item i {
     color: var(--third-color);
     font-size: 2rem;
-
 }
 
 .socials {
@@ -74,31 +72,20 @@ html {
 
 .socials a {
     display: inline-block;
-    /* important for smooth transform */
     color: var(--third-color);
     font-size: 2rem;
     margin-right: 15px;
     opacity: 0.9;
-    transition: transform 280ms ease,
-        /* animate transform */
-        opacity 280ms ease,
-        /* animate opacity */
-        box-shadow 280ms ease,
-        /* animate shadow */
-        color 280ms ease;
-    /* animate color */
+    transition: transform 280ms ease, opacity 280ms ease, box-shadow 280ms ease, color 280ms ease;
     will-change: transform, opacity, box-shadow;
-
 }
 
 .socials a:hover {
     transform: translateY(-6px) scale(1.09);
     opacity: 1;
     color: var(--background-color);
-    /* or var(--accent-color) for contrast */
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
-
 
 /*----------contact-form------------*/
 .contact-form {
@@ -121,6 +108,8 @@ html {
     margin-bottom: 25px;
     flex: 1;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group input,
@@ -135,33 +124,38 @@ html {
     font-size: 15px;
     transition: border-color 0.3s;
     outline: none;
+    order: 1;
 }
 
 .input-group label {
     position: absolute;
-    top: 12px;
     left: 12px;
     color: rgba(0, 0, 0, 0.5);
     font-size: 15px;
-    transition: all 0.2s ease;
-    pointer-events: none;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
+    pointer-events: none;
+    transform-origin: left;
+    order: 0;
 }
 
-/* Floating label moves up when input has value OR input is focused */
-.input-group input:focus + label,
-.input-group textarea:focus + label,
-.input-group select:focus + label,
-.input-group input.has-value + label,
-.input-group textarea.has-value + label,
-.input-group select.has-value + label {
+/* Label floating up when input is focused */
+.input-group input:focus~label,
+.input-group textarea:focus~label,
+.input-group select:focus~label {
     font-size: 13px;
     top: -8px;
     color: var(--secondary-color);
 }
 
-
+/* Label floating up when input has a value (using :not(:placeholder-shown)) */
+.input-group input:not(:placeholder-shown)~label,
+.input-group textarea:not(:placeholder-shown)~label,
+.input-group select:not([value=""])~label,
+.input-group select>option:not([value=""]):checked~label {
+    font-size: 13px;
+    top: -8px;
+    color: var(--secondary-color);
+}
 
 .input-group input:focus,
 .input-group textarea:focus,
@@ -175,46 +169,48 @@ html {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    margin-top: 20px;
 }
 
 .reset-btn,
 .send-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px 28px;
-    border: none;
-    border-radius: 12px;
+    flex: 1;
+    padding: 10px 20px;
+    font-size: 1.4rem;
     font-weight: 600;
-    font-size: 17px;
+    max-width: 100px;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Send button */
+.send-btn {
+    background: linear-gradient(135deg, var(--third-color), #fff59d);
+    color: var(--secondary-color);
+}
+
+.send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.send-btn:active {
+    transform: translateY(0);
+}
+
+/* Reset button */
 .reset-btn {
-    background-color: #f1f1f1;
+    background: #f1f1f1;
     color: #333;
 }
 
 .reset-btn:hover {
     background: #e5e5e5;
     transform: translateY(-2px);
-}
-
-.send-btn {
-    background-color: var(--third-color);
-    color: var(--secondary-color);
-}
-
-.send-btn:hover {
-    background: #ffe27d;
-    transform: translateY(-2px);
-}
-
-.error {
-    font-size: 14px;
-    margin-top: 5px;
-    display: block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Error state */
@@ -229,18 +225,6 @@ html {
     color: #e74c3c;
 }
 
-/* Success state */
-.input-group.success input,
-.input-group.success textarea,
-.input-group.success select {
-    border-color: var(--primary-color);
-    box-shadow: 0 1px 1px rgba(16, 115, 97, 0.3);
-}
-
-.input-group.success label {
-    color: var(--primary-color);
-}
-
 /* Error message text */
 .input-group .error-message {
     color: #e74c3c;
@@ -249,58 +233,37 @@ html {
     animation: fadeIn 0.3s ease;
 }
 
+.error-message {
+    color: #e74c3c;
+    margin-top: 4px;
+    font-size: 13px;
+    animation: fadeIn 0.3s ease;
+    display: block;
+}
+
+/* Success message */
 .success-message {
     color: var(--primary-color);
     font-size: 1.4rem;
     margin-bottom: 15px;
     animation: fadeIn 0.5s ease;
-}
-/* Buttons smaller version */
-.send-btn,
-.reset-btn {
-    flex: 1;
-    padding: 10px 20px;
-    /* smaller padding */
-    font-size: 1.4rem;
-    /* smaller text */
-    font-weight: 600;
-    max-width: 100px;
-    border: none;
-    border-radius: 20px;
-    /* slightly smaller radius */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    /* smaller shadow */
+    padding: 12px;
+    background-color: #d4edda;
+    border-radius: 6px;
+    border: 1px solid #c3e6cb;
 }
 
-/* Send button */
-.send-btn {
-    background: linear-gradient(135deg, var(--third-color), #fff59d);
-    color: var(--secondary-color);
-}
-
-.send-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Reset button */
-.reset-btn {
-    background: #f1f1f1;
-    color: #333;
-}
-
-.reset-btn:hover {
-    background: #e5e5e5;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-3px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
 
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 @keyframes fadeSlide {
     from {
@@ -347,6 +310,7 @@ html {
 
     .name-field {
         flex-direction: column;
+        gap: 0;
     }
 
     .contact-form {
@@ -361,7 +325,8 @@ html {
     .send-btn {
         padding: 13px 23px;
         font-size: 15px;
+        max-width: 100%;
     }
-
-
 }
+
+

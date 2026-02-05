@@ -105,7 +105,6 @@ const Home = () => {
           <Link className="contact_btn" to="/contact">
             Contact Us
           </Link>
-          <Link to="/AdminDashboardStat">Go to Dashboard</Link>
         </div>
       </section>
     </main>

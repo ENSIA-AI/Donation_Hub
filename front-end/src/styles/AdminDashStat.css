@@ -233,7 +233,7 @@ a {
 
 .Admin_logOut {
     color: var(--gray-color);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 600;
     font-family: var(--secondary-font);
     margin-bottom: 2rem;
@@ -243,6 +243,7 @@ a {
     border: none;
     cursor: pointer;
     color: inherit;
+    
     font: inherit;
     display: flex;
     align-items: center;
@@ -729,7 +730,6 @@ a {
   cursor: pointer;
   border-radius: 5px;
 }
-
 
 /* =====================================Classes ========================================= */
 

@@ -93,28 +93,43 @@ const Contact = () => {
           {/* First & Last Name */}
           <div className="name-field">
             <div className={`input-group ${errors.fname ? "error" : ""}`}>
-              <input name="fname" value={form.fname} onChange={handleChange} />
+              <input
+                name="fname"
+                value={form.fname}
+                onChange={handleChange}
+                placeholder=" "
+              />
               <label>First Name</label>
               {errors.fname && (
-                <div className="error-message">{errors.fname}</div>
+                <span className="error-message">{errors.fname}</span>
               )}
             </div>
 
             <div className={`input-group ${errors.lname ? "error" : ""}`}>
-              <input name="lname" value={form.lname} onChange={handleChange} />
+              <input
+                name="lname"
+                value={form.lname}
+                onChange={handleChange}
+                placeholder=" "
+              />
               <label>Last Name</label>
               {errors.lname && (
-                <div className="error-message">{errors.lname}</div>
+                <span className="error-message">{errors.lname}</span>
               )}
             </div>
           </div>
 
           {/* Email */}
           <div className={`input-group ${errors.email ? "error" : ""}`}>
-            <input name="email" value={form.email} onChange={handleChange} />
+            <input
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder=" "
+            />
             <label>Email</label>
             {errors.email && (
-              <div className="error-message">{errors.email}</div>
+              <span className="error-message">{errors.email}</span>
             )}
           </div>
 
@@ -122,12 +137,13 @@ const Contact = () => {
           <div className={`input-group ${errors.subject ? "error" : ""}`}>
             <select name="subject" value={form.subject} onChange={handleChange}>
               <option value="">Select Subject</option>
-              <option>Feedback</option>
-              <option>Technical Issue</option>
-              <option>Other</option>
+              <option value="Feedback">Feedback</option>
+              <option value="Technical Issue">Technical Issue</option>
+              <option value="Other">Other</option>
             </select>
+
             {errors.subject && (
-              <div className="error-message">{errors.subject}</div>
+              <span className="error-message">{errors.subject}</span>
             )}
           </div>
 
@@ -137,15 +153,21 @@ const Contact = () => {
               name="message"
               value={form.message}
               onChange={handleChange}
+              placeholder=" "
             ></textarea>
             <label>Message</label>
             {errors.message && (
-              <div className="error-message">{errors.message}</div>
+              <span className="error-message">{errors.message}</span>
             )}
           </div>
 
           {errors.general && (
-            <div className="error-message">{errors.general}</div>
+            <span
+              className="error-message"
+              style={{ display: "block", marginBottom: "15px" }}
+            >
+              {errors.general}
+            </span>
           )}
           {successMessage && (
             <div className="success-message">{successMessage}</div>
