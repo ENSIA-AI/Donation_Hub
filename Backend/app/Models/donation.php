@@ -19,7 +19,9 @@ class Donation extends Model
         'donation_type',
         'donation_amount',
         'donation_received',
-        'donation_date'
+        'donation_date',
+        'organization_id',
+        'campaign_ID',
     ];
 
     protected $casts = [

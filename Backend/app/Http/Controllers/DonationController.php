@@ -29,6 +29,8 @@ class DonationController extends Controller
                     'donation_date' => $donation->donation_date->format('Y-m-d'), // <--- clean format
                     'organization' => $donation->organization,
                     'post' => $donation->post,
+                    'organization_id' => $donation->organization_id,
+                    'campaign_ID' => $donation->campaign_ID,
                 ];
             });
 
@@ -51,9 +53,13 @@ class DonationController extends Controller
                 'donation_amount'     => 'nullable|numeric|min:0',
                 'donation_date'       => 'required|date',
                 'donation_received'   => 'boolean',
-                'organization_id'     => 'required|exists:organizations,id',   
+                'organization_id'     => 'required|exists:organizations,id',
                 'compaign_ID'         => 'nullable|exists:compaigns,compaign_ID',
+
             ]);
+
+            $validated['donation_received'] = $validated['donation_received'] ?? false;
+
 
             if (
                 $validated['donation_type'] === 'money'
@@ -96,7 +102,11 @@ class DonationController extends Controller
             'donation_amount' => 'nullable|numeric|min:0',
             'donation_date' => 'required|date',
             'donation_received' => 'boolean',
+            'organization_id'   => 'required|exists:organizations,id',
+            'campaign_ID'       => 'nullable|exists:campaigns,id',
         ]);
+
+         $validated['donation_received'] = $validated['donation_received'] ?? $donation->donation_received;
 
         if (
             $validated['donation_type'] === 'money'
