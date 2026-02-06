@@ -107,12 +107,24 @@ const EditProfile = () => {
 
       {/* TAB NAVIGATION */}
       <div className="edit-tabs">
+        <div className="tab_button">
         <button onClick={() => setActiveTab("general")}>General</button>
+        </div>
+        <div className="tab_button">
         <button onClick={() => setActiveTab("about")}>About</button>
+        </div>
+        <div className="tab_button">
         <button onClick={() => setActiveTab("programs")}>Programs</button>
+        </div>
+        <div className="tab_button">
         <button onClick={() => setActiveTab("values")}>Values</button>
+        </div>
+        <div className="tab_button">
         <button onClick={() => setActiveTab("contact")}>Contact</button>
+        </div>
+        <div className="tab_button">
         <button onClick={() => setActiveTab("media")}>Media</button>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -121,20 +133,22 @@ const EditProfile = () => {
         {activeTab === "general" && (
           <div className="form-section">
             <h2>General Information</h2>
-
-            <label>Organization Name</label>
+             <div className="edit_feild">
+            <label >Organization Name</label>
             <input
               name="org_name"
               value={form.org_name}
               onChange={handleChange}
             />
-
+            </div>
+            <div className="edit_feild">
             <label>Slogan</label>
             <input
               name="org_slogan"
               value={form.org_slogan}
               onChange={handleChange}
             />
+            </div>
           </div>
         )}
 
@@ -142,27 +156,36 @@ const EditProfile = () => {
         {activeTab === "about" && (
           <div className="form-section">
             <h2>About Organization</h2>
-
+            <div className="about_feild">
             <label>Description</label>
+            <div>
             <textarea
               name="org_description"
               value={form.org_description}
               onChange={handleChange}
             />
-
+            </div>
+            </div>
+            <div className="about_feild">
             <label>Mission</label>
+            <div>
             <textarea
               name="org_mission"
               value={form.org_mission}
               onChange={handleChange}
             />
-
+            </div>
+            </div>
+            <div className="about_feild">
             <label>Vision</label>
+            <div>
             <textarea
               name="org_vision"
               value={form.org_vision}
               onChange={handleChange}
             />
+            </div>
+            </div>
           </div>
         )}
 
@@ -170,8 +193,9 @@ const EditProfile = () => {
         {activeTab === "programs" && (
           <div className="form-section">
             <h2>Programs</h2>
-
-<h3>Program 1</h3>
+             <div className="program_edit">
+            <h3>Program 1</h3>
+            
             <input
               name="program1_title"
               value={form.program1_title}
@@ -184,7 +208,8 @@ const EditProfile = () => {
               onChange={handleChange}
               placeholder="Description"
             />
-
+            </div>
+            <div className="program_edit">
             <h3>Program 2</h3>
             <input
               name="program2_title"
@@ -198,6 +223,7 @@ const EditProfile = () => {
               onChange={handleChange}
               placeholder="Description"
             />
+            </div>
           </div>
         )}
 
@@ -205,11 +231,12 @@ const EditProfile = () => {
         {activeTab === "values" && (
           <div className="form-section">
             <h2>Core Values</h2>
-
+             <div className="edit_feild">
             <input name="value1" value={form.value1} onChange={handleChange} />
             <input name="value2" value={form.value2} onChange={handleChange} />
             <input name="value3" value={form.value3} onChange={handleChange} />
             <input name="value4" value={form.value4} onChange={handleChange} />
+            </div>
           </div>
         )}
 
@@ -217,41 +244,46 @@ const EditProfile = () => {
         {activeTab === "contact" && (
           <div className="form-section">
             <h2>Contact Information</h2>
-
+             <div className="edit_feild">
             <label>Address</label>
             <input
               name="org_address"
               value={form.org_address}
               onChange={handleChange}
             />
-
+             </div>
+             <div className="edit_feild">
             <label>Phone</label>
             <input
               name="org_phone"
               value={form.org_phone}
               onChange={handleChange}
             />
-
+            </div>
+            <div className="edit_feild">
             <label>Email</label>
             <input
               name="org_email"
               value={form.org_email}
               onChange={handleChange}
             />
-
+             </div>
+             <div className="edit_feild">
             <label>Facebook</label>
             <input
               name="org_facebook"
               value={form.org_facebook}
               onChange={handleChange}
             />
-
+            </div>
+            <div className="edit_feild">
             <label>Instagram</label>
             <input
               name="org_instagram"
               value={form.org_instagram}
               onChange={handleChange}
             />
+            </div>
           </div>
         )}
 
@@ -259,7 +291,7 @@ const EditProfile = () => {
         {activeTab === "media" && (
           <div className="form-section">
             <h2>Images</h2>
-
+             <div className="img_feild">
             <label>Hero Image</label>
             <input type="file" onChange={(e) => setHeroFile(e.target.files[0])} />
             {heroFile && (
@@ -269,7 +301,8 @@ const EditProfile = () => {
                 className="preview-img"
               />
             )}
-
+             </div>
+             <div className="img_feild">
             <label>Logo</label>
             <input type="file" onChange={(e) => setLogoFile(e.target.files[0])} />
             {logoFile && (
@@ -279,7 +312,8 @@ const EditProfile = () => {
                 className="preview-img small"
               />
             )}
-
+            </div>
+            <div className="img_feild">
             <label>Mission Image</label>
             <input type="file" onChange={(e) => setMissionFile(e.target.files[0])} />
             {missionFile && (
@@ -289,6 +323,8 @@ const EditProfile = () => {
                 className="preview-img"
               />
             )}
+            </div>
+            <div className="img_feild">
             <label>program 1 image</label>
             <input type="file" onChange={(e) => setProgram1_img(e.target.files[0])} />
             {program1_img && (
@@ -298,6 +334,8 @@ const EditProfile = () => {
                 className="preview-img"
               />
             )}
+            </div>
+            <div className="img_feild">
             <label>program 2 image</label>
             <input type="file" onChange={(e) => setProgram2_img(e.target.files[0])} />
             {program2_img && (
@@ -307,6 +345,7 @@ const EditProfile = () => {
                 className="preview-img"
               />
             )}
+            </div>
           </div>
         )}
 
