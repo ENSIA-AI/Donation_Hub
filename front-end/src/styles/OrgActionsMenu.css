@@ -1,0 +1,198 @@
+:root {
+    --primary-font: "Poppins";
+    --secondary-font: "Montserrat", sans-serif;
+    --third-font: "Lato";
+    --primary-color: #107361;
+    --secondary-color: #0F594C;
+    --third-color: #FEDA79;
+    --background-color: #F2F2F2;
+    --text-font-size: 1.6rem;
+    --section-title-font-size: 4rem;
+    --subtitle-font-size: 2.5rem;
+    --bottom-font-size: 1.3rem;
+    --card-border-radius: 10px;
+    --button-border-radius: 20px;
+}
+
+.org-actions-menu {
+  position: relative;
+  display: inline-block;
+}
+
+
+.menu-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background:var(--background-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+}
+
+.menu-toggle-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.menu-toggle-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.menu-toggle-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle-btn:hover svg {
+  transform: scale(1.1);
+}
+
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  padding: 6px;
+  z-index: 1000;
+  opacity: 0;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: top right;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.menu-item svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.menu-item span {
+  white-space: nowrap;
+}
+
+
+.menu-item.dashboard:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.menu-item.dashboard:hover svg {
+  transform: scale(1.05);
+  stroke: #1d4ed8;
+}
+
+
+.menu-item.edit:hover {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.menu-item.edit:hover svg {
+  transform: scale(1.05);
+  stroke: #15803d;
+}
+
+
+.menu-item.delete {
+  color: #dc2626;
+}
+
+.menu-item.delete:hover {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.menu-item.delete:hover svg {
+  transform: scale(1.05);
+  stroke: #991b1b;
+}
+
+
+.menu-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 6px 8px;
+}
+
+
+.org-actions-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    min-width: 200px;
+  }
+
+  .menu-item {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .menu-toggle-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .org-actions-container {
+    padding: 16px 20px;
+  }
+}
+
+/* Focus styles */
+.menu-toggle-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.menu-item:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}

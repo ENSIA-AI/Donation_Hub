@@ -17,6 +17,7 @@ import CreatePost from "../components/CreatePost";
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
+import OrgActionsMenu from "../components/OrgActionsMenu";
 
 const OrgProfile = () => {
   const navigate = useNavigate();
@@ -193,26 +194,10 @@ const handleDonate = (post) => {
 
 
       {isOwner && (
-        <div className="edit_delete_container">
-          <div className="edit_links_s">
-            <div>
-              <Link to={`/dashboard/${org.id}`} className="Link_style">
-                Go to Dashboard
-              </Link>
-            </div>
-            <div>
-              <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
-                Edit profile
-              </Link>
-            </div>
-          </div>
-          <div>
-            <button className="Link_style_del" onClick={handleDelete}>
-              Delete profile
-            </button>
-          </div>
-        </div>
-      )}
+  <div className="org-actions-container">
+    <OrgActionsMenu orgId={org.id} onDelete={handleDelete} />
+  </div>
+)}
       
 
 
