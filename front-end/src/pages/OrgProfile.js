@@ -62,7 +62,6 @@ const OrgProfile = () => {
         setOrg(res.data);
       } catch (err) {
         console.error(err);
-        setError("Failed to load organization.");
       } finally {
         setOrgLoading(false);
       }
@@ -157,12 +156,6 @@ const OrgProfile = () => {
 
   if (orgLoading)
     return <h1 className="handall_loading">Loading organization...</h1>;
-
-  useEffect(() => {
-    fetchApprovedCampaigns();
-  }, [id]);
-
-  if (orgLoading) return <h1>Loading organization...</h1>;
 
   // Handle invalid ID
   if (!org) return <h1 className="handall_loading">invalid organization !</h1>;
