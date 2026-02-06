@@ -115,7 +115,7 @@ const Donate = () => {
         {/* Organization Info */}
         <div className="org-info col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
           <div className="org-card">
-            <h1 className="org-name">Organization Name</h1>
+            <h1 className="org-name">Make a Donation</h1>
             <p className="org-description">
               Every contribution, big or small, helps us build a stronger, more resilient
               <br />
