@@ -115,20 +115,8 @@ function Dashboard() {
 
   // Fetch all donations
   useEffect(() => {
-  fetch(`http://127.0.0.1:8000/api/dashboard/donations?org_id=${id}`, {
-  credentials: "include",
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log('API Response:', data); 
-      console.log('Donations array:', data.data); // See the donations array
-      console.log('Number of donations:', data.data?.length); // Count
-      setDonations(Array.isArray(data.data) ? data.data : []);
-      setLoadingDonations(false);
-
     fetch(`http://127.0.0.1:8000/api/dashboard/donations?org_id=${id}`, {
       credentials: "include",
-
     })
       .then((res) => res.json())
       .then((data) => {
@@ -146,13 +134,12 @@ function Dashboard() {
 
   //Fetch all requests
   useEffect(() => {
+    if (!id) return; // make sure org id exists
 
-  if (!id) return; 
     setLoadingRequests(true);
     fetch(`http://127.0.0.1:8000/api/dashboard/requests/${id}`, {
       credentials: "include",
     })
-
       .then((res) => res.json())
       .then((data) => {
         setRequests(Array.isArray(data.data) ? data.data : []);
@@ -163,7 +150,6 @@ function Dashboard() {
         setLoadingRequests(false);
       });
   }, [id]);
-
 
   // Handle status change
   const handleStatusChange = async (donationId, newStatus) => {
@@ -281,61 +267,9 @@ function Dashboard() {
         },
       });
 
-
       localStorage.removeItem("token");
       localStorage.removeItem("role");
       localStorage.removeItem("organization");
-
-
-const filteredDonations = donations.filter(donation => {
-  const matchesSearch =
-     (donation.donor_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-     (donation.donor_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-     (donation.donor_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-     (donation.donation_type ?? '').toLowerCase().includes(searchTerm.toLowerCase());
-  
-  const matchesStatus = 
-     statusFilter === 'all' ||
-     (statusFilter === 'received' && donation.donation_received) ||
-     (statusFilter === 'waiting' && !donation.donation_received);
-
-
-  return matchesSearch && matchesStatus;
-});
-    
-  const visibleDonations = showMoreDonations ? filteredDonations : filteredDonations.slice(0, VISIBLE_ROWS);
-
-
-const filteredRequests = requests.filter(request =>
-  (request.rec_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-  (request.rec_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-  (request.rec_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-  (request.rec_type ?? '').toLowerCase().includes(searchTerm.toLowerCase())
-);
-  
-  const visibleRequests = showMoreRequests ? filteredRequests : filteredRequests.slice(0, VISIBLE_ROWS);
-const handleOrgLogout = async () => {
-  try {
-    await fetch("http://127.0.0.1:8000/api/logout", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-    });
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("organization");
-
-    navigate("/login");
-
-  } catch (error) {
-    console.error("Logout failed:", error);
-  }
-};
-
 
       navigate("/login");
     } catch (error) {
