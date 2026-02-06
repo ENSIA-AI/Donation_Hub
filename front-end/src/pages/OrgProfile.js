@@ -79,6 +79,7 @@ const handleDonate = (post) => {
         setOrg(res.data);
       } catch (err) {
         console.error(err);
+
       } finally {
         setOrgLoading(false);
       }
@@ -174,10 +175,12 @@ const handleDonate = (post) => {
   if (orgLoading)
     return <h1 className="handall_loading">Loading organization...</h1>;
 
+
   // Handle invalid ID
   if (!org) return <h1 className="handall_loading">invalid organization !</h1>;
   return (
     <>
+      
       {/* Hero */}
       <OrgHero
         OrgHeroImage={org.heroImage}
@@ -186,6 +189,7 @@ const handleDonate = (post) => {
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
+
 
 
       {isOwner && (
@@ -209,6 +213,7 @@ const handleDonate = (post) => {
           </div>
         </div>
       )}
+      
 
 
       {/* Navbar */}

@@ -36,7 +36,12 @@ function OrgList({ organizations }) {
 
 
 function Dashboard() {
+
+
+  const navigate = useNavigate();
+
   const { id, campaignId } = useParams();
+
   const [org, setOrg] = useState(null);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [stats, setStats] = useState({
@@ -249,6 +254,27 @@ const filteredRequests = requests.filter(request =>
 );
   
   const visibleRequests = showMoreRequests ? filteredRequests : filteredRequests.slice(0, VISIBLE_ROWS);
+const handleOrgLogout = async () => {
+  try {
+    await fetch("http://127.0.0.1:8000/api/logout", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("organization");
+
+    navigate("/login");
+
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+};
 
   return (
     <div style={{ display: 'flex', margin: 0, fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: '#f4f4f9' }}>
@@ -268,7 +294,7 @@ const filteredRequests = requests.filter(request =>
               </Link>
 
             </div>
-
+            
 
 
           </div>
@@ -297,6 +323,11 @@ const filteredRequests = requests.filter(request =>
             <i className="fas fa-envelope-open-text"></i> Requests
           </a>
         </nav>
+        <div className="dash_logout">
+              <button onClick={handleOrgLogout}>
+                Logout
+              </button>
+        </div>
       </div>
 
       {/* Main Content */}
