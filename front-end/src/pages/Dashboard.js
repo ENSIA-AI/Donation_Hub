@@ -129,7 +129,7 @@ const barData = stats && Array.isArray(stats.donations_by_type)
   })
     .then(res => res.json())
     .then(data => {
-      console.log('API Response:', data); // See full response
+      console.log('API Response:', data); 
       console.log('Donations array:', data.data); // See the donations array
       console.log('Number of donations:', data.data?.length); // Count
       setDonations(Array.isArray(data.data) ? data.data : []);
@@ -144,7 +144,7 @@ const barData = stats && Array.isArray(stats.donations_by_type)
 
   //Fetch all requests
   useEffect(() => {
-  if (!id) return; // make sure org id exists
+  if (!id) return; 
 
   setLoadingRequests(true);
   fetch(`http://127.0.0.1:8000/api/dashboard/requests/${id}`, { credentials: "include" })
@@ -158,9 +158,6 @@ const barData = stats && Array.isArray(stats.donations_by_type)
       setLoadingRequests(false);
     });
 }, [id]);
-
-
-  
 
 
 
@@ -225,8 +222,6 @@ const handleDeleteDonation = async (donationId) => {
     alert(error.message);
   }
 };
-
-
 
 
 

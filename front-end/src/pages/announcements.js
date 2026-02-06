@@ -9,7 +9,7 @@ const Announcements = () => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Fetch all accepted campaigns on page load
+  //  Fetch all accepted campaigns on page load
   useEffect(() => {
     fetch("http://localhost:8000/api/compaigns/search")
       .then((res) => res.json())
@@ -23,7 +23,7 @@ const Announcements = () => {
       });
   }, []);
 
-  // 🔹 Search handler
+  //  Search handler
   const handleSearch = ({ name, wilaya_id, category_id }) => {
     const params = new URLSearchParams();
     if (name) params.append("q", name);
