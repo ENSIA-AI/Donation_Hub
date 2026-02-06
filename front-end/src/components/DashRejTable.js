@@ -4,6 +4,7 @@ import DashRejCard from "./DashRejCard";
 
 const DashRejTable = ()=>{
     const [rejected ,setRejected]=useState([]);
+    const [visible, setVisible] = useState(5); 
     useEffect(()=>{
         axios
         .get('/organization?status=rejected')
@@ -14,6 +15,9 @@ const DashRejTable = ()=>{
             console.error("Error fetching organizations:", error);
         });
     },[]);
+    const handleSeeMore = () => {
+    setVisible((prev) => prev + 10);
+  };
     return(
        <div className="dashOrgTable">
             <div className="orgDashTitle">
@@ -40,7 +44,7 @@ const DashRejTable = ()=>{
                         <p>Proof</p>
                     </div>
                 </div>
-                { rejected.slice(0,10).map((rej)=>(
+                { rejected.slice(0, visible).map((rej)=>(
                <DashRejCard
                 name={rej.org_name}
                 email={rej.org_email}      // corrected
@@ -53,6 +57,16 @@ const DashRejTable = ()=>{
                 ))
                 }
             </div>
+              {visible < rejected.length && (
+  <div className="seeMoreContainer">
+    <div>
+    <button onClick={handleSeeMore} className="seeMoreBtn">
+      <img src="/assets/icons/seeMore.svg"/>
+    </button>
+    </div>
+  </div>
+)
+}
         </div>
     );
 };

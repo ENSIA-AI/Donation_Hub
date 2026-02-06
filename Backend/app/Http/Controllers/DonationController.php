@@ -45,6 +45,33 @@ class DonationController extends Controller
     ]);
 
     }
+    public function adminIndex()
+{
+    $donations = Donation::with(['organization', 'post'])
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->map(function ($donation) {
+            return [
+                'id' => $donation->id,
+                'donor_firstName' => $donation->donor_firstName,
+                'donor_lastName' => $donation->donor_lastName,
+                'donor_email' => $donation->donor_email,
+                'donation_type' => $donation->donation_type,
+                'donation_amount' => $donation->donation_amount,
+                'donation_received' => $donation->donation_received,
+                'donation_date' => $donation->donation_date->format('Y-m-d'),
+                'organization' => $donation->organization,
+                'post' => $donation->post,
+                'organization_id' => $donation->organization_id,
+                'campaign_ID' => $donation->campaign_ID,
+            ];
+        });
+
+    return response()->json([
+        'success' => true,
+        'data' => $donations
+    ]);
+}
 
 
    public function store(Request $request)

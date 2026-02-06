@@ -178,27 +178,26 @@ if (orgLoading) return <h1>Loading organization...</h1>;
       />
      {isOwner && (
   <div className="edit_delete_container">
-
-    <Link to={`/dashboard/${org.id}`} className="Link_style">Go to Dashboard</Link>
-    <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
-
-      Edit profile
-    </Link>
-
+    <div className="edit_links_s">
+      <div>
+      <Link to={`/dashboard/${org.id}`} className="Link_style">Go to Dashboard</Link>
+      </div>
+      <div>
+      <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
+        Edit profile
+      </Link>
+      </div>
+    </div>
+    <div>
     <button
-      className="Link_style"
+      className="Link_style_del"
       onClick={handleDelete}
-      style={{
-        marginLeft: "15px",
-        background: "red",
-        color: "white",
-        padding: "6px 12px",
-        border: "none",
-      }}
+     
     >
+      
       Delete profile
     </button>
-
+    </div>
   </div>
 )}
 
