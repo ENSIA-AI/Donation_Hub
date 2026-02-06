@@ -32,7 +32,6 @@ const OrgProfile = () => {
   const [error, setError] = useState(null);
   const [org, setOrg] = useState(null);
   const [orgLoading, setOrgLoading] = useState(true);
-  
 
   const loggedInOrgId = localStorage.getItem("orgId");
   const role = localStorage.getItem("role");
@@ -41,43 +40,40 @@ const OrgProfile = () => {
     loggedInOrgId &&
     org &&
     Number(loggedInOrgId) === Number(org.id);
-  
+
   const handleDonate = (post) => {
     alert(`Donate for post: ${post.title}`);
   };
   // Find the organization by ID
 
   useEffect(() => {
-  if (!id) {
-    setError("Organization ID not found.");
-    setOrgLoading(false);
-    return;
-  }
-
-  const fetchOrg = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await api.get(`/organizations/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setOrg(res.data);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to load organization.");
-    } finally {
+    if (!id) {
+      setError("Organization ID not found.");
       setOrgLoading(false);
+      return;
     }
-  };
 
-  fetchOrg();
-}, [id]);
-  
+    const fetchOrg = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await api.get(`/organizations/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setOrg(res.data);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load organization.");
+      } finally {
+        setOrgLoading(false);
+      }
+    };
 
- 
+    fetchOrg();
+  }, [id]);
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this organization?"
+      "Are you sure you want to delete this organization?",
     );
 
     if (!confirmDelete) return;
@@ -117,8 +113,8 @@ const OrgProfile = () => {
   const updatePostInState = (updatedPost) => {
     setCompaigns(
       compaigns.map((c) =>
-        c.compaign_ID === updatedPost.compaign_ID ? updatedPost : c
-      )
+        c.compaign_ID === updatedPost.compaign_ID ? updatedPost : c,
+      ),
     );
   };
 
@@ -136,33 +132,37 @@ const OrgProfile = () => {
     }
   };
   useEffect(() => {
-  const fetchOrg = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await api.get(`/organization/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setOrg(res.data);
-      setOrgLoading(false);
-      setLoaded(true);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to load organization.");
-      setOrgLoading(false);
-    }
-  };
+    const fetchOrg = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await api.get(`/organization/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setOrg(res.data);
+        setOrgLoading(false);
+        setLoaded(true);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load organization.");
+        setOrgLoading(false);
+      }
+    };
 
-  fetchOrg();
-}, [id]);
+    fetchOrg();
+  }, [id]);
 
-useEffect(() => {
-  fetchApprovedCampaigns();
-}, [id]);
+  useEffect(() => {
+    fetchApprovedCampaigns();
+  }, [id]);
 
+  if (orgLoading)
+    return <h1 className="handall_loading">Loading organization...</h1>;
 
-if (orgLoading) return <h1 className="handall_loading">Loading organization...</h1>;
+  useEffect(() => {
+    fetchApprovedCampaigns();
+  }, [id]);
 
-
+  if (orgLoading) return <h1>Loading organization...</h1>;
 
   // Handle invalid ID
   if (!org) return <h1 className="handall_loading">invalid organization !</h1>;
@@ -170,38 +170,34 @@ if (orgLoading) return <h1 className="handall_loading">Loading organization...</
     <>
       {/* Hero */}
       <OrgHero
-         OrgHeroImage={org.heroImage}
-         OrgLogoImage={org.logoImage}
+        OrgHeroImage={org.heroImage}
+        OrgLogoImage={org.logoImage}
         OrgName={org.org_name}
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
-     {isOwner && (
-  <div className="edit_delete_container">
-    <div className="edit_links_s">
-      <div>
-      <Link to={`/dashboard/${org.id}`} className="Link_style">Go to Dashboard</Link>
-      </div>
-      <div>
-      <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
-        Edit profile
-      </Link>
-      </div>
-    </div>
-    <div>
-    <button
-      className="Link_style_del"
-      onClick={handleDelete}
-     
-    >
-      
-      Delete profile
-    </button>
-    </div>
-  </div>
-)}
 
-      
+      {isOwner && (
+        <div className="edit_delete_container">
+          <div className="edit_links_s">
+            <div>
+              <Link to={`/dashboard/${org.id}`} className="Link_style">
+                Go to Dashboard
+              </Link>
+            </div>
+            <div>
+              <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
+                Edit profile
+              </Link>
+            </div>
+          </div>
+          <div>
+            <button className="Link_style_del" onClick={handleDelete}>
+              Delete profile
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Navbar */}
       <div className="fluid_container">
@@ -218,8 +214,6 @@ if (orgLoading) return <h1 className="handall_loading">Loading organization...</
                 >
                   {section}
                 </button>
-                
-
               </li>
             ))}
           </ul>
@@ -231,8 +225,8 @@ if (orgLoading) return <h1 className="handall_loading">Loading organization...</
       {activeSection === "Posts" && (
         <div className="org_container">
           {isOwner && (
-  <CreatePost orgId={org.id} onPostCreated={fetchApprovedCampaigns} />
-)}
+            <CreatePost orgId={org.id} onPostCreated={fetchApprovedCampaigns} />
+          )}
 
           <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
             {loading && <p>Loading campaigns...</p>}
@@ -272,7 +266,6 @@ if (orgLoading) return <h1 className="handall_loading">Loading organization...</
                 >
                   See more
                 </a>
-                
               </div>
             </div>
           ) : (
@@ -292,10 +285,9 @@ if (orgLoading) return <h1 className="handall_loading">Loading organization...</
             <OrgDescription
               name={org.org_name}
               description={org.org_description}
-              
             />
             <OrgMission
-               OrgMissionImg={org.mission_img}
+              OrgMissionImg={org.mission_img}
               OrganizationMission={org.org_mission}
               OrganizationVision={org.org_vision}
             />
@@ -305,7 +297,6 @@ if (orgLoading) return <h1 className="handall_loading">Loading organization...</
             OrgValue2={org.value2}
             OrgValue3={org.value3}
             OrgValue4={org.value4}
-            
           />
 
           <OrgPrograms programs={org.programs} />
@@ -321,7 +312,7 @@ if (orgLoading) return <h1 className="handall_loading">Loading organization...</
             </div>
             <div className="org-contact-details flex-row">
               {/* Form */}
-              <OrgContactForm orgId={org.id}/>
+              <OrgContactForm orgId={org.id} />
               {/* Contact Info */}
               <OrgContactInfos contactData={org.contact} />
             </div>
