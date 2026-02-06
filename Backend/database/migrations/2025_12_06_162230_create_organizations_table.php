@@ -15,13 +15,13 @@ return new class extends Migration
     $table->id();
     $table->timestamps();
     $table->string('org_name');
-    $table->date('org_registrationDate');
-    $table->text('org_description');
+    $table->date('org_registrationDate')->nullable();
+    $table->text('org_description')->nullable();
     $table->foreignId('category_id')->constrained('categories');
     $table->foreignId('wilaya_id')->constrained('wilayas'); // from friend's migration
     $table->string('org_email');
     $table->text('org_slogan')->nullable();
-    $table->enum('status',['pending', 'approved', 'rejected']);
+    $table->enum('status',['pending', 'approved', 'rejected'])->nullable();
     $table->string('org_hero_img')->nullable();
     $table->string('org_logo')->nullable();
     $table->string('org_mission')->nullable();

@@ -18,10 +18,16 @@ const DashRejCard =(props)=>{
         <div className="rej">
            <p>{props.wilaya}</p>
         </div>
-        <div className="rej">
-            
-           <p>{props.proof}</p>
-        </div>
+       <div className="rej">
+         {props.proof ? (
+            <a href={props.proof} target="_blank" rel="noopener noreferrer">
+               View Proof
+            </a>
+         ) : (
+            <p>No proof</p>
+         )}
+         </div>
+
      </div>
    );
 };

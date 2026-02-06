@@ -1,42 +1,62 @@
-.edit_container{
-    display: flex;
-    justify-content: center;
-    padding: auto;
-}
-.edit_container form{
-    width:80%;
-    border: 2px solid black;
-    margin-top: 15px;
-    border-radius: 8px;
-    
-}
-.edit_container h1{
-    text-align: center;
-    font-size: 2.5rem;
+.edit_container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
 }
 
-.edit_container input,textarea,label{
-    text-align: center;
+.edit-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-.edit_container label{
-    font-size: 1.5rem;
-    font-weight: bold ;
-    color: rgb(1, 60, 1);
-    padding: 5px;
 
-
+.edit-tabs button {
+  padding: 10px 15px;
+  border: none;
+  background: #107361;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
 }
-.edit_container button{
-    padding: 10px;
-    width: 30%;
-    margin: 10px 0;
-    background-color: rgb(1, 60, 1);
-    color: white;
-    border-radius: 5px;
-    
-}
-.save_button{
-    display: flex;
-    justify-content: center;
 
+.edit-tabs button:hover {
+  background: #0b5245;
+}
+
+.form-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+  margin-bottom: 15px;
+}
+
+.preview-img {
+  display: block;
+  margin-top: 10px;
+  max-width: 250px;
+  border-radius: 10px;
+}
+
+.preview-img.small {
+  max-width: 120px;
+}
+
+.save_button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.save_button button {
+  padding: 10px 20px;
+  background: #107361;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

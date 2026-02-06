@@ -298,7 +298,19 @@ body {
 /* ================donation form ends=============== */
 
 
+.donation-form {
+  position: relative;
+  z-index: 10;
+}
 
+.org-info {
+  position: relative;
+  z-index: 1;
+}
+
+.org-info {
+  pointer-events: none;
+}
 
 
 

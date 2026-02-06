@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../styles/register.css";
 import axios from "axios";
-
+import "../styles/register.css";
 
 import { useEffect } from "react";
 
@@ -48,11 +48,13 @@ const {
     );
     formData.append("org_description", data.description);
     formData.append("org_email", data.email);
-    formData.append("password", data.password);
+    formData.append("org_password", data.password);
 
     // TEMP IDs (later we make them dynamic)
+
     formData.append("category_id", data.category_id);
     formData.append("wilaya_id", data.wilaya_id);
+
 
     
     if (data.proof && data.proof[0]) {

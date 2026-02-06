@@ -31,23 +31,24 @@ const OrgProfile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [org, setOrg] = useState(null);
+  const [orgLoading, setOrgLoading] = useState(true);
 
+  const loggedInOrgId = localStorage.getItem("orgId");
+  const role = localStorage.getItem("role");
+  const isOwner =
+    role === "organization" &&
+    loggedInOrgId &&
+    org &&
+    Number(loggedInOrgId) === Number(org.id);
+  
   const handleDonate = (post) => {
     alert(`Donate for post: ${post.title}`);
   };
   // Find the organization by ID
 
-  useEffect(() => {
-    api
-      .get(`/organization/${id}`)
-      .then((res) => setOrg(res.data))
-      .catch((err) => console.log(err));
-    console.log("Org ID:", id);
-  }, [id]);
+  
 
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
+ 
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
@@ -109,10 +110,34 @@ const OrgProfile = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
-    fetchApprovedCampaigns();
-  }, []);
+  const fetchOrg = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await api.get(`/organization/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setOrg(res.data);
+      setOrgLoading(false);
+      setLoaded(true);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to load organization.");
+      setOrgLoading(false);
+    }
+  };
+
+  fetchOrg();
+}, [id]);
+
+useEffect(() => {
+  fetchApprovedCampaigns();
+}, [id]);
+
+
+if (orgLoading) return <h1>Loading organization...</h1>;
+
+
 
   // Handle invalid ID
   if (!org) return <h1>Loading...</h1>;
@@ -126,26 +151,36 @@ const OrgProfile = () => {
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
+     {isOwner && (
+  <div className="edit_delete_container">
 
-      <div className="edit_delete_container">
-        <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
-          edit profile
-        </Link>
-        {/* _ delete org  */}
-        <button
-          className="Link_style"
-          onClick={handleDelete}
-          style={{
-            marginLeft: "15px",
-            background: "red",
-            color: "white",
-            padding: "6px 12px",
-            border: "none",
-          }}
-        >
-          Delete profile
-        </button>
-      </div>
+    <Link to={`/dashboard`} className="Link_style">
+      Go to Dashboard
+    </Link>
+
+    <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
+
+      Edit profile
+    </Link>
+
+    <button
+      className="Link_style"
+      onClick={handleDelete}
+      style={{
+        marginLeft: "15px",
+        background: "red",
+        color: "white",
+        padding: "6px 12px",
+        border: "none",
+      }}
+    >
+      Delete profile
+    </button>
+
+  </div>
+)}
+
+      
 
       {/* Navbar */}
       <div className="fluid_container">
@@ -172,7 +207,9 @@ const OrgProfile = () => {
       {/* Sections */}
       {activeSection === "Posts" && (
         <div className="org_container">
-          <CreatePost orgId={org.id} onPostCreated={fetchApprovedCampaigns} />
+          {isOwner && (
+  <CreatePost orgId={org.id} onPostCreated={fetchApprovedCampaigns} />
+)}
 
           <div className={`posts  flex-row ${loaded ? "posts-loaded" : ""}`}>
             {loading && <p>Loading campaigns...</p>}
@@ -233,7 +270,7 @@ const OrgProfile = () => {
               description={org.org_description}
             />
             <OrgMission
-              // OrgMissionImg={org.mission.image}
+               OrgMissionImg={org.mission_img}
               OrganizationMission={org.org_mission}
               OrganizationVision={org.org_vision}
             />
