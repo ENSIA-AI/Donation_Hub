@@ -68,7 +68,7 @@ $validated['status'] = 'pending';
     public function show($id){
         $organization = Organization::with(['category','wilaya'])
         ->where('id', $id)
-        ->where('status', 'approved') // only approved
+        ->where('status', 'approved') 
         ->firstOrFail();
         return response()->json([
             'id' => $organization->id,
@@ -79,22 +79,27 @@ $validated['status'] = 'pending';
             'wilaya_id' => $organization->wilaya_id,
             'org_mission' => $organization->org_mission,
             'org_vision' => $organization->org_vision,
+             'org_email' => $organization->org_email,
+                'org_phone' => $organization->org_phone,
+                'org_address' => $organization->org_address,
+                'org_facebook' => $organization->org_facebook,
+                'org_instagram' => $organization->org_instagram,
 
             'category' => $organization->category,
-            // Individual values (for backward compatibility)
+
             'value1' => $organization->value1,
             'value2' => $organization->value2,
             'value3' => $organization->value3,
             'value4' => $organization->value4,
 
-            // Array format (new way)
+            
             'values' => $organization->values,
 
-            // These arrays now ALWAYS have all slots
-            'programs' => $organization->programs,    // Always 2 items
-            'impact' => $organization->impact,        // Always 3 items
-            'contact' => $organization->contact,      // Dynamic based on what exists
-            'posts' => $organization->posts,        // All campaigns
+           
+            'programs' => $organization->programs,    
+            'impact' => $organization->impact,        
+            'contact' => $organization->contact,      
+            'posts' => $organization->posts,        
             'program1_desc' =>$organization->program1_desc,
             'program1_title' =>$organization->program1_title,
             'program2_desc' =>$organization->program2_desc,
@@ -120,8 +125,8 @@ $validated['status'] = 'pending';
     return [
         'id' => $organization->id,
         'org_name' => $organization->org_name,
-        'org_email' => $organization->org_email,      // <-- add this
-        'org_phone' => $organization->org_phone,      // <-- add this
+        'org_email' => $organization->org_email,      
+        'org_phone' => $organization->org_phone,      
         'org_description' => $organization->org_description,
         'category' => $organization->category,
         'wilaya' => $organization->wilaya,
@@ -160,6 +165,11 @@ $validated['status'] = 'pending';
             'value2'=>'sometimes',
             'value3'=>'sometimes',
             'value4'=>'sometimes',
+            'org_address' => 'sometimes',
+            'org_phone' => 'sometimes',
+            'org_email' => 'sometimes|email',
+            'org_facebook' => 'sometimes',
+            'org_instagram' => 'sometimes',
             // Images validation
         'org_hero_img' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         'org_logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
@@ -286,5 +296,8 @@ public function approve($id)
     {
         return Organization::where('status', 'pending')->get();
     }
+    
+    
+
 }
 

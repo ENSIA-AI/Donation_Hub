@@ -151,27 +151,36 @@ if (orgLoading) return <h1>Loading organization...</h1>;
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
-      {isOwner && (
-      <div className="edit_delete_container">
-        <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
-          edit profile
-        </Link>
-        {/* _ delete org  */}
-        <button
-          className="Link_style"
-          onClick={handleDelete}
-          style={{
-            marginLeft: "15px",
-            background: "red",
-            color: "white",
-            padding: "6px 12px",
-            border: "none",
-          }}
-        >
-          Delete profile
-        </button>
-      </div>
-      )}
+     {isOwner && (
+  <div className="edit_delete_container">
+
+    <Link to={`/dashboard`} className="Link_style">
+      Go to Dashboard
+    </Link>
+
+    <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
+
+      Edit profile
+    </Link>
+
+    <button
+      className="Link_style"
+      onClick={handleDelete}
+      style={{
+        marginLeft: "15px",
+        background: "red",
+        color: "white",
+        padding: "6px 12px",
+        border: "none",
+      }}
+    >
+      Delete profile
+    </button>
+
+  </div>
+)}
+
+      
 
       {/* Navbar */}
       <div className="fluid_container">
@@ -261,7 +270,7 @@ if (orgLoading) return <h1>Loading organization...</h1>;
               description={org.org_description}
             />
             <OrgMission
-              // OrgMissionImg={org.mission.image}
+               OrgMissionImg={org.mission_img}
               OrganizationMission={org.org_mission}
               OrganizationVision={org.org_vision}
             />
