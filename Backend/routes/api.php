@@ -122,7 +122,7 @@ Route::get(
     [DashboardController::class, 'campaignsByCategory']
 );
 Route::get('/dashboard/organizations-by-category-count', [DashboardController::class, 'organizationsByCategoryCount']);
-Route::get('/total-money-donations', [DonationController::class, 'totalMoneyDonations']);
+
 Route::get('/donations-top-wilayas', [DonationController::class, 'topWilayasByDonation']);
 Route::get('/donations/by-type', [DonationController::class, 'donationsByType']);
 Route::get('/top-organizations', function () {
@@ -155,6 +155,8 @@ Route::get('/donations-over-time', function () {
 
 
 
+
+Route::get('/total-money-donations', [DonationController::class, 'totalMoneyDonations']);
 
 
 
