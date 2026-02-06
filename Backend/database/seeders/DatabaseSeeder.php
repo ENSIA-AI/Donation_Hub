@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             CompaignSeeder::class,
             DonationSeeder::class,
             AdminSeeder::class,
+            MessageSeeder::class,
         ]);
 
 

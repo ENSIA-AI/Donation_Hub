@@ -23,6 +23,56 @@ body {
     border-radius: var(--card-radius);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
+.show-more-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+
+.show-more-button {
+        padding: 0px 9px;
+            font-size: 2.3rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #333 0%, #333 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(198, 197, 197, 0.3);
+}
+
+.show-more-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(161, 163, 164, 0.4);
+}
+
+.show-more-button:active {
+    transform: translateY(-1px);
+}
+
+/* ===========================
+   ALL LOADED MESSAGE
+   =========================== */
+
+.all-loaded-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #d5f4e6;
+    color: #27ae60;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-weight: 600;
+    border-left: 5px solid #27ae60;
+}
+
+.all-loaded-message p {
+    margin: 0;
+    font-size: 1rem;
+}
 
 .messages-container h1 {
     color: var(--secondary-color);
