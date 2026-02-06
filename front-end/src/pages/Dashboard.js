@@ -21,7 +21,7 @@ function OrgList({ organizations }) {
     <div>
       {organizations.map((org) => (
         <div key={org.id}>
-           <h3>{org.org_name}</h3>
+          <h3>{org.org_name}</h3>
 
           <Link to={`/dashboard/${org.id}`}>Go to Dashboard</Link>
         </div>
@@ -31,8 +31,6 @@ function OrgList({ organizations }) {
 }
 
 function Dashboard() {
-
-
   const navigate = useNavigate();
 
   const { id, campaignId } = useParams();
@@ -80,7 +78,6 @@ function Dashboard() {
     if (!id) return;
 
     const fetchOrg = async () => {
-      
       try {
         const res = await fetch(
           `http://127.0.0.1:8000/api/organizations/${id}`,
@@ -155,11 +152,10 @@ function Dashboard() {
   }, [id]);
 
   // Handle status change
-
   const handleStatusChange = async (donationId, newStatus) => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/donations/${donationId}/status`,
+        `http://127.0.0.1:8000/api/donations/${donationId}/status?org_id=${id}`,
         {
           method: "PATCH",
           credentials: "include",
@@ -169,7 +165,6 @@ function Dashboard() {
           body: JSON.stringify({
             donation_received: newStatus === "received",
           }),
-
         },
       );
 
@@ -189,20 +184,20 @@ function Dashboard() {
     }
   };
 
+  const handleDeleteDonation = async (donationId) => {
+    if (!window.confirm("Delete this donation?")) return;
 
-const handleDeleteDonation = async (donationId) => {
-  if (!window.confirm('Delete this donation?')) return;
-
-  try {
-    const res = await fetch(
-       `http://127.0.0.1:8000/api/donations/${donationId}?org_id=${id}`,
-      {
-        method: 'DELETE',
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
+    try {
+      const res = await fetch(
+        `http://127.0.0.1:8000/api/donations/${donationId}?org_id=${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+          },
         },
-      });
+      );
 
       const data = await res.json();
       console.log("DELETE response:", data);
@@ -211,16 +206,26 @@ const handleDeleteDonation = async (donationId) => {
         throw new Error(data.message || "Delete failed");
       }
 
-      setDonations((prev) => prev.filter((d) => d.id !== id));
+      setDonations((prev) => prev.filter((d) => d.id !== donationId));
     } catch (error) {
       alert(error.message);
     }
   };
 
-
-
-    setDonations(prev => prev.filter(d => d.id !== donationId));
-
+  const filteredDonations = donations.filter((donation) => {
+    const matchesSearch =
+      (donation.donor_firstName ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (donation.donor_lastName ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (donation.donor_email ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (donation.donation_type ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
 
     const matchesStatus =
       statusFilter === "all" ||
@@ -228,79 +233,49 @@ const handleDeleteDonation = async (donationId) => {
       (statusFilter === "waiting" && !donation.donation_received);
 
     return matchesSearch && matchesStatus;
-  
+  });
 
-  // const visibleDonations = showMoreDonations
-  //   ? filteredDonations
-  //   : filteredDonations.slice(0, VISIBLE_ROWS);
+  const visibleDonations = showMoreDonations
+    ? filteredDonations
+    : filteredDonations.slice(0, VISIBLE_ROWS);
 
-  // const filteredRequests = requests.filter(
-  //   (request) =>
-  //     (request.rec_firstName ?? "")
-  //       .toLowerCase()
-  //       .includes(searchTerm.toLowerCase()) ||
-  //     (request.rec_lastName ?? "")
-  //       .toLowerCase()
-  //       .includes(searchTerm.toLowerCase()) ||
-  //     (request.rec_email ?? "")
-  //       .toLowerCase()
-  //       .includes(searchTerm.toLowerCase()) ||
-  //     (request.rec_type ?? "").toLowerCase().includes(searchTerm.toLowerCase()),
-  // );
+  const filteredRequests = requests.filter(
+    (request) =>
+      (request.rec_firstName ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (request.rec_lastName ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (request.rec_email ?? "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      (request.rec_type ?? "").toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
+  const visibleRequests = showMoreRequests
+    ? filteredRequests
+    : filteredRequests.slice(0, VISIBLE_ROWS);
+  const handleOrgLogout = async () => {
+    try {
+      await fetch("http://127.0.0.1:8000/api/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
- 
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      localStorage.removeItem("organization");
 
-
-const filteredDonations = donations.filter(donation => {
-  const matchesSearch =
-     (donation.donor_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-     (donation.donor_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-     (donation.donor_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-     (donation.donation_type ?? '').toLowerCase().includes(searchTerm.toLowerCase());
-  
-  const matchesStatus = 
-     statusFilter === 'all' ||
-     (statusFilter === 'received' && donation.donation_received) ||
-     (statusFilter === 'waiting' && !donation.donation_received);
-
-
-  return matchesSearch && matchesStatus;
-});
-    
-  const visibleDonations = showMoreDonations ? filteredDonations : filteredDonations.slice(0, VISIBLE_ROWS);
-
-
-const filteredRequests = requests.filter(request =>
-  (request.rec_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-  (request.rec_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-  (request.rec_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-  (request.rec_type ?? '').toLowerCase().includes(searchTerm.toLowerCase())
-);
-  
-  const visibleRequests = showMoreRequests ? filteredRequests : filteredRequests.slice(0, VISIBLE_ROWS);
-const handleOrgLogout = async () => {
-  try {
-    await fetch("http://127.0.0.1:8000/api/logout", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-    });
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("organization");
-
-    navigate("/login");
-
-  } catch (error) {
-    console.error("Logout failed:", error);
-  }
-};
-
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <div
@@ -314,27 +289,22 @@ const handleOrgLogout = async () => {
       {/* Sidebar */}
       <div className="sidebar">
         <div className="info">
-
           <img
             src={
               org?.org_logo
-                 ? `http://127.0.0.1:8000/storage/${org.org_logo}`
-                 : "/default-logo.png"
-              }
-             alt={org?.org_name || "Org Logo"}
-            />
+                ? `http://127.0.0.1:8000/storage/${org.org_logo}`
+                : "/default-logo.png"
+            }
+            alt={org?.org_name || "Org Logo"}
+          />
 
-          <div className="org-name">
-             {org?.org_name || "Organization Name"}
-
-          </div>
+          <div className="org-name">{org?.org_name || "Organization Name"}</div>
           <div className="profile">
             <div className="profile">
               <Link to={`/OrgProfile/${org?.id || id}`}>
                 <i className="fas fa-user"></i> View Profile
               </Link>
             </div>
-
           </div>
         </div>
 
@@ -371,9 +341,7 @@ const handleOrgLogout = async () => {
           </a>
         </nav>
         <div className="dash_logout">
-              <button onClick={handleOrgLogout}>
-                Logout
-              </button>
+          <button onClick={handleOrgLogout}>Logout</button>
         </div>
       </div>
 
@@ -447,18 +415,19 @@ const handleOrgLogout = async () => {
                   style={{ width: "100%", height: 300 }}
                 >
                   {barData.length > 0 && (
-
-                  <ResponsiveContainer>
-                    <BarChart data={barData}>
-                      <XAxis dataKey="type" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Bar dataKey="count" fill="#FEDA79" name="Number of Donations" />
-                      
-                    </BarChart>
-                  </ResponsiveContainer>
-
+                    <ResponsiveContainer>
+                      <BarChart data={barData}>
+                        <XAxis dataKey="type" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar
+                          dataKey="count"
+                          fill="#FEDA79"
+                          name="Number of Donations"
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
                   )}
                 </div>
               </div>
