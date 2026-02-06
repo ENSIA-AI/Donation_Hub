@@ -49,6 +49,7 @@ const {
     formData.append("org_description", data.description);
     formData.append("org_email", data.email);
     formData.append("org_password", data.password);
+    formData.append("org_phone", data.phoneNum);
 
     // TEMP IDs (later we make them dynamic)
 

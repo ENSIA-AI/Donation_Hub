@@ -179,10 +179,7 @@ if (orgLoading) return <h1>Loading organization...</h1>;
      {isOwner && (
   <div className="edit_delete_container">
 
-    <Link to={`/dashboard`} className="Link_style">
-      Go to Dashboard
-    </Link>
-
+    <Link to={`/dashboard/${org.id}`} className="Link_style">Go to Dashboard</Link>
     <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
 
       Edit profile
@@ -222,7 +219,7 @@ if (orgLoading) return <h1>Loading organization...</h1>;
                 >
                   {section}
                 </button>
-                <Link to={`/dashboard/${org.id}`}>Go to Dashboard</Link>
+                
 
               </li>
             ))}
