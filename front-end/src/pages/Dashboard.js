@@ -118,8 +118,20 @@ function Dashboard() {
 
   // Fetch all donations
   useEffect(() => {
+  fetch(`http://127.0.0.1:8000/api/dashboard/donations?org_id=${id}`, {
+  credentials: "include",
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('API Response:', data); 
+      console.log('Donations array:', data.data); // See the donations array
+      console.log('Number of donations:', data.data?.length); // Count
+      setDonations(Array.isArray(data.data) ? data.data : []);
+      setLoadingDonations(false);
+
     fetch(`http://127.0.0.1:8000/api/dashboard/donations?org_id=${id}`, {
       credentials: "include",
+
     })
       .then((res) => res.json())
       .then((data) => {
@@ -137,12 +149,13 @@ function Dashboard() {
 
   //Fetch all requests
   useEffect(() => {
-    if (!id) return; // make sure org id exists
 
+  if (!id) return; 
     setLoadingRequests(true);
     fetch(`http://127.0.0.1:8000/api/dashboard/requests/${id}`, {
       credentials: "include",
     })
+
       .then((res) => res.json())
       .then((data) => {
         setRequests(Array.isArray(data.data) ? data.data : []);
@@ -153,6 +166,7 @@ function Dashboard() {
         setLoadingRequests(false);
       });
   }, [id]);
+
 
   // Handle status change
 
@@ -248,8 +262,6 @@ const handleDeleteDonation = async (donationId) => {
   //     (request.rec_type ?? "").toLowerCase().includes(searchTerm.toLowerCase()),
   // );
 
-
- 
 
 
 const filteredDonations = donations.filter(donation => {
