@@ -32,8 +32,6 @@ Route::post('/requests', [RequestsController::class, 'store']);
 Route::get('/dashboard/requests/{orgId}', [RequestsController::class, 'getOrgRequests']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
 
-Route::get('/donations', [DonationController::class, 'index']);          // organization
-Route::get('/admin/donations', [DonationController::class, 'adminIndex']); // admin
 
 // ===============compaigns============= :
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);
@@ -79,7 +77,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
 });
-
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('/register', [AuthController::class, 'register']);
 
 

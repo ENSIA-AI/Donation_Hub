@@ -14,7 +14,8 @@ body {
 
 .fluid_container {
     width: 100%;
-
+    position: relative;
+    z-index: 0;
 }
 
 .org_container {
@@ -76,10 +77,12 @@ section {
 
 /* =========================organization page ======================================= */
 .edit_delete_container{
+    
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 10px;
+  
+    
 }
 .edit_links_s{
     display: flex;
@@ -89,16 +92,17 @@ section {
 .Link_style_del{
  border: 2px solid rgba(0, 0, 0, 0.104);
     padding: 5px;
-    border-radius: 5px;
-    background-color: rgba(227, 20, 20, 0.786);
+    border-radius: 15px;
+    background-color: rgba(252, 98, 98, 0.975);
      cursor: "pointer";
     margin-left: 1em;
+    
 }
 .Link_style{
-    border: 2px solid rgba(0, 0, 0, 0.104);
+    border: 1px solid rgba(0, 0, 0, 0.104);
     padding: 5px;
-    border-radius: 5px;
-    background-color: var(--third-color);
+    border-radius: 15px;
+    background-color: rgba(222, 220, 220, 0.556);
      cursor: "pointer",
 
 }
