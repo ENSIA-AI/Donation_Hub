@@ -41,10 +41,25 @@ const OrgProfile = () => {
     org &&
     Number(loggedInOrgId) === Number(org.id);
 
+  
+const handleDonate = (post) => {
+  if (!post || !org) {
+    console.error("Cannot navigate to donate page: missing data", { post, org });
+    return;
+  }
 
-  const handleDonate = (post) => {
-    alert(`Donate for post: ${post.title}`);
-  };
+  // Use the actual field that exists in your API response
+  const campaignId = post.compaign_ID || post.id || post.campaign_ID;
+
+  if (!campaignId) {
+    console.error("Cannot navigate to donate page: missing campaign ID", post);
+    return;
+  }
+
+  navigate(`/donate/${org.id}/${campaignId}`);
+};
+
+
 
   // Find the organization by ID
 
