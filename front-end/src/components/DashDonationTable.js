@@ -5,10 +5,9 @@ import axios from "../api/axios";
 
 const DashDonationTable = ()=>{
   const [donations, setDonations] = useState([]);
-
+  const [visible, setVisible] = useState(5);
   useEffect(() => {
-    axios
-      .get("/donations")
+    axios.get("/admin/donations")
       .then((response) => {
          setDonations(response.data.data);
       })
@@ -16,6 +15,9 @@ const DashDonationTable = ()=>{
         console.error("Error fetching donations:", error);
       });
   }, []);
+  const handleSeeMore = () => {
+    setVisible((prev) => prev + 10);
+  };
     return(
       <div className="dashOrgTable">
         <div className="orgDashTitle">
@@ -40,7 +42,7 @@ const DashDonationTable = ()=>{
                     
         </div>
         <div className="OrgCards">
-        {donations.slice(0, 10).map((donation) => (
+        {donations.slice(0, visible).map((donation) => (
           <DashDonaCard
            key={donation.id}
             donner={`${donation.donor_firstName} ${donation.donor_lastName}`}
@@ -52,6 +54,15 @@ const DashDonationTable = ()=>{
           />
            ))}
         </div>
+         {visible < donations.length && (
+  <div className="seeMoreContainer">
+    <div>
+    <button onClick={handleSeeMore} className="seeMoreBtn">
+      <img src="/assets/icons/seeMore.svg"/>
+    </button>
+    </div>
+  </div>
+)}
     </div>
     );
 };

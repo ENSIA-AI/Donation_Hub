@@ -29,8 +29,11 @@ Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
 Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
 Route::get('/dashboard/donations', [DonationController::class, 'index']);
 Route::post('/requests', [RequestsController::class, 'store']);
+Route::get('/dashboard/requests/{orgId}', [RequestsController::class, 'getOrgRequests']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
 
+Route::get('/donations', [DonationController::class, 'index']);          // organization
+Route::get('/admin/donations', [DonationController::class, 'adminIndex']); // admin
 
 // ===============compaigns============= :
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);

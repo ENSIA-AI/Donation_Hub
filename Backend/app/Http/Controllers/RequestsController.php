@@ -20,6 +20,7 @@ class RequestsController extends Controller
             'rec_type' => 'required|string',
             'rec_file_path' => 'nullable|string',
             'rec_date' => 'required|date',
+            'organization_id' => 'required|exists:organizations,id'
         ]);
 
         // Handle file upload
@@ -37,6 +38,19 @@ class RequestsController extends Controller
             'data' => $requestRecord
         ], 201);
     }
+
+    public function getRequestsByOrg($orgId)
+    {
+        $requests = Requests::where('organization_id', $orgId)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $requests
+        ]);
+    }
+
     public function getAllRequests()
     {
         $requests = Requests::orderBy('created_at', 'desc')->get();
@@ -46,4 +60,16 @@ class RequestsController extends Controller
             'data' => $requests
         ]);
     }
+
+    public function getOrgRequests($orgId)
+{
+    $requests = Requests::where('organization_id', $orgId)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return response()->json([
+        'success' => true,
+        'data' => $requests
+    ]);
+}
 }

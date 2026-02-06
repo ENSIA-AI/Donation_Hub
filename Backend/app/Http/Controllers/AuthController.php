@@ -13,14 +13,14 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        $admin = Admin::where('email', $request->email)->first();
-        if ($admin && Hash::check($request->password, $admin->password)) {
 
+        $admin = Admin::where('email', $request->email)->first();
+
+        if ($admin && Hash::check($request->password, $admin->password)) {
             $token = $admin->createToken('auth_token')->plainTextToken;
 
             return response()->json([
@@ -29,6 +29,7 @@ class AuthController extends Controller
                 'role' => 'admin'
             ]);
         }
+
         $org = Organization::where('org_email', $request->email)->first();
 
         if (!$org || !Hash::check($request->password, $org->org_password)) {
@@ -46,7 +47,6 @@ class AuthController extends Controller
             'role' => 'organization'
         ]);
     }
-
 
     public function me(Request $request)
     {
@@ -69,7 +69,6 @@ class AuthController extends Controller
         ]);
     }
 
-
     public function register(Request $request)
     {
         $request->validate([
@@ -88,11 +87,11 @@ class AuthController extends Controller
             'message' => 'Registered successfully'
         ]);
     }
+
     public function adminProfile(Request $request)
     {
         $admin = $request->user();
 
-        // Make sure to return a full URL for the profile image
         $profileImage = $admin->profile_image
             ? asset('storage/' . $admin->profile_image)
             : asset('https://via.placeholder.com/150');
@@ -130,7 +129,6 @@ class AuthController extends Controller
 
         $admin->save();
 
-        // Return full URL
         $admin->profile_image = $admin->profile_image
             ? asset('storage/' . $admin->profile_image)
             : 'https://via.placeholder.com/150';

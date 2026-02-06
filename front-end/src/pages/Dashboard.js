@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
-import { getCurrentUser } from "../services/authService";
+
 
 import {
   ResponsiveContainer,
@@ -16,7 +17,27 @@ import {
   Bar
 } from 'recharts';
 
+
+
+
+function OrgList({ organizations }) {
+  return (
+    <div>
+      {organizations.map(org => (
+        <div key={org.id}>
+          <h3>{org.name}</h3>
+          <Link to={`/dashboard/${org.id}`}>Go to Dashboard</Link>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+
 function Dashboard() {
+  const { id } = useParams();
+  const [org, setOrg] = useState(null);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [stats, setStats] = useState({
     total_donations: 0,
@@ -25,6 +46,7 @@ function Dashboard() {
     received_donations: 0,
     donations_by_type: []
   });
+  
   const [donations, setDonations] = useState([]);
   const [requests, setRequests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,21 +55,41 @@ function Dashboard() {
   const [loadingRequests, setLoadingRequests] = useState(true);
   const [showMoreDonations, setShowMoreDonations] = useState(false);
   const [showMoreRequests, setShowMoreRequests] = useState(false);
-
+  
   const VISIBLE_ROWS = 4;
   const COLORS = ["#107361", "#FEDA79"];
 
 
+
+   useEffect(() => {
+    if (!id) return;
+
+    const fetchOrg = async () => {
+      try {
+        const res = await fetch(`http://127.0.0.1:8000/api/organizations/${id}`, {
+          credentials: "include",
+        });
+        const data = await res.json();
+        if (res.ok) setOrg(data);
+      } catch (err) {
+        console.error("Failed to fetch org", err);
+      }
+    };
+
+    fetchOrg();
+  }, [id]);
+
+
   // Fetch statistics
-     useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/dashboard/statistics')
-      .then(res => res.json())
-      .then(data => {
-        console.log('Stats:', data);
-        setStats(data.data ?? data);
-      })
-      .catch(error => console.error('Error fetching stats:', error));
+   useEffect(() => {
+  fetch('http://127.0.0.1:8000/api/dashboard/statistics', {
+    credentials: "include",
+  })
+    .then(res => res.json())
+    .then(data => setStats(data.data ?? data))
+    .catch(console.error);
   }, []);
+
 
 
   useEffect(() => {
@@ -56,29 +98,6 @@ function Dashboard() {
       console.log("barData:", barData);
     }
   }, [stats]);
-  const [org, setOrg] = useState(null);
-
-useEffect(() => {
-  const fetchOrg = async () => {
-    try {
-      const data = await getCurrentUser();
-      setOrg(data);
-    } catch (err) {
-      console.error("Failed to fetch organization", err);
-    }
-  };
-
-  fetchOrg();
-}, []);
-
-
-
-useEffect(() => {
-  if (stats) {
-    console.log('pieData:', pieData);
-    console.log('barData:', barData);
-  }
-}, [stats]);
 
 
 
@@ -99,7 +118,7 @@ const barData = stats && Array.isArray(stats.donations_by_type)
 
   // Fetch all donations
   useEffect(() => {
-  fetch('http://127.0.0.1:8000/api/dashboard/donations')
+  fetch('http://127.0.0.1:8000/api/dashboard/donations', {credentials: "include",})
     .then(res => res.json())
     .then(data => {
       console.log('API Response:', data); // See full response
@@ -114,16 +133,26 @@ const barData = stats && Array.isArray(stats.donations_by_type)
     });
 }, []);
 
+
   //Fetch all requests
-   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/dashboard/requests')
-      .then(res => res.json())
-      .then(data => {
-        setRequests(Array.isArray(data.data) ? data.data : []);
-        setLoadingRequests(false);
-      })
-      .catch(() => setLoadingRequests(false));
-  }, []);
+  useEffect(() => {
+  if (!id) return; // make sure org id exists
+
+  setLoadingRequests(true);
+  fetch(`http://127.0.0.1:8000/api/dashboard/requests/${id}`, { credentials: "include" })
+    .then(res => res.json())
+    .then(data => {
+      setRequests(Array.isArray(data.data) ? data.data : []);
+      setLoadingRequests(false);
+    })
+    .catch(err => {
+      console.error('Error fetching requests:', err);
+      setLoadingRequests(false);
+    });
+}, [id]);
+
+
+  
 
 
 
@@ -134,6 +163,7 @@ const handleStatusChange = async (donationId, newStatus) => {
       `http://127.0.0.1:8000/api/donations/${donationId}/status`,
       {
         method: 'PATCH',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -167,6 +197,7 @@ const handleDeleteDonation = async (id) => {
       `http://127.0.0.1:8000/api/donations/${id}`,
       {
         method: 'DELETE',
+        credentials: "include",
         headers: {
           'Accept': 'application/json',
         },
@@ -225,15 +256,20 @@ const filteredRequests = requests.filter(request =>
       <div className="sidebar">
         <div className="info">
           <div className="logo">
-            <img src="/logo.png" alt="Logo" />
+            <img src={org?.logo_url || "/default-logo.png"} alt={org?.name || "Org Logo"} />
           </div>
-          <div className="org-name">Organization Name</div>
+          <div className="org-name">{org?.name || "Organization Name"}</div>
           <div className="profile">
 
 
-            <a href={`/OrgProfile/${org?.id}`}>
-              <i className="fas fa-user"></i>View Profile
-            </a>
+            <div className="profile">
+              <Link to={`/OrgProfile/${org?.id || id}`}>
+                <i className="fas fa-user"></i> View Profile
+              </Link>
+
+            </div>
+
+
 
           </div>
         </div>
@@ -501,6 +537,9 @@ const filteredRequests = requests.filter(request =>
       </div>
     </div>
   );
+
+
 }
 
 export default Dashboard;
+

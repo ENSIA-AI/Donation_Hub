@@ -46,6 +46,31 @@ const OrgProfile = () => {
   };
   // Find the organization by ID
 
+  useEffect(() => {
+    if (!id) {
+      setError("Organization ID not found.");
+      setOrgLoading(false);
+      return;
+    }
+
+    const fetchOrg = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await api.get(`/organizations/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setOrg(res.data);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load organization.");
+      } finally {
+        setOrgLoading(false);
+      }
+    };
+
+    fetchOrg();
+  }, [id]);
+
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this organization?",
@@ -130,10 +155,17 @@ const OrgProfile = () => {
     fetchApprovedCampaigns();
   }, [id]);
 
+  if (orgLoading)
+    return <h1 className="handall_loading">Loading organization...</h1>;
+
+  useEffect(() => {
+    fetchApprovedCampaigns();
+  }, [id]);
+
   if (orgLoading) return <h1>Loading organization...</h1>;
 
   // Handle invalid ID
-  if (!org) return <h1>Loading...</h1>;
+  if (!org) return <h1 className="handall_loading">invalid organization !</h1>;
   return (
     <>
       {/* Hero */}
@@ -144,25 +176,26 @@ const OrgProfile = () => {
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
+
       {isOwner && (
         <div className="edit_delete_container">
-          <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
-            edit profile
-          </Link>
-          {/* _ delete org  */}
-          <button
-            className="Link_style"
-            onClick={handleDelete}
-            style={{
-              marginLeft: "15px",
-              background: "red",
-              color: "white",
-              padding: "6px 12px",
-              border: "none",
-            }}
-          >
-            Delete profile
-          </button>
+          <div className="edit_links_s">
+            <div>
+              <Link to={`/dashboard/${org.id}`} className="Link_style">
+                Go to Dashboard
+              </Link>
+            </div>
+            <div>
+              <Link to={`/OrgProfile/${org.id}/edit`} className="Link_style">
+                Edit profile
+              </Link>
+            </div>
+          </div>
+          <div>
+            <button className="Link_style_del" onClick={handleDelete}>
+              Delete profile
+            </button>
+          </div>
         </div>
       )}
 
@@ -254,7 +287,7 @@ const OrgProfile = () => {
               description={org.org_description}
             />
             <OrgMission
-              // OrgMissionImg={org.mission.image}
+              OrgMissionImg={org.mission_img}
               OrganizationMission={org.org_mission}
               OrganizationVision={org.org_vision}
             />
@@ -279,7 +312,7 @@ const OrgProfile = () => {
             </div>
             <div className="org-contact-details flex-row">
               {/* Form */}
-              <OrgContactForm />
+              <OrgContactForm orgId={org.id} />
               {/* Contact Info */}
               <OrgContactInfos contactData={org.contact} />
             </div>

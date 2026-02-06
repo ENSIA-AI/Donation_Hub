@@ -127,9 +127,9 @@ class CompaignController extends Controller
 
     public function accepted()
 {
-    return Compaign::with('organization')
-        ->where('status', 'accepted')
-        ->get();
+    return Compaign::with('organization.wilaya', 'organization.category')
+    ->where('status', 'accepted')
+    ->get();
 }
     // In CompaignController
 
@@ -196,4 +196,5 @@ class CompaignController extends Controller
 
         return response()->json($query->get());
     }
+    
 }

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 // Layouts
 import MainLayout from "./layouts/MainLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -31,7 +30,7 @@ import DashMessages from "./pages/DashMessages";
 
 function App() {
   return (
-    <BrowserRouter>
+    
       <Routes>
         {/* Pages WITH Header & Footer */}
         <Route element={<MainLayout />}>
@@ -51,7 +50,7 @@ function App() {
         </Route>
         {/* Dashboard WITHOUT Header & Footer */}
         <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/:id" element={<Dashboard />} />
           <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
 
           <Route path="/campaigns" element={<DashCampaigns />} />
@@ -75,7 +74,7 @@ function App() {
           <Route index element={<AdminDashboardStat />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    
   );
 }
 
