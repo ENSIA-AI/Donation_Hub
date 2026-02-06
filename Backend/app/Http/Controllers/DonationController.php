@@ -7,14 +7,17 @@ use App\Models\Donation;
 use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class DonationController extends Controller
 {
     public function index()
     {
+        $orgId = Auth::id();
+
         $donations = Donation::with(['organization', 'post'])
+            ->where('organization_id', $orgId)
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($donation) {
@@ -26,7 +29,7 @@ class DonationController extends Controller
                     'donation_type' => $donation->donation_type,
                     'donation_amount' => $donation->donation_amount,
                     'donation_received' => $donation->donation_received,
-                    'donation_date' => $donation->donation_date->format('Y-m-d'), // <--- clean format
+                    'donation_date' => $donation->donation_date->format('Y-m-d'),
                     'organization' => $donation->organization,
                     'post' => $donation->post,
                     'organization_id' => $donation->organization_id,
@@ -34,59 +37,57 @@ class DonationController extends Controller
                 ];
             });
 
-        return response()->json([
-            'success' => true,
-            'data' => $donations
-        ]);
+
+
+    return response()->json([
+        'success' => true,
+        'data' => $donations
+    ]);
+
     }
 
 
-    public function store(Request $request)
-    {
-        try {
-            $validated = $request->validate([
-                'donor_firstName'     => 'required|string|max:255',
-                'donor_lastName'      => 'required|string|max:255',
-                'donor_phoneNumber'   => 'required|string|max:20',
-                'donor_email'         => 'required|email|max:100',
-                'donation_type'       => 'required|string|',
-                'donation_amount'     => 'nullable|numeric|min:0',
-                'donation_date'       => 'required|date',
-                'donation_received'   => 'boolean',
-                'organization_id'     => 'required|exists:organizations,id',
-                'compaign_ID'         => 'nullable|exists:compaigns,compaign_ID',
+   public function store(Request $request)
+{
+    try {
+        $validated = $request->validate([
+            'donor_firstName'   => 'required|string|max:255',
+            'donor_lastName'    => 'required|string|max:255',
+            'donor_phoneNumber' => 'required|string|max:20',
+            'donor_email'       => 'required|email|max:100',
+            'donation_type'     => 'required|string',
+            'donation_amount'   => 'nullable|numeric|min:0',
+            'donation_date'     => 'required|date',
+            'donation_received' => 'boolean',
+            'compaign_ID'       => 'nullable|exists:compaigns,compaign_ID',
+        ]);
 
-            ]);
+        $validated['organization_id'] = Auth::id();
+        $validated['donation_received'] = $validated['donation_received'] ?? false;
 
-            $validated['donation_received'] = $validated['donation_received'] ?? false;
-
-
-            if (
-                $validated['donation_type'] === 'money'
-                && empty($validated['donation_amount'])
-            ) {
-                return response()->json([
-                    'success' => false,
-                    'errors' => [
-                        'donation_amount' => ['Amount is required for money donations']
-                    ]
-                ], 422);
-            }
-
-            $donation = Donation::create($validated);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Donation created successfully',
-                'data' => $donation
-            ], 201);
-        } catch (ValidationException $e) {
+        if ($validated['donation_type'] === 'money' && empty($validated['donation_amount'])) {
             return response()->json([
                 'success' => false,
-                'errors' => $e->errors()
+                'errors' => ['donation_amount' => ['Amount is required for money donations']]
             ], 422);
         }
+
+        $donation = Donation::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Donation created successfully',
+            'data' => $donation
+        ], 201);
+
+    } catch (ValidationException $e) {
+        return response()->json([
+            'success' => false,
+            'errors' => $e->errors()
+        ], 422);
     }
+}
+
 
 
     public function update(Request $request, $id)
@@ -134,7 +135,10 @@ class DonationController extends Controller
             'donation_received' => 'required|boolean',
         ]);
 
-        $donation = Donation::findOrFail($id);
+        $donation = Donation::where('id', $id)
+          ->where('organization_id', Auth::id())
+          ->firstOrFail();
+
         $donation->update([
             'donation_received' => $request->donation_received
         ]);
@@ -171,17 +175,25 @@ class DonationController extends Controller
     /*GET Donation statistics*/
     public function statistics()
     {
+        $orgId = Auth::id();
+
         $stats = [
-            'total_donations' => Donation::count(),
+            'total_donations' => Donation::where('organization_id', $orgId)->count(),
 
             'total_money_amount' =>
-            Donation::whereNotNull('donation_amount')->sum('donation_amount'),
+            Donation::where('organization_id', $orgId)
+                ->whereNotNull('donation_amount')
+                ->sum('donation_amount'),
 
             'waiting_donations' =>
-            Donation::where('donation_received', false)->count(),
+            Donation::where('organization_id', $orgId)
+                ->where('donation_received', false)
+                ->count(),
 
             'received_donations' =>
-            Donation::where('donation_received', true)->count(),
+            Donation::where('organization_id', $orgId)
+                ->where('donation_received', true)
+                ->count(),
 
             'waiting_money_amount' =>
             Donation::whereNotNull('donation_amount')
@@ -194,11 +206,12 @@ class DonationController extends Controller
                 ->sum('donation_amount'),
 
             'donations_by_type' =>
-            Donation::select(
-                'donation_type',
-                DB::raw('count(*) as count'),
-                DB::raw('sum(donation_amount) as total_amount')
-            )
+                Donation::where('organization_id', $orgId)
+                ->select(
+                    'donation_type',
+                    DB::raw('count(*) as count'),
+                    DB::raw('sum(donation_amount) as total_amount')
+                )
                 ->groupBy('donation_type')
                 ->get(),
         ];

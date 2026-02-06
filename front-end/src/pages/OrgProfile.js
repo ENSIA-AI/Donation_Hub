@@ -32,6 +32,7 @@ const OrgProfile = () => {
   const [error, setError] = useState(null);
   const [org, setOrg] = useState(null);
   const [orgLoading, setOrgLoading] = useState(true);
+  
 
   const loggedInOrgId = localStorage.getItem("orgId");
   const role = localStorage.getItem("role");
@@ -46,6 +47,30 @@ const OrgProfile = () => {
   };
   // Find the organization by ID
 
+  useEffect(() => {
+  if (!id) {
+    setError("Organization ID not found.");
+    setOrgLoading(false);
+    return;
+  }
+
+  const fetchOrg = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await api.get(`/organizations/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setOrg(res.data);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to load organization.");
+    } finally {
+      setOrgLoading(false);
+    }
+  };
+
+  fetchOrg();
+}, [id]);
   
 
  
@@ -188,6 +213,8 @@ if (orgLoading) return <h1>Loading organization...</h1>;
                 >
                   {section}
                 </button>
+                <Link to={`/dashboard/${org.id}`}>Go to Dashboard</Link>
+
               </li>
             ))}
           </ul>
@@ -240,6 +267,7 @@ if (orgLoading) return <h1>Loading organization...</h1>;
                 >
                   See more
                 </a>
+                
               </div>
             </div>
           ) : (
@@ -259,6 +287,7 @@ if (orgLoading) return <h1>Loading organization...</h1>;
             <OrgDescription
               name={org.org_name}
               description={org.org_description}
+              
             />
             <OrgMission
               // OrgMissionImg={org.mission.image}
@@ -271,6 +300,7 @@ if (orgLoading) return <h1>Loading organization...</h1>;
             OrgValue2={org.value2}
             OrgValue3={org.value3}
             OrgValue4={org.value4}
+            
           />
 
           <OrgPrograms programs={org.programs} />

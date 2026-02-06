@@ -22,7 +22,7 @@ const Login = () => {
 
       localStorage.setItem("token", response.token);
       localStorage.setItem("role", response.role);
-
+  
       if (response.role === "admin") {
         localStorage.setItem("adminId", response.user.id);
         navigate("/AdminDashboardStat");

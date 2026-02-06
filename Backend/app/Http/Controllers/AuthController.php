@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function login(Request $request)
@@ -34,7 +35,7 @@ class AuthController extends Controller
     }
 
     $token = $org->createToken('auth_token')->plainTextToken;
-    
+
     return response()->json([
     'message' => 'Login successful',
     'token' => $token,
@@ -45,7 +46,8 @@ class AuthController extends Controller
 }
 
 
-    public function me(Request $request)
+
+   public function me(Request $request)
     {
         $orgId = $request->session()->get('organization_id');
 
