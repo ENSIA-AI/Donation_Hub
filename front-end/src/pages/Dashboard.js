@@ -21,7 +21,8 @@ function OrgList({ organizations }) {
     <div>
       {organizations.map((org) => (
         <div key={org.id}>
-          <h3>{org.name}</h3>
+           <h3>{org.org_name}</h3>
+
           <Link to={`/dashboard/${org.id}`}>Go to Dashboard</Link>
         </div>
       ))}
@@ -30,7 +31,12 @@ function OrgList({ organizations }) {
 }
 
 function Dashboard() {
+
+
+  const navigate = useNavigate();
+
   const { id, campaignId } = useParams();
+
   const [org, setOrg] = useState(null);
   const [activeTab, setActiveTab] = useState("dashboard");
   const [stats, setStats] = useState({
@@ -74,6 +80,7 @@ function Dashboard() {
     if (!id) return;
 
     const fetchOrg = async () => {
+      
       try {
         const res = await fetch(
           `http://127.0.0.1:8000/api/organizations/${id}`,
@@ -82,7 +89,8 @@ function Dashboard() {
           },
         );
         const data = await res.json();
-        if (res.ok) setOrg(data);
+        console.log("ORG API RAW RESPONSE:", data);
+        if (res.ok) setOrg(data.data);
       } catch (err) {
         console.error("Failed to fetch org", err);
       }
@@ -147,6 +155,7 @@ function Dashboard() {
   }, [id]);
 
   // Handle status change
+
   const handleStatusChange = async (donationId, newStatus) => {
     try {
       const response = await fetch(
@@ -160,6 +169,7 @@ function Dashboard() {
           body: JSON.stringify({
             donation_received: newStatus === "received",
           }),
+
         },
       );
 
@@ -179,12 +189,15 @@ function Dashboard() {
     }
   };
 
-  const handleDeleteDonation = async (id) => {
-    if (!window.confirm("Delete this donation?")) return;
 
-    try {
-      const res = await fetch(`http://127.0.0.1:8000/api/donations/${id}`, {
-        method: "DELETE",
+const handleDeleteDonation = async (donationId) => {
+  if (!window.confirm('Delete this donation?')) return;
+
+  try {
+    const res = await fetch(
+       `http://127.0.0.1:8000/api/donations/${donationId}?org_id=${id}`,
+      {
+        method: 'DELETE',
         credentials: "include",
         headers: {
           Accept: "application/json",
@@ -204,20 +217,10 @@ function Dashboard() {
     }
   };
 
-  const filteredDonations = donations.filter((donation) => {
-    const matchesSearch =
-      (donation.donor_firstName ?? "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      (donation.donor_lastName ?? "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      (donation.donor_email ?? "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      (donation.donation_type ?? "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+
+
+    setDonations(prev => prev.filter(d => d.id !== donationId));
+
 
     const matchesStatus =
       statusFilter === "all" ||
@@ -225,29 +228,79 @@ function Dashboard() {
       (statusFilter === "waiting" && !donation.donation_received);
 
     return matchesSearch && matchesStatus;
-  });
+  
 
-  const visibleDonations = showMoreDonations
-    ? filteredDonations
-    : filteredDonations.slice(0, VISIBLE_ROWS);
+  // const visibleDonations = showMoreDonations
+  //   ? filteredDonations
+  //   : filteredDonations.slice(0, VISIBLE_ROWS);
 
-  const filteredRequests = requests.filter(
-    (request) =>
-      (request.rec_firstName ?? "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      (request.rec_lastName ?? "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      (request.rec_email ?? "")
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      (request.rec_type ?? "").toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  // const filteredRequests = requests.filter(
+  //   (request) =>
+  //     (request.rec_firstName ?? "")
+  //       .toLowerCase()
+  //       .includes(searchTerm.toLowerCase()) ||
+  //     (request.rec_lastName ?? "")
+  //       .toLowerCase()
+  //       .includes(searchTerm.toLowerCase()) ||
+  //     (request.rec_email ?? "")
+  //       .toLowerCase()
+  //       .includes(searchTerm.toLowerCase()) ||
+  //     (request.rec_type ?? "").toLowerCase().includes(searchTerm.toLowerCase()),
+  // );
 
-  const visibleRequests = showMoreRequests
-    ? filteredRequests
-    : filteredRequests.slice(0, VISIBLE_ROWS);
+
+ 
+
+
+const filteredDonations = donations.filter(donation => {
+  const matchesSearch =
+     (donation.donor_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (donation.donor_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (donation.donor_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (donation.donation_type ?? '').toLowerCase().includes(searchTerm.toLowerCase());
+  
+  const matchesStatus = 
+     statusFilter === 'all' ||
+     (statusFilter === 'received' && donation.donation_received) ||
+     (statusFilter === 'waiting' && !donation.donation_received);
+
+
+  return matchesSearch && matchesStatus;
+});
+    
+  const visibleDonations = showMoreDonations ? filteredDonations : filteredDonations.slice(0, VISIBLE_ROWS);
+
+
+const filteredRequests = requests.filter(request =>
+  (request.rec_firstName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+  (request.rec_lastName ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+  (request.rec_email ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+  (request.rec_type ?? '').toLowerCase().includes(searchTerm.toLowerCase())
+);
+  
+  const visibleRequests = showMoreRequests ? filteredRequests : filteredRequests.slice(0, VISIBLE_ROWS);
+const handleOrgLogout = async () => {
+  try {
+    await fetch("http://127.0.0.1:8000/api/logout", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("organization");
+
+    navigate("/login");
+
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+};
+
 
   return (
     <div
@@ -261,19 +314,27 @@ function Dashboard() {
       {/* Sidebar */}
       <div className="sidebar">
         <div className="info">
-          <div className="logo">
-            <img
-              src={org?.logo_url || "/default-logo.png"}
-              alt={org?.name || "Org Logo"}
+
+          <img
+            src={
+              org?.org_logo
+                 ? `http://127.0.0.1:8000/storage/${org.org_logo}`
+                 : "/default-logo.png"
+              }
+             alt={org?.org_name || "Org Logo"}
             />
+
+          <div className="org-name">
+             {org?.org_name || "Organization Name"}
+
           </div>
-          <div className="org-name">{org?.name || "Organization Name"}</div>
           <div className="profile">
             <div className="profile">
               <Link to={`/OrgProfile/${org?.id || id}`}>
                 <i className="fas fa-user"></i> View Profile
               </Link>
             </div>
+
           </div>
         </div>
 
@@ -309,6 +370,11 @@ function Dashboard() {
             <i className="fas fa-envelope-open-text"></i> Requests
           </a>
         </nav>
+        <div className="dash_logout">
+              <button onClick={handleOrgLogout}>
+                Logout
+              </button>
+        </div>
       </div>
 
       {/* Main Content */}
@@ -381,24 +447,18 @@ function Dashboard() {
                   style={{ width: "100%", height: 300 }}
                 >
                   {barData.length > 0 && (
-                    <ResponsiveContainer>
-                      <BarChart data={barData}>
-                        <XAxis dataKey="type" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar
-                          dataKey="count"
-                          fill="#FEDA79"
-                          name="Number of Donations"
-                        />
-                        <Bar
-                          dataKey="totalAmount"
-                          fill="#107361"
-                          name="Total Amount (DZD)"
-                        />
-                      </BarChart>
-                    </ResponsiveContainer>
+
+                  <ResponsiveContainer>
+                    <BarChart data={barData}>
+                      <XAxis dataKey="type" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="count" fill="#FEDA79" name="Number of Donations" />
+                      
+                    </BarChart>
+                  </ResponsiveContainer>
+
                   )}
                 </div>
               </div>
