@@ -44,7 +44,7 @@ Route::get('/dashboard/donations', [DonationController::class, 'index']);
 Route::post('/requests', [RequestsController::class, 'store']);
 Route::get('/dashboard/requests/{orgId}', [RequestsController::class, 'getOrgRequests']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
-
+Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
 
 // ===============compaigns============= :
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);

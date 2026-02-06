@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash ;
 
 class OrganizationController  extends Controller
 {
+
  public function store(Request $request)
 {
     $validated = $request->validate([
@@ -68,7 +69,7 @@ $validated['status'] = 'pending';
     public function show($id){
         $organization = Organization::with(['category','wilaya'])
         ->where('id', $id)
-        ->where('status', 'approved') 
+        ->where('status', 'approved')
         ->firstOrFail();
         return response()->json([
             'id' => $organization->id,
@@ -92,14 +93,14 @@ $validated['status'] = 'pending';
             'value3' => $organization->value3,
             'value4' => $organization->value4,
 
-            
+
             'values' => $organization->values,
 
-           
-            'programs' => $organization->programs,    
-            'impact' => $organization->impact,        
-            'contact' => $organization->contact,      
-            'posts' => $organization->posts,        
+
+            'programs' => $organization->programs,
+            'impact' => $organization->impact,
+            'contact' => $organization->contact,
+            'posts' => $organization->posts,
             'program1_desc' =>$organization->program1_desc,
             'program1_title' =>$organization->program1_title,
             'program2_desc' =>$organization->program2_desc,
@@ -125,8 +126,8 @@ $validated['status'] = 'pending';
     return [
         'id' => $organization->id,
         'org_name' => $organization->org_name,
-        'org_email' => $organization->org_email,      
-        'org_phone' => $organization->org_phone,      
+        'org_email' => $organization->org_email,
+        'org_phone' => $organization->org_phone,
         'org_description' => $organization->org_description,
         'category' => $organization->category,
         'wilaya' => $organization->wilaya,
@@ -148,7 +149,7 @@ $validated['status'] = 'pending';
     return response()->json($organizations);
 }
 
-   
+
     public function update(Request $request ,$id){
         $organization =Organization::findOrfail($id);
         $validated = $request->validate ([
@@ -296,8 +297,8 @@ public function approve($id)
     {
         return Organization::where('status', 'pending')->get();
     }
-    
-    
+
+
 
 }
 

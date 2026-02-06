@@ -25,7 +25,8 @@ function OrgList({ organizations }) {
     <div>
       {organizations.map(org => (
         <div key={org.id}>
-          <h3>{org.name}</h3>
+           <h3>{org.org_name}</h3>
+
           <Link to={`/dashboard/${org.id}`}>Go to Dashboard</Link>
         </div>
       ))}
@@ -82,12 +83,14 @@ const barData = stats && Array.isArray(stats.donations_by_type)
     if (!id) return;
 
     const fetchOrg = async () => {
+      
       try {
         const res = await fetch(`http://127.0.0.1:8000/api/organizations/${id}`, {
           credentials: "include",
         });
         const data = await res.json();
-        if (res.ok) setOrg(data);
+        console.log("ORG API RAW RESPONSE:", data);
+        if (res.ok) setOrg(data.data);
       } catch (err) {
         console.error("Failed to fetch org", err);
       }
@@ -281,10 +284,18 @@ const handleOrgLogout = async () => {
       {/* Sidebar */}
       <div className="sidebar">
         <div className="info">
-          <div className="logo">
-            <img src={org?.logo_url || "/default-logo.png"} alt={org?.name || "Org Logo"} />
+          <img
+            src={
+              org?.org_logo
+                 ? `http://127.0.0.1:8000/storage/${org.org_logo}`
+                 : "/default-logo.png"
+              }
+             alt={org?.org_name || "Org Logo"}
+            />
+
+          <div className="org-name">
+             {org?.org_name || "Organization Name"}
           </div>
-          <div className="org-name">{org?.name || "Organization Name"}</div>
           <div className="profile">
 
 
