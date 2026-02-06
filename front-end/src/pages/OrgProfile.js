@@ -160,12 +160,12 @@ useEffect(() => {
 }, [id]);
 
 
-if (orgLoading) return <h1>Loading organization...</h1>;
+if (orgLoading) return <h1 className="handall_loading">Loading organization...</h1>;
 
 
 
   // Handle invalid ID
-  if (!org) return <h1>Loading...</h1>;
+  if (!org) return <h1 className="handall_loading">invalid organization !</h1>;
   return (
     <>
       {/* Hero */}
