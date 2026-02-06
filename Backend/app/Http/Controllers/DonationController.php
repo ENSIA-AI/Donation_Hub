@@ -33,6 +33,7 @@ class DonationController extends Controller
                     'donor_firstName' => $donation->donor_firstName,
                     'donor_lastName' => $donation->donor_lastName,
                     'donor_email' => $donation->donor_email,
+                    'donor_phoneNumber' => $donation->donor_phoneNumber,
                     'donation_type' => $donation->donation_type,
                     'donation_amount' => $donation->donation_amount,
                     'donation_received' => $donation->donation_received,
@@ -203,7 +204,14 @@ class DonationController extends Controller
             'donation_received' => 'required|boolean',
         ]);
 
-        $orgId = Auth::user()->organization_id;
+        $orgId = $request->query('org_id') ?? Auth::user()?->organization_id;
+
+        if (!$orgId) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Organization ID required'
+        ], 403);
+        }
 
         $donation = Donation::where('id', $id)
           ->where('organization_id', $orgId)
@@ -221,9 +229,16 @@ class DonationController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $orgId = Auth::user()->organization_id;
+        $orgId = $request->query('org_id') ?? Auth::user()?->organization_id;
+
+        if (!$orgId) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Organization ID required'
+        ], 403);
+       }
 
         $donation = Donation::where('id', $id)
             ->where('organization_id', $orgId)
@@ -277,13 +292,13 @@ class DonationController extends Controller
             ->count(),
 
         'waiting_money_amount' =>
-        Donation::where('organization_id', $orgId)  // ⚠️ ADD THIS - was missing!
+        Donation::where('organization_id', $orgId)
             ->whereNotNull('donation_amount')
             ->where('donation_received', false)
             ->sum('donation_amount'),
 
         'received_money_amount' =>
-        Donation::where('organization_id', $orgId)  // ⚠️ ADD THIS - was missing!
+        Donation::where('organization_id', $orgId)
             ->whereNotNull('donation_amount')
             ->where('donation_received', true)
             ->sum('donation_amount'),

@@ -160,7 +160,7 @@ const barData = stats && Array.isArray(stats.donations_by_type)
 const handleStatusChange = async (donationId, newStatus) => {
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/donations/${donationId}/status`,
+        `http://127.0.0.1:8000/api/donations/${donationId}/status?org_id=${id}`,
       {
         method: 'PATCH',
         credentials: "include",
@@ -189,12 +189,12 @@ const handleStatusChange = async (donationId, newStatus) => {
   }
 };
 
-const handleDeleteDonation = async (id) => {
+const handleDeleteDonation = async (donationId) => {
   if (!window.confirm('Delete this donation?')) return;
 
   try {
     const res = await fetch(
-      `http://127.0.0.1:8000/api/donations/${id}`,
+       `http://127.0.0.1:8000/api/donations/${donationId}?org_id=${id}`,
       {
         method: 'DELETE',
         credentials: "include",
@@ -211,7 +211,7 @@ const handleDeleteDonation = async (id) => {
       throw new Error(data.message || 'Delete failed');
     }
 
-    setDonations(prev => prev.filter(d => d.id !== id));
+    setDonations(prev => prev.filter(d => d.id !== donationId));
 
   } catch (error) {
     alert(error.message);
