@@ -316,7 +316,7 @@ if (orgLoading) return <h1>Loading organization...</h1>;
             </div>
             <div className="org-contact-details flex-row">
               {/* Form */}
-              <OrgContactForm />
+              <OrgContactForm orgId={org.id}/>
               {/* Contact Info */}
               <OrgContactInfos contactData={org.contact} />
             </div>

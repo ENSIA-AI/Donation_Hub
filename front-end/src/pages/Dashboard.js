@@ -133,16 +133,24 @@ const barData = stats && Array.isArray(stats.donations_by_type)
     });
 }, []);
 
+
   //Fetch all requests
-   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/dashboard/requests', {credentials: "include",})
-      .then(res => res.json())
-      .then(data => {
-        setRequests(Array.isArray(data.data) ? data.data : []);
-        setLoadingRequests(false);
-      })
-      .catch(() => setLoadingRequests(false));
-  }, []);
+  useEffect(() => {
+  if (!id) return; // make sure org id exists
+
+  setLoadingRequests(true);
+  fetch(`http://127.0.0.1:8000/api/dashboard/requests/${id}`, { credentials: "include" })
+    .then(res => res.json())
+    .then(data => {
+      setRequests(Array.isArray(data.data) ? data.data : []);
+      setLoadingRequests(false);
+    })
+    .catch(err => {
+      console.error('Error fetching requests:', err);
+      setLoadingRequests(false);
+    });
+}, [id]);
+
 
   
 

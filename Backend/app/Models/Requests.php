@@ -10,6 +10,7 @@ class Requests extends Model
     use HasFactory;
 
     protected $fillable = [
+        'organization_id',
         'rec_firstName',
         'rec_lastName',
         'rec_phoneNumber',
@@ -19,6 +20,11 @@ class Requests extends Model
         'rec_date',
         'rec_file_path'
     ];
+
+     public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
 
     protected $casts = [
         'donation_amount' => 'decimal:2',

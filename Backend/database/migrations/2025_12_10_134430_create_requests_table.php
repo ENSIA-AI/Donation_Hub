@@ -18,7 +18,15 @@ return new class extends Migration
             $table->string('rec_type');
             $table->date('rec_date');
             $table->string('rec_file_path')->nullable();
+            $table->unsignedBigInteger('organization_id');
+
             $table->timestamps();
+
+    // Then add the foreign key
+    $table->foreign('organization_id')
+          ->references('id')
+          ->on('organizations')
+          ->onDelete('cascade');
         });
     }
 

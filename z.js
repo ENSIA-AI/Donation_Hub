@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../styles/OrganizationProfile.css";
 
-const OrgContactForm = ({ orgId }) => {
+const OrgContactForm = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,15 +26,8 @@ const OrgContactForm = ({ orgId }) => {
   });
 
   const onSubmit = async (data) => {
-
-    if (!orgId) {
-      alert("Organization not specified!");
-      return;
-    }
-
     setIsSubmitting(true);
     setServerErrors({}); 
-
     try {
       const formData = new FormData();
       formData.append('rec_firstName', data.firstName);
@@ -44,8 +37,7 @@ const OrgContactForm = ({ orgId }) => {
       formData.append('rec_message', data.message);
       formData.append('rec_type', data.requestType);
       formData.append('rec_date', new Date().toISOString().split('T')[0]);
-      formData.append('organization_id', orgId);
-      
+
       if (data.file && data.file[0]) {
         formData.append('rec_file', data.file[0]);
       }

@@ -29,6 +29,7 @@ Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
 Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
 Route::get('/dashboard/donations', [DonationController::class, 'index']);
 Route::post('/requests', [RequestsController::class, 'store']);
+Route::get('/dashboard/requests/{orgId}', [RequestsController::class, 'getOrgRequests']);
 Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
 
 
