@@ -16,17 +16,24 @@ export const login = async (email, password) => {
 export const logout = async () => {
   const token = localStorage.getItem("token");
 
-  await axios.post(
-    "/logout",
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
+  try {
+    await axios.post(
+      "/logout",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    }
-  );
+    );
+  } catch (e) {
+    console.error("Error during logout:", e);
+  }
 
   localStorage.removeItem("token");
+  localStorage.removeItem("role");
+  localStorage.removeItem("adminId");
+  localStorage.removeItem("orgId");
 };
 
 export const getCurrentUser = async () => {

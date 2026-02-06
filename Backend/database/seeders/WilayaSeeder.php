@@ -11,7 +11,7 @@ class WilayaSeeder extends Seeder
     public function run()
     {
          $wilayas = [
-            'Adrar', 'Chlef', 'Laghouat', 'Oum El Bouaghi', 'Batna', 'Béjaïa',
+            'Chlef', 'Laghouat', 'Oum El Bouaghi', 'Batna', 'Béjaïa',
             'Biskra', 'Béchar', 'Blida', 'Bouira', 'Tamanrasset', 'Tébessa',
             'Tlemcen', 'Tiaret', 'Tizi Ouzou', 'Algiers', 'Djelfa', 'Jijel',
             'Sétif', 'Saïda', 'Skikda', 'Sidi Bel Abbès', 'Annaba', 'Guelma',

@@ -233,7 +233,7 @@ a {
 
 .Admin_logOut {
     color: var(--gray-color);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 600;
     font-family: var(--secondary-font);
     margin-bottom: 2rem;
@@ -243,6 +243,7 @@ a {
     border: none;
     cursor: pointer;
     color: inherit;
+    
     font: inherit;
     display: flex;
     align-items: center;
@@ -611,19 +612,6 @@ a {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
-.org_raquest_profile {
-    background-color: var(--primary-color);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: var(--card-border-radius);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.8rem;
-    font-weight: 600;
-    font-family: var(--secondary-font);
-}
 
 .org_request,
 .post_request {
@@ -661,18 +649,8 @@ a {
     width: 100%;
 }
 
-.org_request_date h4 {
-    margin: 0;
-    padding: 0;
-}
 
-.org_request_date {
-    font-family: var(--third-font);
-    font-size: 1.2rem;
 
-    color: var(--gray-color);
-    font-weight: 500;
-}
 
 .org_proof_parer_link,
 .compaign_org {
@@ -702,33 +680,105 @@ a {
     transform: scale(1.2);
 }
 
-.org_request_actions  {
-  margin-top: 0px;
-  gap: 10px;
-  align-items: center;
-  
 
-  
 
+/* org requests */
+
+
+.org_request_card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+
+
+
+
+
+.org_request_profile {
+    width: 50px;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+
+.org_request_middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.org_request_name {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.org_request_date {
+    font-size: 0.95rem;
+    color: var(--gray-color);
+}
+
+
+.org_request_right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+
+.org_request_actions {
+    display: flex;
+    gap: 10px;
+}
+
+.approve_btn, .reject_btn {
+    padding: 6px 14px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.884);
+    
 }
 
 .approve_btn {
-  background: var(--soft-green);
-  border: none;
-  padding: 6px 12px;
-  color: black;
-  cursor: pointer;
-  border-radius: 5px;
+    background-color: var(--soft-green);
 }
 
 .reject_btn {
-  background: var(--soft-yellow);
-  border: none;
-  padding: 6px 12px;
-  color: black;
-  cursor: pointer;
-  border-radius: 5px;
+    background-color: var(--soft-yellow);
 }
+
+
+
+.org_request_proof a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.org_request_proof span {
+    color: var(--gray-color);
+    font-size: 0.95rem;
+}
+
+/* =========================================== */
+
 
 
 /* =====================================Classes ========================================= */

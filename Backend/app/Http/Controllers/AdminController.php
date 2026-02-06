@@ -12,50 +12,40 @@ class AdminController extends Controller
     //================ after implementing login with session ==============
     public function profile(Request $request)
     {
-        $admin = $request->user(); // get logged-in admin from session
-        if (!$admin) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return response()->json([
-            'id' => $admin->id,
-            'username' => $admin->username,
-            'email' => $admin->email,
-            'profile_image' => $admin->profile_image ? asset('storage/' . $admin->profile_image) : null,
-        ]);
+        $admin = $request->user(); // uses sanctum token
+        return response()->json($admin);
     }
+
     public function updateProfile(Request $request)
     {
         $admin = $request->user();
-        if (!$admin) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
 
-        $data = $request->validate([
-            'username' => 'required|string|max:255|unique:admins,username,' . $admin->id,
-            'email' => 'required|email|max:255|unique:admins,email,' . $admin->id,
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|email|unique:admins,email,' . $admin->id,
             'password' => 'nullable|string|min:6',
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $admin->username = $data['username'];
-        $admin->email = $data['email'];
+        $admin->username = $request->username;
+        $admin->email = $request->email;
 
-        if (!empty($data['password'])) {
-            $admin->password = Hash::make($data['password']);
+        if ($request->filled('password')) {
+            $admin->password = Hash::make($request->password);
         }
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('profile_images', 'public');
+            // delete old image if exists
+            if ($admin->profile_image) {
+                Storage::delete($admin->profile_image);
+            }
+
+            $path = $request->file('image')->store('admin_images', 'public');
             $admin->profile_image = $path;
         }
 
         $admin->save();
 
-        return response()->json([
-            'message' => 'Profile updated successfully',
-            'admin' => $admin,
-        ]);
+        return response()->json(['admin' => $admin, 'message' => 'Profile updated']);
     }
 }

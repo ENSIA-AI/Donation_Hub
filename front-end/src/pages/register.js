@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import "../styles/register.css";
 import axios from "axios";
 import "../styles/register.css";
 
+import { useEffect } from "react";
+
+
+
+
 const Register = ()=>{
+  const [categories, setCategories] = useState([]);
+  const [wilayas, setWilayas] = useState([]);
   const [submiteSuccess, setSubmitSuccess] = useState(false);
 const {
   register,
@@ -43,9 +51,11 @@ const {
     formData.append("org_password", data.password);
 
     // TEMP IDs (later we make them dynamic)
-    formData.append("category_id", 1);
-    formData.append("wilaya_id", 1);
-formData.append("org_phone", data.phoneNum)
+
+    formData.append("category_id", data.category_id);
+    formData.append("wilaya_id", data.wilaya_id);
+
+
     
     if (data.proof && data.proof[0]) {
       formData.append("org_proof", data.proof[0]);
@@ -69,7 +79,21 @@ formData.append("org_phone", data.phoneNum)
     alert("Registration failed");
   }
 };
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const catRes = await axios.get("http://127.0.0.1:8000/api/categories");
+      const wilayaRes = await axios.get("http://127.0.0.1:8000/api/wilayas");
 
+      setCategories(catRes.data);
+      setWilayas(wilayaRes.data);
+    } catch (err) {
+      console.error("Error fetching data", err);
+    }
+  };
+
+  fetchData();
+}, []);
 
 
  return(
@@ -124,23 +148,23 @@ formData.append("org_phone", data.phoneNum)
           </div>
           <div className="selects-container">
             <div className=" select-container">
-              <select name="type" id="type-of-organization" {...register("organizationType")}>
-                <option value="health">health</option>
-                <option value="education">education</option>
-                <option value="children">children</option>
-                <option value="food">food</option>
-                <option value="water">water</option>
-              </select>
+              <select {...register("category_id")}>
+                {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                 {cat.category}
+                </option>
+                ))}
+             </select>
             </div>
             <div className=" select-container">
-              <select name="region" id="region" {...register("region")}>
-                <option value="algeries">algeries</option>
-                <option value="bouira">bouira</option>
-                <option value="jijel">jijel</option>
-                <option value="oran">oran</option>
-                <option value="bejia">bejia</option>
-                <option value="adrar">adrar</option>
+              <select {...register("wilaya_id")}>
+               {wilayas.map((wilaya) => (
+               <option key={wilaya.id} value={wilaya.id}>
+                  {wilaya.wilaya_name}
+               </option>
+               ))}
               </select>
+
             </div>
           </div>
           <div className="placeholder ">

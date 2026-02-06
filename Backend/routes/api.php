@@ -153,3 +153,7 @@ Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
 
 Route::get('/messages/count', [MessageController::class, 'count']);
 
+
+
+Route::middleware('auth:sanctum')->get('/admin/me', [AuthController::class, 'adminProfile']);
+Route::middleware('auth:sanctum')->post('/admin/profile/update', [AuthController::class, 'updateAdminProfile']);
