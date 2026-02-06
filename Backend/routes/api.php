@@ -21,6 +21,19 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AuthController;
 
 
+Route::get('/dashboard/donations/campaign/{campaignId}', [DonationController::class, 'getByCampaign'])
+    ->middleware('auth:sanctum');
+
+Route::get('/dashboard/statistics/campaign/{campaignId}', [DonationController::class, 'statisticsByCampaign'])
+    ->middleware('auth:sanctum');
+
+// Keep your existing routes too
+Route::get('/dashboard/donations', [DonationController::class, 'index'])
+    ->middleware('auth:sanctum');
+
+Route::get('/dashboard/statistics', [DonationController::class, 'statistics'])
+    ->middleware('auth:sanctum');
+
 Route::post('/donations', [DonationController::class, 'store']);
 Route::get('/donations', [DonationController::class, 'index']);
 Route::get('/dashboard/statistics', [DonationController::class, 'statistics']);

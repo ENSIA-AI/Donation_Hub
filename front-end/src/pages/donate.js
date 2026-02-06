@@ -1,7 +1,13 @@
+
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import "../styles/donate.css";
 
 const Donate = () => {
+  const { orgId, campaignId } = useParams();
+  console.log("Donate params:", { orgId, campaignId });
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -12,6 +18,7 @@ const Donate = () => {
     other_type: "",
   });
 
+  
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -37,7 +44,7 @@ const Donate = () => {
     }
 
     if (form.donation_type === "other" && !form.other_type.trim()) {
-        newErrors.other_type = "Please specify the donation type";
+      newErrors.other_type = "Please specify the donation type";
     }
 
     setErrors(newErrors);
@@ -46,8 +53,8 @@ const Donate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("SUBMIT CLICKED");
     setErrorMessage("");
+    setSuccessMessage("");
 
     if (!validate()) return;
 
@@ -60,6 +67,8 @@ const Donate = () => {
       donation_amount: form.donation_type === "money" ? Number(form.amount) : null,
       donation_date: new Date().toISOString().split("T")[0],
       donation_received: false,
+      organization_id: orgId,      
+      compaign_ID: campaignId ? Number(campaignId) : null 
       
     };
 
@@ -73,8 +82,20 @@ const Donate = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        if (result.errors) setErrors(result.errors);
-        else setErrorMessage(result.message || "Failed to save donation");
+        if (result.errors) {
+          // Map backend field names to frontend names
+          const mappedErrors = {};
+          if (result.errors.donor_firstName) mappedErrors.first_name = result.errors.donor_firstName[0];
+          if (result.errors.donor_lastName) mappedErrors.last_name = result.errors.donor_lastName[0];
+          if (result.errors.donor_phoneNumber) mappedErrors.phone = result.errors.donor_phoneNumber[0];
+          if (result.errors.donor_email) mappedErrors.email = result.errors.donor_email[0];
+          if (result.errors.donation_type) mappedErrors.donation_type = result.errors.donation_type[0];
+          if (result.errors.donation_amount) mappedErrors.amount = result.errors.donation_amount[0];
+          if (result.errors.compaign_ID) mappedErrors.campaign = result.errors.compaign_ID[0];
+          setErrors(mappedErrors);
+        } else {
+          setErrorMessage(result.message || "Failed to save donation");
+        }
         return;
       }
 
@@ -107,6 +128,8 @@ const Donate = () => {
       amount: "",
     });
     setErrors({});
+    setErrorMessage("");
+    setSuccessMessage("");
   };
 
   return (
@@ -156,6 +179,8 @@ const Donate = () => {
         <div className="donation-form col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
           <div className="form-card">
             <form className="donation-form-content" onSubmit={handleSubmit} onReset={handleReset}>
+              {errorMessage && <div className="error-message">{errorMessage}</div>}
+              
               {/* First Name */}
               <div className={`form-group ${errors.first_name ? "error" : ""}`}>
                 <label htmlFor="first-name" className="form-label">First Name*</label>
@@ -229,20 +254,22 @@ const Donate = () => {
                   <option value="" disabled hidden>Select a type</option>
                   <option value="money">Money</option>
                   <option value="food">Food</option>
-                  <option value="medicins">Medicins</option>
+                  <option value="medicine">Medicine</option>
                   <option value="other">Other</option>
                 </select>
                 {errors.donation_type && <div className="error-message">{errors.donation_type}</div>}
               </div>
 
-              {/* Donation Amount (only shows for money)*/}
+              {/* Donation Amount */}
               {form.donation_type === "money" && (
                 <div className={`form-group ${errors.amount ? "error" : ""}`}>
                   <label htmlFor="amount" className="form-label">Donation Amount*</label>
                   <input
-                    type="text"
+                    type="number"
                     id="amount"
                     name="amount"
+                    min="0" 
+                    step="0.01"
                     className="form-input"
                     placeholder="Enter amount"
                     value={form.amount}
@@ -252,38 +279,30 @@ const Donate = () => {
                 </div>
               )}
 
+              {/* Other Donation Type */}
               {form.donation_type === "other" && (
-                   <div className={`form-group ${errors.other_type ? "error" : ""}`}>
-                     <label htmlFor="other_type" className="form-label">
-                         Specify Donation Type*
-                      </label>
-                    <input
-                       type="text"
-                       id="other_type"
-                       name="other_type"
-                       className="form-input"
-                       placeholder="e.g. Clothes, Books, Blankets"
-                        value={form.other_type}
-                        onChange={handleChange}
-                     />
-                        {errors.other_type && (
-                       <div className="error-message">{errors.other_type}</div>
-                          )}
+                <div className={`form-group ${errors.other_type ? "error" : ""}`}>
+                  <label htmlFor="other_type" className="form-label">Specify Donation Type*</label>
+                  <input
+                    type="text"
+                    id="other_type"
+                    name="other_type"
+                    className="form-input"
+                    placeholder="e.g. Clothes, Books, Blankets"
+                    value={form.other_type}
+                    onChange={handleChange}
+                  />
+                  {errors.other_type && <div className="error-message">{errors.other_type}</div>}
                 </div>
               )}
 
-                
-
-              {/* Success message */}
+              {/* Success Message */}
               {successMessage && <div className="success-message">{successMessage}</div>}
 
-              {/* Form buttons */}
+              {/* Form Buttons */}
               <div className="form-btns flex-row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                <button type="submit" className="donate_btns" >Donate</button>
-                
+                <button type="submit" className="donate_btns">Donate</button>
                 <button type="reset" className="reset_btns">Reset</button>
-
-
               </div>
             </form>
           </div>
