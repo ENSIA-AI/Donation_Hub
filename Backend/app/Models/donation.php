@@ -20,8 +20,7 @@ class Donation extends Model
         'donation_amount',
         'donation_received',
         'donation_date',
-        'organization_id',
-        'campaign_ID',
+
     ];
 
     protected $casts = [

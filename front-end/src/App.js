@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // Layouts
 import MainLayout from "./layouts/MainLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -46,11 +46,15 @@ function App() {
           <Route path="/OrgProfile/:id/edit" element={<EditProfile />} />
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/AddDataOrg" element={<AddDataOrg />} />
-          <Route path="/donate" element={<Donate />} />
+          <Route path="/donate/:orgId/:campaignId" element={<Donate />} />
+
+
+
         </Route>
-        {/* Dashboard WITHOUT Header & Footer */}
+        {/* Dashboard WITHOUT Header & Footer  <Route path="/dashboard/:id" element={<Dashboard />} /> */}
         <Route element={<DashboardLayout />}>
-          <Route path="/dashboard/:id" element={<Dashboard />} />
+          
+          <Route path="/dashboard/:id/:campaignId?" element={<Dashboard />} />
           <Route path="/AdminDashboardStat" element={<AdminDashboardStat />} />
 
           <Route path="/campaigns" element={<DashCampaigns />} />

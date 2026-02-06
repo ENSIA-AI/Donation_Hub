@@ -75,14 +75,16 @@ const OrgPostCard = (props) => {
           <div className="post_actions flex-row">
             {/* Donate button */}
             <div className="Donnate_action post_action">
-              <a
-                className="post_action_link"
-                href="/donate"
-                onClick={() => props.onDonate && props.onDonate()}
+             <button
+               className="post_action_link"
+               onClick={() => props.onDonate && props.onDonate()}
+               style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
               >
-                Donate
-              </a>
-            </div>
+                    Donate
+              </button>
+              </div>
+
+           
             <div className="read_more_action ">
               <i className="fa-solid fa-arrow-right"></i>
               <a

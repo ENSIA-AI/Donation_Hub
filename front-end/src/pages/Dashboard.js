@@ -36,8 +36,12 @@ function OrgList({ organizations }) {
 
 
 function Dashboard() {
-  const { id } = useParams();
+
+
   const navigate = useNavigate();
+
+  const { id, campaignId } = useParams();
+
   const [org, setOrg] = useState(null);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [stats, setStats] = useState({
@@ -60,7 +64,19 @@ function Dashboard() {
   const VISIBLE_ROWS = 4;
   const COLORS = ["#107361", "#FEDA79"];
 
+  const pieData = stats ? [
+  { name: "Received", value: stats.received_donations || 0 },
+  { name: "Waiting", value: stats.waiting_donations || 0 },
+] : [];
 
+//chart data
+const barData = stats && Array.isArray(stats.donations_by_type)
+  ? stats.donations_by_type.map(d => ({
+      type: d.donation_type,
+      count: d.count,
+      totalAmount: d.total_amount || 0
+    }))
+  : [];
 
    useEffect(() => {
     if (!id) return;
@@ -83,9 +99,9 @@ function Dashboard() {
 
   // Fetch statistics
    useEffect(() => {
-  fetch('http://127.0.0.1:8000/api/dashboard/statistics', {
-    credentials: "include",
-  })
+  fetch(`http://127.0.0.1:8000/api/dashboard/statistics?org_id=${id}`, {
+  credentials: "include",
+})
     .then(res => res.json())
     .then(data => setStats(data.data ?? data))
     .catch(console.error);
@@ -102,30 +118,18 @@ function Dashboard() {
 
 
 
-const pieData = stats ? [
-  { name: "Received", value: stats.received_donations || 0 },
-  { name: "Waiting", value: stats.waiting_donations || 0 },
-] : [];
-
-//chart data
-const barData = stats && Array.isArray(stats.donations_by_type)
-  ? stats.donations_by_type.map(d => ({
-      type: d.donation_type,
-      count: d.count,
-      totalAmount: d.total_amount || 0
-    }))
-  : [];
-
 
   // Fetch all donations
   useEffect(() => {
-  fetch('http://127.0.0.1:8000/api/dashboard/donations', {credentials: "include",})
+  fetch(`http://127.0.0.1:8000/api/dashboard/donations?org_id=${id}`, {
+  credentials: "include",
+  })
     .then(res => res.json())
     .then(data => {
       console.log('API Response:', data); // See full response
       console.log('Donations array:', data.data); // See the donations array
       console.log('Number of donations:', data.data?.length); // Count
-      setDonations(Array.isArray(data.data) ? data.data : data);
+      setDonations(Array.isArray(data.data) ? data.data : []);
       setLoadingDonations(false);
     })
     .catch((err) => {
@@ -444,6 +448,7 @@ const handleOrgLogout = async () => {
                       <th>Donation</th>
                       <th>Status</th>
                       <th>Date</th>
+                      
                     </tr>
                   </thead>
                   <tbody>

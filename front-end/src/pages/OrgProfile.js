@@ -41,9 +41,26 @@ const OrgProfile = () => {
     org &&
     Number(loggedInOrgId) === Number(org.id);
 
-  const handleDonate = (post) => {
-    alert(`Donate for post: ${post.title}`);
-  };
+  
+const handleDonate = (post) => {
+  if (!post || !org) {
+    console.error("Cannot navigate to donate page: missing data", { post, org });
+    return;
+  }
+
+  // Use the actual field that exists in your API response
+  const campaignId = post.compaign_ID || post.id || post.campaign_ID;
+
+  if (!campaignId) {
+    console.error("Cannot navigate to donate page: missing campaign ID", post);
+    return;
+  }
+
+  navigate(`/donate/${org.id}/${campaignId}`);
+};
+
+
+
   // Find the organization by ID
 
   useEffect(() => {
@@ -172,7 +189,10 @@ const OrgProfile = () => {
         OrgSlogan={org.org_slogan}
         OrgType={org.category.category}
       />
-       {isOwner && (
+
+
+
+      {isOwner && (
         <div className="edit_delete_container">
           <div className="edit_links_s">
             <div>
@@ -194,6 +214,7 @@ const OrgProfile = () => {
         </div>
       )}
       
+
 
       {/* Navbar */}
       <div className="fluid_container">
