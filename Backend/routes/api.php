@@ -2,173 +2,123 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
+/*
+|--------------------------------------------------------------------------
+| Controllers
+|--------------------------------------------------------------------------
+*/
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\CompaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CompaignController;
-use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\WilayaController;
 use App\Http\Controllers\AdminController;
-use App\Models\Compaign;
-use Illuminate\Support\Facades\DB;
-use App\Models\Organization;
-use App\Models\Donation;
 use App\Http\Controllers\DashboardController;
-
 use App\Http\Controllers\MessageController;
 
-use App\Http\Controllers\AuthController;
+use App\Models\Organization;
+use App\Models\Compaign;
 
+/*
+|--------------------------------------------------------------------------
+| PUBLIC ROUTES (NO AUTH)
+|--------------------------------------------------------------------------
+| Browsing, searching, viewing public content
+*/
 
-Route::get('/dashboard/donations/campaign/{campaignId}', [DonationController::class, 'getByCampaign'])
-    ->middleware('auth:sanctum');
-
-Route::get('/dashboard/statistics/campaign/{campaignId}', [DonationController::class, 'statisticsByCampaign'])
-    ->middleware('auth:sanctum');
-
-// Keep your existing routes too
-Route::get('/dashboard/donations', [DonationController::class, 'index'])
-    ->middleware('auth:sanctum');
-
-Route::get('/dashboard/statistics', [DonationController::class, 'statistics'])
-    ->middleware('auth:sanctum');
-
-Route::post('/donations', [DonationController::class, 'store']);
-Route::get('/donations', [DonationController::class, 'index']);
-Route::get('/dashboard/statistics', [DonationController::class, 'statistics']);
-Route::put('/donations/{id}', [DonationController::class, 'update']);
-Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
-Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
-Route::get('/dashboard/donations', [DonationController::class, 'index']);
-Route::post('/requests', [RequestsController::class, 'store']);
-Route::get('/dashboard/requests/{orgId}', [RequestsController::class, 'getOrgRequests']);
-Route::get('/dashboard/requests', [RequestsController::class, 'getAllRequests']);
-Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
-
-// ===============compaigns============= :
-Route::get('/compaigns/pending', [CompaignController::class, 'pending']);
-Route::patch('/compaigns/{id}/approve', [CompaignController::class, 'approve']);
-Route::get('/compaigns/accepted', [CompaignController::class, 'accepted']);
-
-Route::patch('/compaigns/{id}/reject', [CompaignController::class, 'reject']);
-//Route::get('organizations/{id}/compaigns', [CompaignController::class, 'byOrganization']);
-
-Route::get('organizations/{organization}/compaigns', [CompaignController::class, 'byOrganization']);
-Route::get('/compaigns/autocomplete', [CompaignController::class, 'autocomplete']);
-Route::get('/compaigns/search', [CompaignController::class, 'search']);
-
-
-Route::apiResource('compaigns', CompaignController::class);
-
-Route::patch('organizations/{organization}/reject', [OrganizationController::class, 'reject']);
-Route::post('/organizations', [OrganizationController::class, 'regester']);
-Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
-Route::get('/organizations/pending', [OrganizationController::class, 'pending']);
-Route::get('/organization', [OrganizationController::class, 'index']);
-Route::get('/organization/{id}', [OrganizationController::class, 'show']);
-Route::put('/organization/{id}', [OrganizationController::class, 'update']);
-Route::delete('/organization/{id}', [OrganizationController::class, 'destroy']);
-// Route::post('/organization', [OrganizationController::class, 'store']);
-
-
-Route::get('/wilayas', [WilayaController::class, 'index']);
-Route::post('/wilayas', [WilayaController::class, 'store']);
-Route::post('/categories', [CategoryController::class, 'store']);
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/wilayas/search', [WilayaController::class, 'search']);
-Route::get('/api/organizations/autocomplete', [OrganizationController::class, 'autocomplete']);
-Route::get('/organizations/search', [OrganizationController::class, 'search']); // this is for searching org based on naem , wilaya and category
-
-Route::get('/admin/profile', [AdminController::class, 'profile'])->middleware('auth:sanctum');
-
-
-
+// ---------- AUTH ----------
 Route::post('/login', [AuthController::class, 'login']);
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/me', [AuthController::class, 'me']);
-});
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('/register', [AuthController::class, 'register']);
 
+// ---------- ORGANIZATIONS (PUBLIC) ----------
+Route::get('/organizations/search', [OrganizationController::class, 'search']);
+Route::get('/organizations/autocomplete', [OrganizationController::class, 'autocomplete']);
+Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
 
+Route::get('/organization', [OrganizationController::class, 'index']); // list all
+Route::get('/organization/{id}', [OrganizationController::class, 'show']);
+
+// ---------- CAMPAIGNS (PUBLIC) ----------
+Route::get('/organizations/{organization}/compaigns', [CompaignController::class, 'byOrganization']);
+Route::get('/compaigns/accepted', [CompaignController::class, 'accepted']);
+Route::get('/compaigns/search', [CompaignController::class, 'search']);
+Route::get('/compaigns/autocomplete', [CompaignController::class, 'autocomplete']);
+
+// ---------- DONATIONS & REQUESTS (PUBLIC SUBMISSION) ----------
+Route::post('/donations', [DonationController::class, 'store']);
+Route::post('/requests', [RequestsController::class, 'store']);
+
+// ---------- META ----------
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/wilayas', [WilayaController::class, 'index']);
+
+// ---------- STATS (PUBLIC) ----------
 Route::get('/organization-count', function () {
     return response()->json([
         'TotalOrgs' => Organization::count()
     ]);
 });
 
-
-
-
-Route::get('/dashboard/campaigns-by-category', function () {
-    return Compaign::select('category', DB::raw('COUNT(*) as campaigns'))
-        ->groupBy('category')
-        ->get();
-});
-
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-
-
-// ============================ Dashboard controller ===========================================
-Route::get(
-    '/campaigns-by-category',
-    [DashboardController::class, 'campaignsByCategory']
-);
-Route::get('/dashboard/organizations-by-category-count', [DashboardController::class, 'organizationsByCategoryCount']);
-
-Route::get('/donations-top-wilayas', [DonationController::class, 'topWilayasByDonation']);
-Route::get('/donations/by-type', [DonationController::class, 'donationsByType']);
 Route::get('/top-organizations', function () {
-    $topOrgs = Organization::select(
+    return Organization::select(
         'organizations.id',
         'org_name',
         DB::raw('COUNT(compaigns.compaign_ID) as campaigns_count')
     )
         ->join('compaigns', 'compaigns.organization_id', '=', 'organizations.id')
-
         ->groupBy('organizations.id', 'org_name')
         ->orderByDesc('campaigns_count')
         ->limit(6)
         ->get();
-
-    return response()->json($topOrgs);
 });
 
-Route::get('/donations-over-time', function () {
-    return DB::table('donations')
-        ->select(
-            DB::raw('DATE(donation_date) as date'),
-            DB::raw('COUNT(*) as count')
-        )
-        ->where('donation_received', true)
-        ->groupBy(DB::raw('DATE(donation_date)'))
-        ->orderBy('date')
-        ->get();
+/*
+|--------------------------------------------------------------------------
+| AUTHENTICATED ROUTES (SANCTUM)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth:sanctum')->group(function () {
+
+    // ---------- AUTH ----------
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/me', [AuthController::class, 'me']);
+
+    // ---------- ORGANIZATION DASHBOARD ----------
+    // IMPORTANT: org is taken from token, NOT from URL
+    Route::get('/dashboard/statistics', [DonationController::class, 'statistics']);
+    Route::get('/dashboard/donations', [DonationController::class, 'index']);
+    Route::get('/dashboard/requests', [RequestsController::class, 'getOrgRequests']);
+
+    Route::patch('/donations/{id}/status', [DonationController::class, 'updateStatus']);
+    Route::delete('/donations/{id}', [DonationController::class, 'destroy']);
+
+    // ---------- CAMPAIGNS (ORG) ----------
+    Route::apiResource('compaigns', CompaignController::class);
+
+    // ---------- MESSAGES ----------
+    Route::get('/messages', [MessageController::class, 'index']);
+    Route::get('/messages/count', [MessageController::class, 'count']);
+    Route::patch('/messages/{id}/read', [MessageController::class, 'markRead']);
+    Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
+
+    // ---------- ADMIN ----------
+    Route::get('/admin/profile', [AdminController::class, 'profile']);
+    Route::patch('/organizations/{id}/approve', [OrganizationController::class, 'approve']);
+    Route::patch('/organizations/{id}/reject', [OrganizationController::class, 'reject']);
+    Route::get('/organizations/pending', [OrganizationController::class, 'pending']);
 });
 
-
-
-
-Route::get('/total-money-donations', [DonationController::class, 'totalMoneyDonations']);
-
-
-
-// Message API Routes
-Route::post('/messages', [MessageController::class, 'store']);
-Route::get('/messages', [MessageController::class, 'index']);
-Route::patch('/messages/{id}/read', [MessageController::class, 'markRead']);
-Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
-
-Route::get('/messages/count', [MessageController::class, 'count']);
-
-
-
-Route::middleware('auth:sanctum')->get('/admin/me', [AuthController::class, 'adminProfile']);
-Route::middleware('auth:sanctum')->post('/admin/profile/update', [AuthController::class, 'updateAdminProfile']);
+/*
+|--------------------------------------------------------------------------
+| FALLBACK (OPTIONAL BUT RECOMMENDED)
+|--------------------------------------------------------------------------
+*/
+Route::fallback(function () {
+    return response()->json([
+        'message' => 'API route not found'
+    ], 404);
+});
