@@ -395,7 +395,7 @@ const handleOrgLogout = async () => {
                       <Tooltip />
                       <Legend />
                       <Bar dataKey="count" fill="#FEDA79" name="Number of Donations" />
-                      <Bar dataKey="totalAmount" fill="#107361" name="Total Amount (DZD)" />
+                      
                     </BarChart>
                   </ResponsiveContainer>
                   )}
