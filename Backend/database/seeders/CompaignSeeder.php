@@ -36,9 +36,9 @@ class CompaignSeeder extends Seeder
 
             // ===== GREEN FUTURE FOUNDATION (Org 1) =====
             [
-                'compaign_title' => 'Tree Planting Campaign 2024',
+                'compaign_title' => 'Tree Planting Campaign 2026',
                 'compaign_content' => 'Planting 5,000 trees across Algiers to combat climate change and improve air quality.',
-                'compaign_img' => 'compaigns/tree_planting.jpg',
+                'compaign_img' => 'compaigns/comp1_1.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 1,
@@ -47,7 +47,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Recycling Education Program',
                 'compaign_content' => 'Teaching schools and communities about proper waste management and recycling practices.',
-                'compaign_img' => null,
+                'compaign_img' => 'compaigns/comp2_1.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 1,
@@ -56,7 +56,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Solar Energy Initiative',
                 'compaign_content' => 'Installing solar panels in rural communities for sustainable energy access.',
-                'compaign_img' => 'compaigns/solar_energy.jpg',
+                'compaign_img' => 'compaigns/comp3_1.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 1,
@@ -65,7 +65,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Organic Farming Support',
                 'compaign_content' => 'Providing resources and training for organic farming in rural areas.',
-                'compaign_img' => null,
+                'compaign_img' => 'compaigns/comp4_1.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 1,
@@ -74,7 +74,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Ocean Cleanup Drive',
                 'compaign_content' => 'Organizing beach cleanups and marine conservation efforts along Algeria coast.',
-                'compaign_img' => 'compaigns/ocean_cleanup.jpg',
+                'compaign_img' => 'compaigns/comp5_1.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 1,
@@ -83,7 +83,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Environmental Awareness Week',
                 'compaign_content' => 'Week-long campaign promoting environmental consciousness through workshops and events.',
-                'compaign_img' => null,
+                'compaign_img' => 'compaigns/comp6_1.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 1,
@@ -206,7 +206,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Beach Cleanup Marathon',
                 'compaign_content' => 'Monthly beach cleanup events collecting plastic waste and debris from shores.',
-                'compaign_img' => 'compaigns/beach_cleanup.jpg',
+                'compaign_img' => 'compaigns/comp1_4.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 4,
@@ -215,7 +215,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Marine Wildlife Protection',
                 'compaign_content' => 'Campaign to protect endangered marine species and their habitats.',
-                'compaign_img' => null,
+                'compaign_img' => 'compaigns/comp2_4.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 4,
@@ -224,7 +224,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Plastic-Free Initiative',
                 'compaign_content' => 'Encouraging businesses and residents to reduce single-use plastic.',
-                'compaign_img' => 'compaigns/plastic_free.jpg',
+                'compaign_img' => 'compaigns/comp3_4.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 4,
@@ -233,7 +233,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Coastal Education Program',
                 'compaign_content' => 'Teaching schools about marine ecosystems and coastal conservation.',
-                'compaign_img' => null,
+                'compaign_img' => 'compaigns/comp4_4.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 4,
@@ -242,7 +242,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Fishing Sustainability Drive',
                 'compaign_content' => 'Promoting sustainable fishing practices to protect fish populations.',
-                'compaign_img' => 'compaigns/fishing_sustainability.jpg',
+                'compaign_img' => 'compaigns/comp5_4.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 4,
@@ -251,7 +251,7 @@ class CompaignSeeder extends Seeder
             [
                 'compaign_title' => 'Youth Marine Ambassador Program',
                 'compaign_content' => 'Training young people to become ocean conservation ambassadors.',
-                'compaign_img' => null,
+                'compaign_img' => 'compaigns/comp6_4.jpg',
                 'compaign_date' => now(),
                 'status' => 'accepted',
                 'organization_id' => 4,

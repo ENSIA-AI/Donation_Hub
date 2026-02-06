@@ -18,10 +18,17 @@ const OrgContactInfos = ({ contactData }) => {
               item.links.map((link, i) => (
                 <div key={i} className="flex-row media">
                   <img
-                    src={link.icon}
+                    src={
+                      link.name === "Facebook"
+                        ? "/icons/facebook.jpg"
+                        : link.name === "Instagram"
+                          ? "/icons/instagram.jpg"
+                          : "/icons/default.png"
+                    }
                     className="social_link_icon"
                     alt={link.name + "-icon"}
                   />
+
                   <a href={link.href} className="org-contact-link">
                     {link.name}
                   </a>
