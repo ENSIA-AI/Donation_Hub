@@ -80,6 +80,16 @@ body {
     padding: 5px 8px;
    
 }
+.seeMoreContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 0;
+}
+
+.seeMoreBtn img{
+   width: 60%;
+}
 .org_wilaya{
   font-size: var(--text-font-size);
   font-family: var(--third-font);

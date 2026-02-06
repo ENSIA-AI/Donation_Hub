@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../styles/register.css";
 import axios from "axios";
-import "../styles/register.css";
-
 import { useEffect } from "react";
 
 
@@ -149,22 +147,28 @@ useEffect(() => {
           </div>
           <div className="selects-container">
             <div className=" select-container">
-              <select {...register("category_id")}>
-                {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
+              <select {...register("category_id", { required: "Category is required" })}>
+                <option value="">Select category</option>
+
+                 {categories.map((cat) => (
+                 <option key={cat.id} value={cat.id}>
                  {cat.category}
                 </option>
-                ))}
+               ))}
              </select>
+
+            {errors.category_id && <span>{errors.category_id.message}</span>}
             </div>
             <div className=" select-container">
-              <select {...register("wilaya_id")}>
-               {wilayas.map((wilaya) => (
-               <option key={wilaya.id} value={wilaya.id}>
-                  {wilaya.wilaya_name}
+              <select {...register("wilaya_id", { required: "Wilaya is required" })}>
+               <option value="">Select wilaya</option>
+
+                {wilayas.map((wilaya) => (
+                <option key={wilaya.id} value={wilaya.id}>
+                {wilaya.wilaya_name}
                </option>
                ))}
-              </select>
+             </select>
 
             </div>
           </div>
@@ -172,6 +176,7 @@ useEffect(() => {
             <textarea
               name="description"
               id="description"
+              placeholder="Description"
               defaultValue={"description"}
               {...register("description")}
 
