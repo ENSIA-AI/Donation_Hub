@@ -40,28 +40,20 @@ const {
     const formData = new FormData();
 
     formData.append("org_name", data.orgName);
-    formData.append(
-      "org_registrationDate",
-      new Date().toISOString().slice(0, 10)
-    );
-    formData.append("org_description", data.description);
-    formData.append("org_email", data.email);
-    formData.append("org_password", data.password);
-    formData.append("org_phone", data.phoneNum);
+formData.append("org_registrationDate", new Date().toISOString().slice(0, 10));
+formData.append("org_description", data.description);
+formData.append("org_email", data.email);
+formData.append("org_password", data.password);
+formData.append("org_phone", data.phoneNum);
+formData.append("category_id", data.category_id);
+formData.append("wilaya_id", data.wilaya_id);
 
-    // TEMP IDs (later we make them dynamic)
-
-    formData.append("category_id", data.category_id);
-    formData.append("wilaya_id", data.wilaya_id);
-
-
-    
-    if (data.proof && data.proof[0]) {
-      formData.append("org_proof", data.proof[0]);
-    }
+if (data.proof && data.proof[0]) {
+  formData.append("org_proof", data.proof[0]);
+}
 
     const response = await axios.post(
-      "http://127.0.0.1:8000/api/organizations",
+      "http://127.0.0.1:8000/api/organizations/register",
       formData,
       {
         headers: {

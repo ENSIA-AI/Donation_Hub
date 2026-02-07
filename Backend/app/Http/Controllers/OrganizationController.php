@@ -293,10 +293,14 @@ public function approve($id)
         ], 201);
     }
 
-     public function pending()
-    {
-        return Organization::where('status', 'pending')->get();
-    }
+    public function pending()
+{
+    $organizations = Organization::with(['category', 'wilaya'])
+        ->where('status', 'pending')
+        ->get();
+
+    return response()->json($organizations);
+}
 
 
 
