@@ -10,50 +10,61 @@ import "../styles/OrganizationProfile.css";
 const OrgPostCard = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [org, setOrg] = useState(null);
+  const loggedInOrgId = localStorage.getItem("orgId");
+  const role = localStorage.getItem("role");
+ const isOwner =
+  role === "organization" &&
+  loggedInOrgId &&
+  props.organizationId &&
+  Number(loggedInOrgId) === Number(props.organizationId);
 
   return (
     <div className="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12 ">
       <div className="post-card">
         <div className="post_header flex-row">
           <div className="Post_Date">{props.OrgPostDate}</div>
-          <i
-            className="fa-solid fa-ellipsis"
-            onClick={() => setShowDropdown(!showDropdown)}
-            style={{ cursor: "pointer" }}
-          ></i>
+          {isOwner && (
+  <>
+    <i
+      className="fa-solid fa-ellipsis"
+      onClick={() => setShowDropdown(!showDropdown)}
+      style={{ cursor: "pointer" }}
+    ></i>
 
-          {showDropdown && (
-            <div className="dropdown-menu">
-              <button
-                onClick={() => {
-                  setShowUpdateModal(true);
-                  setShowDropdown(false);
-                }}
-              >
-                Update
-              </button>
-              <button
-                onClick={async () => {
-                  setShowDropdown(false);
-                  const confirmed = window.confirm(
-                    "Are you sure you want to delete this post?"
-                  );
-                  if (confirmed) {
-                    try {
-                      // Use the correct API route
-                      await axios.delete(`/api/compaigns/${props.OrgPostId}`);
-                      // Notify parent to remove post from list
-                      props.onDelete && props.onDelete(props.OrgPostId);
-                    } catch (error) {
-                      console.error("Delete failed:", error);
-                    }
-                  }
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          )}
+    {showDropdown && (
+      <div className="dropdown-menu">
+        <button
+          onClick={() => {
+            setShowUpdateModal(true);
+            setShowDropdown(false);
+          }}
+        >
+          Update
+        </button>
+        <button
+          onClick={async () => {
+            setShowDropdown(false);
+            const confirmed = window.confirm(
+              "Are you sure you want to delete this post?"
+            );
+            if (confirmed) {
+              try {
+                await axios.delete(`/api/compaigns/${props.OrgPostId}`);
+                props.onDelete && props.onDelete(props.OrgPostId);
+              } catch (error) {
+                console.error("Delete failed:", error);
+              }
+            }
+          }}
+        >
+          Delete
+        </button>
+      </div>
+    )}
+  </>
+)}
+          
         </div>
 
         <div className="post-image">
