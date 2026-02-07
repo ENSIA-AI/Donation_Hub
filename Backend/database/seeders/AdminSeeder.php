@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
             'username' => 'DonifyAdmin',
             'email' => 'Donifyadmin@gmail.com',
             'password' => bcrypt('Donify123'),
-            'profile_image' => null,
+            'profile_image' => 'admin_profiles/Admin_image.jpg',
         ]);
     }
 }
