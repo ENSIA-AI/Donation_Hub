@@ -40,7 +40,7 @@ body {
 
 /* Organization Name */
 .sidebar .org-name {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 15px;
     color: #333;
@@ -69,7 +69,7 @@ body {
 }
 
 .sidebar .profile a i {
-    font-size: 1rem;    
+    font-size: 2rem;    
 }
 
 .sidebar .profile a:hover {
@@ -92,6 +92,8 @@ body {
     margin-bottom: 10px;
     border-radius: 8px;
     transition: background 0.3s, color 0.3s;
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 .sidebar nav a:hover {
@@ -101,7 +103,7 @@ body {
 
 .sidebar nav a i {
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 19px;
     width: 20px;
 }
 
@@ -142,6 +144,7 @@ body {
 .requests-container,
 .donations-container {
     padding: 20px;
+    font-size: 1.5rem;
 }
 
 .top-bar {
@@ -185,7 +188,10 @@ body {
 .search-boxx input::placeholder {
     color: #888;
 }
-
+.flex-charts{
+    display: flex;
+    flex-direction: row;
+}
 .filter_btn {
     flex: 0;
     display: flex;
@@ -342,5 +348,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.dash_logout
+{
+    margin-top: 30rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    
 }
 
