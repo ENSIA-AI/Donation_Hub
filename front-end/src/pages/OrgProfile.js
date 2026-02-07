@@ -161,7 +161,6 @@ const handleDonate = (post) => {
         setLoaded(true);
       } catch (err) {
         console.error(err);
-        setError("Failed to load organization.");
         setOrgLoading(false);
       }
     };
