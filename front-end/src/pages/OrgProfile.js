@@ -42,25 +42,28 @@ const OrgProfile = () => {
     org &&
     Number(loggedInOrgId) === Number(org.id);
 
-  
-const handleDonate = (post) => {
-  if (!post || !org) {
-    console.error("Cannot navigate to donate page: missing data", { post, org });
-    return;
-  }
+  const handleDonate = (post) => {
+    if (!post || !org) {
+      console.error("Cannot navigate to donate page: missing data", {
+        post,
+        org,
+      });
+      return;
+    }
 
-  // Use the actual field that exists in your API response
-  const campaignId = post.compaign_ID || post.id || post.campaign_ID;
+    // Use the actual field that exists in your API response
+    const campaignId = post.compaign_ID || post.id || post.campaign_ID;
 
-  if (!campaignId) {
-    console.error("Cannot navigate to donate page: missing campaign ID", post);
-    return;
-  }
+    if (!campaignId) {
+      console.error(
+        "Cannot navigate to donate page: missing campaign ID",
+        post,
+      );
+      return;
+    }
 
-  navigate(`/donate/${org.id}/${campaignId}`);
-};
-
-
+    navigate(`/donate/${org.id}/${campaignId}`);
+  };
 
   // Find the organization by ID
 
@@ -80,7 +83,6 @@ const handleDonate = (post) => {
         setOrg(res.data);
       } catch (err) {
         console.error(err);
-
       } finally {
         setOrgLoading(false);
       }
@@ -161,7 +163,7 @@ const handleDonate = (post) => {
         setLoaded(true);
       } catch (err) {
         console.error(err);
-        setError("Failed to load organization.");
+
         setOrgLoading(false);
       }
     };
@@ -176,12 +178,10 @@ const handleDonate = (post) => {
   if (orgLoading)
     return <h1 className="handall_loading">Loading organization...</h1>;
 
-
   // Handle invalid ID
   if (!org) return <h1 className="handall_loading">invalid organization !</h1>;
   return (
     <>
-      
       {/* Hero */}
       <OrgHero
         OrgHeroImage={org.heroImage}
@@ -191,15 +191,11 @@ const handleDonate = (post) => {
         OrgType={org.category.category}
       />
 
-
-
       {isOwner && (
-  <div className="org-actions-container">
-    <OrgActionsMenu orgId={org.id} onDelete={handleDelete} />
-  </div>
-)}
-      
-
+        <div className="org-actions-container">
+          <OrgActionsMenu orgId={org.id} onDelete={handleDelete} />
+        </div>
+      )}
 
       {/* Navbar */}
       <div className="fluid_container">
