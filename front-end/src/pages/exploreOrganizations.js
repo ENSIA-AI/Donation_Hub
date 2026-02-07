@@ -4,7 +4,6 @@ import OrganizationCard from "../components/organizationCard";
 import SearchBar from "../components/SearchBar";
 import SeeMoreButton from "../components/SeeMoreButton";
 import axios from "../api/axios";
-import { Link } from "react-router-dom";
 
 const ExploreOrganizations = () => {
   const [visibleCount, setVisibleCount] = useState(8);
@@ -26,15 +25,15 @@ const ExploreOrganizations = () => {
   };
 
   useEffect(() => {
-  axios
-    .get("/organization?status=approved")
-    .then(response => {
-     setOrganizations(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching organizations:", error);
-    });
-}, []);
+    axios
+      .get("/organization?status=approved")
+      .then((response) => {
+        setOrganizations(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching organizations:", error);
+      });
+  }, []);
   return (
     <main>
       <div className="title">
@@ -44,7 +43,6 @@ const ExploreOrganizations = () => {
           communities
         </p>
       </div>
-      
 
       {/* Search bar */}
       <SearchBar onSearch={handleSearch} />
@@ -52,7 +50,6 @@ const ExploreOrganizations = () => {
       {/* Cards rendered dynamically */}
       <div className="container">
         <div className="cards-container flex-row-org ">
-         
           {organizations.slice(0, visibleCount).map((org) => (
             <OrganizationCard
               image={org.heroImage}
@@ -60,7 +57,6 @@ const ExploreOrganizations = () => {
               id={org.id}
               title={org.org_name}
               description={org.org_description}
-               
             />
           ))}
         </div>

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
 
 import "../styles/OrganizationProfile.css";
 import OrgHero from "../components/OrgHero";
