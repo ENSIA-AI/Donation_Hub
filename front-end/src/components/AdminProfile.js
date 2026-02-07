@@ -10,11 +10,11 @@ const AdminProfile = () => {
   const [error, setError] = useState("");
 
   const [adminData, setAdminData] = useState({
-    name: "",
+    username: "", // <- must match backend
     email: "",
     password: "",
     password_confirmation: "",
-    image: "https://via.placeholder.com/150",
+    image: "/public/assets/Images/admin_image.jpg", // default image
     imageFile: null,
   });
 
@@ -22,23 +22,11 @@ const AdminProfile = () => {
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        console.log("Fetching admin profile...");
-        const token = localStorage.getItem("token");
-
-        if (!token) {
-          console.error(" No token found");
-          setError("Not logged in. Please login first.");
-          return;
-        }
-
         const res = await axios.get("/admin/me");
-
-        console.log(" Admin data received:", res.data);
-
         const data = res.data.data || res.data;
 
         setAdminData({
-          name: data.name || "",
+          username: data.username || "",
           email: data.email || "",
           password: "",
           password_confirmation: "",
@@ -48,13 +36,12 @@ const AdminProfile = () => {
         setError("");
       } catch (err) {
         console.error(
-          " Error fetching admin:",
+          "Error fetching admin:",
           err.response?.data || err.message,
         );
         setError("Failed to load admin profile. Please login again.");
       }
     };
-
     fetchAdmin();
   }, []);
 
@@ -76,18 +63,12 @@ const AdminProfile = () => {
       setLoading(true);
       setError("");
 
-      console.log("Saving admin profile...");
-
       const formData = new FormData();
-      formData.append("name", adminData.name);
+      formData.append("username", adminData.username); // <- matches backend
       formData.append("email", adminData.email);
 
       if (adminData.password) {
         formData.append("password", adminData.password);
-        formData.append(
-          "password_confirmation",
-          adminData.password_confirmation,
-        );
       }
 
       if (adminData.imageFile) {
@@ -95,17 +76,14 @@ const AdminProfile = () => {
       }
 
       const res = await axios.patch("/admin/profile/update", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
-      console.log("Profile saved successfully:", res.data);
-
-      const updatedData = res.data.data || res.data;
+      const updatedData = res.data.admin || res.data.data;
 
       setAdminData({
-        ...adminData,
+        username: updatedData.username || adminData.username,
+        email: updatedData.email || adminData.email,
         password: "",
         password_confirmation: "",
         image: updatedData.profile_image || adminData.image,
@@ -113,25 +91,21 @@ const AdminProfile = () => {
       });
 
       setShowModal(false);
-      alert(" Profile updated successfully!");
+      alert("Profile updated successfully!");
     } catch (err) {
-      console.error(" Error saving profile:", err);
-
-      if (err.response?.status === 401) {
-        setError("Not authenticated. Please login again.");
-      } else if (err.response?.data?.message) {
-        setError(err.response.data.message);
-      } else if (err.response?.data?.errors) {
+      console.error("Error saving profile:", err);
+      if (err.response?.data?.errors) {
         const errorMessages = Object.values(err.response.data.errors)
           .flat()
           .join(", ");
         setError(errorMessages);
+      } else if (err.response?.data?.message) {
+        setError(err.response.data.message);
       } else {
         setError("Failed to save profile. Please try again.");
       }
-
       alert(
-        " Error: " + (err.response?.data?.message || "Failed to save profile"),
+        "Error: " + (err.response?.data?.message || "Failed to save profile"),
       );
     } finally {
       setLoading(false);
@@ -161,7 +135,7 @@ const AdminProfile = () => {
             ></i>
           )}
         </div>
-        <h6>{adminData.name || "Admin"}</h6>
+        <h6>{adminData.username || "Admin"}</h6>
       </div>
 
       {showModal &&
@@ -215,17 +189,17 @@ const AdminProfile = () => {
               <div className="profile_fields" style={{ marginTop: "20px" }}>
                 <label
                   style={{
-                    fontWeight: "600",
+                    fontWeight: 600,
                     marginBottom: "5px",
                     display: "block",
                   }}
                 >
-                  Name:
+                  Username:
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  value={adminData.name}
+                  name="username"
+                  value={adminData.username}
                   onChange={handleInputChange}
                   style={{
                     width: "100%",
@@ -239,7 +213,7 @@ const AdminProfile = () => {
 
                 <label
                   style={{
-                    fontWeight: "600",
+                    fontWeight: 600,
                     marginBottom: "5px",
                     display: "block",
                   }}
@@ -263,7 +237,7 @@ const AdminProfile = () => {
 
                 <label
                   style={{
-                    fontWeight: "600",
+                    fontWeight: 600,
                     marginBottom: "5px",
                     display: "block",
                   }}
@@ -290,7 +264,7 @@ const AdminProfile = () => {
                   <>
                     <label
                       style={{
-                        fontWeight: "600",
+                        fontWeight: 600,
                         marginBottom: "5px",
                         display: "block",
                       }}

@@ -25,11 +25,13 @@ const Sidebar = () => {
   ];
 
   // Find which item is active based on current route
-  const activeIndex = items.findIndex((item) => item.to === location.pathname);
+  const activeIndex = items.findIndex((item) =>
+    location.pathname.startsWith(item.to),
+  );
 
   return (
     <div className="dash_sideBare flex-column">
-      <AdminProfile name="Admin Name" image="assets/Images/admine_image.jpg" />
+      <AdminProfile />
       <div className="dash_sidebar_items_container">
         <ul className="dash_sidebar_items flex-column">
           {items.map((item, index) => (
