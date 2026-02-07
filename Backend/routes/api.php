@@ -43,7 +43,7 @@ Route::patch('/organizations/{id}/reject', [OrganizationController::class, 'reje
 Route::get('/organizations/{id}', [OrganizationController::class, 'show']);
 Route::put('/organizations/{id}', [OrganizationController::class, 'update']);
 Route::delete('/organizations/{id}', [OrganizationController::class, 'destroy']);
-Route::get('/organization', [OrganizationController::class, 'index']); // Consider changing to /organizations
+Route::get('/organization', [OrganizationController::class, 'index']); 
 
 // =============== CAMPAIGN ROUTES =================
 Route::get('/compaigns/pending', [CompaignController::class, 'pending']);

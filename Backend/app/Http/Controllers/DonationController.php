@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 
-
 class DonationController extends Controller
 {
     public function index(Request $request)
     {
-        $orgId = $request->query('org_id') ?? Auth::user()->organization_id;
+        $orgId = $request->query('org_id') ?? Auth::user()?->organization_id;
+        
         if (!$orgId) {
             return response()->json([
                 'success' => false,
@@ -45,13 +45,12 @@ class DonationController extends Controller
                 ];
             });
 
-
-
         return response()->json([
             'success' => true,
             'data' => $donations
         ]);
     }
+
     public function adminIndex()
     {
         $donations = Donation::with(['organization', 'post'])
@@ -79,7 +78,6 @@ class DonationController extends Controller
             'data' => $donations
         ]);
     }
-
 
     public function store(Request $request)
     {
@@ -136,17 +134,20 @@ class DonationController extends Controller
         }
     }
 
-
-
     public function update(Request $request, $id)
     {
-        $orgId = Auth::user()->organization_id;
+        $orgId = Auth::user()?->organization_id ?? $request->query('org_id');
 
+        if (!$orgId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Organization ID required'
+            ], 403);
+        }
 
         $donation = Donation::where('id', $id)
             ->where('organization_id', $orgId)
             ->firstOrFail();
-
 
         $validated = $request->validate([
             'donor_firstName' => 'required|string|max:255',
@@ -157,16 +158,13 @@ class DonationController extends Controller
             'donation_amount' => 'nullable|numeric|min:0',
             'donation_date' => 'required|date',
             'donation_received' => 'boolean',
-            'compaign_ID'       => 'nullable|exists:campaigns,id',
+            'compaign_ID' => 'nullable|exists:compaigns,compaign_ID',
         ]);
 
         $validated['organization_id'] = $orgId;
         $validated['donation_received'] = $validated['donation_received'] ?? $donation->donation_received;
 
-        if (
-            $validated['donation_type'] === 'money'
-            && empty($validated['donation_amount'])
-        ) {
+        if ($validated['donation_type'] === 'money' && empty($validated['donation_amount'])) {
             return response()->json([
                 'success' => false,
                 'message' => 'Amount is required for money donations',
@@ -195,7 +193,7 @@ class DonationController extends Controller
         ]);
     }
 
-    /*Update donation status only*/
+    /* Update donation status only */
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
@@ -225,7 +223,6 @@ class DonationController extends Controller
             'data' => $donation
         ]);
     }
-
 
     public function destroy(Request $request, $id)
     {
@@ -257,12 +254,10 @@ class DonationController extends Controller
         ]);
     }
 
-
-
-    /*GET Donation statistics*/
+    /* ✅ FIXED: GET Donation statistics - removed duplicate code */
     public function statistics(Request $request)
     {
-        $orgId = $request->query('org_id') ?? Auth::user()->organization_id;
+        $orgId = $request->query('org_id') ?? Auth::user()?->organization_id;
 
         if (!$orgId) {
             return response()->json([
@@ -271,66 +266,33 @@ class DonationController extends Controller
             ], 403);
         }
 
+        // ✅ FIXED: Removed duplicate assignments
         $stats = [
             'total_donations' => Donation::where('organization_id', $orgId)->count(),
 
-
-            'total_money_amount' =>
-            Donation::where('organization_id', $orgId)
+            'total_money_amount' => Donation::where('organization_id', $orgId)
                 ->whereNotNull('donation_amount')
                 ->sum('donation_amount'),
 
-            'waiting_donations' =>
-            Donation::where('organization_id', $orgId)
+            'waiting_donations' => Donation::where('organization_id', $orgId)
                 ->where('donation_received', false)
                 ->count(),
 
-            'received_donations' =>
-            Donation::where('organization_id', $orgId)
+            'received_donations' => Donation::where('organization_id', $orgId)
                 ->where('donation_received', true)
                 ->count(),
 
-            'waiting_money_amount' =>
-            Donation::where('organization_id', $orgId)
+            'waiting_money_amount' => Donation::where('organization_id', $orgId)
                 ->whereNotNull('donation_amount')
                 ->where('donation_received', false)
                 ->sum('donation_amount'),
 
-            'received_money_amount' =>
-            Donation::where('organization_id', $orgId)
+            'received_money_amount' => Donation::where('organization_id', $orgId)
                 ->whereNotNull('donation_amount')
                 ->where('donation_received', true)
                 ->sum('donation_amount'),
 
-            'donations_by_type' =>
-            Donation::where('organization_id', $orgId)
-                ->whereNotNull('donation_amount')
-                ->sum('donation_amount'),
-
-            'waiting_donations' =>
-            Donation::where('organization_id', $orgId)
-                ->where('donation_received', false)
-                ->count(),
-
-            'received_donations' =>
-            Donation::where('organization_id', $orgId)
-                ->where('donation_received', true)
-                ->count(),
-
-            'waiting_money_amount' =>
-            Donation::where('organization_id', $orgId)  // ⚠️ ADD THIS - was missing!
-                ->whereNotNull('donation_amount')
-                ->where('donation_received', false)
-                ->sum('donation_amount'),
-
-            'received_money_amount' =>
-            Donation::where('organization_id', $orgId)  // ⚠️ ADD THIS - was missing!
-                ->whereNotNull('donation_amount')
-                ->where('donation_received', true)
-                ->sum('donation_amount'),
-
-            'donations_by_type' =>
-            Donation::where('organization_id', $orgId)
+            'donations_by_type' => Donation::where('organization_id', $orgId)
                 ->select(
                     'donation_type',
                     DB::raw('count(*) as count'),
@@ -346,20 +308,19 @@ class DonationController extends Controller
         ]);
     }
 
-
-
     public function topWilayasByDonation()
     {
         $data = Donation::select('wilayas.wilaya_name', DB::raw('SUM(donation_amount) as total'))
             ->join('organizations', 'donations.organization_id', '=', 'organizations.id')
             ->join('wilayas', 'organizations.wilaya_id', '=', 'wilayas.id')
             ->groupBy('wilayas.wilaya_name')
-            ->orderByDesc('total') // sort descending by total donations
-            ->limit(6)             // only top 6
+            ->orderByDesc('total')
+            ->limit(6)
             ->get();
 
         return response()->json($data);
     }
+
     public function donationsByType()
     {
         return response()->json([
@@ -368,6 +329,7 @@ class DonationController extends Controller
             'medicine' => Donation::where('donation_type', 'medicine')->count(),
         ]);
     }
+
     public function totalMoneyDonations()
     {
         $total = Donation::whereNotNull('donation_amount')
@@ -381,7 +343,7 @@ class DonationController extends Controller
 
     public function getByCampaign($campaignId)
     {
-        $orgId = Auth::user()->organization_id;
+        $orgId = Auth::user()?->organization_id;
 
         if (!$orgId) {
             return response()->json([
@@ -419,7 +381,14 @@ class DonationController extends Controller
 
     public function statisticsByCampaign($campaignId)
     {
-        $orgId = Auth::user()->organization_id;
+        $orgId = Auth::user()?->organization_id;
+
+        if (!$orgId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Organization ID required'
+            ], 403);
+        }
 
         $stats = [
             'total_donations' => Donation::where('organization_id', $orgId)

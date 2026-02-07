@@ -41,7 +41,7 @@ const EditProfile = () => {
   });
 
   useEffect(() => {
-    api.get(`/organization/${id}`).then((res) => {
+    api.get(`/organizations/${id}`).then((res) => {
       setForm({
   org_name: res.data.org_name || "",
   org_description: res.data.org_description || "",
@@ -88,7 +88,7 @@ const EditProfile = () => {
       if (missionFile) data.append("mission_img", missionFile);
       if (program1_img) data.append("program1_img", program1_img);
       if (program2_img) data.append("program2_img", program2_img);
-      await api.post(`/organization/${id}?_method=PUT`, data, {
+      await api.post(`/organizations/${id}?_method=PUT`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
