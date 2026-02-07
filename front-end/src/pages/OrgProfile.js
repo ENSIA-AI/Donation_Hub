@@ -240,6 +240,7 @@ const OrgProfile = () => {
                 }
                 OrgPostTitle={c.compaign_title}
                 OrgPostDescription={c.compaign_content}
+                organizationId={org.id}
                 onDonate={() => handleDonate(c)}
                 onReadMore={() => setSelectedPost(c)}
                 onDelete={(id) => removePostFromState(id)}

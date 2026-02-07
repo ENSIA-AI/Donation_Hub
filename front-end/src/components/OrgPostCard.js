@@ -18,12 +18,14 @@ const OrgPostCard = (props) => {
   loggedInOrgId &&
   props.organizationId &&
   Number(loggedInOrgId) === Number(props.organizationId);
+  console.log("role:", role, "loggedInOrgId:", loggedInOrgId, "post org id:", props.organizationId, "isOwner:", isOwner);
 
   return (
     <div className="post col-xl-4 col-lg-4 col-md-6  col-sm-6 col-xs-12 co-xxs-12 ">
       <div className="post-card">
         <div className="post_header flex-row">
           <div className="Post_Date">{props.OrgPostDate}</div>
+          
           {isOwner && (
   <>
     <i
