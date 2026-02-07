@@ -11,38 +11,43 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
+
+
         $admin = Admin::where('email', $request->email)->first();
         if ($admin && Hash::check($request->password, $admin->password)) {
-
             $token = $admin->createToken('auth_token')->plainTextToken;
 
             return response()->json([
+                'success' => true,
+                'message' => 'Login successful',
                 'token' => $token,
                 'user' => $admin,
                 'role' => 'admin'
-            ]);
+            ], 200);
         }
-        $org = Organization::where('org_email', $request->email)->first();
 
+
+        $org = Organization::where('org_email', $request->email)->first();
         if (!$org || !Hash::check($request->password, $org->org_password)) {
             return response()->json([
-                'message' => 'Invalid credentials'
+                'success' => false,
+                'message' => 'Invalid email or password'
             ], 401);
         }
 
         $token = $org->createToken('auth_token')->plainTextToken;
 
         return response()->json([
+            'success' => true,
             'message' => 'Login successful',
             'token' => $token,
-            'organization' => $org,
+            'user' => $org,
             'role' => 'organization'
-        ]);
+        ], 200);
     }
 
 
@@ -89,61 +94,61 @@ class AuthController extends Controller
             'message' => 'Registered successfully'
         ]);
     }
-    public function updateAdminProfile(Request $request)
-    {
-        $admin = $request->user(); // authenticated admin via sanctum
+    // public function updateAdminProfile(Request $request)
+    // {
+    //     $admin = $request->user(); // authenticated admin via sanctum
 
-        if (!$admin) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized'
-            ], 401);
-        }
+    //     if (!$admin) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Unauthorized'
+    //         ], 401);
+    //     }
 
-        $validated = $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|email|unique:admins,email,' . $admin->id,
-            'password' => 'nullable|string|min:6|confirmed', // if you want password update
-        ]);
+    //     $validated = $request->validate([
+    //         'name' => 'sometimes|string|max:255',
+    //         'email' => 'sometimes|email|unique:admins,email,' . $admin->id,
+    //         'password' => 'nullable|string|min:6|confirmed', // if you want password update
+    //     ]);
 
-        if (!empty($validated['password'])) {
-            $validated['password'] = bcrypt($validated['password']);
-        } else {
-            unset($validated['password']);
-        }
+    //     if (!empty($validated['password'])) {
+    //         $validated['password'] = bcrypt($validated['password']);
+    //     } else {
+    //         unset($validated['password']);
+    //     }
 
-        if (!empty($validated['name'])) {
-            $admin->name = $validated['name'];
-        }
+    //     if (!empty($validated['name'])) {
+    //         $admin->name = $validated['name'];
+    //     }
 
-        if (!empty($validated['email'])) {
-            $admin->email = $validated['email'];
-        }
+    //     if (!empty($validated['email'])) {
+    //         $admin->email = $validated['email'];
+    //     }
 
-        $admin->update($validated);
+    //     $admin->update($validated);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Admin profile updated successfully',
-            'data' => $admin
-        ]);
-    }
-    public function adminProfile(Request $request)
-    {
-        $admin = $request->user(); // gets the authenticated admin via Sanctum
+    //     return response()->json([
+    //         'success' => true,
+    //         'message' => 'Admin profile updated successfully',
+    //         'data' => $admin
+    //     ]);
+    // }
+    // public function adminProfile(Request $request)
+    // {
+    //     $admin = $request->user(); // gets the authenticated admin via Sanctum
 
-        if (!$admin) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized'
-            ], 401);
-        }
+    //     if (!$admin) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Unauthorized'
+    //         ], 401);
+    //     }
 
-        return response()->json([
-            'success' => true,
-            'data' => $admin
-        ]);
-    }
+    //     return response()->json([
+    //         'success' => true,
+    //         'data' => $admin
+    //     ]);
+    // }
     public function pending()
     {
         $organizations = Organization::with(['category', 'wilaya'])
