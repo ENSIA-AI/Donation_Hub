@@ -24,10 +24,10 @@ html{
     padding: 0;
 }
 a{
-    text-decoration: none;  
-  color: inherit;         
-  background: none;       
-  border: none;           
+    text-decoration: none;  /* remove underline */
+  color: inherit;         /* inherit text color from parent */
+  background: none;       /* remove background */
+  border: none;           /* remove focus outlines or link borders */
   outline: none;
   cursor: pointer; 
 }
@@ -70,11 +70,6 @@ a{
     padding: 3em 2em;
     border-radius: 5px ;
      
- }
- .error_regi{
-  color: red;
-  font-size: 0.5rem;
-  padding-left: 5px;
  }
 .text{
     text-align: center;

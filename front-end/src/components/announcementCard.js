@@ -7,6 +7,9 @@ const AnnouncemetCard = ({
   announcementImage,
   announcementTitle,
   announcementDescription,
+  organizationId,
+  campaignId,
+  onDonate,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,9 +40,12 @@ const AnnouncemetCard = ({
 
             <div className="announcement_actions flex-row">
               <div className="DonnateAnnouncement_action announcement_action">
-                <Link to="/donate" className="announcement_action_link">
+                <button 
+                  className="announcement_action_link donate-action-btn"
+                  onClick={onDonate}
+                >
                   Donate
-                </Link>
+                </button>
               </div>
 
               <div

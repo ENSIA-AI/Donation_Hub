@@ -21,9 +21,9 @@ class AdminController extends Controller
         $admin = $request->user();
 
         $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|unique:admins,email,' . $admin->id,
-            'password' => 'nullable|string|min:6',
+            'username' => 'string|max:255',
+            'email' => 'email|unique:admins,email,' . $admin->id,
+            'password' => 'nullable|string|min:6|confirmed', // Add confirmed
             'image' => 'nullable|image|max:2048',
         ]);
 
@@ -35,17 +35,14 @@ class AdminController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            // delete old image if exists
-            if ($admin->profile_image) {
-                Storage::delete($admin->profile_image);
-            }
-
-            $path = $request->file('image')->store('admin_images', 'public');
-            $admin->profile_image = $path;
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/admins', $filename);
+            $admin->profile_image = '/storage/admins/' . $filename;
         }
 
         $admin->save();
 
-        return response()->json(['admin' => $admin, 'message' => 'Profile updated']);
+        return response()->json(['data' => $admin, 'message' => 'Profile updated']); // Change this line
     }
 }

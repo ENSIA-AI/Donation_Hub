@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f9;
+    
 }
 
 /* Sidebar */
@@ -39,7 +40,7 @@ body {
 
 /* Organization Name */
 .sidebar .org-name {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 15px;
     color: #333;
@@ -50,6 +51,8 @@ body {
     margin-bottom: 30px;
 }
 
+
+
 .sidebar .profile a {
     display: inline-flex;
     align-items: center;
@@ -59,14 +62,14 @@ body {
     color: #000;
     text-decoration: none;
     border-radius: 20px;   
-    font-size: 0.9rem;     
+    font-size: 1.2rem;     
     font-weight: 500;
     transition: all 0.3s ease;
     margin-bottom: 40px;   
 }
 
 .sidebar .profile a i {
-    font-size: 0.9rem;    
+    font-size: 2rem;    
 }
 
 .sidebar .profile a:hover {
@@ -89,6 +92,8 @@ body {
     margin-bottom: 10px;
     border-radius: 8px;
     transition: background 0.3s, color 0.3s;
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 .sidebar nav a:hover {
@@ -98,7 +103,7 @@ body {
 
 .sidebar nav a i {
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 19px;
     width: 20px;
 }
 
@@ -112,15 +117,6 @@ body {
     flex-grow: 1;
     padding: 20px;
     margin-left: 280px;
-}
-.dash_logout{
-    margin-top: 100%;
-    color: var(--gray-color);
-    transition: all 0.7s ease-in-out;
-    display: inline-block;
-    font-size: 1.5rem;
-    font-weight: bold;
-   
 }
 
 .tab-content {
@@ -148,6 +144,7 @@ body {
 .requests-container,
 .donations-container {
     padding: 20px;
+    font-size: 1.5rem;
 }
 
 .top-bar {
@@ -191,7 +188,10 @@ body {
 .search-boxx input::placeholder {
     color: #888;
 }
-
+.flex-charts{
+    display: flex;
+    flex-direction: row;
+}
 .filter_btn {
     flex: 0;
     display: flex;
@@ -205,14 +205,14 @@ body {
     border: 1.5px solid #ddd; 
     transition: box-shadow 0.3s, border-color 0.3s;
 }
+
 .section-title {
-    font-size: 2rem;
-    font-family: var(--primary-font);
-    color: var(--primary-color);
+    font-size: 2.5rem;
     margin-bottom: 20px;
     font-weight: bold;
-    text-align: center;
+    color: #155330;
 }
+
 .requests-table,
 .donations-table {
     width: 100%;
@@ -275,7 +275,9 @@ body {
 /* Add Button */
 .add-btn {
     margin: 20px auto;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -292,23 +294,21 @@ body {
     transform: scale(1.1);
     background-color: #333;
 }
-.flex-charts {
-    display: flex;
-    flex-direction: row;
 
-}
 /* Stats Grid for Dashboard */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 35px;
+    gap: 20px;
     
     margin-bottom: 35px;
+
     margin-top: 20px;
 }
+
 .stat-card {
     background: white;
-    padding: 17px;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     text-align: center;
@@ -322,14 +322,15 @@ body {
 }
 
 .stat-number {
-    font-size: 30px;
+    font-size: 36px;
     font-weight: bold;
     color: #2c3e50;
     margin: 10px 0;
 }
+
 .stat-card small {
-    color: #8a8a8a;
-    font-size: 14px;
+    color: #999;
+    font-size: 12px;
 }
 
 .stat-card.waiting {
@@ -338,5 +339,22 @@ body {
 
 .stat-card.received {
     border-left: 4px solid #27ae60;
+}
+
+.delete-btn {
+    height: 3rem;
+    border-radius: 10px;
+    width: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash_logout
+{
+    margin-top: 30rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    
 }
 

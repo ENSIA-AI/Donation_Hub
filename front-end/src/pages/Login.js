@@ -1,3 +1,140 @@
+// import React, { useState } from "react";
+// import "../styles/register.css";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useForm } from "react-hook-form";
+// import { login } from "../services/authService";
+
+// const Login = () => {
+//   const {
+//     register,
+//     handleSubmit,
+//     reset,
+//     formState: { errors },
+//   } = useForm();
+
+//   const [error, setError] = useState("");
+//   const navigate = useNavigate();
+
+//   const onSubmit = async (data) => {
+//     try {
+//       setError(""); // Clear previous errors
+
+//       const response = await login(data.email, data.password);
+
+//       localStorage.setItem("token", response.token);
+//       localStorage.setItem("role", response.role);
+
+//       if (response.role === "admin") {
+//         localStorage.setItem("adminId", response.user.id);
+//         navigate("/AdminDashboardStat");
+//       } else if (response.role === "organization") {
+//         localStorage.setItem("orgId", response.organization.id);
+//         navigate(`/OrgProfile/${response.organization.id}`);
+//       }
+
+//       reset({
+//         email: "",
+//         password: "",
+//       });
+
+//     } catch (err) {
+//       console.error("Login error:", err); // Debug log
+
+//       // Show the specific error message from backend
+//       if (err.response?.data?.message) {
+//         setError(err.response.data.message);
+//       } else if (err.response?.status === 403) {
+//         setError("Your account is pending approval or has been rejected");
+//       } else if (err.response?.status === 401) {
+//         setError("Invalid email or password");
+//       } else {
+//         setError("An error occurred. Please try again.");
+//       }
+//     }
+//   };
+
+//   return (
+//     <main>
+//       <div className="mainContainer">
+//         <div className="log-container ">
+//           <div className="toggle-box col-lg-6 col-xl-6 col-md-6">
+//             <div className="text">
+//               <h3>welcome back to donifyDz !</h3>
+//               <p>don't have an account?</p>
+//             </div>
+//             <div className="register ">
+//               <button id="register">
+//                 <Link to="/Register">register</Link>
+//               </button>
+//             </div>
+//           </div>
+
+//           {/* login form */}
+//           <div className="form-box login col-lg-6 col-xl-6 col-md-6">
+//             <div className="login-form ">
+//               <div className="title ">
+//                 <h2>login</h2>
+//               </div>
+
+//               {error && (
+//                 <p style={{
+//                   color: "#d32f2f",
+//                   textAlign: "center",
+//                   backgroundColor: "#ffebee",
+//                   padding: "12px",
+//                   borderRadius: "6px",
+//                   marginBottom: "15px",
+//                   fontSize: "14px",
+//                   border: "1px solid #ef9a9a"
+//                 }}>
+//                   {error}
+//                 </p>
+//               )}
+
+//               <form onSubmit={handleSubmit(onSubmit)}>
+//                 <div className="placeholder">
+//                   <input
+//                     type="email"
+//                     id="email"
+//                     placeholder="Email"
+//                     {...register("email", {
+//                       required: "Email is required",
+//                       pattern: {
+//                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+//                         message: "Invalid email format",
+//                       },
+//                     })}
+//                   />
+//                   {errors.email && <span>{errors.email.message}</span>}
+//                 </div>
+
+//                 <div className="placeholder">
+//                   <input
+//                     type="password"
+//                     placeholder="Password"
+//                     {...register("password", {
+//                       required: "Password is required",
+//                     })}
+//                   />
+//                   {errors.password && <span>{errors.password.message}</span>}
+//                 </div>
+
+//                 <div className="submit">
+//                   <button type="submit" className="submitBnt">
+//                     login
+//                   </button>
+//                 </div>
+//               </form>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </main>
+//   );
+// };
+
+// export default Login;
+
 import React, { useState } from "react";
 import "../styles/register.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,50 +145,71 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm();
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
+      setError("");
+      setLoading(true);
+
       const response = await login(data.email, data.password);
 
+      console.log("✅ Login response:", response);
+
+      // ✅ Save token and role
       localStorage.setItem("token", response.token);
       localStorage.setItem("role", response.role);
-  
-      if (response.role === "admin") {
-        localStorage.setItem("adminId", response.user.id);
-        navigate("/AdminDashboardStat");
-      } else if (response.role === "organization") {
-        localStorage.setItem("orgId", response.organization.id);
-        navigate(`/OrgProfile/${response.organization.id}`);
+
+      // ✅ Check for user/organization data
+      if (response.user) {
+        if (response.role === "admin") {
+          localStorage.setItem("adminId", response.user.id);
+          console.log("✅ Admin logged in, redirecting to dashboard");
+          navigate("/AdminDashboardStat");
+        } else if (response.role === "organization") {
+          localStorage.setItem("orgId", response.user.id);
+          console.log("✅ Organization logged in, redirecting to profile");
+          navigate(`/OrgProfile/${response.user.id}`);
+        }
       }
 
       reset({
         email: "",
         password: "",
-        confirmPassword: "",
       });
-
     } catch (err) {
-      setError("Invalid email or password");
+      console.error("❌ Login error:", err);
+
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.response?.status === 401) {
+        setError("Invalid email or password");
+      } else if (err.response?.status === 403) {
+        setError("Your account is pending approval or has been rejected");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <main>
       <div className="mainContainer">
-        <div className="log-container ">
+        <div className="log-container">
           <div className="toggle-box col-lg-6 col-xl-6 col-md-6">
             <div className="text">
               <h3>welcome back to donifyDz !</h3>
               <p>don't have an account?</p>
             </div>
-            <div className="register ">
+            <div className="register">
               <button id="register">
                 <Link to="/Register">register</Link>
               </button>
@@ -60,13 +218,26 @@ const Login = () => {
 
           {/* login form */}
           <div className="form-box login col-lg-6 col-xl-6 col-md-6">
-            <div className="login-form ">
-              <div className="title ">
+            <div className="login-form">
+              <div className="title">
                 <h2>login</h2>
               </div>
 
               {error && (
-                <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+                <p
+                  style={{
+                    color: "#d32f2f",
+                    textAlign: "center",
+                    backgroundColor: "#ffebee",
+                    padding: "12px",
+                    borderRadius: "6px",
+                    marginBottom: "15px",
+                    fontSize: "14px",
+                    border: "1px solid #ef9a9a",
+                  }}
+                >
+                  {error}
+                </p>
               )}
 
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,8 +246,9 @@ const Login = () => {
                     type="email"
                     id="email"
                     placeholder="Email"
+                    disabled={loading}
                     {...register("email", {
-                      required: "email required",
+                      required: "Email is required",
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         message: "Invalid email format",
@@ -90,20 +262,24 @@ const Login = () => {
                   <input
                     type="password"
                     placeholder="Password"
+                    disabled={loading}
                     {...register("password", {
-                      required: "password is required",
+                      required: "Password is required",
                     })}
                   />
                   {errors.password && <span>{errors.password.message}</span>}
                 </div>
 
                 <div className="submit">
-                  <button type="submit" className="submitBnt">
-                    login
+                  <button
+                    type="submit"
+                    className="submitBnt"
+                    disabled={loading}
+                  >
+                    {loading ? "Logging in..." : "Login"}
                   </button>
                 </div>
               </form>
-
             </div>
           </div>
         </div>
