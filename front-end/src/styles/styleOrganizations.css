@@ -237,10 +237,7 @@ img {
     padding: 2em;
 
 }
-.handall_loading{
- text-align: center;
- margin: 10% 0;
-}
+
 .card:hover {
 
     transform: scale(1.03);

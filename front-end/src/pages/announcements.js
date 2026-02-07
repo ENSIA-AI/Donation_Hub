@@ -1,29 +1,50 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/announcementStyle.css";
 import SearchBarPosts from "../components/SearchBarPosts";
 import SeeMoreButton from "../components/SeeMoreButton";
 import AnnouncemetCard from "../components/announcementCard";
 
 const Announcements = () => {
+  const navigate = useNavigate();
   const [compaigns, setCompaigns] = useState([]);
   const [visibleCount, setVisibleCount] = useState(6);
   const [loading, setLoading] = useState(true);
 
-  //  Fetch all accepted campaigns on page load
+  const handleDonate = (campaign) => {
+    if (!campaign) {
+      console.error("Cannot navigate to donate page: missing campaign data");
+      return;
+    }
+
+    const campaignId = campaign.compaign_ID;
+    const organizationId = campaign.organization_id;
+
+    if (!campaignId || !organizationId) {
+      console.error("Cannot navigate to donate page: missing IDs", campaign);
+      alert("Unable to process donation. Missing campaign or organization information.");
+      return;
+    }
+
+    console.log(`Navigating to: /donate/${organizationId}/${campaignId}`);
+    navigate(`/donate/${organizationId}/${campaignId}`);
+  };
+
   useEffect(() => {
     fetch("http://localhost:8000/api/compaigns/search")
       .then((res) => res.json())
       .then((data) => {
+        console.log("Campaigns data:", data);
         setCompaigns(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Error fetching campaigns:", err);
         setLoading(false);
       });
   }, []);
 
-  //  Search handler
+
   const handleSearch = ({ name, wilaya_id, category_id }) => {
     const params = new URLSearchParams();
     if (name) params.append("q", name);
@@ -35,12 +56,13 @@ const Announcements = () => {
     fetch(`http://localhost:8000/api/compaigns/search?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log("Search results:", data);
         setCompaigns(data);
-        setVisibleCount(6); // reset visible cards
+        setVisibleCount(6); 
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Error searching campaigns:", err);
         setLoading(false);
       });
   };
@@ -81,7 +103,7 @@ const Announcements = () => {
               .slice(0, visibleCount)
               .map((compaign) => (
                 <AnnouncemetCard
-                  key={compaign.id}
+                  key={compaign.compaign_ID}
                   announcementDate={new Date(
                     compaign.compaign_date,
                   ).toDateString()}
@@ -92,6 +114,9 @@ const Announcements = () => {
                   }
                   announcementTitle={compaign.compaign_title}
                   announcementDescription={compaign.compaign_content}
+                  organizationId={compaign.organization_id}
+                  campaignId={compaign.compaign_ID}
+                  onDonate={() => handleDonate(compaign)}
                 />
               ))}
         </div>

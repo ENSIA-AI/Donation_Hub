@@ -46,6 +46,8 @@ class AuthController extends Controller
     }
 
 
+
+
     public function me(Request $request)
     {
         $orgId = $request->session()->get('organization_id');
@@ -143,5 +145,13 @@ class AuthController extends Controller
             'success' => true,
             'data' => $admin
         ]);
+    }
+    public function pending()
+    {
+        $organizations = Organization::with(['category', 'wilaya'])
+            ->where('status', 'pending')
+            ->get();
+
+        return response()->json($organizations);
     }
 }

@@ -286,7 +286,14 @@ class OrganizationController  extends Controller
     }
 
     public function pending()
-    {
-        return Organization::where('status', 'pending')->get();
-    }
+{
+    $organizations = Organization::with(['category', 'wilaya'])
+        ->where('status', 'pending')
+        ->get();
+
+    return response()->json($organizations);
 }
+
+}
+
+
