@@ -25,9 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::get('/admin/me', [AuthController::class, 'adminProfile']);
 
-    Route::post('/admin/profile/update', [AuthController::class, 'updateAdminProfile']);
     Route::get('/admin/profile', [AdminController::class, 'profile']);
-
 });
 
 // =============== ORGANIZATION ROUTES =================

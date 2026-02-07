@@ -21,9 +21,9 @@ class AdminController extends Controller
         $admin = $request->user();
 
         $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|unique:admins,email,' . $admin->id,
-            'password' => 'nullable|string|min:6',
+            'username' => 'string|max:255',
+            'email' => 'email|unique:admins,email,' . $admin->id,
+            'password' => 'nullable|string|min:6|confirmed', // Add confirmed
             'image' => 'nullable|image|max:2048',
         ]);
 
@@ -41,9 +41,8 @@ class AdminController extends Controller
             $admin->profile_image = '/storage/admins/' . $filename;
         }
 
-
         $admin->save();
 
-        return response()->json(['admin' => $admin, 'message' => 'Profile updated']);
+        return response()->json(['data' => $admin, 'message' => 'Profile updated']); // Change this line
     }
 }

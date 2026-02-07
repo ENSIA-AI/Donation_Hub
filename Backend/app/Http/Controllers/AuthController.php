@@ -20,14 +20,18 @@ class AuthController extends Controller
         $admin = Admin::where('email', $request->email)->first();
         if ($admin && Hash::check($request->password, $admin->password)) {
             $token = $admin->createToken('auth_token')->plainTextToken;
-
             return response()->json([
                 'success' => true,
                 'message' => 'Login successful',
                 'token' => $token,
-                'user' => $admin,
+                'user' => [
+                    'id' => $admin->id,
+                    'name' => $admin->name,
+                    'email' => $admin->email,
+                    'profile_image' => $admin->profile_image
+                ],
                 'role' => 'admin'
-            ], 200);
+            ]);
         }
 
 
