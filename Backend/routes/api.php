@@ -24,8 +24,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
     Route::get('/admin/me', [AuthController::class, 'adminProfile']);
+
     Route::post('/admin/profile/update', [AuthController::class, 'updateAdminProfile']);
     Route::get('/admin/profile', [AdminController::class, 'profile']);
+
 });
 
 // =============== ORGANIZATION ROUTES =================
@@ -136,3 +138,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/admin/me', [AdminController::class, 'profile']); // fetch admin
+    Route::patch('/admin/profile/update', [AdminController::class, 'updateProfile']); // update admin
+});
