@@ -144,4 +144,12 @@ class AuthController extends Controller
             'data' => $admin
         ]);
     }
+    public function pending()
+    {
+        $organizations = Organization::with(['category', 'wilaya'])
+            ->where('status', 'pending')
+            ->get();
+
+        return response()->json($organizations);
+    }
 }
