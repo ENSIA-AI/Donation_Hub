@@ -97,7 +97,7 @@ const handleDonate = (post) => {
     if (!confirmDelete) return;
 
     try {
-      await api.delete(`/organization/${id}`);
+      await api.delete(`/organizations/${id}`);
       alert("Organization deleted successfully");
       navigate("/ExploreOrganizations"); // go back to list page
     } catch (error) {
