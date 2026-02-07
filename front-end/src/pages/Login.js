@@ -8,7 +8,6 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm();
@@ -18,6 +17,8 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
+      setError(""); // Clear previous errors
+      
       const response = await login(data.email, data.password);
 
       localStorage.setItem("token", response.token);
@@ -34,11 +35,21 @@ const Login = () => {
       reset({
         email: "",
         password: "",
-        confirmPassword: "",
       });
 
     } catch (err) {
-      setError("Invalid email or password");
+      console.error("Login error:", err); // Debug log
+      
+      // Show the specific error message from backend
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.response?.status === 403) {
+        setError("Your account is pending approval or has been rejected");
+      } else if (err.response?.status === 401) {
+        setError("Invalid email or password");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
     }
   };
 
@@ -66,7 +77,18 @@ const Login = () => {
               </div>
 
               {error && (
-                <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+                <p style={{ 
+                  color: "#d32f2f", 
+                  textAlign: "center",
+                  backgroundColor: "#ffebee",
+                  padding: "12px",
+                  borderRadius: "6px",
+                  marginBottom: "15px",
+                  fontSize: "14px",
+                  border: "1px solid #ef9a9a"
+                }}>
+                  {error}
+                </p>
               )}
 
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -76,7 +98,7 @@ const Login = () => {
                     id="email"
                     placeholder="Email"
                     {...register("email", {
-                      required: "email required",
+                      required: "Email is required",
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         message: "Invalid email format",
@@ -91,7 +113,7 @@ const Login = () => {
                     type="password"
                     placeholder="Password"
                     {...register("password", {
-                      required: "password is required",
+                      required: "Password is required",
                     })}
                   />
                   {errors.password && <span>{errors.password.message}</span>}
@@ -103,7 +125,6 @@ const Login = () => {
                   </button>
                 </div>
               </form>
-
             </div>
           </div>
         </div>

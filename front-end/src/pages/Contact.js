@@ -101,7 +101,7 @@ const Contact = () => {
               />
               <label>First Name</label>
               {errors.fname && (
-                <span >{errors.fname}</span>
+                <span className="error-message">{errors.fname}</span>
               )}
             </div>
 

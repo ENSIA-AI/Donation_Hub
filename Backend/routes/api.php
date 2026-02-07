@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Http\Request;
@@ -81,7 +82,9 @@ Route::delete('/organization/{id}', [OrganizationController::class, 'destroy']);
 Route::get('/wilayas', [WilayaController::class, 'index']);
 Route::post('/wilayas', [WilayaController::class, 'store']);
 Route::post('/categories', [CategoryController::class, 'store']);
-Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories',
+
+[CategoryController::class, 'index']);
 Route::get('/wilayas/search', [WilayaController::class, 'search']);
 
 Route::get('/admin/profile', [AdminController::class, 'profile'])->middleware('auth:sanctum');

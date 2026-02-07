@@ -40,28 +40,20 @@ const {
     const formData = new FormData();
 
     formData.append("org_name", data.orgName);
-    formData.append(
-      "org_registrationDate",
-      new Date().toISOString().slice(0, 10)
-    );
-    formData.append("org_description", data.description);
-    formData.append("org_email", data.email);
-    formData.append("org_password", data.password);
-    formData.append("org_phone", data.phoneNum);
+formData.append("org_registrationDate", new Date().toISOString().slice(0, 10));
+formData.append("org_description", data.description);
+formData.append("org_email", data.email);
+formData.append("org_password", data.password);
+formData.append("org_phone", data.phoneNum);
+formData.append("category_id", data.category_id);
+formData.append("wilaya_id", data.wilaya_id);
 
-    // TEMP IDs (later we make them dynamic)
-
-    formData.append("category_id", data.category_id);
-    formData.append("wilaya_id", data.wilaya_id);
-
-
-    
-    if (data.proof && data.proof[0]) {
-      formData.append("org_proof", data.proof[0]);
-    }
+if (data.proof && data.proof[0]) {
+  formData.append("org_proof", data.proof[0]);
+}
 
     const response = await axios.post(
-      "http://127.0.0.1:8000/api/organizations",
+      "http://127.0.0.1:8000/api/organizations/register",
       formData,
       {
         headers: {
@@ -127,7 +119,7 @@ useEffect(() => {
               placeholder="Name of organization"
               {...register("orgName", { required:"Organization name is required", maxLength: 20 })}
             />
-            {errors.orgName && <span className="error-message">{errors.orgName.message}</span>}
+            {errors.orgName && <span>{errors.orgName.message}</span>}
           </div>
           <div className=" placeholder">
             <input type="text" id="phone-number" placeholder="Phone number" 
@@ -135,7 +127,7 @@ useEffect(() => {
            value: /^(05|06|07)[0-9]{8}$/,
            message: "Invalid phone number format",},})}
             />
-            {errors.phoneNum && <span className="error-message">{errors.phoneNum.message}</span>}
+            {errors.phoneNum && <span>{errors.phoneNum.message}</span>}
           </div>
           <div className=" placeholder">
             <input type="email" id="email" placeholder="Email" 
@@ -143,7 +135,7 @@ useEffect(() => {
            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
            message: "Invalid email format",},})}
            />
-           {errors.email && <span className="error-message">{errors.email.message}</span>}
+           {errors.email && <span>{errors.email.message}</span>}
           </div>
           <div className="selects-container">
             <div className=" select-container">
@@ -157,7 +149,7 @@ useEffect(() => {
                ))}
              </select>
 
-            {errors.category_id && <span className="error-message">{errors.category_id.message}</span>}
+            {errors.category_id && <span>{errors.category_id.message}</span>}
             </div>
             <div className=" select-container">
               <select {...register("wilaya_id", { required: "Wilaya is required" })}>
@@ -191,7 +183,7 @@ useEffect(() => {
               },
             })}
               />
-              {errors.password && <span className="error-message">{errors.password.message}</span>}
+              {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className=" placeholder">
             <input type="password" placeholder="Confirm password" 
@@ -202,7 +194,7 @@ useEffect(() => {
                 })}
              />
              {errors.confirmPassword && (
-              <span className="error_regi">{errors.confirmPassword.message}</span>
+              <span>{errors.confirmPassword.message}</span>
             )}
           </div>
           <div className="placeholder file-add ">

@@ -46,6 +46,8 @@ class AuthController extends Controller
     }
 
 
+
+
     public function me(Request $request)
     {
         $orgId = $request->session()->get('organization_id');
