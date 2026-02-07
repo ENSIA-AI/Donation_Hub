@@ -163,7 +163,6 @@ const OrgProfile = () => {
         setLoaded(true);
       } catch (err) {
         console.error(err);
-
         setOrgLoading(false);
       }
     };
