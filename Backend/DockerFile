@@ -1,15 +1,29 @@
-FROM php:8.2-cli
+# Use official PHP image with extensions
+FROM php:8.2-fpm
 
-WORKDIR /var/www
-
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    unzip git curl libzip-dev zip \
-    && docker-php-ext-install zip pdo pdo_pgsql
+    libpq-dev \
+    libzip-dev \
+    unzip \
+    git \
+    curl \
+    && docker-php-ext-install pdo pdo_pgsql zip
 
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy files
 COPY . .
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+# Expose port
+EXPOSE 8000
+
+# Run migrations and start Laravel
+CMD php artisan migrate --force && php artisan serve --host 0.0.0.0 --port 8000
