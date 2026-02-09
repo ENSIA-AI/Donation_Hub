@@ -27,7 +27,8 @@ EXPOSE 8000
 
 # Run migrations and start Laravel
 
-RUN php artisan config:clear
-RUN php artisan cache:clear
-RUN php artisan route:clear
+# Clear caches before starting
+RUN php artisan config:clear \
+ && php artisan cache:clear \
+ && php artisan route:clear
 CMD php artisan migrate --force && php artisan serve --host 0.0.0.0 --port 8000
