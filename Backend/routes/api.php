@@ -16,6 +16,13 @@ use App\Models\Compaign;
 use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
 
+
+
+
+Route::get('/test', function () {
+    return "API working";
+});
+
 // =============== AUTH ROUTES =================
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
