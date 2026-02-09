@@ -19,9 +19,10 @@ use Illuminate\Support\Facades\DB;
 
 
 
-Route::get('/test', function () {
-    return "API working";
+Route::get('/test', function() {
+    return response()->json(['message' => 'API working']);
 });
+
 
 // =============== AUTH ROUTES =================
 Route::post('/login', [AuthController::class, 'login']);
