@@ -9,10 +9,10 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
 {
     Schema::table('organizations', function (Blueprint $table) {
-        $table->enum('status', ['pending', 'approved', 'rejected'])
+        $table->string('status')
               ->default('pending')
               ->change();
     });
@@ -21,8 +21,7 @@ return new class extends Migration
 public function down(): void
 {
     Schema::table('organizations', function (Blueprint $table) {
-        $table->enum('status', ['pending', 'approved', 'rejected'])
-              ->change();
-    });
+            $table->string('status')->default(null)->change();
+        });
 }
 };
