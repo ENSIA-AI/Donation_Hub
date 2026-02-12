@@ -1,7 +1,6 @@
-# Use official PHP image with extensions
+# Use official PHP image
 FROM php:8.2-fpm
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
@@ -10,23 +9,15 @@ RUN apt-get update && apt-get install -y \
     curl \
     && docker-php-ext-install pdo pdo_pgsql zip
 
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy files
 COPY . .
 
-# Install composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose port
-EXPOSE 8000
+# Laravel permissions
+RUN chmod -R 775 storage bootstrap/cache
 
-# Run migrations and start Laravel
-
-
-CMD php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
-
+# Start Laravel
+CMD php -S 0.0.0.0:$PORT -t public
